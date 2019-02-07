@@ -1,0 +1,256 @@
+ .clear{
+    clear:both;
+}
+ #ad_list_modal #ads_list{
+    height:200px;
+     overflow:hidden;
+     overflow-y:scroll;
+}
+ #ad_list_modal #ads_list .ads_list_item{
+     padding:3px;
+     margin:5px;
+     margin-bottom:3px;
+     border:1px solid #EEEEEE;
+     cursor:move;
+     background:#f4f4f4;
+}
+ #ad_list_modal #ads_list .ads_list_item.selected{
+     background:#9EC541;
+}
+ #ad_list_modal #ads_list .ads_list_item .ad_type{
+     color:#cccccc;
+     float:right;
+}
+ #ad_list_modal #ads_list .ads_list_item.selected .ad_type{
+     color:#ffffff;
+}
+ .ad_slide{
+    min-height:100px;
+}
+ .slide_header{
+    font-weight:bold;
+}
+ .slide_header .sl_hd_left{
+    width:320px;
+     height:18px;
+     float:left;
+     padding: 7px 3px;
+     margin-right:5px;
+     border:1px solid #EEEEEE;
+     background:#fefefe;
+     text-align:center;
+}
+ .slide_header .sl_hd_middle{
+    width:58px;
+     height:18px;
+     float:left;
+     padding: 7px 3px;
+     margin-right:5px;
+     border:1px solid #EEEEEE;
+     background:#fefefe;
+     text-align:center;
+}
+ .slide_header .sl_hd_right{
+    width:24px;
+     height:26px;
+     float:left;
+     padding: 3px;
+     border:1px solid #EEEEEE;
+     background:#fefefe;
+}
+ .ad_set{
+     min-height:80px;
+}
+ .ad_set .ad_item{
+    margin:5px;
+     margin-left:0px;
+     margin-bottom:3px;
+     cursor:move;
+}
+ .ad_set .ad_item .ad_item_left{
+    width:320px;
+     height:18px;
+     float:left;
+     padding: 7px 3px;
+     margin-right:5px;
+     border:1px solid #EEEEEE;
+     cursor:move;
+     background:#f4f4f4;
+}
+ .ad_set .ad_item .ad_item_left .ad_type{
+     color:#ff0000;
+}
+ .ad_set .ad_item .ad_item_middle{
+    width:58px;
+     height:26px;
+     float:left;
+     padding:3px;
+     margin-right:5px;
+     border:1px solid #EEEEEE;
+     font-size:13px;
+     cursor:move;
+     background:#f4f4f4;
+}
+ .ad_set .ad_item .ad_item_middle .percentage{
+     width:35px;
+     padding:3px;
+     margin:1px;
+}
+ .ad_set .ad_item .ad_item_right{
+    width:24px;
+     height:26px;
+     float:left;
+     padding:3px;
+     border:1px solid #EEEEEE;
+     cursor:move;
+     background:#f4f4f4;
+}
+ .ad_set .ad_item .ad_item_right .percentage{
+     padding:3px;
+     margin:1px;
+     border:1px solid #eeeeee;
+}
+ .equal_button{
+     height:18px;
+     width:33px;
+     display:block;
+     background:url(../images/equal_button.png);
+     cursor:pointer;
+     margin:0 auto;
+}
+ .remove_ad_btn{
+     height:16px;
+     width:16px;
+     margin-top:4px;
+     margin-left:4px;
+     display:inline-block;
+     background:url(../images/minus.png);
+     cursor:pointer;
+}
+ .add_ad_btn{
+     height:18px;
+     padding-left:20px;
+     display:block;
+     background:url(../images/add16.png) left no-repeat;
+     color:#7B9A32;
+     cursor:pointer;
+     margin:0 auto;
+}
+ .slide_footer .sl_ft_left{
+    width:320px;
+     height:19px;
+     float:left;
+     padding:3px;
+     margin-right:5px;
+     border:1px solid #EEEEEE;
+     background:#fefefe;
+}
+ .slide_footer .sl_ft_middle{
+    width:58px;
+     height:19px;
+     float:left;
+     padding:3px;
+     margin-right:5px;
+     border:1px solid #EEEEEE;
+     background:#fefefe;
+}
+ .slide_footer .sl_ft_right{
+    width:24px;
+     height:19px;
+     float:left;
+     padding:3px;
+     border:1px solid #EEEEEE;
+     background:#fefefe;
+}
+ .add_slide_btn{
+     height:26px;
+     padding-left:28px;
+     padding-top:10px;
+     display:block;
+     background:url(../images/add24.png) left no-repeat;
+     color:#7B9A32;
+     font-size:16px;
+     cursor:pointer;
+     margin:0 auto;
+}
+ .add_country_btn{
+     height:18px;
+     padding-left:20px;
+     display:block;
+     background:url(../images/add16.png) left no-repeat;
+     color:#7B9A32;
+     cursor:pointer;
+     margin:0 auto;
+}
+ #ctab_set{
+     margin:0;
+     padding:0;
+     list-style-type:none;
+}
+ #ctab_set li{
+     list-style-type:none;
+     padding:3px;
+     margin-bottom:2px;
+     border:1px solid #dedede;
+     cursor:pointer;
+     background:#efefef;
+}
+ #ctab_set li.selected{
+     background:#ffffff;
+}
+ .ctab_box{
+     display:none;
+}
+ .ctab_box .ctab_box_head {
+    height:28px;
+}
+ .ctab_box .ctab_box_title{
+     width:440px;
+     float:left;
+     text-align:left;
+     font-size:17px;
+     font-weight:bold;
+     color:#006600;
+}
+ .ctab_box .ctab_control_box{
+     width:30px;
+     float:right;
+}
+ .remove_country_btn{
+     height:24px;
+     margin-left:4px;
+     padding-left:26px;
+     padding-top:3px;
+     display:inline-block;
+     color:#cc0000;
+     font-size:16px;
+     background:url(../images/cancel.png);
+     background-repeat:no-repeat;
+     cursor:pointer;
+}
+ .remove_country_btn:hover{
+     background-color:#FFFFFF;
+}
+ .remove_country_btn:hover{
+    color:#ee0000;
+}
+/* over ridding jquery ui css*/
+ .ad_slide.ui-accordion-content.ui-helper-reset.ui-widget-content.ui-corner-bottom{
+    padding:13px 18px;
+}
+ .ad_zone_link_msg{
+     margin-left:15px;
+}
+ .ad_zone_link_msg .success{
+    color:#009900;
+}
+ .ad_zone_link_msg .fail{
+    color:#ff0000;
+}
+ .percentage.error{
+     background-color:#FFFF00
+}
+ #ctab_set li.error{
+    color:#FF0000;
+}
+ 

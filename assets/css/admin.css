@@ -1,0 +1,76 @@
+ .adguru_page{
+}
+ .adguru_page .msg_error{
+     color:#cc0000;
+     border:1px solid #cc0000;
+     background:#FFFFCC;
+     margin-bottom:10px;
+     padding:5px;
+     -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+     border-radius: 3px;
+}
+ .adguru_page .msg_success{
+     color:#009900;
+     border:1px solid #009900;
+     background:#EDFDF5;
+     margin-bottom:10px;
+     padding:5px;
+     -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+     border-radius: 3px;
+}
+ .adguru_page .input_error{
+     background:#FBE4E4;
+}
+ #ad_editor {
+     width:800px;
+}
+ #ad_editor label{
+     font-weight:bold;
+}
+ #ad_editor .input_long{
+     width:400px;
+}
+ #ad_editor input[type="text"]:readonly {
+     background:#eeeeee;
+}
+ #zone_editor{
+}
+ #zone_editor label{
+     font-weight:bold;
+}
+ #zone_editor .input_long{
+     width:400px;
+}
+ #zone_editor .input_long{
+     width:400px;
+}
+ #used_term_list{
+     border:1px solid #eeeeee;
+     padding:10px;
+}
+ #used_term_list a{
+     padding:5px;
+     color:#21759B;
+     background:#ffffff;
+     border:1px solid #21759B;
+     display:inline-block;
+     margin:3px;
+}
+ #used_term_list a:hover{
+    color:#ff0000;
+     background:#ffffff;
+     border:1px solid #ff0000;
+}
+ .adguru_help_msg{
+     padding:5px;
+     border:1px solid #eeeeee;
+     background:#f9f9f9;
+     color:#222222;
+     margin:5px auto;
+}
+ .adg_error_field{
+     background:#FBE9E9 !important;
+}
+ 

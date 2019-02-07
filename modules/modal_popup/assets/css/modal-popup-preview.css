@@ -1,0 +1,184 @@
+/* Common styles for MODAL POPUPS */
+.hidden{
+	display: none;
+}
+.adguru-modal-popup{
+
+}
+.adguru-modal-popup .mp-overlay{
+	background: rgba(100,100,100,0.8);
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	z-index: 999998;
+	top: 0;
+	left: 0;
+}
+/*==========CONTAINER=============*/ /* https://stackoverflow.com/questions/1776915/how-to-center-absolutely-positioned-element-in-div */
+.adguru-modal-popup .mp-container-wrap{
+	width: 100%;
+	position: fixed;
+	z-index: 999999;
+}
+.adguru-modal-popup .mp-container{
+	box-sizing: border-box;
+	position: relative;
+	display: flex; /* we need flex for iFrame type content resizing */
+	flex-direction: column;
+}
+.adguru-modal-popup .mp-container-wrap.top-left{
+	top: 0;
+	left: 0;
+}
+
+.adguru-modal-popup .mp-container-wrap.top-center{
+	top:0;
+	left: 0;
+}
+.adguru-modal-popup .mp-container-wrap.top-center .mp-container{
+	margin:0 auto;
+}
+
+.adguru-modal-popup .mp-container-wrap.top-right{
+	top:0;
+	left: 0;
+}
+.adguru-modal-popup .mp-container-wrap.top-right .mp-container{
+	float:right;
+}
+
+.adguru-modal-popup .mp-container-wrap.middle-left{
+	top: 50%;
+	left: 0;
+	transform: translate(0, -50%);
+}
+
+.adguru-modal-popup .mp-container-wrap.middle-center{
+	top: 50%;
+	left:0;
+	transform: translate(0, -50%);
+	
+}
+.adguru-modal-popup .mp-container-wrap.middle-center .mp-container{
+	margin: 0 auto;
+}
+
+.adguru-modal-popup .mp-container-wrap.middle-right{
+	top: 50%;
+	left: 0;
+	transform: translate(0, -50%);
+	
+}
+.adguru-modal-popup .mp-container-wrap.middle-right .mp-container{
+	float: right;
+	
+}
+
+
+.adguru-modal-popup .mp-container-wrap.bottom-left{
+	bottom: 0;
+	left: 0;
+}
+
+.adguru-modal-popup .mp-container-wrap.bottom-center{
+	bottom:0;
+	left: 0;
+}
+.adguru-modal-popup .mp-container-wrap.bottom-center .mp-container{
+	margin:0 auto;
+}
+
+.adguru-modal-popup .mp-container-wrap.bottom-right{
+	bottom:0;
+	left: 0;
+}
+.adguru-modal-popup .mp-container-wrap.bottom-right .mp-container{
+	float:right;
+}
+
+
+
+.adguru-modal-popup .mp-content-wrap{
+	width: 100%;
+	height: 100%;
+	flex-grow: 1; /* we need flex for iFrame type content resizing */
+	overflow: hidden;
+}
+/*==========CLOSE BUTTON=============*/
+.adguru-modal-popup .mp-close-wrap{
+	position: absolute;
+}
+.adguru-modal-popup .mp-close{
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	cursor: pointer;
+	
+}
+.adguru-modal-popup .mp-close img{
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	border: none;
+	max-width: 100%;
+	vertical-align: top;
+}
+.adguru-modal-popup .mp-close-wrap.top-left{
+	top: 0;
+	left: 0;
+}
+.adguru-modal-popup .mp-close-wrap.top-left .mp-close{}
+.adguru-modal-popup .mp-close-wrap.top-center{
+	top: 0;
+	left: 50%;
+
+}
+.adguru-modal-popup .mp-close-wrap.top-center .mp-close{
+	left: -50%;
+
+}
+.adguru-modal-popup .mp-close-wrap.top-right{
+	right: 0;
+	top: 0;
+}
+.adguru-modal-popup .mp-close-wrap.top-right .mp-close{}
+
+.adguru-modal-popup .mp-close-wrap.middle-left{
+	top: 50%;
+	left: 0;
+}
+.adguru-modal-popup .mp-close-wrap.middle-left .mp-close{
+	top: -50%;
+}
+.adguru-modal-popup .mp-close-wrap.middle-right{
+	top: 50%;
+	right: 0;
+}
+.adguru-modal-popup .mp-close-wrap.middle-right .mp-close{
+	top: -50%;
+}
+.adguru-modal-popup .mp-close-wrap.bottom-left{
+	left: 0;
+	bottom: 0;
+}
+.adguru-modal-popup .mp-close-wrap.bottom-left .mp-close{}
+.adguru-modal-popup .mp-close-wrap.bottom-center{
+	left: 50%;
+	bottom: 0;
+}
+.adguru-modal-popup .mp-close-wrap.bottom-center .mp-close{
+	left: -50%;
+}
+.adguru-modal-popup .mp-close-wrap.bottom-right{
+	right: 0;
+	bottom: 0;
+}
+.adguru-modal-popup .mp-close-wrap.bottom-right .mp-close{}
+
+
+/* ============== ============================== */
+.adguru-modal-popup embed, .adguru-modal-popup iframe, .adguru-modal-popup object, .adguru-modal-popup video{
+	margin: 0;
+	padding: 0;
+}
+

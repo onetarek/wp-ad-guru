@@ -1,0 +1,23 @@
+MIGRATOR RULE
+
+Ad property "code_type" will be changed to "content_type"
+
+Value of "code_type" will be changed for "content_type" as below
+
+html --> html
+link_with_image --> image
+link_in_iframe --> iframe
+create_your_own --> wysiwyg
+
+
+field value "window_source" ( actually that is iframe_source in old db for ad type window_popup ) will go to  "url_url"
+For window popup : 
+	if code type is 'link_in_iframe' then content_type will be 'url' and iframe_source value will go to contnet_url['url'] array;
+
+
+Update sizing options for all type of ads
+Update popup triggering options for modal and window popup
+Update popup_options for window_popup
+
+
+

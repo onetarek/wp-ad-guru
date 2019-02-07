@@ -1,0 +1,43 @@
+/* content type image */
+.adguru_content_image{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	max-width: 100%;
+	width: auto;
+} 
+
+/* content type iFrame */
+.adguru-content-iframe{
+	display: flex; 
+	width: 100%; 
+	height: 100%; 
+	flex-direction: column; 
+	overflow: hidden;
+}
+.adguru-content-iframe iframe{
+	flex-grow: 1; border: none; margin: 0; padding: 0;
+}
+
+.adguru_ad_slider{
+	margin:0;
+	padding:0;
+	list-style:none;
+	border:none; 
+	/* width and hieght are declared within style attribute of the element
+	width:300px;
+	height:250px; 
+	*/
+	overflow:hidden;
+
+}
+.adguru_ad_slider li{
+	display:block;
+	/* width and hieght are declared within style attribute of the element
+	width:300px;
+	height:250px; 
+	*/
+	margin:0px; 
+	padding:0px; 
+	border:none; 
+}

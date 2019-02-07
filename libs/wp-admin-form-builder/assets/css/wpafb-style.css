@@ -1,0 +1,318 @@
+/** WordPress 3.8 Fix **/
+.form-table th { padding: 20px 10px; }
+#wpbody-content .metabox-holder { padding-top: 5px; }
+
+.hidden{
+  display: none;
+}
+
+.wbafb-input-error{
+  background: #FBE9E9 !important
+}
+
+/* Start tooltip and help icon */
+/* 
+Pure CSS tooltip 
+help :  https://codepen.io/cristina-silva/pen/XXOpga 
+Example usages : <span class="wpafb-tooltip-toggle wpafb-help-icon" tooltip-text="Sample text for your tooltip!" tabindex="0"></span>
+*/
+/*
+.wpafb-help-icon{
+  height: 18px;
+  width: 18px;
+  background-image: url(../images/info-icon-red.svg);
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+*/
+/* coloring icon https://stackoverflow.com/a/31798349 */
+
+.wpafb-help-icon{
+  height: 18px;
+  width: 18px;
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.wpafb-mask-icon{
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
+.wpafb-mask-icon.wpafb-mask-icon-info{
+   -webkit-mask: url(../images/icon-info.svg) no-repeat 100% 100%;
+    mask: url(../images/icon-info.svg) no-repeat 100% 100%;
+    background-color: red; /*override this color by inline css */
+}
+
+.wpafb-mask-icon.wpafb-mask-icon-help{
+   -webkit-mask: url(../images/icon-ques.svg) no-repeat 100% 100%;
+    mask: url(../images/icon-ques.svg) no-repeat 100% 100%;
+    background-color: #0080ff; /*blue color*/ /*override this color by inline css */
+}
+
+/* end coloring icon */
+
+
+legend .wpafb-help-icon{
+  margin-right: 0px;
+}
+.wpafb-tooltip-toggle {
+  cursor: pointer;
+  position: relative;
+}
+.wpafb-tooltip-toggle svg {
+  height: 18px;
+  width: 18px;
+}
+.wpafb-tooltip-toggle::before {
+  position: absolute;
+  top: -80px;
+  left: -80px;
+  /*background-color: #2B222A;*/
+  background:rgba(0,0,0,0.75);
+  border-radius: 5px;
+  color: #fff;
+  content: attr(tooltip-text);
+  padding: 1rem;
+  text-transform: none;
+  transition: all 0.5s ease;
+  width: 200px;
+  z-index: 99999999;
+}
+.wpafb-tooltip-toggle::after {
+  position: absolute;
+  top: -6px;
+  left: 9px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  /*border-top: 5px solid #2B222A;*/
+  border-top: 5px solid rgba(0,0,0,0.75);
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+  margin-left: -5px;
+  width: 0;
+}
+.wpafb-tooltip-toggle::before, .wpafb-tooltip-toggle::after {
+  color: #efefef;
+  font-family: monospace;
+  font-size: 16px;
+  opacity: 0;
+  pointer-events: none;
+  text-align: left;
+}
+.wpafb-tooltip-toggle:focus::before, .wpafb-tooltip-toggle:focus::after, .wpafb-tooltip-toggle:hover::before, .wpafb-tooltip-toggle:hover::after {
+  opacity: 1;
+  transition: all 0.75s ease;
+}
+/* End tooltip and help icon*/
+
+
+.wpafb-unit-text{
+  font-size: 13px;
+  line-height: 13px;
+  padding: 5px 5px 5px 5px;
+  margin-left: 5px; 
+  vertical-align: middle;
+  display: inline-block;
+}
+.wpafb-form-table{
+  width:100%
+}
+.wpafb-left-col{
+  width: 150px;
+}
+.wpafb-right-col{
+  
+}
+.wpafb-wrapper fieldset{
+  border:1px solid #eee;
+  padding: 10px;
+}
+.wpafb-wrapper fieldset legend{
+  color:silver;
+}
+
+.wpafb-wrapper label.disabled{
+  color: silver;
+}
+.wpafb-form-table tr{
+  border-bottom: 1px solid #efefef;
+}
+.wpafb-form-table tr:last-child{
+  border-bottom: none;
+}
+
+.wpafb-preview-image-holder{
+  margin-top: 10px;
+}
+.wpafb-preview-image{
+  max-width: 250px;
+}
+
+/* Overriding some wp core CSS rules */
+input.wpafb-number{
+  height: 25px;
+}
+.button.wpafb-browse{  /* Keeping the visible height same as text field.  */
+  line-height: 25px;
+  height: 26px;
+}
+select.wpafb-select { /* Keeping the visible height same as text field.  */
+    line-height: 25px;
+    height: 25px;
+    vertical-align: top;
+}
+
+
+.wpafb-color-picker-table{
+  margin:0px;
+  padding:0px;
+  border: none;
+}
+.wpafb-color-picker-table td{
+  padding:0px;
+  margin:0px;
+  vertical-align: top;
+}
+
+.wpafb-textarea{
+  min-width: 250px;
+}
+.wpafb-textarea-small{
+  width: 48%;
+}
+.wpafb-textarea-medium{
+  width: 75%;
+}
+.wpafb-textarea-large{
+  width: 100%;
+}
+
+.wpafb-editor{
+  min-width: 250px;
+}
+.wpafb-editor-small{
+  width: 48%;
+}
+.wpafb-editor-medium{
+  width: 75%;
+}
+.wpafb-editor-large{
+  width: 100%;
+}
+
+/*========START SLIDER==================*/
+  .wpafb-slider{
+    display: inline-block; 
+    padding:0px; 
+    background:none; 
+    vertical-align: middle;
+    width:250px;
+  }
+  .slider-small{ width:250px; }
+  .slider-medium{ width:400px; }
+  .slider-large{ width:500px; }
+  
+  .wpafb-slider table{
+    border:0px;
+    padding:0;
+    margin:0;
+    width:100%; background:none;
+  }
+  .wpafb-slider table tr td{
+    border:none;
+    padding:0;
+    margin:0;
+  }
+  
+  
+  .wpafb-slider .ui-slider-handle.custom-handle {
+    width: 2.5em;
+    height: 1.5em;
+    top: 50%;
+    margin-top: -.8em;
+    text-align: center;
+    line-height: 1.5em;
+    font-size:14px !important;
+    font-weight:normal !important;
+    
+  }
+  .wpafb-slider .pm-button-box{
+    width:35px;
+    background:none;
+  }
+  .wpafb-slider .pm-button{
+  text-align:center;
+  cursor:pointer;
+  }
+  .wpafb-slider .minus-button{
+    margin-right:10px;
+  }
+  .wpafb-slider .plus-button{
+    margin-left:10px;
+  }
+  .wpafb-slider .display-box{
+    width: 50px;
+  }
+  .wpafb-slider .blank-box{
+    width: 15px;
+  }
+  
+
+  .wpafb-slider .display-box .display{
+    width: 100%;
+    text-align:center;
+    font-size:11px !important;
+    font-weight:normal !important;
+  }
+
+/*========END SLIDER==================*/
+
+h1.wpafb-heading-tag, h2.wpafb-heading-tag, h3.wpafb-heading-tag, h4.wpafb-heading-tag{
+  margin: 0;
+  padding: 0;
+}
+
+.wpafb-radio-image-item-box{
+  padding:3px;
+  text-align: center;
+  float: left;
+  border:1px solid #eeeeee;
+  margin:3px;
+}
+.wpafb-radio-image-item-box:hover{
+  border-color:#cccccc;
+  background-color:#efefef;
+}
+.wpafb-radio-image-item-box.selected{
+  border-color:#3998fc;
+  background-color:#efefef;
+}
+.wpafb-field-radio-image-item{
+  margin-bottom: 5px !important;
+  margin-top: 0px !important;
+}
+.wpafb-radio-image-item-box .image-box{
+  width:80px;
+  height:80px;
+  overflow:hidden;
+  margin: 0px auto;
+}
+.wpafb-radio-image-item-box .image-box img{
+  margin:0;
+  padding:0;
+  border:0;
+  max-width:100%
+}
+.wpafb-radio-image-item-box .label-text{
+  margin-top:2px;
+  font-size: 12px;
+}

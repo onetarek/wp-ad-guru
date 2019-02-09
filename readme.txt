@@ -190,17 +190,17 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Changelog ==
-= 2.0.1 =
+= 2.0.1 - February 9, 2019 =
 * Bug fix : modal popup preview area was overlapping the media uploader modal.
 
-= 2.0.0 =
+= 2.0.0 - February 9, 2019 =
 * Initial release including all features of 'WP Ad Guru Lite' and premium 'WP Ad Guru' plugins.
 
 
 
 == Upgrade Notice ==
-= 2.0.1 =
+= 2.0.1 - February 9, 2019 =
 * Bug fix : modal popup preview area was overlapping the media uploader modal.
 
-= 2.0.0 =
+= 2.0.0 - February 9, 2019 =
 * Initial release including all features of 'WP Ad Guru Lite' and premium 'WP Ad Guru' plugins.

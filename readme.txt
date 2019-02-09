@@ -17,7 +17,7 @@ An essential set of advertising and marketing tools for blogger, website owner a
 == Description ==
 
 Essential set of advertising and marketing tools for blogger, website owner and marketer. As an ad management plugin it has many advanced features to select optimal ads for various positions and pages. It supports ad codes from all kind of ad networks including Google AdSense.
-Show various type of ads, email subscription form, affiliate links, special offers, video or anything using banners, modal popups and popup windows. Show different ads to the visitor of different countries by using Geolocation tracking system. Show different things on different type of wordpress pages. Add one more ads in same place to as carousel-slider. Rotate ads based on percentage you set. Easily collect leads on your website. This plugin is specially created to meet the needs and requirements of blogger, website owner, marketer and developers.
+Show various type of ads, email subscription form, affiliate links, special offers, video or anything using banners, modal popups and popup windows. Show different ads to the visitor of different countries by using Geolocation tracking system. Show different things on different type of wordpress pages. Add multiple ads in same place and display as carousel-slider. Rotate ads based on percentage you set. Easily collect leads on your website. This plugin is specially created to meet the needs and requirements of blogger, website owner, marketer and developers.
 
 **======== FEATURES ========**
 

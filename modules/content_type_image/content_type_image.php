@@ -71,7 +71,7 @@ class ADGURU_Content_Type_Image extends ADGURU_Content_Type{
 	protected function _print_content( $ad ){
 		$content = $this->get_content( $ad );
 		$source_url = isset( $content['source_url'] ) ? $content['source_url'] : "";
-		$link_url = isset( $content['image_link'] ) ? $content['link_url'] : "";
+		$link_url = isset( $content['link_url'] ) ? $content['link_url'] : "";
 		$link_target = isset( $content['link_target'] ) ? $content['link_target'] : "";
 		echo '<a href="'.$link_url.'" target="'.$link_target.'" ><img src="'.esc_url( $source_url ).'" class="adguru_content_image" /></a>';
 	}

@@ -10,7 +10,7 @@
 	height: 100%;
 	width: 100%;
 	position: fixed;
-	z-index: 999998;
+	z-index: 99995;
 	top: 0;
 	left: 0;
 }
@@ -18,7 +18,7 @@
 .adguru-modal-popup .mp-container-wrap{
 	width: 100%;
 	position: fixed;
-	z-index: 999999;
+	z-index: 99996;
 }
 .adguru-modal-popup .mp-container{
 	box-sizing: border-box;

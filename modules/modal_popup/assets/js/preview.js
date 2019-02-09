@@ -192,7 +192,7 @@ var ADGURU_MP_PREIVEW = {};
 
 			var design = ADGURU_MP_FIELDS.get_value_by_group('design');
 
-			var overlay_z_index = 999999;
+			var overlay_z_index = 99995;
 			var container_z_index = overlay_z_index + 1;
 			var close_location = ( typeof  design['close_location'] !== 'undefined' ) ? design['close_location'] : 'top_right';
 			var close_location_class = close_location.replace('_', '-' );

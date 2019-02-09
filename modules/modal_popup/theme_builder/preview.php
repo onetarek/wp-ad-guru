@@ -43,11 +43,11 @@
 		position: fixed;
 		bottom: 0;
 		left: 50%;
-		z-index: 9999999;
+		z-index: 99997;
 	}
 	#adguru_mp_preview_full_view_close_btn{
 		position: relative;
-		z-index: 9999999;
+		z-index: 99997;
 		padding: 10px;
 		background: rgba(100, 0, 0, 0.3);
 		color: #ffffff;

@@ -8,7 +8,7 @@ Donate link: http://wpadguru.com/
 Tags: Ad Manager, Banner, Popup, Popup maker, Responsive popup, Optins, Lead generator, Advertising Tool, Marketing Tool, GeoLocation Tracker, Ad Rotator, Ad Slider
 Requires at least: 3.6.0
 Tested up to: 5.0.3
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -182,18 +182,25 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 1. Set Banner Ad to Zone
 2. Add New Banner
-3. All Banners
+3. All Modal Popups
 4. Add New Modal Popup
-5. Add New Window Popup
+5. Create Custom Popup Theme
+6. Add New Window Popup
 
 
 
 == Changelog ==
+= 2.0.1 =
+* Bug fix : modal popup preview area was overlapping the media uploader modal.
+
 = 2.0.0 =
 * Initial release including all features of 'WP Ad Guru Lite' and premium 'WP Ad Guru' plugins.
 
 
 
 == Upgrade Notice ==
+= 2.0.1 =
+* Bug fix : modal popup preview area was overlapping the media uploader modal.
+
 = 2.0.0 =
 * Initial release including all features of 'WP Ad Guru Lite' and premium 'WP Ad Guru' plugins.

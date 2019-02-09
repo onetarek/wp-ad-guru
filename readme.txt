@@ -8,7 +8,7 @@ Donate link: http://wpadguru.com/
 Tags: Ad Manager, Banner, Popup, Popup maker, Responsive popup, Optins, Lead generator, Advertising Tool, Marketing Tool, GeoLocation Tracker, Ad Rotator, Ad Slider
 Requires at least: 3.6.0
 Tested up to: 5.0.3
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,9 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Changelog ==
+= 2.0.2 - February 10, 2019 =
+* Bug fix : content type image : image link was blank in output
+
 = 2.0.1 - February 9, 2019 =
 * Bug fix : modal popup preview area was overlapping the media uploader modal.
 
@@ -199,6 +202,9 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Upgrade Notice ==
+= 2.0.2 - February 10, 2019 =
+* Bug fix : content type image : image link was blank in output
+
 = 2.0.1 - February 9, 2019 =
 * Bug fix : modal popup preview area was overlapping the media uploader modal.
 

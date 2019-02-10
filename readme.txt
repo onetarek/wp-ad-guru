@@ -139,7 +139,7 @@ This is another type of popup that will be opened as a new browser window. We al
 
 *	**Control Size -** set width and height in unit of 'px' or '%' to make your popup fixed sized.
 *	**Custom Title -** show your custom text on the titlebar of the new window
-*	**Coltroll window features -** you can enable or disable of window features ( Titlebar
+*	**Control window features -** you can enable or disable of window features ( Titlebar
 Location, Menubar, Resizable, Scrollbars, Statusbar and Toolbar )
 *	**Open on BODY click -** Open the popup after the first click on anywhere of the page.
 *	Show popup always in every page visit

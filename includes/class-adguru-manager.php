@@ -214,7 +214,8 @@ class ADGURU_Manager{
 		}//end if
 	
 	
-		return false;
+		return array();
+		
 	}//END FUNC
 
 

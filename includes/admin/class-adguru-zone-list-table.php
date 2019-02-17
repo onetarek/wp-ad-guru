@@ -415,7 +415,7 @@ class ADGURU_Zone_List_Table extends WP_List_Table {
 		}
 
 		$zones = adguru()->manager->get_zones( $args );
-		if( $zones )
+		if( ! empty( $zones ) )
 		{
 			$zones_data = $zones;
 		}

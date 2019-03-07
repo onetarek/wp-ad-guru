@@ -3,20 +3,216 @@
 if( ! defined( 'ABSPATH' ) ) exit;
 ?>
 <div class="wrap">
-	<div id="icon-edit-pages" class="icon32"></div><h2>WP Ad Guru</h2>
+	<div id="icon-edit-pages" class="icon32"></div><h2>WP AD GURU</h2>
 	<style type="text/css" >.button-primary.adguru-button{ margin-bottom:10px;}</style>
 	<br />
-	<a href="admin.php?page=adguru_zone"><input type="button" class="button-primary adguru-button" value="Zones" /></a>
+	<div class="adg_section">
+
+		<div class="adg_feature_card item-1">
+			<div class="feature_name">
+				<a href="admin.php?page=adguru_zone">Zone</a>
+			</div>
+			<div class="link-area">
+				<div class="card-icon-col col_2"><a class="card-link" href="admin.php?page=adguru_zone&manager_tab=all" title="All Zones"><span class="card-icon card-icon-all"></span><div class="card-link-text">All</div></a></div>
+				<div class="card-icon-col col_2 last-col"><a class="card-link" href="admin.php?page=adguru_zone&manager_tab=edit" title="Add new Zone"><span class="card-icon card-icon-new"><div class="card-link-text">New</div></a></div>
+				<div style="clear:left"></div>
+			</div>
+		</div>
 	<?php 
 	//ad types menus
 	$ad_types = adguru()->ad_types->types;
+	$total = count($ad_types);
+	$i = 1;
 	foreach( $ad_types as $type =>$args)
 	{ 
+		$i++;
+		$class_name = ($i % 4 == 0 )? 'adg_feature_card item-'.($i).' last-col' : 'adg_feature_card item-'.($i);
+		$ptype = ADGURU_ADMANAGER_PAGE_SLUG_PREFIX.$type;
 	?>
-		<a href="admin.php?page=<?php echo ADGURU_ADMANAGER_PAGE_SLUG_PREFIX.$type ?>"><input type="button" class="button-primary adguru-button" value="<?php echo $args['plural_name'] ?>" /></a>
+		
+		<div class="<?php echo $class_name;?>">
+			<div class="feature_name">
+				<a href="admin.php?page=<?php echo $ptype ?>"><?php echo $args['plural_name'] ?></a>
+			</div>
+			<div class="link-area">
+				<div class="card-icon-col col_3"><a class="card-link" href="admin.php?page=<?php echo $ptype ?>&manager_tab=all"><span class="card-icon card-icon-all"></span><div class="card-link-text">All</div></a></div>
+				<div class="card-icon-col col_3"><a class="card-link" href="admin.php?page=<?php echo $ptype ?>&manager_tab=edit"><span class="card-icon card-icon-new"></span><div class="card-link-text">New</div></a></div>
+				<div class="card-icon-col col_3 last-col"><a class="card-link" href="admin.php?page=<?php echo $ptype ?>&manager_tab=links"><span class="card-icon card-icon-link"></span><div class="card-link-text">Links</div></a></div>
+				<div style="clear:left"></div>
+			</div>
+		</div>
+	
 	<?php 
 	}
-	?>		
+
+	?>
+		<div style="clear:both"></div>
+	</div>
+
+	
+
+	<style type="text/css">
+		
+		.adg_section{
+			padding: 10px 0px;
+			margin: 0;
+
+
+		}
+		.adg_feature_card{
+			width: 23%;
+			box-sizing: border-box;
+			border: 0px solid #eeeeee;
+			border-radius: 4px;
+			border-bottom: 5px solid #eeeeee;
+			margin-right:2.6666667%;
+			margin-bottom: 15px;
+			background: #95AFC0;
+			color: #ffffff;
+			-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			float: left;
+			text-align: center;
+			text-transform: uppercase;
+		}
+		.adg_feature_card.last-col{
+			margin-right: 0%;
+		}
+		
+		.adg_feature_card.item-1{ background: #6AB04C; border-bottom-color:#6AB04C; }
+		.adg_feature_card.item-2{ background: #EB4C4B; border-bottom-color:#EB4C4B; }
+		.adg_feature_card.item-3{ background: #F0932B; border-bottom-color:#F0932B; }
+		.adg_feature_card.item-4{ background: #F9CA23; border-bottom-color:#F9CA23; /*#E3B71C;*/ }
+		
+		.adg_feature_card.item-1:hover{ background: #7AB439; }
+		.adg_feature_card.item-2:hover{ background: #FF7979; }
+		.adg_feature_card.item-3:hover{ background: #FEBE76; }
+		.adg_feature_card.item-4:hover{ background: #F6E58D; /*#F9CA23;*/ }
+		
+		.adg_feature_card .feature_name{
+			font-size: 25px;
+			line-height: 30px;
+			text-align: center;
+			color: #ffffff;
+			margin-top: 40px;
+			margin-bottom: 40px;
+		}
+		.adg_feature_card .feature_name a{
+			color: #ffffff;
+			text-decoration: none;
+		}
+		.adg_feature_card .link-area{
+			background: #BADC58;
+			margin-top: 10px;
+			padding: 0px;
+			width: 100%;
+		}
+		.card-icon-col{
+			box-sizing: border-box;
+			border-right: 1px solid #d2ed82;
+			float: left;
+		}
+		.card-icon-col.col_2{
+			width: 50%;
+		}
+		.card-icon-col.col_3{
+			width: 33.3333%;
+
+		}
+		.card-icon-col.last-col{
+			border-right: 0px;
+		}
+		.card-link{
+			width: 100%;
+			padding: 18px 0px 3px 0px;
+			text-decoration: none;
+			display: block;
+			color: #ffffff;
+			text-align: center;
+			font-size: 10px;
+		}
+		.card-link-text{
+			font-size: 10px;
+			line-height: 10px;
+			display: block;
+			visibility: hidden;
+			margin-top: -5px;
+		}
+		.card-link:hover .card-link-text{
+			visibility: visible;
+		}
+		.adg_feature_card .card-icon:before{
+			font-family: "dashicons";
+		 	content: "\f103";
+		 	color: #ffffff;
+			display: inline-block;
+			-webkit-font-smoothing: antialiased;
+			font-weight: normal;
+			vertical-align: top;
+			font-size: 30px;
+			height: 30px;
+			
+		}
+		
+
+		.adg_feature_card .card-icon.card-icon-all:before{
+			content: "\f163";
+		}
+		.adg_feature_card .card-icon.card-icon-new:before{
+			content: "\f502";
+		}
+		.adg_feature_card .card-icon.card-icon-link:before{
+			content: "\f103";
+		}
+		
+
+
+		.item-1 .card-link:hover, .item-1 .card-link:hover .card-icon:before{
+			color: #6AB04C;
+		}
+
+		.item-2 .card-link:hover, .item-2 .card-link:hover .card-icon:before{
+			color: #EB4C4B;
+		}
+		.item-3 .card-link:hover, .item-3 .card-link:hover .card-icon:before{
+			color: #F0932B;
+		}
+		.item-4 .card-link:hover, .item-4 .card-link:hover .card-icon:before{
+			color: #E3B71C;
+		}
+
+		
+
+
+
+
+
+
+		#user_guide_box .ui-accordion-header.ui-state-default{
+			background: #95AFC0;
+		}
+		#user_guide_box .ui-accordion-header.ui-state-default.ui-accordion-header-active.ui-state-active{
+			background: #bdc3c7;
+		}
+		
+		#user_guide_box .ui-accordion-header.ui-state-default.ui-state-hover{
+			background: #bdc3c7;
+		}
+		
+		#advance_guide_btn{
+			background: #95AFC0;
+			padding: 10px 20px;
+			text-decoration: none;
+			color: #fff;
+			font-size:30px;
+			border:1px solid #eeeeee;
+		}
+		#advance_guide_btn:hover{
+			background: #bdc3c7;
+		}
+		
+	</style>		
 
 	<script type="text/javascript">
 		jQuery(document).ready(function($){
@@ -29,7 +225,7 @@ if( ! defined( 'ABSPATH' ) ) exit;
 		});
 	</script>
 
-	<h2 style="border:1px solid #eeeeee; text-align:center; font-size:30px;">User Guide(basic)</h2>
+	<h2 style="border:0; text-align:center; font-size:30px; font-weight:normal; color:#95AFC0">BASIC USER GUIDE</h2>
 	<div id="user_guide_box" class="accordian_box">
 		<h3><strong>How to steup and show a banner ad?</strong></h3>
 		<div>
@@ -115,5 +311,5 @@ if( ! defined( 'ABSPATH' ) ) exit;
 
 	</div>
 
-	<h2 style="border:1px solid #eeeeee; text-align:center; font-size:30px; margin-top:30px;"><a href="http://wpadguru.com" target="_blank" title="Detail guide">User Guide(Advance)</a></h2>
+	<div style=" text-align:center; margin-top:30px;"><a id="advance_guide_btn" href="http://wpadguru.com?utm_source=plugin-dashboard-main-page&utm_medium=advance-user-guide-button" target="_blank" title="Detail guide">ADVANCE USER GUIDE</a></div>
 </div><!-- #end wrap -->

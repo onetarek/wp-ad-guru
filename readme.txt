@@ -7,8 +7,8 @@ Plugin URI: http://wpadguru.com
 Donate link: http://wpadguru.com/
 Tags: Ad Manager, Banner, Popup, Popup maker, Responsive popup, Optins, Lead generator, Advertising Tool, Marketing Tool, GeoLocation Tracker, Ad Rotator, Ad Slider
 Requires at least: 3.6.0
-Tested up to: 5.0.3
-Stable tag: 2.0.3
+Tested up to: 5.1
+Stable tag: 2.0.4
 License: GPLv2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,6 +190,11 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Changelog ==
+= 2.0.4 - March 08, 2019 =
+* Update: Add new predefined sizes for zones and banners
+* Update: Redesign plugin main dashboard page
+* Update: Latest MaxMind GeoIP Database
+
 = 2.0.3 - February 17, 2019 =
 * Fix: PHP Warnings were being happened when there is no zone created yet.
 
@@ -205,6 +210,11 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Upgrade Notice ==
+= 2.0.4 - March 08, 2019 =
+* Update: Add new predefined sizes for zones and banners
+* Update: Redesign plugin main dashboard page
+* Update: Latest MaxMind GeoIP Database
+
 = 2.0.3 - February 17, 2019 =
 * Fix: PHP Warnings were being happened when there is no zone created yet.
 

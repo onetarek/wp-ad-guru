@@ -3,20 +3,109 @@
 if( ! defined( 'ABSPATH' ) ) exit;
 ?>
 <div class="wrap">
-	<div id="icon-edit-pages" class="icon32"></div><h2>WP Ad Guru</h2>
+	<div id="icon-edit-pages" class="icon32"></div><h2>WP AD GURU</h2>
 	<style type="text/css" >.button-primary.adguru-button{ margin-bottom:10px;}</style>
 	<br />
-	<a href="admin.php?page=adguru_zone"><input type="button" class="button-primary adguru-button" value="Zones" /></a>
+	<div class="adg_section">
+
+	<a href="admin.php?page=adguru_zone"><div class="adg_feature_card item-1"><div class="feature_name">Zone</div></div></a>
 	<?php 
 	//ad types menus
 	$ad_types = adguru()->ad_types->types;
+	$total = count($ad_types);
+	$i = 1;
 	foreach( $ad_types as $type =>$args)
 	{ 
+		$i++;
+		$class_name = ($i % 4 == 0 )? 'adg_feature_card item-'.($i).' last-col' : 'adg_feature_card item-'.($i);
 	?>
-		<a href="admin.php?page=<?php echo ADGURU_ADMANAGER_PAGE_SLUG_PREFIX.$type ?>"><input type="button" class="button-primary adguru-button" value="<?php echo $args['plural_name'] ?>" /></a>
+		<a href="admin.php?page=<?php echo ADGURU_ADMANAGER_PAGE_SLUG_PREFIX.$type ?>"><div class="<?php echo $class_name;?>"><div class="feature_name"><?php echo $args['plural_name'] ?></div></div></a>
 	<?php 
 	}
-	?>		
+	?>
+		<div style="clear:both"></div>
+	</div>
+
+	
+
+	<style type="text/css">
+		
+		.adg_section{
+			padding: 10px 0px;
+			margin: 0;
+
+
+		}
+		.adg_feature_card{
+			width: 23%;
+			box-sizing: border-box;
+			border: 0px solid #eeeeee;
+			border-radius: 4px;
+			margin-right:2.6666667%;
+			margin-bottom: 15px;
+			background: #95AFC0;
+			color: #ffffff;
+			-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			float: left;
+			padding: 70px 0;
+			text-align: center;
+			text-transform: uppercase;
+		}
+		.adg_feature_card.last-col{
+			margin-right: 0%;
+
+		}
+		.adg_section .adg_feature_card:hover{
+			background: #BADC58;
+		}
+		.adg_feature_card .feature_name{
+
+			font-size: 25px;
+			line-height: 30px;
+			text-align: center;
+			color: #ffffff;
+		}
+		.item-1{ background: #6AB04C; }
+		.item-2{ background: #EB4C4B; }
+		.item-3{ background: #F0932B; }
+		.item-4{ background: #F9CA23; }
+		.item-5{ background: #BADC58; }
+		.item-6{ background: #FF7979; }
+		.item-7{ background: #FEBE76; }
+		.item-8{ background: #F6E58D; }
+		
+		.adg_feature_card.item-1:hover{ background: #BADC58; }
+		.adg_feature_card.item-2:hover{ background: #FF7979; }
+		.adg_feature_card.item-3:hover{ background: #FEBE76; }
+		.adg_feature_card.item-4:hover{ background: #F6E58D; }
+		
+
+		#user_guide_box .ui-accordion-header.ui-state-default{
+			background: #95AFC0;
+		}
+		#user_guide_box .ui-accordion-header.ui-state-default.ui-accordion-header-active.ui-state-active{
+			background: #bdc3c7;
+		}
+		
+		#user_guide_box .ui-accordion-header.ui-state-default.ui-state-hover{
+			background: #bdc3c7;
+		}
+		
+		#advance_guide_btn{
+			background: #95AFC0;
+			padding: 10px 20px;
+			text-decoration: none;
+			color: #fff;
+			font-size:30px;
+			border:1px solid #eeeeee;
+		}
+		#advance_guide_btn:hover{
+			background: #bdc3c7;
+		}
+		
+	</style>		
 
 	<script type="text/javascript">
 		jQuery(document).ready(function($){
@@ -29,7 +118,7 @@ if( ! defined( 'ABSPATH' ) ) exit;
 		});
 	</script>
 
-	<h2 style="border:1px solid #eeeeee; text-align:center; font-size:30px;">User Guide(basic)</h2>
+	<h2 style="border:0; text-align:center; font-size:30px; font-weight:normal; color:#95AFC0">BASIC USER GUIDE</h2>
 	<div id="user_guide_box" class="accordian_box">
 		<h3><strong>How to steup and show a banner ad?</strong></h3>
 		<div>
@@ -115,5 +204,5 @@ if( ! defined( 'ABSPATH' ) ) exit;
 
 	</div>
 
-	<h2 style="border:1px solid #eeeeee; text-align:center; font-size:30px; margin-top:30px;"><a href="http://wpadguru.com" target="_blank" title="Detail guide">User Guide(Advance)</a></h2>
+	<div style=" text-align:center; margin-top:30px;"><a id="advance_guide_btn" href="http://wpadguru.com" target="_blank" title="Detail guide">ADVANCE USER GUIDE</a></div>
 </div><!-- #end wrap -->

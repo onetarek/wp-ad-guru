@@ -107,6 +107,30 @@ if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] 
 	echo '<div class="updated"><p>'; echo __( 'Your zone has been saved successfully' , 'adguru' ); echo '</p></div>';
 } 
 
+
+$size_list = array(
+	'728x90'=>'Leaderboard',
+	'468x60'=>'Banner',
+	'234x60'=>'Half Banner',
+	'125x125'=>'Button',
+	'120x600'=>'Skyscraper',
+	'160x600'=>'Wide Skyscraper',
+	'120x240'=>'Verticle Banner',
+	'200x200'=>'Small square',
+	'250x250'=>'Square',
+	'120x90'=>'Button 2',
+	'120x60'=>'Button 3',
+	'180x150'=>'Small Rectangle',
+	'300x250' => 'Medium Rectangle',
+	'336x280'=>'Large rectangle',
+	'300x600'=>'Half page',
+	'300x1050'=>'Portrait',
+	'320x50'=>'Mobile banner',
+	'970x90'=>'Large leaderboard',
+	'970x250'=>'Billboard'
+);	
+
+						
 ?>
 <form action="" method="post">
 	<input type="hidden" name="zone_id" value="<?php echo $zone->ID ?>" />
@@ -143,18 +167,17 @@ if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] 
 						
 						if( ( $zone->width == "" || $zone->height == "" ) && !isset( $_POST['save'] ) ){ $zone->width = 300; $zone->height = 250;}
 						$size_txt = $zone->width."x".$zone->height;
-						if( !in_array( $size_txt, array( "300x250", "468x60", "120x600", "728x90", "120x90", "160x600", "120x60", "125x125", "180x150" ) ) ){ $custom_size=true; }else{ $custom_size = false; }
+						if( !in_array( $size_txt, array_keys( $size_list ) ) ){ $custom_size=true; }else{ $custom_size = false; }
 						?>
 						<select id="size_list" style="width:312px;">
-							<option value="300x250" <?php echo ($size_txt=="300x250")?' selected="selected"':'';?>>Medium Rectangle (300 x 250)</option>                                    
-							<option value="468x60" <?php echo ($size_txt=="468x60")?' selected="selected"':'';?>>Full Banner (468 x 60)</option>
-							<option value="120x600" <?php echo ($size_txt=="120x600")?' selected="selected"':'';?>>Skyscraper (120 x 600)</option>
-							<option value="728x90" <?php echo ($size_txt=="728x90")?' selected="selected"':'';?>>Leaderboard (728 x 90)</option>
-							<option value="120x90" <?php echo ($size_txt=="120x90")?' selected="selected"':'';?>>Button 1 (120 x 90)</option>
-							<option value="160x600" <?php echo ($size_txt=="160x600")?' selected="selected"':'';?>>Wide Skyscraper (160 x 600)</option>
-							<option value="120x60" <?php echo ($size_txt=="120x60")?' selected="selected"':'';?>>Button 2 (120 x 60)</option>
-							<option value="125x125" <?php echo ($size_txt=="125x125")?' selected="selected"':'';?>>Square Button (125 x 125)</option>
-							<option value="180x150" <?php echo ($size_txt=="180x150")?' selected="selected"':'';?>>Rectangle (180 x 150)</option>
+							<?php 
+							foreach( $size_list as $size => $size_name )
+							{
+								$selected = ( $size_txt == $size ) ? ' selected="selected"' : '';
+								
+								echo '<option value="'.$size.'"'.$selected.'>'.$size_name.' ( '.$size.' )</option>';
+							}
+							?>
 							<option value="custom" <?php echo ($custom_size)?' selected="selected"':'';?>>Custom</option>
 						</select>
 						<span id="custom_size_box">

@@ -5,7 +5,7 @@
  * Plugin URI: http://wpadguru.com
  * Author: oneTarek
  * Author URI: http://onetarek.com
- * Version: 2.0.3
+ * Version: 2.0.4
  * License: GPLv2+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -286,7 +286,7 @@ final class WP_Ad_Guru{
 
 		global $wpdb;
 		global $adguru_options;
-		define( 'ADGURU_VERSION', '2.0.3' );
+		define( 'ADGURU_VERSION', '2.0.4' );
 		define( 'ADGURU_DOCUMENTAION_URL', 'http://wpadguru.com/documentation/' );
 		define( 'ADGURU_PLUGIN_FILE', __FILE__ );
 		define( 'ADGURU_PLUGIN_DIR', plugin_dir_path( __FILE__ ) ); // Plugin Directory

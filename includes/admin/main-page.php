@@ -311,5 +311,5 @@ if( ! defined( 'ABSPATH' ) ) exit;
 
 	</div>
 
-	<div style=" text-align:center; margin-top:30px;"><a id="advance_guide_btn" href="http://wpadguru.com" target="_blank" title="Detail guide">ADVANCE USER GUIDE</a></div>
+	<div style=" text-align:center; margin-top:30px;"><a id="advance_guide_btn" href="http://wpadguru.com?utm_source=plugin-dashboard-main-page&utm_medium=advance-user-guide-button" target="_blank" title="Detail guide">ADVANCE USER GUIDE</a></div>
 </div><!-- #end wrap -->

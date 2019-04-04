@@ -31,6 +31,7 @@ class ADGURU_Menu{
 		{
 			add_submenu_page(ADGURU_PLUGIN_SLUG, $args['plural_name'].' Page', $args['plural_name'], 'manage_options', ADGURU_ADMANAGER_PAGE_SLUG_PREFIX.$type, array( $this, 'ad_manager_page' ) );
 		}
+		add_submenu_page(ADGURU_PLUGIN_SLUG, 'Ad Setup Manager', 'Ad Setup Manager', 'manage_options', 'adguru_ad_setup_manager' , array( $this, 'ad_setup_manager_page') ); 
 		add_submenu_page(ADGURU_PLUGIN_SLUG, 'Ad Guru Settings', 'Settings', 'manage_options', 'adguru_settings' , array( $this, 'settings_page') ); 
 		//add_submenu_page(ADGURU_PLUGIN_SLUG, 'Ad Guru License', 'License', 'manage_options', 'adguru_license', array( $this, 'license_page') ); 
 
@@ -53,7 +54,10 @@ class ADGURU_Menu{
 
 		include_once(ADGURU_PLUGIN_DIR."includes/admin/ad-manager-page.php");
 	}
-	
+	public function ad_setup_manager_page(){
+
+		adguru()->ad_setup_manager->editor_page();
+	}
 	public function zone_manager_page(){
 
 		include_once(ADGURU_PLUGIN_DIR."includes/admin/zone-manager-page.php");

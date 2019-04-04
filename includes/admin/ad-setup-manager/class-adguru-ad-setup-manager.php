@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 if( ! class_exists( 'ADGURU_Ad_Setup_Manager' ) ) :
 
 class ADGURU_Ad_Setup_Manager{
-
+	public $test = "Hello";
 	public function __construct(){
 
 		//add_action('admin_menu', array( $this, 'admin_menu' ) );
@@ -23,7 +23,8 @@ class ADGURU_Ad_Setup_Manager{
 	 * @since 2.1.0
 	 */
 	public function editor_page(){
-		echo "Ad Setup manager page";
+
+		include_once( ADGURU_PLUGIN_DIR."includes/admin/ad-setup-manager/ad-setup-manager-page.php");
 	}
 
 

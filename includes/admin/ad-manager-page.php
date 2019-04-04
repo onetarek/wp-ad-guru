@@ -53,7 +53,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				'link'	=> 'admin.php?page='.$page.'&manager_tab=links',
 				'file' 	=> ADGURU_PLUGIN_DIR."includes/admin/links-editor/links-editor-page.php",
 				'callback' => '' 
-				),								
+				),
+			'setup' =>array( 
+				'slug'	=> 'setup', 
+				'text'	=> __("Setup", "adguru" ), 
+				'link'	=> 'admin.php?page='.$page.'&manager_tab=setup',
+				'callback' => array( adguru()->ad_setup_manager, 'editor_page' ) 
+				),									
 		), 
 		$current_ad_type_args
 	);

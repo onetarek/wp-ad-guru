@@ -165,6 +165,14 @@ final class WP_Ad_Guru{
 	public $migration_needed = false;
 
 	/**
+	 * Ad setup manager
+	 * @var object|ADGURU_Ad_Setup_Manager
+	 * @since 2.1.0
+	 */
+	public $ad_setup_manager;
+
+
+	/**
 	 * Main WP_Ad_Guru Instance.
 	 *
 	 * Insures that only one instance of WP_Ad_Guru exists in memory at any one
@@ -227,6 +235,7 @@ final class WP_Ad_Guru{
 			$this->admin_notice = new ADGURU_Admin_Notice();
 			$this->settings = new ADGURU_Settings();
 			$this->form_builder = wpafb();
+			$this->ad_setup_manager = new ADGURU_Ad_Setup_Manager();
 		}
 		#for geo location feature strat session here before outputing anything to the browser.
 		if( session_id() == "" ){ session_start(); }
@@ -356,6 +365,7 @@ final class WP_Ad_Guru{
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/class-adguru-menu.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/links-editor/class-adguru-links-editor.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/links-editor/class-adguru-links-editor-ajax-handler.php" );
+			require_once( ADGURU_PLUGIN_DIR."includes/admin/ad-setup-manager/class-adguru-ad-setup-manager.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/metaboxes/metabox.php" );	
 			require_once( ADGURU_PLUGIN_DIR."includes/functions.php" );
 

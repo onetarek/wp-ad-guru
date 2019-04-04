@@ -57,7 +57,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			'setup' =>array( 
 				'slug'	=> 'setup', 
 				'text'	=> __("Setup", "adguru" ), 
-				'link'	=> 'admin.php?page='.$page.'&manager_tab=setup',
+				'link'	=> 'admin.php?page=adguru_setup_ads&ad_type='.$current_ad_type,
 				'callback' => array( adguru()->ad_setup_manager, 'editor_page' ) 
 				),									
 		), 

@@ -31,7 +31,7 @@ class ADGURU_Menu{
 		{
 			add_submenu_page(ADGURU_PLUGIN_SLUG, $args['plural_name'].' Page', $args['plural_name'], 'manage_options', ADGURU_ADMANAGER_PAGE_SLUG_PREFIX.$type, array( $this, 'ad_manager_page' ) );
 		}
-		add_submenu_page(ADGURU_PLUGIN_SLUG, 'Ad Setup Manager', 'Ad Setup Manager', 'manage_options', 'adguru_ad_setup_manager' , array( $this, 'ad_setup_manager_page') ); 
+		add_submenu_page(ADGURU_PLUGIN_SLUG, 'Setup Ads', 'Setup Ads', 'manage_options', 'adguru_setup_ads' , array( $this, 'ad_setup_manager_page') ); 
 		add_submenu_page(ADGURU_PLUGIN_SLUG, 'Ad Guru Settings', 'Settings', 'manage_options', 'adguru_settings' , array( $this, 'settings_page') ); 
 		//add_submenu_page(ADGURU_PLUGIN_SLUG, 'Ad Guru License', 'License', 'manage_options', 'adguru_license', array( $this, 'license_page') ); 
 

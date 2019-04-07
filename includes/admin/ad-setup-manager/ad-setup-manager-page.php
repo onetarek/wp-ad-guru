@@ -140,6 +140,9 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 			</div><!-- /.set-body -->
 			<div class="set-footer">
 				<span class="save-btn" />Save</span>
+				<span class="save-loading"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
+				<span class="delete-set-loading"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
+				<span class="delete-set-btn"></span>	
 			</div><!-- /.set-footer -->
 		</div>
 
@@ -362,6 +365,7 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		font-weight: normal;
 		padding: 8px;
 		border: 1px solid #dddddd;
+		border-left-color: #49a0bc;
 		margin-bottom: 4px;
 	}
 	.condition-set .title{
@@ -447,7 +451,7 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		line-height: 30px;
 	}
 	.condition-set .ad .control-box  .close-btn:hover{
-		color: #000000;
+		color: #ff0000;
 	}
 	.condition-set .add-ad-btn-box{
 		text-align: center;
@@ -500,9 +504,10 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 
 
 	.condition-set .set-footer{
-		height: 30px;
+		height: 32px;
 		padding: 10px;
 		border-top: 1px solid #eeeeee;
+		position: relative;
 	}
 	.condition-set.collapsed .set-footer{
 		display: none;
@@ -533,4 +538,54 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 	.condition-set .set-footer .save-btn:hover{
 		background: #eeeeee;
 	}
+	.condition-set .set-footer .save-loading{
+		width: 32px;
+		height: 32px;
+		display: inline-block;
+		vertical-align: middle;
+		margin-left: 15px;
+	}
+	.condition-set .set-footer .save-loading img{
+		margin: 0;
+		padding: 0;
+	}
+
+	.condition-set .set-footer .delete-set-btn{
+		width: 32px;
+		height: 32px;
+		position: absolute;
+		top: 10px;
+		right: 2px;
+		display: inline-block;
+		color: #bbbbbb;
+		text-align: center;
+		cursor: pointer;
+	}
+	.condition-set .set-footer .delete-set-btn::before{
+		font-family: "dashicons";
+	 	content: "\f182";
+		display: inline-block;
+		-webkit-font-smoothing: antialiased;
+		font-weight: normal;
+		vertical-align: middle;
+		font-size: 28px;
+		line-height: 32px;
+	}
+	.condition-set .set-footer .delete-set-btn:hover{
+		color: #ff0000;
+	}
+	.condition-set .set-footer .delete-set-loading{
+		width: 32px;
+		height: 32px;
+		position: absolute;
+		top: 10px;
+		right: 50px;
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.condition-set .set-footer .delete-set-loading img{
+		margin: 0;
+		padding: 0;
+	}
+
 </style>

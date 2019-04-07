@@ -89,18 +89,18 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 					<div class="condition-detail">Banners for a single page where post type is post</div>
 					<div class="slides-box">
 						<div class="slide">
-							<span class="slide-delete-btn"></span>
+							<span class="slide-delete-btn" title="Delete this slide"></span>
 							<div class="slide-header">
 								Slide 1
-								<span class="equal-btn"></span>
+								<span class="equal-btn" title="Click to fill all rotate fields with equal value"></span>
 							</div>
 							<div class="ads-box">
 								<div class="ad">
 									<div class="title">Amazon Ad 1 - 300x250</div>
 									<div class="control-box">
 										<span class="percentage-box"><span class="percentage-label">Rotate</span><input type="number" class="percentage" value="100" max="100" min="0"> %</span>
-										<span class="edit-btn"></span>
-										<span class="close-btn"></span>
+										<a class="edit-btn" href="#" target="_blank" title="Edit this ad"></a>
+										<span class="close-btn" title="Remove this ad"></span>
 									</div>
 								</div><!-- /.ad -->
 								<div class="ad">
@@ -108,15 +108,15 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 									<div class="control-box">
 										<span class="percentage-box"><span class="percentage-label">Rotate</span><input type="number" class="percentage" value="100" max="100" min="0"> %</span>
 										<a class="edit-btn" href="#" target="_blank" title="Edit this ad"></a>
-										<span class="close-btn"></span>
+										<span class="close-btn" title="Remove this ad"></span>
 									</div>
 								</div><!-- /.ad -->
 								<div class="ad">
 									<div class="title">Amazon Ad 3 - 300x250</div>
 									<div class="control-box">
 										<span class="percentage-box"><span class="percentage-label">Rotate</span><input type="number" class="percentage" value="100" max="100" min="0"> %</span>
-										<span class="edit-btn"></span>
-										<span class="close-btn"></span>
+										<a class="edit-btn" href="#" target="_blank" title="Edit this ad"></a>
+										<span class="close-btn" title="Remove this ad"></span>
 									</div>
 									<div class="more">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
 								</div><!-- /.ad -->
@@ -125,10 +125,10 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 						</div><!-- /.slide -->
 						
 						<div class="slide">
-							<span class="slide-delete-btn"></span>
+							<span class="slide-delete-btn" title="Delete this slide"></span>
 							<div class="slide-header">
 								Slide 2
-								<span class="equal-btn"></span>
+								<span class="equal-btn" title="Click to fill all rotate fields with equal value"></span>
 							</div>
 							<div class="ads-box">
 								<!-- add more ad here -->
@@ -144,7 +144,7 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 					<span class="save-btn" />Save</span>
 					<span class="save-loading"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
 					<span class="delete-set-loading"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
-					<span class="delete-set-btn"></span>	
+					<span class="delete-set-btn" title="Delete this set"></span>	
 				</div><!-- /.set-footer -->
 			</div>
 
@@ -351,11 +351,11 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		-o-transform: rotate(90deg);
 		transform: rotate(90deg);
 		cursor: pointer;
+		border: 1px solid #ffffff;
 	}
 	.condition-set .slide .slide-header .equal-btn::before{
 		font-family: "dashicons";
 	 	content: "\f523";
-	 	color: #000000;
 		display: inline-block;
 		-webkit-font-smoothing: antialiased;
 		font-weight: normal;
@@ -363,8 +363,9 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		font-size: 20px;
 		line-height: 24px;
 	}
-	.condition-set .slide .slide-header .equal-btn:hover{
+	.condition-set .slide:hover .slide-header .equal-btn{
 		color: #000000;
+		border: 1px solid aliceblue;
 	}
 
 	.condition-set .slide .slide-delete-btn{
@@ -378,6 +379,7 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		vertical-align: top;
 		cursor: pointer;
 		color: #bbbbbb;
+		border: 1px solid #ffffff;
 	}
 	.condition-set .slide .slide-delete-btn::before{
 		font-family: "dashicons";
@@ -389,8 +391,9 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		font-size: 30px;
 		line-height: 30px;
 	}
-	.condition-set .ad .control-box  .close-btn:hover{
+	.condition-set .slide:hover .slide-delete-btn{
 		color: #ff0000;
+		border: 1px solid aliceblue;
 	}
 
 
@@ -477,7 +480,7 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		font-size: 16px;
 		line-height: 30px;
 	}
-	.condition-set .ad .control-box .edit-btn:hover{
+	.condition-set .ad:hover .control-box .edit-btn{
 		color: #000000;
 	}
 
@@ -500,7 +503,7 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		font-size: 22px;
 		line-height: 30px;
 	}
-	.condition-set .ad .control-box  .close-btn:hover{
+	.condition-set .ad:hover .control-box  .close-btn{
 		color: #ff0000;
 	}
 	.condition-set .add-ad-btn-box{

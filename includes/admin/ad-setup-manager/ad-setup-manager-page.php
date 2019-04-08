@@ -74,7 +74,7 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		<div id="condition_sets_box">
 			<div class="condition-set">
 				<div class="set-header">
-					<span class="ec-btn"></span>
+					<span class="ec-btn" title="Edit page type"></span>
 					Archive &raquo; Tag &raquo; <input type="text" size="12" placeholder="Tag Name" />
 					<div class="cs-box">
 
@@ -85,43 +85,46 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 						<span class="ac-btn"></span>
 					</div>
 					<div class="page-type-list-box">
-						<span class="title">Select type of page</span>
-						<ul class="page-type-list">
-							<li class="usable">Home</li>
-							<li>
-								<span class="group-name">Single Page</span>
-								<ul>
-									<li class="usable">Any type post</li>
-									<li class="usable">Post</li>
-									<li class="usable">Page</li>
-								</ul>
-							</li>
-							<li>
-								<span class="group-name">Taxonomy Archive page</span>
-								<ul>
-									<li class="usable">Any Taxonomy page</li>
-									<li>
-										<span class="group-name">Category</span>
-										<ul>
-											<li class="usable">Any Cagegory</li>
-											<li class="usable">Uncategorized</li>
-											<li class="usable">Tutorial</li>
-										</ul>
-									</li>
-									<li>
-										<span class="group-name">Tag</span>
-										<ul>
-											<li class="usable">Any Tag</li>
-											<li class="usable">Specific Tag</li>
-										</ul>
-									</li>
-									
-								</ul>
-							</li>
-							<li class="usable">Author Archive Page</li>
-							<li class="usable">Search Result Page</li>
-							<li class="usable">404 Page</li>
-						</ul>
+						<div class="page-type-list-box-inner">
+							<span class="title">Select type of page</span>
+							<ul class="page-type-list">
+								<li class="usable">Home</li>
+								<li>
+									<span class="group-name">Single Page</span>
+									<ul>
+										<li class="usable">Any type post</li>
+										<li class="usable">Post</li>
+										<li class="usable">Page</li>
+									</ul>
+								</li>
+								<li>
+									<span class="group-name">Taxonomy Archive page</span>
+									<ul>
+										<li class="usable">Any Taxonomy page</li>
+										<li>
+											<span class="group-name">Category</span>
+											<ul>
+												<li class="usable">Any Cagegory</li>
+												<li class="usable">Uncategorized</li>
+												<li class="usable">Tutorial</li>
+											</ul>
+										</li>
+										<li>
+											<span class="group-name">Tag</span>
+											<ul>
+												<li class="usable">Any Tag</li>
+												<li class="usable">Specific Tag</li>
+											</ul>
+										</li>
+										
+									</ul>
+								</li>
+								<li class="usable">Author Archive Page</li>
+								<li class="usable">Search Result Page</li>
+								<li class="usable">404 Page</li>
+							</ul>
+						</div>
+						<div class="open-close-arrow-box"><span class="open-close-arrow"></span></div>
 					</div>
 				</div>
 				<div class="set-body">
@@ -274,6 +277,7 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 	.condition-set .set-header .ec-btn{
 		width: 30px;
 		height: 30px;
+		color: #49a0bc;
 		display: inline-block;
 		border-right: 1px solid #cccccc;
 		cursor: pointer;
@@ -281,13 +285,15 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 	.condition-set .set-header .ec-btn::before{
 		font-family: "dashicons";
 	 	content: "\f540";
-	 	color: #49a0bc;
 		display: inline-block;
 		-webkit-font-smoothing: antialiased;
 		font-weight: normal;
 		vertical-align: top;
 		font-size: 24px;
 		line-height: 30px;
+	}
+	.condition-set .set-header .ec-btn:hover{
+		color:#49bc52;
 	}
 	.condition-set .set-header .cs-box{
 		width: 210px;
@@ -707,15 +713,25 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 
 	.condition-set .set-header .page-type-list-box{
 		width:250px;
-		height: 300px;
-		overflow: scroll;
+		min-height: 10px;
+		overflow: hidden;
 		position: absolute;
 		background: #f9f9f9;
-		top:40px;
+		top:41px;
 		left: 3px;
 		border: 1px solid #cccccc;
 		border-top: none;
+		border-bottom-right-radius: 4px;
+		border-bottom-left-radius: 4px;
 		z-index: 10;
+	}
+	.condition-set .set-header .page-type-list-box .page-type-list-box-inner{
+		width:100%;
+		height: 290px;
+		overflow: scroll;
+	}
+	.page-type-list-box.collapsed .page-type-list-box-inner{
+		display: none;
 	}
 	.page-type-list-box .title{
 		text-align: center;
@@ -727,6 +743,48 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		padding: 5px;
 
 	}
+	.page-type-list-box .open-close-arrow-box{
+		width: 250px;
+		height: 10px;
+		position: absolute;
+		border-top: 1px solid #cccccc;
+		background: #eeeeee;
+		bottom: 0px;
+		left: 0px;
+		text-align: center;
+		cursor: pointer;
+	}
+	.page-type-list-box.collapsed .open-close-arrow-box{
+		background: #f9f9f9;
+	}
+	.page-type-list-box .open-close-arrow{
+		display: inline-block;
+		width: 22px;
+		height: 10px;
+		text-align: center;
+		color: #888888;
+		vertical-align: top;
+		margin-top: -10px;
+
+	}
+	.page-type-list-box .open-close-arrow::before{
+		font-family: "dashicons";
+	 	content: "\f142";
+		display: inline-block;
+		-webkit-font-smoothing: antialiased;
+		font-weight: normal;
+		vertical-align: bottom;
+		font-size: 22px;
+		
+	}
+	.open-close-arrow-box:hover .open-close-arrow{
+		color: #000000;
+	}
+
+	.page-type-list-box.collapsed .open-close-arrow::before{
+		content: "\f140";
+	}
+
 	.page-type-list-box .page-type-list{
 		padding: 10px;
 		margin: 0px;

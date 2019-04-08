@@ -313,11 +313,21 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		border: 1px solid #ddd;
 		font-size: 15px;
 		line-height: 18px;
-		color: #32373c;
-		background-color: #fff;
+		color: #666666;
+		background-color: #eeeeee;
 		box-sizing: border-box;
+		
 	}
 
+	.set-header .term-name.checking{
+		background-image: url(<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading16.gif);
+		background-repeat: no-repeat;
+		background-position: right;
+		padding-right: 20px;
+	}
+	.set-header .term-name:focus{
+		background: #ffffff;
+	}
 
 
 	.condition-set .set-header .cs-box{

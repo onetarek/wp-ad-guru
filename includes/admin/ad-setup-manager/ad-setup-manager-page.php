@@ -87,42 +87,40 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 					<div class="page-type-list-box">
 						<span class="title">Select type of page</span>
 						<ul class="page-type-list">
-							<li>Home</li>
+							<li class="usable">Home</li>
 							<li>
 								<span class="group-name">Single Page</span>
 								<ul>
-									<li>Any type post</li>
-									<li>Post</li>
-									<li>Page</li>
+									<li class="usable">Any type post</li>
+									<li class="usable">Post</li>
+									<li class="usable">Page</li>
 								</ul>
 							</li>
 							<li>
 								<span class="group-name">Taxonomy Archive page</span>
 								<ul>
-									<li>Any Taxonomy page</li>
+									<li class="usable">Any Taxonomy page</li>
 									<li>
 										<span class="group-name">Category</span>
 										<ul>
-											<li>Any Cagegory</li>
-											<li>Uncategorized</li>
-											<li>Tutorial</li>
+											<li class="usable">Any Cagegory</li>
+											<li class="usable">Uncategorized</li>
+											<li class="usable">Tutorial</li>
 										</ul>
 									</li>
 									<li>
 										<span class="group-name">Tag</span>
 										<ul>
-											<li>Any Tag</li>
-											<li>
-												Specific Tag
-											</li>
+											<li class="usable">Any Tag</li>
+											<li class="usable">Specific Tag</li>
 										</ul>
 									</li>
 									
 								</ul>
 							</li>
-							<li>Author Archive Page</li>
-							<li>Search Result Page</li>
-							<li>404 Page</li>
+							<li class="usable">Author Archive Page</li>
+							<li class="usable">Search Result Page</li>
+							<li class="usable">404 Page</li>
 						</ul>
 					</div>
 				</div>
@@ -255,7 +253,6 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		border: 1px solid #cccccc;
 		border-radius: 7px;
 		margin-bottom: 10px;
-		overflow: hidden;
 		background: #ffffff;
 		position: relative;
 
@@ -709,11 +706,11 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 
 
 	.condition-set .set-header .page-type-list-box{
-		width:300px;
-		height: 400px;
+		width:250px;
+		height: 300px;
 		overflow: scroll;
 		position: absolute;
-		background: #f5f5f5;
+		background: #f9f9f9;
 		top:40px;
 		left: 3px;
 		border: 1px solid #cccccc;
@@ -733,11 +730,25 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 	.page-type-list-box .page-type-list{
 		padding: 10px;
 		margin: 0px;
+		font-size: 13px;
+	}
+	.page-type-list li{
+		margin-bottom: 0px;
+		font-size: 13px;
+		line-height: 15px;
+		padding: 5px;
+	}
+	.page-type-list li.usable{
+		color: #444444;
+		cursor: pointer;
+	}
+	.page-type-list li.usable:hover{
+		background: #c9e9f3;
 	}
 	.page-type-list .group-name{
 		font-weight: bold;
 	}
 	.page-type-list ul{
-		padding-left: 20px;
+		padding-left: 10px;
 	}
 </style>

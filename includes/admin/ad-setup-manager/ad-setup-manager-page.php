@@ -871,9 +871,10 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 			//alert("clicked");
 			var condition_set = jQuery(this).closest('.condition-set');
 			condition_set.toggleClass('collapsed');
+			alert("open/close");
 		});
 
-		jQuery('.condition-set').on('click', '.open-close-arrow', function(){
+		jQuery('.condition-set').on('click', '.open-close-arrow-box', function(){
 			var target = jQuery(this).closest('.page-type-list-box');
 			target.toggleClass('collapsed');
 		});

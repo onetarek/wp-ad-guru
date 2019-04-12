@@ -86,8 +86,7 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 					</div>
 					
 				</div>
-				<div class="set-error-msg-box">Error message will go here<!-- Error message will go here --></div>
-				<div class="set-body">
+				<div class="page-type-list-wrapper">
 					<div class="page-type-list-box">
 						<div class="page-type-list-box-inner">
 							<span class="title">Select type of page</span>
@@ -130,7 +129,11 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 							</ul>
 						</div>
 						<div class="open-close-arrow-box"><span class="open-close-arrow"></span></div>
-					</div>
+					</div><!-- /.page-type-list-box -->
+				</div><!-- /.page-type-list-wrapper -->
+				<div class="set-error-msg-box">Error message will go here<!-- Error message will go here --></div>
+				<div class="set-body">
+					
 					<div class="condition-detail">Banners for a single page where post type is post</div>
 					<div class="slides-box">
 						<div class="slide">
@@ -334,8 +337,6 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		background-color: #eeeeee;
 	}
 	
-
-
 	.condition-set .set-header .cs-box{
 		width: 210px;
 		position: absolute;
@@ -399,8 +400,10 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		border-bottom: 1px solid #cccccc;
 		text-align: center;
 	}
+	.condition-set.collapsed .set-error-msg-box{
+		display: none;
+	}
 	.condition-set .set-body{
-		min-height: 300px;
 		padding: 10px;
 		position: relative;
 	}
@@ -759,9 +762,11 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		background: #ffffff;
 	}
 
+	.condition-set .page-type-list-wrapper{
+		position: relative;
+	}
 
-
-	.condition-set .set-body .page-type-list-box{
+	.condition-set .page-type-list-wrapper .page-type-list-box{
 		width:250px;
 		min-height: 10px;
 		overflow: hidden;
@@ -775,7 +780,7 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		border-bottom-left-radius: 4px;
 		z-index: 10;
 	}
-	.condition-set .set-body .page-type-list-box .page-type-list-box-inner{
+	.condition-set .page-type-list-wrapper .page-type-list-box .page-type-list-box-inner{
 		width:100%;
 		height: 290px;
 		overflow: scroll;
@@ -860,3 +865,22 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		padding-left: 10px;
 	}
 </style>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery('.condition-set').on('click', '.ac-btn', function(){
+			//alert("clicked");
+			var condition_set = jQuery(this).closest('.condition-set');
+			condition_set.toggleClass('collapsed');
+		});
+
+		jQuery('.condition-set').on('click', '.open-close-arrow', function(){
+			var target = jQuery(this).closest('.page-type-list-box');
+			target.toggleClass('collapsed');
+		});
+
+		jQuery('.condition-set').on('click', '.ec-btn', function(){
+			var target = jQuery(this).closest('.condition-set').find('.page-type-list-box').first();
+			target.toggleClass('collapsed');
+		});
+	});
+</script>

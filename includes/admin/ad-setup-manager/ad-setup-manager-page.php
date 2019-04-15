@@ -86,55 +86,57 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 					</div>
 					
 				</div>
-				<div class="page-type-list-wrapper">
-					<div class="page-type-list-box">
-						<div class="page-type-list-box-inner">
-							<span class="title">Select type of page</span>
-							<ul class="page-type-list">
-								<li class="usable">Default( all )</li>
-								<li class="usable">Home</li>
-								<li>
-									<span class="group-name">Single Page</span>
-									<ul>
-										<li class="usable">Any type post</li>
-										<li class="usable">Post</li>
-										<li class="usable">Page</li>
-									</ul>
-								</li>
-								<li>
-									<span class="group-name">Taxonomy Archive page</span>
-									<ul>
-										<li class="usable">Any Taxonomy page</li>
-										<li>
-											<span class="group-name">Category</span>
-											<ul>
-												<li class="usable">Any Cagegory</li>
-												<li class="usable">Uncategorized</li>
-												<li class="usable">Tutorial</li>
-											</ul>
-										</li>
-										<li>
-											<span class="group-name">Tag</span>
-											<ul>
-												<li class="usable">Any Tag</li>
-												<li class="usable">Specific Tag</li>
-											</ul>
-										</li>
-										
-									</ul>
-								</li>
-								<li class="usable">Author Archive Page</li>
-								<li class="usable">Search Result Page</li>
-								<li class="usable">404 Page</li>
-							</ul>
-						</div>
-						<div class="open-close-arrow-box"><span class="open-close-arrow"></span></div>
-					</div><!-- /.page-type-list-box -->
-				</div><!-- /.page-type-list-wrapper -->
-				<div class="set-error-msg-box">Error message will go here<!-- Error message will go here --></div>
+				
+				
 				<div class="set-body">
+					<div class="page-type-list-wrapper">
+						<div class="page-type-list-box">
+							<div class="page-type-list-box-inner">
+								<span class="title">Select type of page</span>
+								<ul class="page-type-list">
+									<li class="usable">Default( all )</li>
+									<li class="usable">Home</li>
+									<li>
+										<span class="group-name">Single Page</span>
+										<ul>
+											<li class="usable">Any type post</li>
+											<li class="usable">Post</li>
+											<li class="usable">Page</li>
+										</ul>
+									</li>
+									<li>
+										<span class="group-name">Taxonomy Archive page</span>
+										<ul>
+											<li class="usable">Any Taxonomy page</li>
+											<li>
+												<span class="group-name">Category</span>
+												<ul>
+													<li class="usable">Any Cagegory</li>
+													<li class="usable">Uncategorized</li>
+													<li class="usable">Tutorial</li>
+												</ul>
+											</li>
+											<li>
+												<span class="group-name">Tag</span>
+												<ul>
+													<li class="usable">Any Tag</li>
+													<li class="usable">Specific Tag</li>
+												</ul>
+											</li>
+											
+										</ul>
+									</li>
+									<li class="usable">Author Archive Page</li>
+									<li class="usable">Search Result Page</li>
+									<li class="usable">404 Page</li>
+								</ul>
+							</div>
+							<div class="open-close-arrow-box"><span class="open-close-arrow"></span></div>
+						</div><!-- /.page-type-list-box -->
+					</div><!-- /.page-type-list-wrapper -->
 					
 					<div class="condition-detail">Banners for a single page where post type is post</div>
+					
 					<div class="slides-box">
 						<div class="slide">
 							<span class="slide-delete-btn" title="Delete this slide"></span>
@@ -189,8 +191,10 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 					<div class="new-slide-btn-box"></div>
 				</div><!-- /.set-body -->
 				<div class="set-footer">
+					<div class="set-error-msg-box">Error message will go here<!-- Error message will go here --></div>
 					<span class="save-btn" />Save</span>
 					<span class="save-loading"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
+					
 					<span class="delete-set-loading"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
 					<span class="delete-set-btn" title="Delete this set"></span>	
 				</div><!-- /.set-footer -->
@@ -392,31 +396,26 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 	}
 	.condition-set .ac-box .ac-btn:hover::before{ color: #000000; }
 	
-	.condition-set .set-error-msg-box{
-		font-size: 14px;
-		line-height: 20px;
-		padding: 5px;
-		color: #ff0000;
-		border-bottom: 1px solid #cccccc;
-		text-align: center;
-	}
-	.condition-set.collapsed .set-error-msg-box{
-		display: none;
-	}
 	.condition-set .set-body{
-		padding: 10px;
+		padding: 0px;
 		position: relative;
 	}
 	.condition-set.collapsed .set-body{
 		display: none;
 	}
 	.condition-set .set-body .condition-detail{
-		font-size: 14px;
-		line-height: 14px;
+		font-size: 15px;
+		line-height: 15px;
+		text-align: center;
 		margin-bottom: 10px;
+		padding: 10px;
+		padding-top: 15px;
+		border-bottom: 1px solid #cccccc;
 	}
 
-	.condition-set .slides-box{}
+	.condition-set .slides-box{
+		padding: 10px;
+	}
 	.condition-set .slide{
 		padding: 10px;
 		padding-top: 3px;
@@ -655,7 +654,7 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 
 
 	.condition-set .set-footer{
-		height: 32px;
+		min-height: 32px;
 		padding: 10px;
 		border-top: 1px solid #eeeeee;
 		position: relative;
@@ -664,10 +663,23 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		display: none;
 	}
 
+	.condition-set .set-error-msg-box{
+		font-size: 14px;
+		line-height: 20px;
+		color: #ff0000;
+		text-align: center;
+		padding: 5px 80px 5px 155px;
+		
+	}
+
 	.condition-set .set-footer .save-btn{
 		width: 100px;
 		border: 1px solid #49a0bc;
 		padding:5px;
+		position: absolute;
+		left: 10px;
+		top: 10px;
+		background: #ffffff;
 		text-align: center;
 		font-size: 15px;
 		font-weight: normal;
@@ -676,6 +688,7 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		text-transform: uppercase;
 		display: inline-block;
 		cursor: pointer;
+		
 	}
 	.condition-set .set-footer .save-btn::before{
 		font-family: "dashicons";
@@ -696,6 +709,10 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 		display: inline-block;
 		vertical-align: middle;
 		margin-left: 15px;
+		position: absolute;
+		left: 115px;
+		top: 10px;
+
 	}
 	.condition-set .set-footer .save-loading img{
 		margin: 0;

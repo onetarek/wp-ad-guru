@@ -94,43 +94,7 @@ if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $c
 						<div class="page-type-list-box">
 							<div class="page-type-list-box-inner">
 								<span class="title">Select type of page</span>
-								<ul class="page-type-list">
-									<li class="usable">Default( all )</li>
-									<li class="usable">Home</li>
-									<li>
-										<span class="group-name">Single Page</span>
-										<ul>
-											<li class="usable">Any type post</li>
-											<li class="usable">Post</li>
-											<li class="usable">Page</li>
-										</ul>
-									</li>
-									<li>
-										<span class="group-name">Taxonomy Archive page</span>
-										<ul>
-											<li class="usable">Any Taxonomy page</li>
-											<li>
-												<span class="group-name">Category</span>
-												<ul>
-													<li class="usable">Any Cagegory</li>
-													<li class="usable">Uncategorized</li>
-													<li class="usable">Tutorial</li>
-												</ul>
-											</li>
-											<li>
-												<span class="group-name">Tag</span>
-												<ul>
-													<li class="usable">Any Tag</li>
-													<li class="usable">Specific Tag</li>
-												</ul>
-											</li>
-											
-										</ul>
-									</li>
-									<li class="usable">Author Archive Page</li>
-									<li class="usable">Search Result Page</li>
-									<li class="usable">404 Page</li>
-								</ul>
+								<?php echo $this->get_page_type_list_html(); ?>
 							</div>
 							<div class="open-close-arrow-box"><span class="open-close-arrow"></span></div>
 						</div><!-- /.page-type-list-box -->

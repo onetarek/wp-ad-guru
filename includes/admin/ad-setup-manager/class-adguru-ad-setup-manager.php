@@ -138,26 +138,6 @@ class ADGURU_Ad_Setup_Manager{
 				}
 				?>
 				</ul>
-
-				<ul>
-					<li class="usable">Any Taxonomy page</li>
-					<li>
-						<span class="group-name">Category</span>
-						<ul>
-							<li class="usable">Any Cagegory</li>
-							<li class="usable">Uncategorized</li>
-							<li class="usable">Tutorial</li>
-						</ul>
-					</li>
-					<li>
-						<span class="group-name">Tag</span>
-						<ul>
-							<li class="usable">Any Tag</li>
-							<li class="usable">Specific Tag</li>
-						</ul>
-					</li>
-					
-				</ul>
 			</li>
 			<li class="usable">Author Archive Page</li>
 			<li class="usable">Search Result Page</li>

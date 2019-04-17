@@ -12,9 +12,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 if( ! class_exists( 'ADGURU_Ad_Setup_Manager' ) ) :
 
 class ADGURU_Ad_Setup_Manager{
-	public $test = "Hello";
+
+	public $current_ad_type;
+	public $current_ad_type_args;
+	public $current_zone_id;
 	public $page_type_list_html;
 	public $taxonomy_list;
+	public $ad_zone_links;
+	public $grouped_ad_zone_links;
+	public $ads = array();
+
+	 
 	public function __construct(){
 
 		//add_action('admin_menu', array( $this, 'admin_menu' ) );
@@ -226,6 +234,92 @@ class ADGURU_Ad_Setup_Manager{
 		}
 		$this->taxonomy_list = $taxonomies;
 		return $taxonomies;
+	}
+
+	/**
+	 * Prepare required data before rendering condition sets
+	 *
+	 * @return void
+	 */
+	public function prepare(){
+
+		if( !isset($this->current_ad_type ) || !isset($this->current_zone_id ) )
+		{
+			return;
+		}
+		//Prepare links
+		$links_args = array(
+			"zone_id"		=> 	$this->current_zone_id,
+			"ad_type"		=> 	$this->current_ad_type
+		);
+		$ad_zone_links = adguru()->manager->get_ad_zone_links( $links_args );
+		if( is_array( $ad_zone_links ) )
+		{
+			$this->ad_zone_links = $ad_zone_links;
+		}
+
+		$this->prepare_grouped_ad_zone_links();
+
+		#retrieved ads
+		$ad_ids = array();
+		foreach( $this->ad_zone_links as $link )
+		{
+			$ad_ids[] = $link->ad_id;
+		}
+
+		$ads = adguru()->manager->get_ads(array(
+			"post_type" => ADGURU_POST_TYPE_PREFIX.$this->current_ad_type,
+			"post__in" => $ad_ids,
+			"posts_per_page" => -1
+		));
+		if( is_array($ads) )
+		{
+			foreach( $ads as $ad )
+			{
+				$this->ads[ $ad->ID ] = $ad;
+			}
+			
+		}
+		//write_log($this->ads);
+	}
+
+	/**
+	 * Prepare grouped ad zone links array
+	 *
+	 * @return void
+	 */
+	private function prepare_grouped_ad_zone_links(){
+
+		if( !isset( $this->ad_zone_links ) || !is_array( $this->ad_zone_links ) )
+		{
+			return;
+		}
+		$grouped_ad_zone_links = array();
+
+		foreach( $this->ad_zone_links as $link )
+		{
+			$grouped_ad_zone_links[ $link->zone_id . $link->page_type . $link->taxonomy . $link->term . $link->object_id . $link->country_code ][] = $link;
+		}
+		$this->grouped_ad_zone_links = $grouped_ad_zone_links;
+		//write_log($this->grouped_ad_zone_links);
+	}
+
+	/**
+	 * Get an ad from previously retrieved ads list
+	 *
+	 * @param int $id ad id
+	 * @return ADGURU_Ad Object or false
+	 */
+	private function get_ad( $id ){
+
+		if( isset( $this->ads[$id] ) )
+		{
+			return $this->ads[$id];
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 }//end class

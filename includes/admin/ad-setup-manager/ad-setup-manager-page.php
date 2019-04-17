@@ -3,6 +3,7 @@ $page = $_REQUEST['page'];
 $all_ad_type_args = adguru()->ad_types->types;
 
 $current_ad_type = isset( $_GET['ad_type'] ) ? $_GET['ad_type'] : 'banner';
+
 if(! isset( $all_ad_type_args[ $current_ad_type ] ) )
 {
 	return ;
@@ -14,8 +15,14 @@ else
 
 $use_zone = isset( $current_ad_type_args['use_zone'] ) ? $current_ad_type_args['use_zone'] : false;
 $zone_id = isset( $_GET['zone_id'] ) ? intval( $_GET['zone_id'] ) : 0 ; 
+
+$this->current_ad_type = $current_ad_type;
+$this->current_zone_id = $zone_id;
+$this->current_ad_type_args = $current_ad_type_args;
+
 if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $current_ad_type_args['plural_name'] );  } else {  $editor_title =  sprintf( __("Setup %s to pages", "adguru" ) , $current_ad_type_args['plural_name'] ); }
 
+$this->prepare();
 ?>
 <link rel="stylesheet" type="text/css" href="<?php echo ADGURU_PLUGIN_URL ?>assets/css/ad-setup-manager.css" />
 <div class="wrap" id="ad_setup_manger_wrap">

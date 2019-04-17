@@ -280,54 +280,306 @@ class ADGURU_Manager{
 	 * Retrieves an array of links of ad and zone.
 	 *
 	 * @since 2.0.0
+	 * @since 2.1.0 Completely refactored. $args parameter is optional. Supports None, single and multiple fields in $args 
 	 * @param array $args
 	 * @return mixed array if $wpdb return array, false otherwise
+	 *
+	 * Available $args keys are zone_id, page_type, taxonomy, term, object_id, country_code, ad_id
+	 * $args items can be both array or non array
+	 * example $args = array(
+	 * 		'zone_id' => 2,
+	 *		'page_type' => array('home' ,'--'),
+	 *		'......' => '.......',	
+	 * 		)
+	 *
+	 *	If $args is blank then this function will return all links
 	 */
-	public function get_ad_zone_links( $args ){
-		
-		if( !isset( $args['zone_id'] ) && !isset( $args['ad_type'] ) ){ return false; }
-		if( !isset( $args['page_type'] ) )	{ return false; }
-		if( !isset( $args['taxonomy'] ) )	{ return false; }
-		if( !isset( $args['term'] ) )		{ return false; }
-		if( !isset( $args['object_id'] ) )	{ return false; }
-		
-		$zone_id = isset( $args['zone_id'] ) ? intval( $args['zone_id'] ) : 0;
-		$ad_type = isset( $args['ad_type'] ) ? $args['ad_type'] : "";
-		
-		if( $ad_type == "" && $zone_id == 0  ) { return false; }
-				
+	public function get_ad_zone_links( $args = array() ){
 		
 		global $wpdb;
-		if( $zone_id )
+		$query = "SELECT * FROM ".ADGURU_LINKS_TABLE." WHERE 1=1";
+		$vars = array();
+		
+		#query with zone_id
+		if( isset( $args['zone_id'] ) )
 		{
-		#get all links of all type of ads for this zone.
-		$query = $wpdb->prepare( 
-			"SELECT * FROM ".ADGURU_LINKS_TABLE." WHERE zone_id=%d AND page_type=%s AND taxonomy=%s AND term=%s AND object_id=%d",
-			 $args['zone_id'],
-			 $args['page_type'],
-			 $args['taxonomy'],
-			 $args['term'],
-			 $args['object_id']			
-			 );
+			$zone_id = $args['zone_id'];
+			$zone_id_arr = array();
+			$zone_id_placeholders = array();
+			if( is_array( $zone_id ) )
+			{
+				foreach($zone_id as $item )
+				{
+					$zone_id_arr[] = intval( $item );
+					$zone_id_placeholders[] = "%d";
+				}
+			}
+			else
+			{
+				$zone_id_arr[] = intval( $zone_id );
+				$zone_id_placeholders[] = "%d";
+			}
+			if( count( $zone_id_arr ) )
+			{
+				$query.=" AND zone_id IN (".implode(", ", $zone_id_placeholders).")";
+				$vars = array_merge( $vars, $zone_id_arr );
+			}
+			
+		}
+
+		#query with ad_type
+		if( isset( $args['ad_type'] ) )
+		{
+			$ad_type = $args['ad_type'];
+			$ad_type_arr = array();
+			$ad_type_placeholders = array();
+			if( is_array( $ad_type ) )
+			{
+				foreach( $ad_type as $item )
+				{
+					$s = trim( $item );
+					if( $s )
+					{
+						$ad_type_arr[] = $s;
+						$ad_type_placeholders[] = "%s";
+					}
+					
+				}
+			}
+			else
+			{
+				$s = trim( $ad_type );
+				if( $s )
+				{
+					$ad_type_arr[] = $s;
+					$ad_type_placeholders[] = "%s";
+				}
+				
+			}
+			if( count( $ad_type_arr ) )
+			{
+				$query.=" AND ad_type IN (".implode(", ", $ad_type_placeholders).")";
+				$vars = array_merge( $vars, $ad_type_arr );
+			}
+			
+		}
+
+		#query with page_type
+		if( isset( $args['page_type'] ) )
+		{
+			$page_type = $args['page_type'];
+			$page_type_arr = array();
+			$page_type_placeholders = array();
+			if( is_array( $page_type ) )
+			{
+				foreach( $page_type as $item )
+				{
+					$s = trim( $item );
+					if( $s )
+					{
+						$page_type_arr[] = $s;
+						$page_type_placeholders[] = "%s";
+					}
+					
+				}
+			}
+			else
+			{
+				$s = trim( $page_type );
+				if( $s )
+				{
+					$page_type_arr[] = $s;
+					$page_type_placeholders[] = "%s";
+				}
+				
+			}
+			if( count( $page_type_arr ) )
+			{
+				$query.=" AND page_type IN (".implode(", ", $page_type_placeholders).")";
+				$vars = array_merge( $vars, $page_type_arr );
+			}
+			
+		}
+		
+		#query with taxonomy
+		if( isset( $args['taxonomy'] ) )
+		{
+			$taxonomy = $args['taxonomy'];
+			$taxonomy_arr = array();
+			$taxonomy_placeholders = array();
+			if( is_array( $taxonomy ) )
+			{
+				foreach( $taxonomy as $item )
+				{
+					$s = trim( $item );
+					if( $s )
+					{
+						$taxonomy_arr[] = $s;
+						$taxonomy_placeholders[] = "%s";
+					}
+					
+				}
+			}
+			else
+			{
+				$s = trim( $taxonomy );
+				if( $s )
+				{
+					$taxonomy_arr[] = $s;
+					$taxonomy_placeholders[] = "%s";
+				}
+				
+			}
+			if( count( $taxonomy_arr ) )
+			{
+				$query.=" AND taxonomy IN (".implode(", ", $taxonomy_placeholders).")";
+				$vars = array_merge( $vars, $taxonomy_arr );
+			}
+			
+		}
+
+		#query with term
+		if( isset( $args['term'] ) )
+		{
+			$term = $args['term'];
+			$term_arr = array();
+			$term_placeholders = array();
+			if( is_array( $term ) )
+			{
+				foreach( $term as $item )
+				{
+					$s = trim( $item );
+					if( $s )
+					{
+						$term_arr[] = $s;
+						$term_placeholders[] = "%s";
+					}
+					
+				}
+			}
+			else
+			{
+				$s = trim( $term );
+				if( $s )
+				{
+					$term_arr[] = $s;
+					$term_placeholders[] = "%s";
+				}
+				
+			}
+			if( count( $term_arr ) )
+			{
+				$query.=" AND term IN (".implode(", ", $term_placeholders).")";
+				$vars = array_merge( $vars, $term_arr );
+			}
+			
+		}
+
+		#query with object_id
+		if( isset( $args['object_id'] ) )
+		{
+			$object_id = $args['object_id'];
+			$object_id_arr = array();
+			$object_id_placeholders = array();
+			if( is_array( $object_id ) )
+			{
+				foreach($object_id as $item )
+				{
+					$object_id_arr[] = intval( $item );
+					$object_id_placeholders[] = "%d";
+				}
+			}
+			else
+			{
+				$object_id_arr[] = intval( $object_id );
+				$object_id_placeholders[] = "%d";
+			}
+			if( count( $object_id_arr ) )
+			{
+				$query.=" AND object_id IN (".implode(", ", $object_id_placeholders).")";
+				$vars = array_merge( $vars, $object_id_arr );
+			}
+			
+		}
+
+		#query with country_code
+		if( isset( $args['country_code'] ) )
+		{
+			$country_code = $args['country_code'];
+			$country_code_arr = array();
+			$country_code_placeholders = array();
+			if( is_array( $country_code ) )
+			{
+				foreach( $country_code as $item )
+				{
+					$s = trim( $item );
+					if( $s )
+					{
+						$country_code_arr[] = $s;
+						$country_code_placeholders[] = "%s";
+					}
+					
+				}
+			}
+			else
+			{
+				$s = trim( $country_code );
+				if( $s )
+				{
+					$country_code_arr[] = $s;
+					$country_code_placeholders[] = "%s";
+				}
+				
+			}
+			if( count( $country_code_arr ) )
+			{
+				$query.=" AND country_code IN (".implode(", ", $country_code_placeholders).")";
+				$vars = array_merge( $vars, $country_code_arr );
+			}
+			
+		}
+
+		#query with ad_id
+		if( isset( $args['ad_id'] ) )
+		{
+			$ad_id = $args['ad_id'];
+			$ad_id_arr = array();
+			$ad_id_placeholders = array();
+			if( is_array( $ad_id ) )
+			{
+				foreach($ad_id as $item )
+				{
+					$ad_id_arr[] = intval( $item );
+					$ad_id_placeholders[] = "%d";
+				}
+			}
+			else
+			{
+				$ad_id_arr[] = intval( $ad_id );
+				$ad_id_placeholders[] = "%d";
+			}
+			if( count( $ad_id_arr ) )
+			{
+				$query.=" AND ad_id IN (".implode(", ", $ad_id_placeholders).")";
+				$vars = array_merge( $vars, $ad_id_arr );
+			}
+			
+		}
+
+		if( count( $vars ) )
+		{
+			$prepared_query = $wpdb->prepare( $query, $vars );
 		}
 		else
 		{
-		#get all links of current ad type which has no zone id.
-		$query = $wpdb->prepare( 
-			"SELECT * FROM ".ADGURU_LINKS_TABLE." WHERE zone_id=%d AND ad_type=%s AND page_type=%s AND taxonomy=%s AND term=%s AND object_id=%d",
-			 $args['zone_id'],
-			 $args['ad_type'],
-			 $args['page_type'],
-			 $args['taxonomy'],
-			 $args['term'],
-			 $args['object_id']			
-			 );		
-		}		
+			$prepared_query = $query;
+		}
 		
-		$links = $wpdb->get_results( $query );
+		$links = $wpdb->get_results( $prepared_query );
 		return is_array( $links ) ? $links : false;
 		
 	}//END FUNC	
+	
 
 	/**
 	 * Get Links for an ad

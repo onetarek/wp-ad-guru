@@ -211,10 +211,8 @@ $this->print_script();
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		jQuery('.condition-set').on('click', '.ac-btn', function(){
-			//alert("clicked");
 			var condition_set = jQuery(this).closest('.condition-set');
 			condition_set.toggleClass('collapsed');
-			alert("open/close");
 		});
 
 		jQuery('.condition-set').on('click', '.open-close-arrow-box', function(){

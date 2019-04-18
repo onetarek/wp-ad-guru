@@ -13,14 +13,14 @@ if( ! class_exists( 'ADGURU_Ad_Setup_Manager' ) ) :
 
 class ADGURU_Ad_Setup_Manager{
 
-	public $current_ad_type;
-	public $current_ad_type_args;
-	public $current_zone_id;
-	public $page_type_list_html;
-	public $taxonomy_list;
-	public $ad_zone_links;
-	public $ad_zone_link_sets;
-	public $ads_data = array();
+	private $current_ad_type;
+	private $current_ad_type_args;
+	private $current_zone_id;
+	private $page_type_list_html;
+	private $taxonomy_list;
+	private $ad_zone_links;
+	private $ad_zone_link_sets;
+	private $ads_data = array();
 
 	 
 	public function __construct(){
@@ -41,7 +41,7 @@ class ADGURU_Ad_Setup_Manager{
 	 * Generate HTML for page type list
 	 * @since 2.1.0
 	 */
-	public function get_page_type_list_html(){
+	private function get_page_type_list_html(){
 		
 		if( isset( $this->page_type_list_html ) )
 		{
@@ -157,13 +157,24 @@ class ADGURU_Ad_Setup_Manager{
 		return $html;
 
 	}
+	
+	/**
+	 * Generate HTML for country list select input
+	 * @since 2.1.0
+	 */
+	private function get_country_list_html(){
+		ob_start();
+		adguru()->html->get_country_list_select_input( $selected, array( 'class'=>'country-select' ) );
+		$html = ob_get_clean();
+		return $html;
+	}
 
 	/**
 	 * Retrieve all registred post types.
 	 * @since 2.1.0
 	 */
 
-	public function get_post_type_list(){
+	private function get_post_type_list(){
 		#retrieve all registred post types.
 		$post_types = get_post_types( '', 'names' ); 		
 
@@ -197,7 +208,7 @@ class ADGURU_Ad_Setup_Manager{
 	 * Retrieve registred taxonomies those have real user facing usages.
 	 * @since 2.1.0
 	 */
-	public function get_taxonomy_list(){
+	private function get_taxonomy_list(){
 
 		if( isset( $this->taxonomy_list ) )
 		{
@@ -241,7 +252,7 @@ class ADGURU_Ad_Setup_Manager{
 	 *
 	 * @return void
 	 */
-	public function prepare(){
+	private function prepare(){
 
 		if( !isset($this->current_ad_type ) || !isset($this->current_zone_id ) )
 		{
@@ -347,14 +358,19 @@ class ADGURU_Ad_Setup_Manager{
 			'current_zone_id' => $this->current_zone_id,
 			'ad_zone_link_sets' => $this->ad_zone_link_sets,
 			'ads_data' => $this->ads_data,
-			'page_type_list_html' => $this->get_page_type_list_html()
+			'page_type_list_html' => $this->get_page_type_list_html(),
+			'country_list_html' => $this->get_country_list_html()
 		);
 
 		$data_json = wp_json_encode( $data );
-		echo '<script>';
-		echo "var ADGURU_ASM_DATA = '".$data_json."';";
-		echo '</script>';
+		?>
 
+		<script>
+		var ADGURU_ASM_DATA = <?php echo $data_json ?>
+		</script>
+		<script src="<?php echo ADGURU_PLUGIN_URL ?>assets/js/ad-setup-manager.js"></script>
+
+		<?php  
 	}
 
 }//end class

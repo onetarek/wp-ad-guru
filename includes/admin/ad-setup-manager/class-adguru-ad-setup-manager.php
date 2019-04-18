@@ -210,7 +210,7 @@ class ADGURU_Ad_Setup_Manager{
 		
 		foreach( $taxonomies as $key => $taxobj )
 		{
-			if( in_array($key, $remTax ) )#remove taxonomies those are being used only for interlan usages. Those object/post_types does not have show UI.
+			if( in_array($key, $remTax ) )#remove taxonomies those are being used only for internal usages. Those object/post_types does not have show UI.
 			{
 				unset( $taxonomies[ $key ] );
 				continue;

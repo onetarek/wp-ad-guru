@@ -220,7 +220,7 @@ class ADGURU_Ad_Setup_Manager{
 	private function get_condition_set_html_template(){
 		ob_start();
 		?>
-		<div class="condition-set" id="condition_set_{{SET_NUMBER}}">
+		<div class="condition-set" id="{{SET_HTML_ID}}">
 			<div class="set-header">
 				<span class="ec-btn" title="Edit page type"></span>
 				<span class="page-type-display-box">{{PAGE_TYPE_DISPLAY_HTML}}<span>

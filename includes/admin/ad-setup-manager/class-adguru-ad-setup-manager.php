@@ -168,8 +168,30 @@ class ADGURU_Ad_Setup_Manager{
 		$html = ob_get_clean();
 		return $html;
 	}
+	
 	/**
-	 * Generate HTML Template for a condition set
+	 * Generate HTML Template for an ad
+	 * @since 2.1.0
+	 */
+	private function get_ad_html_template(){
+		ob_start();
+		?>
+		<div class="ad">
+			<div class="title">{{AD_TITLE}}</div>
+			<div class="control-box">
+				<span class="percentage-box"><span class="percentage-label">Rotate</span><input type="number" class="percentage" value="{{PERCENTAGE_VALUE}}" max="100" min="0"> %</span>
+				<a class="edit-btn" href="<?php echo admin_url('admin.php?page=adguru_ad_{{AD_TYPE}}&manager_tab=edit&ad_id=')?>{{AD_ID}}" target="_blank" title="Edit this ad"></a>
+				<span class="remove-btn" title="Remove this ad"></span>
+			</div>
+			<div class="more">{{MORE_HTML}}</div>
+		</div><!-- /.ad -->
+		<?php 
+		$html = ob_get_clean();
+		return $html;
+	}
+
+	/**
+	 * Generate HTML Template for a slide
 	 * @since 2.1.0
 	 */
 	private function get_slide_html_template(){
@@ -435,6 +457,7 @@ class ADGURU_Ad_Setup_Manager{
 			'ads_data' => $this->ads_data,
 			'page_type_list_html' => $this->get_page_type_list_html(),
 			'country_list_html' => $this->get_country_list_html(),
+			'ad_html_template' => $this->get_ad_html_template(),
 			'slide_html_template' => $this->get_slide_html_template(),
 			'condition_set_html_template' => $this->get_condition_set_html_template()
 		);

@@ -20,7 +20,7 @@ class ADGURU_Ad_Setup_Manager{
 	public $taxonomy_list;
 	public $ad_zone_links;
 	public $ad_zone_link_sets;
-	public $ads = array();
+	public $ads_data = array();
 
 	 
 	public function __construct(){
@@ -259,13 +259,16 @@ class ADGURU_Ad_Setup_Manager{
 		}
 
 		$this->prepare_ad_zone_link_sets();
-
+		
 		#retrieved ads
+		$this->ads_data = array();
 		$ad_ids = array();
 		foreach( $this->ad_zone_links as $link )
 		{
 			$ad_ids[] = $link->ad_id;
 		}
+		
+
 
 		$ads = adguru()->manager->get_ads(array(
 			"post_type" => ADGURU_POST_TYPE_PREFIX.$this->current_ad_type,
@@ -276,7 +279,14 @@ class ADGURU_Ad_Setup_Manager{
 		{
 			foreach( $ads as $ad )
 			{
-				$this->ads[ $ad->ID ] = $ad;
+				$ad_data = array(
+					"ID" => $ad->ID, 
+					"name" => $ad->name, 
+					"type" => $ad->type, 
+					"description" => $ad->description
+				);
+
+				$this->ads_data[ $ad->ID ] = $ad_data;
 			}
 			
 		}
@@ -309,21 +319,42 @@ class ADGURU_Ad_Setup_Manager{
 	}
 
 	/**
-	 * Get an ad from previously retrieved ads list
+	 * Get an ad data from previously retrieved ads list
 	 *
 	 * @param int $id ad id
-	 * @return ADGURU_Ad Object or false
+	 * @return array
 	 */
-	private function get_ad( $id ){
+	private function get_ad_data( $id ){
 
-		if( isset( $this->ads[$id] ) )
+		if( isset( $this->ads_data[$id] ) )
 		{
-			return $this->ads[$id];
+			return $this->ads_data[$id];
 		}
 		else
 		{
 			return false;
 		}
+	}
+
+	/**
+	 * Print JSON Data and JS file
+	 *
+	 * @return void
+	 */
+	private function print_script(){
+		$data = array(
+			'current_ad_type' => $this->current_ad_type,
+			'current_zone_id' => $this->current_zone_id,
+			'ad_zone_link_sets' => $this->ad_zone_link_sets,
+			'ads_data' => $this->ads_data,
+			'page_type_list_html' => $this->get_page_type_list_html()
+		);
+
+		$data_json = wp_json_encode( $data );
+		echo '<script>';
+		echo "var ADGURU_ASM_DATA = '".$data_json."';";
+		echo '</script>';
+
 	}
 
 }//end class

@@ -23,6 +23,7 @@ $this->current_ad_type_args = $current_ad_type_args;
 if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $current_ad_type_args['plural_name'] );  } else {  $editor_title =  sprintf( __("Setup %s to pages", "adguru" ) , $current_ad_type_args['plural_name'] ); }
 
 $this->prepare();
+$this->print_script();
 ?>
 <link rel="stylesheet" type="text/css" href="<?php echo ADGURU_PLUGIN_URL ?>assets/css/ad-setup-manager.css" />
 <div class="wrap" id="ad_setup_manger_wrap">

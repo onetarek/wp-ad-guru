@@ -576,7 +576,29 @@ class ADGURU_Manager{
 		}
 		
 		$links = $wpdb->get_results( $prepared_query );
-		return is_array( $links ) ? $links : false;
+		
+		if( is_array($links) )
+		{
+			//convert some string data of int fields back to original. WordPress wpdb converts all number fields to string.
+			//https://stackoverflow.com/questions/40103136/why-are-int-columns-returned-as-string-when-using-wordpresss-wpdb-to-get-datab
+			
+			$new_links = array();
+			foreach( $links as $link )
+			{
+				$link->zone_id 		= intval( $link->zone_id );
+				$link->object_id 	= intval( $link->object_id );
+				$link->slide 		= intval( $link->slide );
+				$link->ad_id 		= intval( $link->ad_id );
+				$link->percentage 	= intval( $link->percentage );
+				$new_links[] 		= $link;
+			}
+			return $new_links;
+
+		}
+		else
+		{
+			return false;
+		}
 		
 	}//END FUNC	
 	

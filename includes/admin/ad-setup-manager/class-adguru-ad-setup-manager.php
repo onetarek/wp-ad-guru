@@ -176,17 +176,16 @@ class ADGURU_Ad_Setup_Manager{
 	private function get_condition_set_html_template(){
 		ob_start();
 		?>
-		<div class="condition-set" id="condition_set_SET_NUMBER">
+		<div class="condition-set" id="condition_set_{{SET_NUMBER}}">
 			<div class="set-header">
 				<span class="ec-btn" title="Edit page type"></span>
-				<span class="page-type-display-box">PAGE_TYPE_DISPLAY_HTML<span>
+				<span class="page-type-display-box">{{PAGE_TYPE_DISPLAY_HTML}}<span>
 				<div class="cs-box">
 					<?php echo $this->get_country_list_html(); ?>
 				</div>
 				<div class="ac-box">
 					<span class="ac-btn"></span>
 				</div>
-				
 			</div>
 			
 			<div class="set-body">
@@ -200,10 +199,10 @@ class ADGURU_Ad_Setup_Manager{
 					</div><!-- /.page-type-list-box -->
 				</div><!-- /.page-type-list-wrapper -->
 				
-				<div class="condition-detail">CONDITION_DETAIL</div>
+				<div class="condition-detail">{{CONDITION_DETAIL}}</div>
 				
 				<div class="slides-box">
-					SLIDES_BOX_HTML
+					{{SLIDES_HTML}}
 				</div><!-- /.slides-box -->
 				<div class="add-slide-btn-box"><span class="add-slide-btn">Add new slide</span></div>
 				<div class="new-slide-btn-box"></div>

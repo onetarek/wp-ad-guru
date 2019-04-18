@@ -164,10 +164,64 @@ class ADGURU_Ad_Setup_Manager{
 	 */
 	private function get_country_list_html(){
 		ob_start();
-		adguru()->html->get_country_list_select_input( $selected, array( 'class'=>'country-select' ) );
+		adguru()->html->get_country_list_select_input( '--', array( 'class'=>'country-select' ) );
 		$html = ob_get_clean();
 		return $html;
 	}
+
+	/**
+	 * Generate HTML Template for a condition set
+	 * @since 2.1.0
+	 */
+	private function get_condition_set_html_template(){
+		ob_start();
+		?>
+		<div class="condition-set" id="condition_set_SET_NUMBER">
+			<div class="set-header">
+				<span class="ec-btn" title="Edit page type"></span>
+				<span class="page-type-display-box">PAGE_TYPE_DISPLAY_HTML<span>
+				<div class="cs-box">
+					<?php echo $this->get_country_list_html(); ?>
+				</div>
+				<div class="ac-box">
+					<span class="ac-btn"></span>
+				</div>
+				
+			</div>
+			
+			<div class="set-body">
+				<div class="page-type-list-wrapper">
+					<div class="page-type-list-box collapsed">
+						<div class="page-type-list-box-inner">
+							<span class="title">Select type of page</span>
+							<?php echo $this->get_page_type_list_html(); ?>
+						</div>
+						<div class="open-close-arrow-box"><span class="open-close-arrow"></span></div>
+					</div><!-- /.page-type-list-box -->
+				</div><!-- /.page-type-list-wrapper -->
+				
+				<div class="condition-detail">CONDITION_DETAIL</div>
+				
+				<div class="slides-box">
+					SLIDES_BOX_HTML
+				</div><!-- /.slides-box -->
+				<div class="add-slide-btn-box"><span class="add-slide-btn">Add new slide</span></div>
+				<div class="new-slide-btn-box"></div>
+			</div><!-- /.set-body -->
+			<div class="set-footer">
+				<div class="set-error-msg-box">Error message will go here<!-- Error message will go here --></div>
+				<span class="save-btn">Save</span>
+				<span class="save-loading"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
+				
+				<span class="delete-set-loading"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
+				<span class="delete-set-btn" title="Delete this set"></span>	
+			</div><!-- /.set-footer -->
+		</div><!-- /.condition-set -->	
+		<?php 
+		$html = ob_get_clean();
+		return $html;
+	}
+
 
 	/**
 	 * Retrieve all registred post types.
@@ -359,7 +413,8 @@ class ADGURU_Ad_Setup_Manager{
 			'ad_zone_link_sets' => $this->ad_zone_link_sets,
 			'ads_data' => $this->ads_data,
 			'page_type_list_html' => $this->get_page_type_list_html(),
-			'country_list_html' => $this->get_country_list_html()
+			'country_list_html' => $this->get_country_list_html(),
+			'condition_set_html_template' => $this->get_condition_set_html_template()
 		);
 
 		$data_json = wp_json_encode( $data );

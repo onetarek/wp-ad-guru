@@ -165,13 +165,13 @@ $this->print_script();
 				</div><!-- /.set-body -->
 				<div class="set-footer">
 					<div class="set-error-msg-box">Error message will go here<!-- Error message will go here --></div>
-					<span class="save-btn" />Save</span>
+					<span class="save-btn">Save</span>
 					<span class="save-loading"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
 					
 					<span class="delete-set-loading"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
 					<span class="delete-set-btn" title="Delete this set"></span>	
 				</div><!-- /.set-footer -->
-			</div>
+			</div><!-- /.condition-set -->
 
 			<div class="condition-set collapsed">
 				<div class="set-header">

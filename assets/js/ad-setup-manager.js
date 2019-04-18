@@ -5,15 +5,15 @@ var ADGURU_ASM = {};
 	ADGURU_ASM = {
 		init : function(){
 			this.add_events();
+			this.create_new_condition_set();
 		},
 
 		add_events : function(){
 
-		}
+		},
 
 		create_new_condition_set : function(){
-			var html="";
-			
+			$("#condition_sets_box").append( ADGURU_ASM_DATA.condition_set_html_template );
 		}
 
 	};//end ADGURU_ASM

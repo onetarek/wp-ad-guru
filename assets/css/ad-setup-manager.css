@@ -287,6 +287,9 @@
 	margin-top: 10px;
 
 }
+.condition-set .ad .more:empty{
+	display: none;
+}
 .condition-set .ad .control-box{
 	position: absolute;
 	width: 190px;

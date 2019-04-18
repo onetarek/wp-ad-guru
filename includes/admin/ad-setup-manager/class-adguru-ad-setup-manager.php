@@ -19,7 +19,7 @@ class ADGURU_Ad_Setup_Manager{
 	public $page_type_list_html;
 	public $taxonomy_list;
 	public $ad_zone_links;
-	public $grouped_ad_zone_links;
+	public $ad_zone_link_sets;
 	public $ads = array();
 
 	 
@@ -258,7 +258,7 @@ class ADGURU_Ad_Setup_Manager{
 			$this->ad_zone_links = $ad_zone_links;
 		}
 
-		$this->prepare_grouped_ad_zone_links();
+		$this->prepare_ad_zone_link_sets();
 
 		#retrieved ads
 		$ad_ids = array();
@@ -284,23 +284,27 @@ class ADGURU_Ad_Setup_Manager{
 	}
 
 	/**
-	 * Prepare grouped ad zone links array
+	 * Prepare ad zone link sets array
 	 *
 	 * @return void
 	 */
-	private function prepare_grouped_ad_zone_links(){
+	private function prepare_ad_zone_link_sets(){
 
 		if( !isset( $this->ad_zone_links ) || !is_array( $this->ad_zone_links ) )
 		{
 			return;
 		}
-		$grouped_ad_zone_links = array();
-
+		$grouped = array();
+		$this->ad_zone_link_sets = array();
 		foreach( $this->ad_zone_links as $link )
 		{
-			$grouped_ad_zone_links[ $link->zone_id . $link->page_type . $link->taxonomy . $link->term . $link->object_id . $link->country_code ][] = $link;
+			$grouped[ $link->zone_id . $link->page_type . $link->taxonomy . $link->term . $link->object_id . $link->country_code ][] = $link;
 		}
-		$this->grouped_ad_zone_links = $grouped_ad_zone_links;
+		foreach( $grouped as $key => $set )
+		{
+			$this->ad_zone_link_sets[] = $set;
+		}
+		
 		//write_log($this->grouped_ad_zone_links);
 	}
 

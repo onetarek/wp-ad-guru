@@ -204,25 +204,3 @@ $this->print_script();
 	<?php do_action( "adguru_ad_setup_manager_bottom" , $current_ad_type_args ); ?>
 
 </div><!-- end .wrap -->
-
-<style type="text/css">
-	
-</style>
-<script type="text/javascript">
-	jQuery(document).ready(function(){
-		jQuery('.condition-set').on('click', '.ac-btn', function(){
-			var condition_set = jQuery(this).closest('.condition-set');
-			condition_set.toggleClass('collapsed');
-		});
-
-		jQuery('.condition-set').on('click', '.open-close-arrow-box', function(){
-			var target = jQuery(this).closest('.page-type-list-box');
-			target.toggleClass('collapsed');
-		});
-
-		jQuery('.condition-set').on('click', '.ec-btn', function(){
-			var target = jQuery(this).closest('.condition-set').find('.page-type-list-box').first();
-			target.toggleClass('collapsed');
-		});
-	});
-</script>

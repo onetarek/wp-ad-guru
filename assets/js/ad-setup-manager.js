@@ -13,9 +13,26 @@ var ADGURU_ASM = {};
 		},
 
 		add_events : function(){
+			
 			$("#add_condition_set_btn").click(function(){
 				ADGURU_ASM.create_blank_condition_set();
 			});
+
+			$('#condition_sets_box').on('click', '.ac-btn', function(){
+				var condition_set = $(this).closest('.condition-set');
+				condition_set.toggleClass('collapsed');
+			});
+
+			$('#condition_sets_box').on('click', '.open-close-arrow-box', function(){
+				var target = $(this).closest('.page-type-list-box');
+				target.toggleClass('collapsed');
+			});
+
+			$('#condition_sets_box').on('click', '.ec-btn', function(){
+				var target = $(this).closest('.condition-set').find('.page-type-list-box').first();
+				target.toggleClass('collapsed');
+			});
+
 		},
 
 		get_ad_html : function( ad_data ){

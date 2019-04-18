@@ -168,6 +168,28 @@ class ADGURU_Ad_Setup_Manager{
 		$html = ob_get_clean();
 		return $html;
 	}
+	/**
+	 * Generate HTML Template for a condition set
+	 * @since 2.1.0
+	 */
+	private function get_slide_html_template(){
+		ob_start();
+		?>
+		<div class="slide">
+			<span class="slide-delete-btn" title="Delete this slide"></span>
+			<div class="slide-header">
+				Slide {{SLIDE_NUMBER}}
+				<span class="equal-btn" title="Click to fill all rotate fields with equal value"></span>
+			</div>
+			<div class="ads-box">
+				{{ADS_HTML}}
+			</div><!-- /.ads-box -->
+			<div class="add-ad-btn-box"><span class="add-ad-btn">Add new banner</span></div>
+		</div><!-- /.slide -->
+		<?php 
+		$html = ob_get_clean();
+		return $html;
+	}
 
 	/**
 	 * Generate HTML Template for a condition set
@@ -413,6 +435,7 @@ class ADGURU_Ad_Setup_Manager{
 			'ads_data' => $this->ads_data,
 			'page_type_list_html' => $this->get_page_type_list_html(),
 			'country_list_html' => $this->get_country_list_html(),
+			'slide_html_template' => $this->get_slide_html_template(),
 			'condition_set_html_template' => $this->get_condition_set_html_template()
 		);
 

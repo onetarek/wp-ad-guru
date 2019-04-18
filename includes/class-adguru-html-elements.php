@@ -30,11 +30,10 @@ class ADGURU_HTML_Elements{
 		foreach( $country_list as $slug => $name )
 		{	
 			$i++;
-			if( $i == 7 ){ $html.= '<optgroup label="- - - - - - - - - - - - - - - - - - - - - - - -">'; }
+			if( $i == 7 ){ $html.= '<optgroup label="- - - - - - - - - - - - - - - - - - - - - - - -"></optgroup>'; }
 			if( $slug == $select ){ $sel = ' selected="selected"'; }else{ $sel = ''; }
 			$html.= '<option value="'.$slug.'" '.$sel.'>'.$name.'</option>';
 		}
-		$html.= '</optgroup>';
 		$html.= "</select>";
 		echo $html;
 	}	

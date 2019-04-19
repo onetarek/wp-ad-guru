@@ -171,27 +171,7 @@ $this->print_script();
 					<span class="delete-set-loading"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
 					<span class="delete-set-btn" title="Delete this set"></span>	
 				</div><!-- /.set-footer -->
-			</div><!-- /.condition-set -->
-
-			<div class="condition-set collapsed">
-				<div class="set-header">
-					<span class="ec-btn"></span>
-					Single &gt; Post
-					<div class="cs-box">
-
-						<select class="country-select">
-							<option>Select Country</option>
-						</select>
-						
-					</div>
-					<div class="ac-box">
-						<span class="ac-btn"></span>
-					</div>
-				</div>
-				<div class="set-body">Body</div>
-				<div class="set-footer">Footer</div>
-			</div>
-			
+			</div><!-- /.condition-set -->			
 
 		</div><!-- /#condition_sets_box -->
 		<div id="add_condition_set_btn_box"><span id="add_condition_set_btn">Add New Ad Set &amp; Condition</span></div>

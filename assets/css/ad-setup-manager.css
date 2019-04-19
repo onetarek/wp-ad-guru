@@ -268,12 +268,15 @@
 	line-height: 13px;
 	font-weight: normal;
 	padding: 8px;
-	border: 1px solid #dddddd;
-	border-left-color: #49a0bc;
+	border: 1px solid #c6e5ef;
+	border-left: 2px solid #49a0bc;
 	margin-bottom: 4px;
+	background: aliceblue;
 }
 .condition-set .ad:hover{
 	background: #f4f4f4;
+	border-color: #dddddd;
+	border-left-color: #49a0bc;
 }
 .condition-set .title{
 	font-size: 13px;

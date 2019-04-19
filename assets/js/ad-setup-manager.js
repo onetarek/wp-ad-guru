@@ -98,16 +98,17 @@ var ADGURU_ASM = {};
 				for( i in data['ad_zone_link_set'] )
 				{
 					var link = data['ad_zone_link_set'][i];
-					if( typeof slides[i] == 'undefined' )
+					var slide_number = link.slide;
+					if( typeof slides[slide_number] == 'undefined' )
 					{
-						slides[i] = {
-							'number' : i,
+						slides[slide_number] = {
+							'number' : slide_number,
 							'links' : []
 						};
 					}
-					slides[i]['links'].push( link );
+					slides[slide_number]['links'].push( link );
 				}
-
+				
 				for( i in slides )
 				{
 					slides_html = slides_html + this.get_slide_html( slides[i] );

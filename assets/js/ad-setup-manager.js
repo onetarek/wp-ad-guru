@@ -124,6 +124,7 @@ var ADGURU_ASM = {};
 			var html = html.replace('{{SLIDES_HTML}}', slides_html );
 
 			$("#condition_sets_box").append( html );
+			$("#"+html_id).find('.country-select').val( data['country_code'] );
 		},
 
 		create_blank_condition_set : function(){
@@ -142,7 +143,17 @@ var ADGURU_ASM = {};
 				var i;
 				for( i in ADGURU_ASM_DATA.ad_zone_link_sets )
 				{
+					var country_code = "--";
+					var links = ADGURU_ASM_DATA.ad_zone_link_sets[i];
+					if( links.length )
+					{
+						var link = links[0];
+						country_code = link.country_code;
+					}
 					var set_data = {
+						'page_type_display_html' : '<span style="color:red">Select page type</span>',
+						'condition_detail' : '',
+						'country_code' : country_code,
 						'ad_zone_link_set' : ADGURU_ASM_DATA.ad_zone_link_sets[i]
 					}
 					this.create_condition_set( set_data );

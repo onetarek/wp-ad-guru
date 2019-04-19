@@ -19,7 +19,7 @@ class ADGURU_Ad_Setup_Manager{
 	private $page_type_list_html;
 	private $taxonomy_list;
 	private $ad_zone_links;
-	private $ad_zone_link_sets;
+	private $ad_zone_link_sets = array();
 	private $ads_data = array();
 
 	 
@@ -179,7 +179,7 @@ class ADGURU_Ad_Setup_Manager{
 		<div class="ad">
 			<div class="title">{{AD_TITLE}}</div>
 			<div class="control-box">
-				<span class="percentage-box"><span class="percentage-label">Rotate</span><input type="number" class="percentage" value="{{PERCENTAGE_VALUE}}" max="100" min="0"> %</span>
+				<span class="percentage-box"><span class="percentage-label">Rotate</span><input type="number" class="percentage" value="{{PERCENTAGE}}" max="100" min="0"> %</span>
 				<a class="edit-btn" href="<?php echo admin_url('admin.php?page=adguru_ad_{{AD_TYPE}}&manager_tab=edit&ad_id=')?>{{AD_ID}}" target="_blank" title="Edit this ad"></a>
 				<span class="remove-btn" title="Remove this ad"></span>
 			</div>

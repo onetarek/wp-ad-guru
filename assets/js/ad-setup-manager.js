@@ -8,8 +8,7 @@ var ADGURU_ASM = {};
 		
 		init : function(){
 			this.add_events();
-			this.create_blank_condition_set();
-			this.create_blank_condition_set();
+			this.create_condition_sets();
 		},
 
 		add_events : function(){
@@ -35,22 +34,47 @@ var ADGURU_ASM = {};
 
 		},
 
-		get_ad_html : function( ad_data ){
+		get_ad_html : function( data ){
+			var ad_data = data['ad_data'];
+			var ad_id = ad_data['ID'];
+			var ad_type = ad_data['type'];
+			var title = ad_data['name'];
+			var percentage = data['percentage'];
 
+			var tmpl = ADGURU_ASM_DATA.ad_html_template;
+			var html = tmpl.replace(/{{AD_ID}}/g, ad_id );
+			var html = html.replace(/{{AD_TITLE}}/g, title );
+			var html = html.replace(/{{AD_TYPE}}/g, ad_type );
+			var html = html.replace(/{{PERCENTAGE}}/g, percentage );
+			var html = html.replace(/{{MORE_HTML}}/g, "" );
+			return html;
 		},
 
 		get_slide_html : function( slide_data ){
 			
 			var tmpl = ADGURU_ASM_DATA.slide_html_template;
 			var html = tmpl.replace('{{SLIDE_NUMBER}}', slide_data['number'] );
-			if( slide_data['ad_ids'].length )
+			var ads_html = "";
+			var links = slide_data['links'];
+			if( links.length )
 			{
-
+				var i;
+				for( i in links )
+				{
+					var link = links[i];
+					var ad_id = link['ad_id'];
+					if( typeof ADGURU_ASM_DATA.ads_data[ad_id] != 'undefined' )
+					{
+						var data = {};
+						data['ad_data'] = ADGURU_ASM_DATA.ads_data[ad_id];
+						data['percentage'] = link['percentage'];
+						ads_html = ads_html + this.get_ad_html( data );
+					}
+					
+				}
 			}
-			else
-			{
-				var html = html.replace('{{ADS_HTML}}', '' );
-			}
+			
+			var html = html.replace('{{ADS_HTML}}', ads_html );
 			return html;
 		},
 
@@ -62,20 +86,41 @@ var ADGURU_ASM = {};
 
 			var html = html.replace('{{PAGE_TYPE_DISPLAY_HTML}}', data['page_type_display_html'] );
 			var html = html.replace('{{CONDITION_DETAIL}}', data['condition_detail'] );
+			var slides_html = "";
 			var slide_data = {
-				'ad_ids' : [],
+				'links' : [],
 				'number' : 0
 			};
 			if( data['ad_zone_link_set'].length )
 			{
+				var slides = [];
+				var i;
+				for( i in data['ad_zone_link_set'] )
+				{
+					var link = data['ad_zone_link_set'][i];
+					if( typeof slides[i] == 'undefined' )
+					{
+						slides[i] = {
+							'number' : i,
+							'links' : []
+						};
+					}
+					slides[i]['links'].push( link );
+				}
+
+				for( i in slides )
+				{
+					slides_html = slides_html + this.get_slide_html( slides[i] );
+				}
+
 
 			}
 			else
 			{
 				slide_data['number'] = 1;
-				var slide_html = this.get_slide_html( slide_data );
-				var html = html.replace('{{SLIDES_HTML}}', slide_html );
+				slides_html = slides_html + this.get_slide_html( slide_data );
 			}
+			var html = html.replace('{{SLIDES_HTML}}', slides_html );
 
 			$("#condition_sets_box").append( html );
 		},
@@ -89,6 +134,20 @@ var ADGURU_ASM = {};
 
 			this.create_condition_set(data);
 		},
+
+		create_condition_sets: function(){ //console.log(ADGURU_ASM_DATA.ad_zone_link_sets);
+			if( typeof ADGURU_ASM_DATA.ad_zone_link_sets != 'undefined' && ADGURU_ASM_DATA.ad_zone_link_sets.length != 0 )
+			{
+				var i;
+				for( i in ADGURU_ASM_DATA.ad_zone_link_sets )
+				{
+					var set_data = {
+						'ad_zone_link_set' : ADGURU_ASM_DATA.ad_zone_link_sets[i]
+					}
+					this.create_condition_set( set_data );
+				}
+			}
+		}
 
 	};//end ADGURU_ASM
 

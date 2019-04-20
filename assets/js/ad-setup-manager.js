@@ -32,7 +32,7 @@ var ADGURU_ASM = {};
 				target.toggleClass('collapsed');
 			});
 
-			$('#condition_sets_box').on('click', '.remove-btn', function(){
+			$('#condition_sets_box').on('click', '.ad-remove-btn', function(){
 				$(this).closest('.ad').remove();
 			});
 

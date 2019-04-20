@@ -181,7 +181,7 @@ class ADGURU_Ad_Setup_Manager{
 			<div class="control-box">
 				<span class="percentage-box"><span class="percentage-label">Rotate</span><input type="number" class="percentage" value="{{PERCENTAGE}}" max="100" min="0"> %</span>
 				<a class="edit-btn" href="<?php echo admin_url('admin.php?page=adguru_ad_{{AD_TYPE}}&manager_tab=edit&ad_id=')?>{{AD_ID}}" target="_blank" title="Edit this ad"></a>
-				<span class="remove-btn" title="Remove this ad"></span>
+				<span class="ad-remove-btn" title="Remove this ad"></span>
 			</div>
 			<div class="more">{{MORE_HTML}}</div>
 		</div><!-- /.ad -->

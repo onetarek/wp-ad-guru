@@ -123,7 +123,7 @@ $this->print_script();
 									<div class="control-box">
 										<span class="percentage-box"><span class="percentage-label">Rotate</span><input type="number" class="percentage" value="100" max="100" min="0"> %</span>
 										<a class="edit-btn" href="#" target="_blank" title="Edit this ad"></a>
-										<span class="remove-btn" title="Remove this ad"></span>
+										<span class="ad-remove-btn" title="Remove this ad"></span>
 									</div>
 								</div><!-- /.ad -->
 								<div class="ad">
@@ -131,7 +131,7 @@ $this->print_script();
 									<div class="control-box">
 										<span class="percentage-box"><span class="percentage-label">Rotate</span><input type="number" class="percentage" value="100" max="100" min="0"> %</span>
 										<a class="edit-btn" href="#" target="_blank" title="Edit this ad"></a>
-										<span class="remove-btn" title="Remove this ad"></span>
+										<span class="ad-remove-btn" title="Remove this ad"></span>
 									</div>
 								</div><!-- /.ad -->
 								<div class="ad">
@@ -139,7 +139,7 @@ $this->print_script();
 									<div class="control-box">
 										<span class="percentage-box"><span class="percentage-label">Rotate</span><input type="number" class="percentage" value="100" max="100" min="0"> %</span>
 										<a class="edit-btn" href="#" target="_blank" title="Edit this ad"></a>
-										<span class="remove-btn" title="Remove this ad"></span>
+										<span class="ad-remove-btn" title="Remove this ad"></span>
 									</div>
 									<div class="more">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
 								</div><!-- /.ad -->

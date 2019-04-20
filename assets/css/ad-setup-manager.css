@@ -352,7 +352,7 @@
 	color: #000000;
 }
 
-.condition-set .ad .control-box .remove-btn{
+.condition-set .ad .control-box .ad-remove-btn{
 	width: 30px;
 	height: 30px;
 	display: inline-block;
@@ -361,7 +361,7 @@
 	cursor: pointer;
 	color: #bbbbbb;
 }
-.condition-set .ad .control-box .remove-btn::before{
+.condition-set .ad .control-box .ad-remove-btn::before{
 	font-family: "dashicons";
  	content: "\f335";
 	display: inline-block;
@@ -371,7 +371,7 @@
 	font-size: 22px;
 	line-height: 30px;
 }
-.condition-set .ad:hover .control-box  .remove-btn{
+.condition-set .ad:hover .control-box  .ad-remove-btn{
 	color: #ff0000;
 }
 .condition-set .add-ad-btn-box{

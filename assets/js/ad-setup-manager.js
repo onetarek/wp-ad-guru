@@ -9,9 +9,12 @@ var ADGURU_ASM = {};
 		init : function(){
 			this.add_events();
 			this.create_condition_sets();
+			this.make_slides_sortable();
+
 		},
 
 		add_events : function(){
+			
 			
 			$("#add_condition_set_btn").click(function(){
 				ADGURU_ASM.create_blank_condition_set();
@@ -154,6 +157,7 @@ var ADGURU_ASM = {};
 			$("#condition_sets_box").append( html );
 			$("#"+html_id).find('.country-select').val( data['country_code'] );
 			this.refresh_slides( "#"+html_id );
+			this.make_slides_sortable();
 		},
 
 		create_blank_condition_set : function(){
@@ -188,6 +192,18 @@ var ADGURU_ASM = {};
 					this.create_condition_set( set_data );
 				}
 			}
+		},
+
+		make_slides_sortable : function(){
+			$(".slides-box").sortable({
+      			placeholder: "slide-drop-placeholder",
+      			stop: function( event, ui ) {
+      				var condition_set = $(ui.item).closest('.condition-set');
+      				ADGURU_ASM.refresh_slides(condition_set);
+
+
+      			}
+    		});
 		}
 
 	};//end ADGURU_ASM

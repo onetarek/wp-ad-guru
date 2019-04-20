@@ -36,6 +36,13 @@ var ADGURU_ASM = {};
 				$(this).closest('.ad').remove();
 			});
 
+			$('#condition_sets_box').on('click', '.add-slide-btn', function(){
+				var condition_set = $(this).closest('.condition-set');
+				var slides_box = $(condition_set).find('.slides-box').first();
+				slides_box.append( ADGURU_ASM.get_slide_html( {'links':[]} ) );
+				ADGURU_ASM.refresh_slides(condition_set);
+			});
+
 			$('#condition_sets_box').on('click', '.slide-delete-btn', function(){
 				var condition_set = $(this).closest('.condition-set');
 				var slides_box = $(this).closest('.slides-box');

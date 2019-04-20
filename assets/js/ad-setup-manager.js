@@ -33,7 +33,15 @@ var ADGURU_ASM = {};
 			});
 
 			$('#condition_sets_box').on('click', '.remove-btn', function(){
-				var target = $(this).closest('.ad').remove();
+				$(this).closest('.ad').remove();
+			});
+
+			$('#condition_sets_box').on('click', '.slide-delete-btn', function(){
+				var slides_box = $(this).closest('.slides-box');
+				if( slides_box.find('.slide').length > 1 )
+				{
+					$(this).closest('.slide').remove();
+				}
 			});
 
 		},

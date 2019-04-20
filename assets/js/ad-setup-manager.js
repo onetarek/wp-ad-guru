@@ -56,6 +56,33 @@ var ADGURU_ASM = {};
 				}
 			});
 
+			$('#condition_sets_box').on('click', '.equal-btn', function(){
+				var per_list = [];									 
+				var slide = $(this).closest('.slide');
+				var ad_items = $(slide).find(".ad");
+				var n = $(ad_items).size();
+				
+				if( n!=0 )
+				{
+					$.each(ad_items, function(){
+						var per = $(this).find('.percentage').first();
+						per_list.push(per);
+					});
+					var total_item=per_list.length;
+					var value = 0;
+					var x = parseInt(100/total_item);
+					var y = 100%total_item;
+					for( i=0; i<total_item; i++ )
+					{
+						if(i==0){ value = x+y; }else{ value=x; }
+						$(per_list[i]).val(value);
+						$(per_list[i]).removeClass('error');
+					}
+	
+				}//end if(n!=0)
+							
+			});
+
 		},
 
 		get_ad_html : function( data ){

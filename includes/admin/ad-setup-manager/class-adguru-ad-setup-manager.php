@@ -21,6 +21,7 @@ class ADGURU_Ad_Setup_Manager{
 	private $ad_zone_links;
 	private $ad_zone_link_sets = array();
 	private $ads_data = array();
+	private $all_allowed_ads;//stores an array of all ads related to this zone and ad type
 
 	 
 	public function __construct(){
@@ -427,21 +428,53 @@ class ADGURU_Ad_Setup_Manager{
 	}
 
 	/**
-	 * Get an ad data from previously retrieved ads list
+	 * Get all ads related to this zone size and ad type
 	 *
-	 * @param int $id ad id
 	 * @return array
 	 */
-	private function get_ad_data( $id ){
+	private function get_all_allowed_ads(){
 
-		if( isset( $this->ads_data[$id] ) )
+		if( isset( $this->all_allowed_ads ) )
 		{
-			return $this->ads_data[$id];
+			return $this->all_allowed_ads;
 		}
-		else
-		{
-			return false;
+
+		$args = array(
+			"post_type" =>	ADGURU_POST_TYPE_PREFIX.$this->current_ad_type, 
+			'posts_per_page' =>	-1		
+		);
+		$use_zone = ( isset( $this->current_ad_type_args['use_zone'] ) && $this->current_ad_type_args['use_zone'] == 1 ) ? 1 : 0;
+		if( $use_zone )
+		{	
+			$all_ad_types = adguru()->ad_types->types;
+			$ptype = array();
+			
+			foreach( $all_ad_types as $ad_type => $ad_type_args )
+			{
+				if( $ad_type_args['use_zone'] )
+				{
+					$ptype[] = ADGURU_POST_TYPE_PREFIX.$ad_type;
+				}
+			}
+			$args['post_type'] = $ptype;
+			/*
+			$args['meta_query'] = array(
+					array(
+						'key' => '_width',
+						'value' => $this->zone_width,
+					),
+					array(
+						'key' => '_height',
+						'value' => $this->zone_height,
+					)						
+				);
+			*/  
 		}
+		
+		$ads = adguru()->manager->get_ads( $args , true ); //true for id_as_key	
+		$this->all_allowed_ads = is_array( $ads ) ? $ads : array(); 
+		return $this->all_allowed_ads;
+
 	}
 
 	/**

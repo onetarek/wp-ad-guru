@@ -200,7 +200,7 @@ class ADGURU_Ad_Setup_Manager{
 		<div class="slide">
 			<span class="slide-delete-btn" title="Delete this slide"></span>
 			<div class="slide-header">
-				Slide {{SLIDE_NUMBER}}
+				Slide <span class="slide_number">{{SLIDE_NUMBER}}</span>
 				<span class="equal-btn" title="Click to fill all rotate fields with equal value"></span>
 			</div>
 			<div class="ads-box">

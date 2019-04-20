@@ -37,10 +37,12 @@ var ADGURU_ASM = {};
 			});
 
 			$('#condition_sets_box').on('click', '.slide-delete-btn', function(){
+				var condition_set = $(this).closest('.condition-set');
 				var slides_box = $(this).closest('.slides-box');
 				if( slides_box.find('.slide').length > 1 )
 				{
 					$(this).closest('.slide').remove();
+					ADGURU_ASM.refresh_slides(condition_set);
 				}
 			});
 
@@ -65,7 +67,7 @@ var ADGURU_ASM = {};
 		get_slide_html : function( slide_data ){
 			
 			var tmpl = ADGURU_ASM_DATA.slide_html_template;
-			var html = tmpl.replace('{{SLIDE_NUMBER}}', slide_data['number'] );
+			var html = tmpl.replace('{{SLIDE_NUMBER}}', 0 );
 			var ads_html = "";
 			var links = slide_data['links'];
 			if( links.length )
@@ -90,6 +92,16 @@ var ADGURU_ASM = {};
 			return html;
 		},
 
+		refresh_slides : function( set_obj ){
+			var num = 0;
+			$(set_obj).find('.slide').each(function(){
+				num++;
+				$(this).find('.slide_number').first().html(num);
+			});
+			
+			
+		},
+
 		create_condition_set : function( data ){
 			this.last_set_number++;
 			var html_id = 'condition_set_'+this.last_set_number;
@@ -100,8 +112,7 @@ var ADGURU_ASM = {};
 			var html = html.replace('{{CONDITION_DETAIL}}', data['condition_detail'] );
 			var slides_html = "";
 			var slide_data = {
-				'links' : [],
-				'number' : 0
+				'links' : []
 			};
 			if( data['ad_zone_link_set'].length )
 			{
@@ -114,7 +125,6 @@ var ADGURU_ASM = {};
 					if( typeof slides[slide_number] == 'undefined' )
 					{
 						slides[slide_number] = {
-							'number' : slide_number,
 							'links' : []
 						};
 					}
@@ -130,13 +140,13 @@ var ADGURU_ASM = {};
 			}
 			else
 			{
-				slide_data['number'] = 1;
 				slides_html = slides_html + this.get_slide_html( slide_data );
 			}
 			var html = html.replace('{{SLIDES_HTML}}', slides_html );
 
 			$("#condition_sets_box").append( html );
 			$("#"+html_id).find('.country-select').val( data['country_code'] );
+			this.refresh_slides( "#"+html_id );
 		},
 
 		create_blank_condition_set : function(){

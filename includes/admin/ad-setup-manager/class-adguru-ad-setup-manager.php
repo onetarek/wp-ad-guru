@@ -166,6 +166,7 @@ class ADGURU_Ad_Setup_Manager{
 		ob_start();
 		adguru()->html->get_country_list_select_input( '--', array( 'class'=>'country-select' ) );
 		$html = ob_get_clean();
+		$html = str_replace('Select A Country', 'Any Country', $html );
 		return $html;
 	}
 	

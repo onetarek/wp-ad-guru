@@ -655,3 +655,28 @@
 .page-type-list ul{
 	padding-left: 10px;
 }
+
+/* Modal */
+ #ad_list_modal #ads_list{
+    height:200px;
+     overflow:hidden;
+     overflow-y:scroll;
+}
+ #ad_list_modal #ads_list .ads_list_item{
+     padding:3px;
+     margin:5px;
+     margin-bottom:3px;
+     border:1px solid #EEEEEE;
+     cursor:move;
+     background:#f4f4f4;
+}
+ #ad_list_modal #ads_list .ads_list_item.selected{
+     background:#9EC541;
+}
+ #ad_list_modal #ads_list .ads_list_item .ad_type{
+     color:#cccccc;
+     float:right;
+}
+ #ad_list_modal #ads_list .ads_list_item.selected .ad_type{
+     color:#ffffff;
+}

@@ -16,6 +16,7 @@ class ADGURU_Ad_Setup_Manager{
 	private $current_ad_type;
 	private $current_ad_type_args;
 	private $current_zone_id;
+	private $current_zone;
 	private $page_type_list_html;
 	private $taxonomy_list;
 	private $ad_zone_links;
@@ -178,7 +179,7 @@ class ADGURU_Ad_Setup_Manager{
 	private function get_ad_html_template(){
 		ob_start();
 		?>
-		<div class="ad">
+		<div class="ad" title="{{AD_TYPE_NAME}}" adid="{{AD_ID}}">
 			<div class="title">{{AD_TITLE}}</div>
 			<div class="control-box">
 				<span class="percentage-box"><span class="percentage-label">Rotate</span><input type="number" class="percentage" value="{{PERCENTAGE}}" max="100" min="0"> %</span>
@@ -266,6 +267,63 @@ class ADGURU_Ad_Setup_Manager{
 		return $html;
 	}
 
+	/**
+	 * Render the HTML of modal with Ad list 
+	 *
+	 */
+	
+	private function render_ad_list_modal(){ 
+		
+		$ads = $this->get_all_allowed_ads();
+		$all_ad_types = adguru()->ad_types->types;
+		$use_zone = ( isset( $this->current_ad_type_args['use_zone'] ) && $this->current_ad_type_args['use_zone'] == 1 ) ? 1 : 0;
+		$zone_width = 0;
+		$zone_height = 0;
+		if( $use_zone )
+		{
+			$zone = $this->get_current_zone();
+			$zone_width = $zone->width;
+			$zone_height = $zone->height;
+		}
+
+		?>
+	
+		 <div id="ad_list_modal" title="Insert <?php echo $this->current_ad_type_args['name'] ?>" style="display:none;">
+			<div>
+			<div style="width:240px; float:left;"><strong><?php echo sprintf( __( 'Select a %s and click insert', 'adguru' ) , $this->current_ad_type_args['name'] )?></strong></div>
+			<div style="float:right; width:200px; margin-right:22px; text-align:right;"><input style="width:180px;" placeholder="Search" type="text" size="15" id="search_ad_list" /></div>
+			</div>
+			<div style="clear:both"></div>
+			
+				<div id="ads_list">
+				<?php
+				
+				if( !is_array( $ads ) )
+				{
+					echo '<span style="color:#cc0000;">';
+						echo sprintf( __( 'You have no %s for this zone size', 'adguru' ), $this->current_ad_type_args['name'] ).' <strong>'.$zone_width.'x'.$zone_height.'</strong>';
+						echo ' <a href="admin.php?page='.ADGURU_ADMANAGER_PAGE_SLUG_PREFIX.$this->ad_type.'">';
+							echo sprintf( __( 'Enter new ad', 'adguru') );
+						echo '</a> ' ;
+						echo sprintf( __( 'in %s size', 'adguru' ), '<strong>'.$zone_width.'x'.$zone_height.'</strong>' );
+					echo '</span>';
+				}
+				else
+				{
+					foreach($ads as $ad)
+					{
+						$ad_type_name =  $all_ad_types[ $ad->type ]['name'];
+						$ad_data = $this->get_ad_data( $ad );
+						?>
+						<div class="ads_list_item" ad_id="<?php echo $ad->ID ?>" ad_type_name="<?php echo $ad_type_name ?>" ad_type="<?php echo $ad->type ?>" ad_name="<?php echo esc_attr( $ad->name ) ?>" data-ad_data="<?php echo esc_attr(json_encode($ad_data))?>" ><span class="ad_name"><?php echo $ad->name ?></span><span class="ad_type"><?php echo $ad_type_name ?></span></div>
+						<?php 
+					}
+				}
+				?>
+				</div>		
+		 </div>
+	<?php	
+	}//END FUNC	
 
 	/**
 	 * Retrieve all registred post types.
@@ -388,18 +446,28 @@ class ADGURU_Ad_Setup_Manager{
 		{
 			foreach( $ads as $ad )
 			{
-				$ad_data = array(
-					"ID" => $ad->ID, 
-					"name" => $ad->name, 
-					"type" => $ad->type, 
-					"description" => $ad->description
-				);
-
-				$this->ads_data[ $ad->ID ] = $ad_data;
+				$this->ads_data[ $ad->ID ] = $this->get_ad_data( $ad );
 			}
 			
 		}
 		//write_log($this->ads);
+	}
+
+	/**
+	 * Make simple array with required fields of an ad
+	 *
+	 * @since 2.1.0
+	 * @param object $ad
+	 * @return array
+	 */
+	private function get_ad_data( $ad ){
+		$data = array(
+			"ID" => $ad->ID, 
+			"name" => $ad->name, 
+			"type" => $ad->type, 
+			"description" => $ad->description
+		);
+		return $data;
 	}
 
 	/**
@@ -477,6 +545,24 @@ class ADGURU_Ad_Setup_Manager{
 
 	}
 
+	/**
+	 * Get Current Zone Object
+	 */
+	private function get_current_zone(){
+		if( isset( $this->current_zone ) )
+		{
+			return $this->current_zone;
+		}
+		if( $this->current_zone_id == 0 )
+		{
+			$this->current_zone = false;
+		}
+		else
+		{
+			$this->current_zone = adguru()->manager->get_zone( $this->current_zone_id );
+		}
+		return $this->current_zone;
+	}
 	/**
 	 * Print JSON Data and JS file
 	 *

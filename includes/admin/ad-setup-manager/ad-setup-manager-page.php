@@ -175,7 +175,7 @@ $this->print_script();
 		</div><!-- /#condition_sets_box -->
 		<div id="add_condition_set_btn_box"><span id="add_condition_set_btn">Add New Ad Set &amp; Condition</span></div>
 
-
+		<?php $this->render_ad_list_modal(); ?>
 
 	</div><!-- end #editor_container -->
 

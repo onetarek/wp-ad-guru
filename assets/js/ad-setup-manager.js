@@ -5,6 +5,7 @@ var ADGURU_ASM = {};
 	ADGURU_ASM = {
 
 		last_set_number : 0,
+		selected_ads_box_to_insert_ad : null,
 		
 		init : function(){
 			this.add_events();
@@ -83,6 +84,52 @@ var ADGURU_ASM = {};
 							
 			});
 
+			$('#condition_sets_box').on('click', '.add-ad-btn', function(){
+				var slide = $(this).closest('.slide');
+				ADGURU_ASM.selected_ads_box_to_insert_ad = slide.find('.ads-box').first();
+		 		$( "#ad_list_modal" ).dialog( "open" );
+
+			});
+
+			$('.ads_list_item').click(function(){
+				$('.ads_list_item').removeClass('selected');
+				$(this).addClass('selected');
+			});
+			
+			//-----------------------------DIALOG---------------------------------------
+			$("#ad_list_modal").dialog({
+				height: 355,
+				width: 600,
+				modal: true,
+				autoOpen: false,
+				buttons: {
+					"Insert": function() {
+					
+						if( $('.ads_list_item.selected').size() == 0 )
+						{ 
+							alert("Please select an item"); 
+							return false;
+						}
+						var selected = $('.ads_list_item.selected').first();
+						var ad_type = $(selected).attr('ad_type');
+						var ad_type_name = $(selected).attr('ad_type_name');
+						var ad_name = $(selected).attr('ad_name');
+						var ad_id = $(selected).attr('ad_id');
+						var data = {};
+						data['ad_data'] = $(selected).data('ad_data');
+						data['percentage'] = 0;
+						var html = ADGURU_ASM.get_ad_html( data );
+						var already_added = $( ADGURU_ASM.selected_ads_box_to_insert_ad ).find('[adid='+ad_id+']').size();
+						if( already_added == 0 ){ $( ADGURU_ASM.selected_ads_box_to_insert_ad ).append( html ); }
+						$( this ).dialog( "close" );
+					
+					},
+					Cancel: function(){ $( this ).dialog( "close" ); }
+				}		
+			
+			});//END DIALOG
+			//--------------------------- end dialog --------------------------
+
 		},
 
 		get_ad_html : function( data ){
@@ -96,6 +143,7 @@ var ADGURU_ASM = {};
 			var html = tmpl.replace(/{{AD_ID}}/g, ad_id );
 			var html = html.replace(/{{AD_TITLE}}/g, title );
 			var html = html.replace(/{{AD_TYPE}}/g, ad_type );
+			var html = html.replace(/{{AD_TYPE_NAME}}/g, ad_type );
 			var html = html.replace(/{{PERCENTAGE}}/g, percentage );
 			var html = html.replace(/{{MORE_HTML}}/g, "" );
 			return html;

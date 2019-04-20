@@ -99,7 +99,7 @@ var ADGURU_ASM = {};
 			//-----------------------------DIALOG---------------------------------------
 			$("#ad_list_modal").dialog({
 				height: 355,
-				width: 600,
+				width: 700,
 				modal: true,
 				autoOpen: false,
 				buttons: {
@@ -129,6 +129,33 @@ var ADGURU_ASM = {};
 			
 			});//END DIALOG
 			//--------------------------- end dialog --------------------------
+			//*******************************START SEARCH TECHNIQUE **************************************
+			//search technique help: http://www.marceble.com/2010/02/simple-jquery-table-row-filter/
+			//Declare the custom selector 'containsIgnoreCase'.
+			  $.expr[':'].containsIgnoreCase = function(n,i,m){
+				  return $(n).text().toUpperCase().indexOf(m[3].toUpperCase())>=0;
+			  };
+			  
+			  $("#search_ad_list").keyup(function(){
+				//hide all the rows
+				  $("#ads_list").find("div").hide();
+				//split the current value of searchInput
+				  var data = this.value.split(" ");
+				//create a jquery object of the rows
+				  var jo = $("#ads_list").find(".ad_name");
+				  //Recusively filter the jquery object to get results.
+				  $.each(data, function(i, v){
+					  jo = jo.filter("*:containsIgnoreCase('"+v+"')");
+				  });
+				//show the rows that match.
+				  jo.parent().show();
+			 //Removes the placeholder text  
+		   
+			  }).focus(function(){
+				  this.value = "";
+				  $(this).unbind('focus');
+			  })
+			  //*******************************END SEARCH TECHNIQUE **************************************
 
 		},
 

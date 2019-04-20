@@ -249,7 +249,6 @@ class ADGURU_Ad_Setup_Manager{
 					{{SLIDES_HTML}}
 				</div><!-- /.slides-box -->
 				<div class="add-slide-btn-box"><span class="add-slide-btn">Add new slide</span></div>
-				<div class="new-slide-btn-box"></div>
 			</div><!-- /.set-body -->
 			<div class="set-footer">
 				<div class="set-error-msg-box">Error message will go here<!-- Error message will go here --></div>

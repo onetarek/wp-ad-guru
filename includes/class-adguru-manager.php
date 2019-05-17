@@ -65,6 +65,14 @@ class ADGURU_Manager{
 		);
 	
 		$args = wp_parse_args( $args, $defaults );
+
+		//Return false if post__in exists with empty value
+		//wp query does not include post__in parameter if that is empty and returns posts regurdless of post__in condition.
+		if( isset( $args['post__in'] ) && empty( $args['post__in'] ) )
+		{
+			return false;
+		}
+
 		if( $wp_query_obj )
 		{
 			$wp_query_obj = new WP_Query;

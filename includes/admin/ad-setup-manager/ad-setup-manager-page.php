@@ -19,11 +19,26 @@ $zone_id = isset( $_GET['zone_id'] ) ? intval( $_GET['zone_id'] ) : 0 ;
 $this->current_ad_type = $current_ad_type;
 $this->current_zone_id = $zone_id;
 $this->current_ad_type_args = $current_ad_type_args;
+$zone_selection_needed = false;
+if( $use_zone )
+{ 
+	if( ! $this->get_current_zone() )
+	{
+		$zone_selection_needed = true;
+	}
+	$editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $current_ad_type_args['plural_name'] );  
+} 
+else 
+{  
+	$editor_title =  sprintf( __("Setup %s to pages", "adguru" ) , $current_ad_type_args['plural_name'] ); 
+}
 
-if( $use_zone ){ $editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $current_ad_type_args['plural_name'] );  } else {  $editor_title =  sprintf( __("Setup %s to pages", "adguru" ) , $current_ad_type_args['plural_name'] ); }
+if( ! $zone_selection_needed )
+{
+	$this->prepare();
+	$this->print_script();
+}
 
-$this->prepare();
-$this->print_script();
 ?>
 <link rel="stylesheet" type="text/css" href="<?php echo ADGURU_PLUGIN_URL ?>assets/css/ad-setup-manager.css" />
 <div class="wrap" id="ad_setup_manger_wrap">
@@ -79,6 +94,9 @@ $this->print_script();
 			<?php 
 
 		}//end if( $use_zone )
+
+		if( ! $zone_selection_needed ) : 
+		
 		?>
 		<div id="condition_sets_box">
 			<div class="condition-set">
@@ -176,6 +194,12 @@ $this->print_script();
 		<div id="add_condition_set_btn_box"><span id="add_condition_set_btn">Add New Ad Set &amp; Condition</span></div>
 
 		<?php $this->render_ad_list_modal(); ?>
+
+	<?php else: //if( ! $zone_selection_needed ) :  ?>
+	<div>
+		<div style="text-align: center;font-size: 40px; margin-top: 40px;text-transform: uppercase;"><?php _e('Select zone', 'adgur') ?></div>
+	</div>
+	<?php endif; //if( ! $zone_selection_needed ) :  ?>
 
 	</div><!-- end #editor_container -->
 

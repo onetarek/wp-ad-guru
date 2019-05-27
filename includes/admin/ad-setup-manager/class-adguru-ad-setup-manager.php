@@ -235,7 +235,7 @@ class ADGURU_Ad_Setup_Manager{
 		<div class="condition-set" id="{{SET_HTML_ID}}">
 			<div class="set-header">
 				<span class="ec-btn" title="Edit page type"></span>
-				<span class="page-type-display-box">{{PAGE_TYPE_DISPLAY_HTML}}<span>
+				<span class="page-type-display-box">{{PAGE_TYPE_DISPLAY_HTML}}</span>
 				<div class="cs-box">
 					<?php echo $this->get_country_list_html(); ?>
 				</div>

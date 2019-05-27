@@ -42,6 +42,11 @@ var ADGURU_ASM = {};
 				ADGURU_ASM.process_page_type_item_click( condition_set, data );
 			});
 
+			$('#condition_sets_box').on('change', '.term-name', function(){
+				var obj = $(this);
+				ADGURU_ASM.process_term_name_change( obj );
+			});
+
 			$('#condition_sets_box').on('click', '.ad-remove-btn', function(){
 				$(this).closest('.ad').remove();
 			});
@@ -317,7 +322,8 @@ var ADGURU_ASM = {};
 		process_page_type_item_click : function( condition_set, data ){
 			
 			if( typeof data.page_type === 'undefined' ){ return; }
-			var country_code = $(condition_set).find('country-select').first().val();
+			$(condition_set).removeAttr("need_term_input");
+			var country_code = $(condition_set).find('.country-select').first().val();
 			var title_html = "";
 			var query_data = {
 				'ad_type' : '',
@@ -371,8 +377,8 @@ var ADGURU_ASM = {};
 					}
 					else
 					{
-						title_html = 'Single post having <input type="text" placeholder="Term name/slug" class="term-name"> '+data.taxonomy_name;
-						//To Do: set flag to condition_set as not ready
+						title_html = 'Single post having <input type="text" placeholder="Term name/slug" class="term-name" taxonomy="'+data.taxonomy+'"> '+data.taxonomy_name;
+						$(condition_set).attr("need_term_input", 1 );
 
 					}
 					
@@ -383,7 +389,7 @@ var ADGURU_ASM = {};
 				{
 					query_data.page_type = "taxonomy";
 					query_data.taxonomy = data.taxonomy;
-					if( data.taxonomy = "--")
+					if( data.taxonomy == "--")
 					{
 						title_html = "Any Taxonomy Archive";
 					}
@@ -410,8 +416,8 @@ var ADGURU_ASM = {};
 							}
 							else
 							{
-								title_html = 'Taxonomy Archive &raquo; '+data.taxonomy_name+' <input type="text" placeholder="Term name/slug" class="term-name"> ';
-								//To Do: set flag to condition_set as not ready
+								title_html = 'Taxonomy Archive &raquo; '+data.taxonomy_name+' &raquo; <input type="text" placeholder="Term name/slug" class="term-name" taxonomy="'+data.taxonomy+'"> ';
+								$(condition_set).attr("need_term_input", 1 );
 							}
 							
 							
@@ -440,12 +446,10 @@ var ADGURU_ASM = {};
 				}//end case '404_page'
 
 			}//end switch( data.page_type )
-			console.log(data);
-			console.log(ADGURU_ASM.get_condition_set_query_data(condition_set));
-			//Create condition set query data and title HTML
+			//console.log(data);
 			$(condition_set).data('query_data', query_data);
-			console.log("condition_set data");
-			console.log($(condition_set).data('query_data'));
+			//console.log("condition_set data");
+			//console.log($(condition_set).data('query_data'));
 
 			$(condition_set).find('.page-type-display-box').first().html(title_html);
 
@@ -469,6 +473,16 @@ var ADGURU_ASM = {};
 			var data = ADGURU_ASM.get_condition_set_query_data(condition_set);
 			data[field] = value;
 			$(condition_set).data('query_data', data);
+		},
+
+		process_term_name_change : function( obj ){
+			var condition_set = $(this).closest('.condition-set');
+			var taxonomy = $(obj).attr('taxonomy');
+			var value = $(obj).val();
+			$(obj).addClass('checking');//loading icon
+			$(obj).attr('disabled', 'disabled');
+			
+
 		}
 
 

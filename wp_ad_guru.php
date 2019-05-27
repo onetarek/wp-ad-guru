@@ -366,6 +366,7 @@ final class WP_Ad_Guru{
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/links-editor/class-adguru-links-editor.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/links-editor/class-adguru-links-editor-ajax-handler.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/ad-setup-manager/class-adguru-ad-setup-manager.php" );
+			require_once( ADGURU_PLUGIN_DIR."includes/admin/ad-setup-manager/class-adguru-ad-setup-manager-ajax-handler.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/metaboxes/metabox.php" );	
 			require_once( ADGURU_PLUGIN_DIR."includes/functions.php" );
 

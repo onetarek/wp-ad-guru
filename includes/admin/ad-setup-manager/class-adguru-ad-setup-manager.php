@@ -74,7 +74,7 @@ class ADGURU_Ad_Setup_Manager{
 					
 					foreach( $post_types as $post_type_slug => $name )
 					{?>
-						<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"single_post", "post_type"=>$post_type_slug ) )?>><?php echo $name ?></li>
+						<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"single_post", "post_type"=>$post_type_slug, "post_type_name"=>$name ) )?>><?php echo $name ?></li>
 					<?php 
 					}
 					?>

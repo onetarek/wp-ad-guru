@@ -36,6 +36,12 @@ var ADGURU_ASM = {};
 				target.toggleClass('collapsed');
 			});
 
+			$('#condition_sets_box').on('click', '.usable', function(){
+				var condition_set = $(this).closest('.condition-set');
+				var data = $(this).data('page_type_data');
+				ADGURU_ASM.process_page_type_item_click( condition_set, data );
+			});
+
 			$('#condition_sets_box').on('click', '.ad-remove-btn', function(){
 				$(this).closest('.ad').remove();
 			});
@@ -306,7 +312,165 @@ var ADGURU_ASM = {};
 
       			}
     		});
+		},
+
+		process_page_type_item_click : function( condition_set, data ){
+			
+			if( typeof data.page_type === 'undefined' ){ return; }
+			var country_code = $(condition_set).find('country-select').first().val();
+			var title_html = "";
+			var query_data = {
+				'ad_type' : '',
+				'zone_id' : 0,
+				'post_id' : 0,
+				'country_code' : country_code,
+				'page_type' : '--',
+				'taxonomy' : '--',
+				'term' : '--',
+
+			};
+			switch( data.page_type )
+			{
+				case 'default':
+				{
+					title_html = "Default";
+					query_data.page_type = "--";
+					break;
+				}//end case 'default'
+				case 'home':
+				{
+					title_html = "Home Page";
+					query_data.page_type = "home";
+					break;
+				}//end case 'home'
+				case 'single_post':
+				{
+					title_html = "Any type single post";
+					query_data.page_type = "singular";
+					if( data.post_type = 'any' )
+					{
+						query_data.taxonomy = 'single';
+						title_html = "Any type single post";
+					}
+					else
+					{
+						query_data.taxonomy = 'single';
+						query_data.term = data.post_type;
+						title_html = "Single "+data.post_type_name;
+					}
+					break;
+				}//end case 'single_post'
+				case 'single_post_specific_term':
+				{
+					query_data.page_type = "singular";
+					query_data.taxonomy = data.taxonomy;
+					if( data.hierarchical == 1 )
+					{
+						query_data.term = data.term;
+						title_html = "Single post having <b>"+data.term_name+"</b> "+data.taxonomy_name;
+					}
+					else
+					{
+						title_html = 'Single post having <input type="text" placeholder="Term name/slug" class="term-name"> '+data.taxonomy_name;
+						//To Do: set flag to condition_set as not ready
+
+					}
+					
+
+					break;
+				}//end case 'single_post_specific_term'
+				case 'taxonomy_archive':
+				{
+					query_data.page_type = "taxonomy";
+					query_data.taxonomy = data.taxonomy;
+					if( data.taxonomy = "--")
+					{
+						title_html = "Any Taxonomy Archive";
+					}
+					else
+					{
+						if( data.hierarchical == 1 )
+						{
+							query_data.term = data.term;
+							if(data.term == "--")
+							{
+								title_html = "Taxonomy Archive &raquo; "+data.taxonomy_name;
+							}
+							else
+							{
+								title_html = "Taxonomy Archive &raquo; "+data.taxonomy_name+" &raquo; "+data.term_name;
+							}
+							
+						}
+						else
+						{
+							if(data.term == "--")
+							{
+								title_html = "Taxonomy Archive &raquo; "+data.taxonomy_name;
+							}
+							else
+							{
+								title_html = 'Taxonomy Archive &raquo; '+data.taxonomy_name+' <input type="text" placeholder="Term name/slug" class="term-name"> ';
+								//To Do: set flag to condition_set as not ready
+							}
+							
+							
+						}
+					}
+
+					break;
+				}//end case 'taxonomy_archive'
+				case 'author_archive':
+				{
+					title_html = "Author Archive Page";
+					query_data.page_type = "author";
+					break;
+				}//end case 'author_archive'
+				case 'search_result':
+				{
+					title_html = "Search Result Page";
+					query_data.page_type = "search";
+					break;
+				}//end case 'search_result'
+				case '404_page':
+				{
+					title_html = "404 Page";
+					query_data.page_type = "404_not_found";
+					break;
+				}//end case '404_page'
+
+			}//end switch( data.page_type )
+			console.log(data);
+			console.log(ADGURU_ASM.get_condition_set_query_data(condition_set));
+			//Create condition set query data and title HTML
+			$(condition_set).data('query_data', query_data);
+			console.log("condition_set data");
+			console.log($(condition_set).data('query_data'));
+
+			$(condition_set).find('.page-type-display-box').first().html(title_html);
+
+		},
+
+		get_condition_set_query_data : function( condition_set ){
+			var data = $(condition_set).data('query_data');
+			if( typeof data === 'undefined' )
+			{
+				data = {};
+			}
+			return data;
+
+		},
+		
+		set_condition_set_query_data : function( condition_set, data ){
+			$(condition_set).data('query_data', data);
+		},
+
+		set_condition_set_single_query_data : function( condition_set, field, value ){
+			var data = ADGURU_ASM.get_condition_set_query_data(condition_set);
+			data[field] = value;
+			$(condition_set).data('query_data', data);
 		}
+
 
 	};//end ADGURU_ASM
 

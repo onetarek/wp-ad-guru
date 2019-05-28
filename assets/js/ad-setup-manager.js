@@ -47,6 +47,13 @@ var ADGURU_ASM = {};
 				ADGURU_ASM.process_term_name_change( obj );
 			});
 
+			$('#condition_sets_box').on('change', '.country-select', function(){
+				var condition_set = $(this).closest('.condition-set');
+				var value = $(this).val();
+				ADGURU_ASM.set_condition_set_single_query_data(condition_set, 'country_code', value );
+				//console.log($(condition_set).data('query_data'));
+			});
+
 			$('#condition_sets_box').on('click', '.ad-remove-btn', function(){
 				$(this).closest('.ad').remove();
 			});

@@ -15,9 +15,12 @@ else
 
 $use_zone = isset( $current_ad_type_args['use_zone'] ) ? $current_ad_type_args['use_zone'] : false;
 $zone_id = isset( $_GET['zone_id'] ) ? intval( $_GET['zone_id'] ) : 0 ; 
+$post_id = isset( $_GET['post_id'] ) ? intval( $_GET['post_id'] ) : 0 ; 
 
 $this->current_ad_type = $current_ad_type;
 $this->current_zone_id = $zone_id;
+$this->current_post_id = $post_id;
+
 $this->current_ad_type_args = $current_ad_type_args;
 $zone_selection_needed = false;
 if( $use_zone )

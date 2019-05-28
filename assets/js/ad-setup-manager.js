@@ -335,7 +335,7 @@ var ADGURU_ASM = {};
 			var query_data = {
 				'ad_type' : ADGURU_ASM_DATA.current_ad_type,
 				'zone_id' : ADGURU_ASM_DATA.current_zone_id,
-				'post_id' : 0,
+				'post_id' : ADGURU_ASM_DATA.current_post_id,
 				'country_code' : country_code,
 				'page_type' : '--',
 				'taxonomy' : '--',

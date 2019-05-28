@@ -17,6 +17,7 @@ class ADGURU_Ad_Setup_Manager{
 	private $current_ad_type_args;
 	private $current_zone_id;
 	private $current_zone;
+	private $current_post_id;
 	private $page_type_list_html;
 	private $taxonomy_list;
 	private $ad_zone_links;
@@ -580,6 +581,7 @@ class ADGURU_Ad_Setup_Manager{
 		$data = array(
 			'current_ad_type' => $this->current_ad_type,
 			'current_zone_id' => $this->current_zone_id,
+			'current_post_id' => $this->current_post_id,
 			'ad_zone_link_sets' => $this->ad_zone_link_sets,
 			'ads_data' => $this->ads_data,
 			'page_type_list_html' => $this->get_page_type_list_html(),

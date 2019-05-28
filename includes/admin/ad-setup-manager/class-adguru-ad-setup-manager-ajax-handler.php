@@ -25,7 +25,7 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 	public function __construct(){
 		
 		add_action( 'wp_ajax_adguru_save_ad_links', array( $this, 'save_ad_links' ) );
-		add_action( 'wp_ajax_adguru_check_term_exist', array( $this, 'check_term_exist' ) );
+		add_action( 'wp_ajax_adguru_get_term_data', array( $this, 'get_term_data' ) );
 
 		
 	}//END FUNC 
@@ -230,7 +230,7 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 		return;	 
 	 }//end func 
 	 
-	 public function check_term_exist(){
+	 public function get_term_data(){
 	 	$response = array();
 	 	$response['status'] = 'success';
 	 	$response['exist'] = 0;
@@ -241,10 +241,11 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 	 		wp_send_json( $response );
 			return;
 	 	}
-	 	
-	 	if( term_exists( $term, $taxonomy ) )
-	 	{
+	 	$t = term_exists( $term, $taxonomy );
+	 	if( $t )
+	 	{	
 	 		$response['exist'] = 1;
+	 		$response['term_data'] = get_term( $t['term_id'] );
 	 	}
 	 	wp_send_json( $response );
 		return;	

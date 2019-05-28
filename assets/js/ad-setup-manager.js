@@ -326,8 +326,8 @@ var ADGURU_ASM = {};
 			var country_code = $(condition_set).find('.country-select').first().val();
 			var title_html = "";
 			var query_data = {
-				'ad_type' : '',
-				'zone_id' : 0,
+				'ad_type' : ADGURU_ASM_DATA.current_ad_type,
+				'zone_id' : ADGURU_ASM_DATA.current_zone_id,
 				'post_id' : 0,
 				'country_code' : country_code,
 				'page_type' : '--',
@@ -476,12 +476,48 @@ var ADGURU_ASM = {};
 		},
 
 		process_term_name_change : function( obj ){
-			var condition_set = $(this).closest('.condition-set');
+			var condition_set = $(obj).closest('.condition-set');
 			var taxonomy = $(obj).attr('taxonomy');
-			var value = $(obj).val();
+			var term = $(obj).val();
 			$(obj).addClass('checking');//loading icon
 			$(obj).attr('disabled', 'disabled');
-			
+			var qData = {
+				'action' : 'adguru_get_term_data',
+				'taxonomy' : taxonomy,
+				'term' : term
+			}
+			$.ajax({
+			   url: adGuruAdminVars.ajaxUrl,
+			   type: "GET",
+			   global: false,
+			   cache: false,
+			   async: true,
+			   data:qData,
+				success: function(response){
+					$(obj).removeClass('checking');
+					$(obj).removeAttr('disabled', 'disabled');
+					if(response.status == 'success')
+					{
+						if( response.exist == 1 )
+						{
+							ADGURU_ASM.set_condition_set_single_query_data(condition_set, 'term', response.term_data.slug );
+							$(condition_set).removeAttr('need_term_input');
+						}
+						else
+						{
+							$(obj).val("");
+							$(condition_set).attr('need_term_input', 1);
+						}
+										
+					}
+					else
+					{
+						alert(response.message);
+					}
+				},
+				error: function(xhr,errorThrown){}
+				   
+			  });//end $.ajax
 
 		}
 

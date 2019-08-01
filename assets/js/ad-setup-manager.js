@@ -360,7 +360,7 @@ var ADGURU_ASM = {};
 				{
 					title_html = "Any type single post";
 					query_data.page_type = "singular";
-					if( data.post_type = 'any' )
+					if( data.post_type == 'any' )
 					{
 						query_data.taxonomy = 'single';
 						title_html = "Any type single post";

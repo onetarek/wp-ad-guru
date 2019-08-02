@@ -593,8 +593,36 @@ var ADGURU_ASM = {};
 			{
 				return false;
 			}
+			ADGURU_ASM.save_condition_set( condition_set );
+		},
+
+		save_condition_set : function( condition_set ){
+			ADGURU_ASM.show_hide_save_loading( condition_set );
+			ADGURU_ASM.disable_save_btn( condition_set );
+		},
+
+		delete_condition_set : function( condition_set ){
 
 		},
+
+		disable_save_btn : function( condition_set ){
+			$(condition_set).find('.save-btn').first().css("pointer-events", "none").addClass('disable');
+		},
+		enable_save_btn : function( condition_set ){
+			$(condition_set).find('.save-btn').first().css("pointer-events", "auto").removeClass('disable');
+		},
+		disable_delete_btn : function( condition_set ){
+			$(condition_set).find('.delete-set-btn').first().css("pointer-events", "none").addClass('disable');
+		},
+		enable_delete_btn : function( condition_set ){
+			$(condition_set).find('.delete-set-btn').first().css("pointer-events", "auto").removeClass('disable');
+		},
+		show_hide_save_loading : function( condition_set ){
+			$(condition_set).find('.save-loading').first().toggleClass('hidden');
+		},
+		show_hide_delete_loading : function( condition_set ){
+			$(condition_set).find('.delete-set-loading').first().toggleClass('hidden');
+		}
 
 
 	};//end ADGURU_ASM

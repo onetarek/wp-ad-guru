@@ -1,5 +1,5 @@
 .hidden{
-	display: none;
+	display: none!important;
 }
 #wpcontent{
 	background: #ffffff;
@@ -481,6 +481,10 @@
 .condition-set .set-footer .save-btn:hover{
 	background: #eeeeee;
 }
+.condition-set .set-footer .save-btn.disable{
+	border-color:#cccccc;
+	color:#cccccc;
+}
 .condition-set .set-footer .save-loading{
 	width: 32px;
 	height: 32px;
@@ -520,6 +524,9 @@
 }
 .condition-set .set-footer .delete-set-btn:hover{
 	color: #ff0000;
+}
+.condition-set .set-footer .delete-set-btn.disble, .condition-set .set-footer .delete-set-btn.disble:hover{
+	color: #e5e5e5;
 }
 .condition-set .set-footer .delete-set-loading{
 	width: 32px;

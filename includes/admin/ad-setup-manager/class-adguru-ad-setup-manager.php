@@ -189,7 +189,7 @@ class ADGURU_Ad_Setup_Manager{
 	private function get_ad_html_template(){
 		ob_start();
 		?>
-		<div class="ad" title="{{AD_TYPE_NAME}}" adid="{{AD_ID}}">
+		<div class="ad" title="{{AD_TYPE_NAME}}" adid="{{AD_ID}}"  adtype="{{AD_TYPE}}">
 			<div class="title">{{AD_TITLE}}</div>
 			<div class="control-box">
 				<span class="percentage-box"><span class="percentage-label">Rotate</span><input type="number" class="percentage" value="{{PERCENTAGE}}" max="100" min="0"> %</span>
@@ -266,9 +266,9 @@ class ADGURU_Ad_Setup_Manager{
 			<div class="set-footer">
 				<div class="set-error-msg-box">Error message will go here<!-- Error message will go here --></div>
 				<span class="save-btn">Save</span>
-				<span class="save-loading"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
+				<span class="save-loading hidden"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
 				
-				<span class="delete-set-loading"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
+				<span class="delete-set-loading hidden"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
 				<span class="delete-set-btn" title="Delete this set"></span>	
 			</div><!-- /.set-footer -->
 		</div><!-- /.condition-set -->	

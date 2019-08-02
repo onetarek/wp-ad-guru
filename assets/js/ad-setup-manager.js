@@ -6,6 +6,7 @@ var ADGURU_ASM = {};
 
 		last_set_number : 0,
 		selected_ads_box_to_insert_ad : null,
+		condition_set_query_data_stringify : {},
 		
 		init : function(){
 			this.add_events();
@@ -37,6 +38,7 @@ var ADGURU_ASM = {};
 			});
 
 			$('#condition_sets_box').on('click', '.usable', function(){
+				ADGURU_ASM.clear_duplicate_indicator();
 				var condition_set = $(this).closest('.condition-set');
 				var data = $(this).data('page_type_data');
 				ADGURU_ASM.set_page_type_display_html_and_query_data( condition_set, data );
@@ -45,11 +47,13 @@ var ADGURU_ASM = {};
 			});
 
 			$('#condition_sets_box').on('change', '.term-name', function(){
+				ADGURU_ASM.clear_duplicate_indicator();
 				var obj = $(this);
 				ADGURU_ASM.process_term_name_change( obj );
 			});
 
 			$('#condition_sets_box').on('change', '.country-select', function(){
+				ADGURU_ASM.clear_duplicate_indicator();
 				var condition_set = $(this).closest('.condition-set');
 				var value = $(this).val();
 				ADGURU_ASM.set_condition_set_single_query_data(condition_set, 'country_code', value );
@@ -111,11 +115,17 @@ var ADGURU_ASM = {};
 
 			});
 
+			$('#condition_sets_box').on('click', '.save-btn', function(){
+				var obj = $(this);
+				ADGURU_ASM.process_save_btn_click(obj);
+			});
+
+
 			$('.ads_list_item').click(function(){
 				$('.ads_list_item').removeClass('selected');
 				$(this).addClass('selected');
 			});
-			
+
 			//-----------------------------DIALOG---------------------------------------
 			$("#ad_list_modal").dialog({
 				height: 355,
@@ -472,7 +482,7 @@ var ADGURU_ASM = {};
 
 			}//end switch( data.page_type )
 			//console.log(data);
-			$(condition_set).data('query_data', query_data);
+			ADGURU_ASM.set_condition_set_query_data( condition_set, query_data );
 			//console.log("condition_set data");
 			//console.log($(condition_set).data('query_data'));
 
@@ -492,12 +502,14 @@ var ADGURU_ASM = {};
 		
 		set_condition_set_query_data : function( condition_set, data ){
 			$(condition_set).data('query_data', data);
+			var id = $(condition_set).attr('id');
+			ADGURU_ASM.condition_set_query_data_stringify[id] = JSON.stringify( data );
 		},
 
 		set_condition_set_single_query_data : function( condition_set, field, value ){
 			var data = ADGURU_ASM.get_condition_set_query_data(condition_set);
 			data[field] = value;
-			$(condition_set).data('query_data', data);
+			ADGURU_ASM.set_condition_set_query_data( condition_set, data );
 		},
 
 		process_term_name_change : function( obj ){
@@ -544,7 +556,45 @@ var ADGURU_ASM = {};
 				   
 			  });//end $.ajax
 
-		}
+		},
+
+		clear_duplicate_indicator : function(){
+			$(".condition-set").removeClass('duplicate');
+		},
+
+		check_duplicate_page_type : function( condition_set ){
+			var id = $( condition_set ).attr('id');
+			var this_data = ADGURU_ASM.condition_set_query_data_stringify[id];
+			var duplicate_id = false;
+			
+			for( var i in ADGURU_ASM.condition_set_query_data_stringify )
+			{
+				if( i != id && this_data == ADGURU_ASM.condition_set_query_data_stringify[i] )
+				{
+					duplicate_id = i;
+					break;
+				}
+			}
+			
+			
+			if( duplicate_id )
+			{
+				$("#"+duplicate_id).addClass('duplicate');
+				alert("Duplicate page type found. Change any of them");
+			}
+			
+			return duplicate_id;
+		},
+
+		process_save_btn_click : function( obj ){
+			var condition_set = $(obj).closest('.condition-set');
+			//check for duplicate page type
+			if( ADGURU_ASM.check_duplicate_page_type( condition_set) )
+			{
+				return false;
+			}
+
+		},
 
 
 	};//end ADGURU_ASM

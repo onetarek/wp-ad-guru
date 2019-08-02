@@ -676,7 +676,6 @@ class ADGURU_Ad_Setup_Manager{
 
 		}//end switch
 		
-		write_log( "LINK : ", $link, "PAGE TYPE DATA : ", $data );
 		return $data;
 	}
 

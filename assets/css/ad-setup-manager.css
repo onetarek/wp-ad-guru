@@ -336,6 +336,9 @@
 	margin-left: 0px;
 
 }
+.percentage-box .percentage.error{
+	background: #ffdddd;
+}
 .condition-set .ad .control-box .edit-btn{
 	width: 30px;
 	height: 30px;

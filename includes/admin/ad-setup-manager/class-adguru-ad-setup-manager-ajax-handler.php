@@ -62,7 +62,18 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 	 }
 	 
 	 public function save_ad_links(){
-	 
+	 	//start testing
+	 	write_log( $_REQUEST );
+	 	$response = array();
+	 	$response['status'] = 'success';
+		$response['message'] = "Saved";				
+		wp_send_json( $response );
+
+	 	return false;
+
+	 	//end testing
+
+
 	 	$this->check_permission( 'save_ad_links' );
 		
 		$response = array();

@@ -586,19 +586,137 @@ var ADGURU_ASM = {};
 			return duplicate_id;
 		},
 
+		check_input_error_and_make_data : function( condition_set ){
+			var result = {
+				'hasError' : false,
+				'msg' : '',
+				'slides': false
+			};
+
+			var slides = [];
+			
+			var adboxes = $(condition_set).find('.ads-box');
+			for( var i=0; i< adboxes.length; i++ ) //jQuery to loop through elements https://stackoverflow.com/a/20464137
+			{
+				var slide = [];
+				var adbox = adboxes.eq(i);
+				var ads = $(adbox).find('.ad');
+				if( ads.length == 0 ){ continue; }
+				var total_per = 0;
+				var per_fields = [];
+				for( var j=0; j<ads.length; j++ )
+				{
+					var ad = ads.eq(j);
+					var adid = parseInt( $(ad).attr('adid') );
+					var adtype = $(ad).attr('adtype');
+					var per_field = $(ad).find('.percentage').first();
+					per_fields.push( per_field );
+					var per = parseInt( $(per_field).val() );
+					if( per == 0 )
+					{
+						result.hasError = true;
+						result.msg = 'Error: Percentage value must be grater than 0.';
+						per_field.addClass('error');
+					}
+					total_per = total_per + per;
+					slide.push({ 'ad_id' : adid, 'percentage' : per, 'ad_type' : adtype });
+				}
+				
+				if( total_per != 100 )
+				{
+					result.hasError = true;
+					result.msg = 'Error: Total percentage in a slide must be 100. Change value of all percentage fields or click on the = button';
+					for( var k in per_fields )
+					{
+						$( per_fields[k] ).addClass('error'); 
+					}
+				}
+				slides.push(slide);
+			}//end for( var i in adboxes ) 
+			
+			if( result.hasError )
+			{
+				ADGURU_ASM.add_error_msg( condition_set , result.msg );
+			}
+			else
+			{
+				result.slides = slides;
+			}
+			
+			return result;
+		},
+
 		process_save_btn_click : function( obj ){
 			var condition_set = $(obj).closest('.condition-set');
+			ADGURU_ASM.remove_error_msg( condition_set );
 			//check for duplicate page type
 			if( ADGURU_ASM.check_duplicate_page_type( condition_set) )
 			{
 				return false;
 			}
+
+			var attr = $(condition_set).attr('need_term_input')
+			if (typeof attr !== typeof undefined && attr !== false) 
+			{
+    			return false;
+			}
+
+			
+
 			ADGURU_ASM.save_condition_set( condition_set );
 		},
 
 		save_condition_set : function( condition_set ){
+			var result = ADGURU_ASM.check_input_error_and_make_data( condition_set );
+			//console.log( result );
+			if( result.hasError )
+			{
+				return false;
+			}
 			ADGURU_ASM.show_hide_save_loading( condition_set );
 			ADGURU_ASM.disable_save_btn( condition_set );
+
+			var query_data = ADGURU_ASM.get_condition_set_query_data( condition_set );
+			//console.log( query_data );
+			var qData = {
+				'action' : 'adguru_save_ad_links',
+				'zone_id' : query_data.zone_id,
+				'post_id' : query_data.post_id,
+				'ad_type' : query_data.ad_type,
+				'country_code' : query_data.country_code,
+				'page_type' : query_data.page_type,
+				'taxonomy' : query_data.taxonomy,
+				'term' : query_data.term,
+				'slides' : result.slides
+			};
+
+			$.ajax({
+			   url: adGuruAdminVars.ajaxUrl,
+			   type: "GET",
+			   global: false,
+			   cache: false,
+			   async: true,
+			   data:qData,
+				success: function(response){
+					
+					ADGURU_ASM.show_hide_save_loading( condition_set );
+					ADGURU_ASM.enable_save_btn( condition_set );
+
+					if(response.status == 'success')
+					{
+						console.log(response.message);
+										
+					}
+					else
+					{
+						alert(response.message);
+					}
+				},
+				error: function(xhr,errorThrown){}
+				   
+			});//end $.ajax
+
+
 		},
 
 		delete_condition_set : function( condition_set ){
@@ -622,6 +740,12 @@ var ADGURU_ASM = {};
 		},
 		show_hide_delete_loading : function( condition_set ){
 			$(condition_set).find('.delete-set-loading').first().toggleClass('hidden');
+		},
+		add_error_msg : function( condition_set, msg ){
+			$(condition_set).find('.set-error-msg-box').first().html(msg);
+		},
+		remove_error_msg : function( condition_set ){
+			$(condition_set).find('.set-error-msg-box').first().html('');
 		}
 
 

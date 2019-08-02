@@ -102,7 +102,7 @@ if( ! $zone_selection_needed )
 		
 		?>
 		<div id="condition_sets_box">
-			<div class="condition-set">
+			<div class="condition-set" id="test_condition_set">
 				<div class="set-header">
 					<span class="ec-btn" title="Edit page type"></span>
 					<span class="page-type-display-box"><span class="page-type-display-text">Archive &raquo; Tag &raquo;</span><input type="text" class="term-name checking" placeholder="Term name/slug" /></span>

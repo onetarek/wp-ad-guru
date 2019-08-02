@@ -40,6 +40,8 @@ var ADGURU_ASM = {};
 				var condition_set = $(this).closest('.condition-set');
 				var data = $(this).data('page_type_data');
 				ADGURU_ASM.set_page_type_display_html_and_query_data( condition_set, data );
+				var target = $(this).closest('.page-type-list-box');
+				target.toggleClass('collapsed');
 			});
 
 			$('#condition_sets_box').on('change', '.term-name', function(){

@@ -496,12 +496,17 @@ class ADGURU_Ad_Setup_Manager{
 		{
 			$grouped[ $link->zone_id . $link->page_type . $link->taxonomy . $link->term . $link->object_id . $link->country_code ][] = $link;
 		}
-		foreach( $grouped as $key => $set )
+		foreach( $grouped as $key => $links )
 		{
+			$page_type_data = $this->get_page_type_data_for_a_link( $links[0] );
+			$set = array(
+				'page_type_data' => $page_type_data,
+				'links' => $links
+			);
 			$this->ad_zone_link_sets[] = $set;
 		}
 		
-		//write_log($this->grouped_ad_zone_links);
+		//write_log($grouped);
 	}
 
 	/**
@@ -572,6 +577,110 @@ class ADGURU_Ad_Setup_Manager{
 		}
 		return $this->current_zone;
 	}
+
+	/**
+	 * Calculate page type data for a link
+	 * We need this to detect the page type for a set of links. 
+	 * We will use this data in JS code to make initial query data and condition set heading ( page_type_display_html ).
+	 */
+
+	private function get_page_type_data_for_a_link( $link ){
+
+		$post_types = $this->get_post_type_list();
+		$taxonomies = $this->get_taxonomy_list();
+		
+		$data = array();
+		$data['country_code'] = $link->country_code;
+		
+		switch( $link->page_type )
+		{
+			case '--' : 
+			{
+				$data['page_type'] = 'default';
+				break;
+			}
+			case 'home' : 
+			{
+				$data['page_type'] = 'home';
+				break;
+			}
+			case 'singular' : 
+			{
+				if( $link->taxonomy == 'single' )
+				{
+					$data['page_type'] = 'single_post';
+					if( $link->term == '--')
+					{
+						$data['post_type'] = 'any';
+					}
+					else
+					{
+						$data['post_type'] = $link->term;
+						$post_type = $post_types[ $link->term ];
+						$data['post_type_name'] =  $post_type->name;
+					}
+					
+				}
+				else
+				{
+					$data['page_type'] = 'single_post_specific_term';
+					$data['taxonomy'] = $link->taxonomy;
+					$taxonomy = $taxonomies[ $link->taxonomy ];
+					$data['taxonomy_name'] = $taxonomy->labels->singular_name;
+					$data['hierarchical'] = ( $taxonomy->hierarchical ) ? 1 : 0;
+					$data['term'] = $link->term;
+					$term = get_term_by('slug', $link->term, $link->taxonomy );
+					$data['term_name'] = $term->name;
+
+				}
+				break;
+			}
+			case 'taxonomy' : 
+			{
+				$data['page_type'] = 'taxonomy_archive';
+				if( $link->taxonomy == '--')
+				{
+					$data['taxonomy'] = '--';
+				}
+				else
+				{
+					$data['taxonomy'] = $link->taxonomy;
+					$taxonomy = $taxonomies[ $link->taxonomy ];
+					$data['taxonomy_name'] = $taxonomy->labels->singular_name;
+					$data['hierarchical'] = ( $taxonomy->hierarchical ) ? 1 : 0;
+					$data['term'] = $link->term;
+					if( $data['hierarchical'] == 1 && $link->term != '--')
+					{
+						$term = get_term_by('slug', $link->term, $link->taxonomy );
+						$data['term_name'] = $term->name;
+					}
+				}
+				
+				break;
+			}
+			case 'author' : 
+			{
+				$data['page_type'] = 'author_archive';
+				break;
+			}
+			case 'search' : 
+			{
+				$data['page_type'] = 'search_result';
+				break;
+			}
+			case '404_not_found' : 
+			{
+				$data['page_type'] = '404_page';
+				break;
+			}
+
+		}//end switch
+		
+		write_log( "LINK : ", $link, "PAGE TYPE DATA : ", $data );
+		return $data;
+	}
+
+
 	/**
 	 * Print JSON Data and JS file
 	 *

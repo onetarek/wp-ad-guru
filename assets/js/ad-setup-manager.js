@@ -39,7 +39,7 @@ var ADGURU_ASM = {};
 			$('#condition_sets_box').on('click', '.usable', function(){
 				var condition_set = $(this).closest('.condition-set');
 				var data = $(this).data('page_type_data');
-				ADGURU_ASM.process_page_type_item_click( condition_set, data );
+				ADGURU_ASM.set_page_type_display_html_and_query_data( condition_set, data );
 			});
 
 			$('#condition_sets_box').on('change', '.term-name', function(){
@@ -238,19 +238,19 @@ var ADGURU_ASM = {};
 			var tmpl = ADGURU_ASM_DATA.condition_set_html_template;
 			var html = tmpl.replace('{{SET_HTML_ID}}', html_id );
 
-			var html = html.replace('{{PAGE_TYPE_DISPLAY_HTML}}', data['page_type_display_html'] );
-			var html = html.replace('{{CONDITION_DETAIL}}', data['condition_detail'] );
+			var html = html.replace('{{PAGE_TYPE_DISPLAY_HTML}}', '<span style="color:red">Select page type</span>' );
+			var html = html.replace('{{CONDITION_DETAIL}}', '' );
 			var slides_html = "";
 			var slide_data = {
 				'links' : []
 			};
-			if( data['ad_zone_link_set'].length )
+			if( data['links'].length )
 			{
 				var slides = [];
 				var i;
-				for( i in data['ad_zone_link_set'] )
+				for( i in data['links'] )
 				{
-					var link = data['ad_zone_link_set'][i];
+					var link = data['links'][i];
 					var slide_number = link.slide;
 					if( typeof slides[slide_number] == 'undefined' )
 					{
@@ -275,16 +275,20 @@ var ADGURU_ASM = {};
 			var html = html.replace('{{SLIDES_HTML}}', slides_html );
 
 			$("#condition_sets_box").append( html );
-			$("#"+html_id).find('.country-select').val( data['country_code'] );
+			var condition_set = $("#"+html_id);
+			condition_set.find('.country-select').val( data['country_code'] );
+			
+			ADGURU_ASM.set_page_type_display_html_and_query_data( condition_set, data['page_type_data'] );
+
 			this.refresh_slides( "#"+html_id );
 			this.make_slides_sortable();
 		},
 
 		create_blank_condition_set : function(){
 			var data = {
-				'page_type_display_html' : '<span style="color:red">Select page type</span>',
-				'condition_detail' : '',
-				'ad_zone_link_set' : [],
+				'page_type_data' : [],
+				'country_code' : '--',
+				'links' : [],
 			};
 
 			this.create_condition_set(data);
@@ -296,18 +300,12 @@ var ADGURU_ASM = {};
 				var i;
 				for( i in ADGURU_ASM_DATA.ad_zone_link_sets )
 				{
-					var country_code = "--";
-					var links = ADGURU_ASM_DATA.ad_zone_link_sets[i];
-					if( links.length )
-					{
-						var link = links[0];
-						country_code = link.country_code;
-					}
+					var set = ADGURU_ASM_DATA.ad_zone_link_sets[i];
+					
 					var set_data = {
-						'page_type_display_html' : '<span style="color:red">Select page type</span>',
-						'condition_detail' : '',
-						'country_code' : country_code,
-						'ad_zone_link_set' : ADGURU_ASM_DATA.ad_zone_link_sets[i]
+						'page_type_data' : set.page_type_data,
+						'country_code' : set.page_type_data.country_code,
+						'links' : set.links
 					}
 					this.create_condition_set( set_data );
 				}
@@ -326,7 +324,8 @@ var ADGURU_ASM = {};
     		});
 		},
 
-		process_page_type_item_click : function( condition_set, data ){
+
+		set_page_type_display_html_and_query_data : function( condition_set, data ){
 			
 			if( typeof data.page_type === 'undefined' ){ return; }
 			$(condition_set).removeAttr("need_term_input");
@@ -384,8 +383,18 @@ var ADGURU_ASM = {};
 					}
 					else
 					{
-						title_html = 'Single post having <input type="text" placeholder="Term name/slug" class="term-name" taxonomy="'+data.taxonomy+'"> '+data.taxonomy_name;
-						$(condition_set).attr("need_term_input", 1 );
+						if( typeof data.term === 'undefined' )
+						{
+							title_html = 'Single post having <input type="text" placeholder="Term name/slug" class="term-name" taxonomy="'+data.taxonomy+'"> '+data.taxonomy_name;
+							$(condition_set).attr("need_term_input", 1 );
+						}
+						else
+						{
+							title_html = 'Single post having <input type="text" placeholder="Term name/slug" class="term-name" taxonomy="'+data.taxonomy+'" value="'+data.term+'"> '+data.taxonomy_name;
+							$(condition_set).removeAttr('need_term_input');
+							query_data.term = data.term;
+						}
+						
 
 					}
 					
@@ -417,14 +426,21 @@ var ADGURU_ASM = {};
 						}
 						else
 						{
-							if(data.term == "--")
+							if( typeof data.term === 'undefined' )
+							{
+								title_html = 'Taxonomy Archive &raquo; '+data.taxonomy_name+' &raquo; <input type="text" placeholder="Term name/slug" class="term-name" taxonomy="'+data.taxonomy+'"> ';
+								$(condition_set).attr("need_term_input", 1 );
+							}
+							else if(data.term == "--")
 							{
 								title_html = "Taxonomy Archive &raquo; "+data.taxonomy_name;
 							}
 							else
 							{
-								title_html = 'Taxonomy Archive &raquo; '+data.taxonomy_name+' &raquo; <input type="text" placeholder="Term name/slug" class="term-name" taxonomy="'+data.taxonomy+'"> ';
-								$(condition_set).attr("need_term_input", 1 );
+								
+								title_html = 'Taxonomy Archive &raquo; '+data.taxonomy_name+' &raquo; <input type="text" placeholder="Term name/slug" class="term-name" taxonomy="'+data.taxonomy+'" value="'+data.term+'"> ';
+								$(condition_set).removeAttr('need_term_input');
+								query_data.term = data.term;
 							}
 							
 							

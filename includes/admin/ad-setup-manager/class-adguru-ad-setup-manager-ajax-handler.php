@@ -102,19 +102,23 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 			$this->throw_error_response( __( 'Given ad type is not valid', 'adguru' ) );
 		}
 		
+		if( $zone_id == 0 && $ad_type == '' )
+		{
+			$this->throw_error_response( __( 'Ad type is required', 'adguru' ) );
+		}
 
 		$set 		= array();
 		$slides 	= ( isset( $_POST['slides'] ) && is_array( $_POST['slides'] ) ) ? $_POST['slides'] : array();
 		$post_id 	= intval( $_POST['post_id'] );
-		$page_type 	= trim( $_POST['page_type'] ); if( $page_type == "" ) $page_type = "--";
-		$taxonomy 	= trim( $_POST['taxonomy'] ); if( $taxonomy == "" ) $taxonomy = "--";
-		$term 		= trim( $_POST['term'] ); if( $term == "" ) $term = "--";
+		$page_type 	= trim( $_POST['page_type'] );	if( $page_type == "" ){ $page_type = "--"; }
+		$taxonomy 	= trim( $_POST['taxonomy'] ); 	if( $taxonomy == "" ){ $taxonomy = "--"; }
+		$term 		= trim( $_POST['term'] ); 		if( $term == "" ){ $term = "--"; }
 		$object_id	= 0;
 
-		$country_code = trim( $_POST['country_code'] ) ; if( $country_code == "" ) $country_code = "--";
+		$country_code = trim( $_POST['country_code'] ) ; if( $country_code == "" ){ $country_code = "--"; }
 		$previous_country_code = ( isset( $_POST['previous_country_code'] )) ? trim( $_POST['previous_country_code'] ) : "" ;
 		if( $previous_country_code == "" ){ $previous_country_code = $country_code;}
-		
+
 		if( $post_id )
 		{
 			$page_type	= "singular";
@@ -206,14 +210,18 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 		
 		#at first delete all exisiting record for this zone_id and post_id
 		#delete all type of ads for this zone_id.
-		if( $use_zone )
-		{
-			$wpdb->query("DELETE FROM ".ADGURU_LINKS_TABLE." WHERE zone_id=".$zone_id." AND page_type='".$page_type."' AND taxonomy='".$taxonomy."' AND term='".$term."' AND object_id=".$object_id." AND country_code='".$previous_country_code."'");	
-		}
-		else
-		{
-			$wpdb->query("DELETE FROM ".ADGURU_LINKS_TABLE." WHERE ad_type='".$ad_type."' AND zone_id=".$zone_id." AND page_type='".$page_type."' AND taxonomy='".$taxonomy."' AND term='".$term."' AND object_id=".$object_id." AND country_code='".$country_code."'");
-		}
+		$del_args = array(
+			'zone_id' => $zone_id,
+			'page_type' => $page_type,
+			'taxonomy' => $taxonomy,
+			'term' => $term,
+			'object_id' => $object_id,
+			'country_code' => $previous_country_code,
+			'ad_type' => $ad_type
+		);
+		
+		$this->delete_ad_links( $del_args );
+		
 		
 		#insert new record. here we are using multiple query for all new record, but we can inseart all at once. 
 		foreach($set as $s)
@@ -221,20 +229,11 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 			if( !isset( $ads[ $s['ad_id'] ] ) ) {  continue; }
 			$ad = $ads[ $s['ad_id'] ];
 			
-			$SQL="INSERT INTO ".ADGURU_LINKS_TABLE." (ad_type, zone_id, page_type, taxonomy, term, object_id, country_code, slide, ad_id, percentage) 
-				VALUES(
-					'".$ad->type."', 
-					".$s['zone_id'].",  
-					'".$s['page_type']."', 
-					'".$s['taxonomy']."', 
-					'".$s['term']."', 
-					".$s['object_id'].", 
-					'".$s['country_code']."', 
-					".$s['slide'].", 
-					".$s['ad_id'].", 
-					".$s['percentage']."   	
-					)";
-					
+			$SQL= $wpdb->prepare("INSERT INTO ".ADGURU_LINKS_TABLE." ( ad_type, zone_id, page_type, taxonomy, term, object_id, country_code, slide, ad_id, percentage ) 
+				VALUES( %s,%d, %s, %s, %s, %d, %s, %d, %d, %d )", 
+					$ad->type, $s['zone_id'], $s['page_type'], $s['taxonomy'] , $s['term'], $s['object_id'], $s['country_code'], $s['slide'], $s['ad_id'], $s['percentage']
+			);
+
 			$res = $wpdb->query($SQL);		
 		}
 			
@@ -244,6 +243,32 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 		return;	 
 	 }//end func 
 	 
+	 #Delete all exisiting record for this zone_id and post_id
+	 #Delete all type of ads for this zone_id.
+	 private function delete_ad_links( $args ){
+	 	
+	 	global $wpdb;
+	 	if( $args['zone_id'] == 0 && $args['ad_type'] == "" )
+	 	{
+	 		return false;
+	 	}
+
+	 	if( $args['zone_id'] == 0 )
+	 	{
+			$SQL = $wpdb->prepare("DELETE FROM ".ADGURU_LINKS_TABLE." WHERE ad_type=%s AND zone_id=%d AND page_type=%s AND taxonomy=%s AND term=%s AND object_id=%d AND country_code=%s",
+	 		   $args['ad_type'], $args['zone_id'], $args['page_type'], $args['taxonomy'],$args['term'],  $args['object_id'], $args['country_code'] );
+	 	
+	 	}
+	 	else
+	 	{
+	 		$SQL = $wpdb->prepare("DELETE FROM ".ADGURU_LINKS_TABLE." WHERE zone_id=%d AND page_type=%s AND taxonomy=%s AND term=%s AND object_id=%d AND country_code=%s",
+	 		   $args['zone_id'], $args['page_type'], $args['taxonomy'],$args['term'],  $args['object_id'], $args['country_code'] );
+	 	
+	 	}
+	 	$res = $wpdb->query( $SQL );
+	 	return $res;
+	 }
+
 	 public function get_term_data(){
 	 	$response = array();
 	 	$response['status'] = 'success';

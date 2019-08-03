@@ -244,7 +244,7 @@ var ADGURU_ASM = {};
 			
 		},
 
-		create_condition_set : function( data ){
+		create_condition_set : function( data ){console.log(data);
 			this.last_set_number++;
 			var html_id = 'condition_set_'+this.last_set_number;
 			var tmpl = ADGURU_ASM_DATA.condition_set_html_template;
@@ -289,9 +289,27 @@ var ADGURU_ASM = {};
 
 			$("#condition_sets_box").append( html );
 			var condition_set = $("#"+html_id);
+			
+			//make old query data
+			var info = data['page_type_info_data'];
+			var initial_query_data = {
+				'ad_type' : ADGURU_ASM_DATA.current_ad_type,
+				'zone_id' : ADGURU_ASM_DATA.current_zone_id,
+				'post_id' : ADGURU_ASM_DATA.current_post_id,
+				'country_code' : info['country_code'],
+				'page_type' : info['page_type'],
+				'taxonomy' : info['taxonomy'],
+				'term' : info['term'],
+
+			};
+			ADGURU_ASM.set_condition_set_initial_query_data( condition_set, initial_query_data );
+			//end make old query data
+
+
 			condition_set.find('.country-select').val( data['country_code'] );
 			
-			ADGURU_ASM.set_page_type_display_html_and_query_data( condition_set, data['page_type_data'] );
+			//ADGURU_ASM.set_page_type_display_html_and_query_data( condition_set, data['page_type_data'] );
+			ADGURU_ASM.set_page_type_display_html_and_query_data2( condition_set, data['page_type_info_data'] );
 
 			this.refresh_slides( "#"+html_id );
 			this.make_slides_sortable();
@@ -317,6 +335,7 @@ var ADGURU_ASM = {};
 					
 					var set_data = {
 						'page_type_data' : set.page_type_data,
+						'page_type_info_data' : set.page_type_info_data,
 						'country_code' : set.page_type_data.country_code,
 						'links' : set.links
 					}
@@ -337,6 +356,148 @@ var ADGURU_ASM = {};
     		});
 		},
 
+		set_page_type_display_html_and_query_data2 : function( condition_set, data ){
+			
+			if( typeof data.page_type === 'undefined' ){ return; }
+			$(condition_set).removeAttr("need_term_input");
+			var country_code = $(condition_set).find('.country-select').first().val();
+			var title_html = "";
+			
+			var query_data = {
+				'ad_type' : ADGURU_ASM_DATA.current_ad_type,
+				'zone_id' : ADGURU_ASM_DATA.current_zone_id,
+				'post_id' : ADGURU_ASM_DATA.current_post_id,
+				'country_code' : country_code,
+				'page_type' : data['page_type'],
+				'taxonomy' : data['taxonomy'],
+				'term' : data['term'],
+
+			};
+
+			switch( data.page_type )
+			{
+				case '--': //default
+				{
+					title_html = "Default";
+					break;
+				}//end case 'default'
+				case 'home': //home page
+				{
+					title_html = "Home Page";
+					break;
+				}//end case 'home'
+				case 'singular': //single_post
+				{
+					title_html = "Any type single post";
+
+
+					if( data.taxonomy == 'single' )
+					{
+						if( data.term = '--')
+						{
+							title_html = "Any type single post";
+						}
+						else
+						{
+							title_html = "Single "+data.post_type_name;
+						}
+						
+					}
+					else //single_post_specific_term
+					{
+						if( data.hierarchical == 1 ) //category type taxonomy
+						{
+							title_html = "Single post having <b>"+data.term_name+"</b> "+data.taxonomy_name;
+						}
+						else //tag type taxonomy
+						{
+							if( typeof data.term === 'undefined' || data.term == '' )
+							{
+								title_html = 'Single post having <input type="text" placeholder="Term name/slug" class="term-name" taxonomy="'+data.taxonomy+'"> '+data.taxonomy_name;
+								$(condition_set).attr("need_term_input", 1 );
+							}
+							else
+							{
+								title_html = 'Single post having <input type="text" placeholder="Term name/slug" class="term-name" taxonomy="'+data.taxonomy+'" value="'+data.term+'"> '+data.taxonomy_name;
+								$(condition_set).removeAttr('need_term_input');
+							}
+
+						}
+					}
+
+					
+					break;
+				}//end case 'single_post'
+				case 'taxonomy': //taxonomy_archive
+				{
+					
+					if( data.taxonomy == "--")
+					{
+						title_html = "Any Taxonomy Archive";
+					}
+					else
+					{
+						if( data.hierarchical == 1 )//category type archive page
+						{
+							if(data.term == "--")
+							{
+								title_html = "Taxonomy Archive &raquo; "+data.taxonomy_name;
+							}
+							else
+							{
+								title_html = "Taxonomy Archive &raquo; "+data.taxonomy_name+" &raquo; "+data.term_name;
+							}
+							
+						}
+						else //tag type archive page
+						{
+							if( typeof data.term === 'undefined'|| data.term == '' )
+							{
+								title_html = 'Taxonomy Archive &raquo; '+data.taxonomy_name+' &raquo; <input type="text" placeholder="Term name/slug" class="term-name" taxonomy="'+data.taxonomy+'"> ';
+								$(condition_set).attr("need_term_input", 1 );
+							}
+							else if(data.term == "--")
+							{
+								title_html = "Taxonomy Archive &raquo; "+data.taxonomy_name;
+							}
+							else
+							{
+								
+								title_html = 'Taxonomy Archive &raquo; '+data.taxonomy_name+' &raquo; <input type="text" placeholder="Term name/slug" class="term-name" taxonomy="'+data.taxonomy+'" value="'+data.term+'"> ';
+								$(condition_set).removeAttr('need_term_input');
+							}
+							
+							
+						}
+					}
+
+					break;
+				}//end case 'taxonomy'
+				case 'author': //author_archive
+				{
+					title_html = "Author Archive Page";
+					break;
+				}//end case 'author'
+				case 'search': //search_result
+				{
+					title_html = "Search Result Page";
+					break;
+				}//end case 'search'
+				case '404_not_found': //404_page
+				{
+					title_html = "404 Page";
+					break;
+				}//end case '404_not_found'
+
+			}//end switch( data.page_type )
+			//console.log(data);
+			ADGURU_ASM.set_condition_set_query_data( condition_set, query_data );
+			//console.log("condition_set data");
+			//console.log($(condition_set).data('query_data'));
+
+			$(condition_set).find('.page-type-display-box').first().html(title_html);
+
+		},
 
 		set_page_type_display_html_and_query_data : function( condition_set, data ){
 			
@@ -489,6 +650,25 @@ var ADGURU_ASM = {};
 
 			$(condition_set).find('.page-type-display-box').first().html(title_html);
 
+		},
+
+		get_condition_set_initial_query_data : function( condition_set ){
+			var data = $(condition_set).data('initial_query_data');
+			if( typeof data === 'undefined' )
+			{
+				data = {};
+			}
+			return data;
+		},
+
+		set_condition_set_initial_query_data : function( condition_set, data ){
+			$(condition_set).data('initial_query_data', data);
+		},
+
+		set_condition_set_single_initial_query_data : function( condition_set, field, value ){
+			var data = ADGURU_ASM.get_condition_set_initial_query_data(condition_set);
+			data[field] = value;
+			ADGURU_ASM.set_condition_set_initial_query_data( condition_set, data );
 		},
 
 		get_condition_set_query_data : function( condition_set ){

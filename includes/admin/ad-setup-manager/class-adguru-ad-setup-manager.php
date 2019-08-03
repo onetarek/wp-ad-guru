@@ -499,8 +499,10 @@ class ADGURU_Ad_Setup_Manager{
 		foreach( $grouped as $key => $links )
 		{
 			$page_type_data = $this->get_page_type_data_for_a_link( $links[0] );
+			$page_type_info_data = $this->get_page_type_data_for_a_link2( $links[0] );
 			$set = array(
 				'page_type_data' => $page_type_data,
+				'page_type_info_data' => $page_type_info_data,
 				'links' => $links
 			);
 			$this->ad_zone_link_sets[] = $set;
@@ -673,6 +675,68 @@ class ADGURU_Ad_Setup_Manager{
 				$data['page_type'] = '404_page';
 				break;
 			}
+
+		}//end switch
+		
+		return $data;
+	}
+
+	private function get_page_type_data_for_a_link2( $link ){
+
+		$post_types = $this->get_post_type_list();
+		$taxonomies = $this->get_taxonomy_list();
+		
+		$data = array();
+		$data['ad_type'] = $link->ad_type;
+		$data['zone_id'] = $link->zone_id;
+		$data['page_type'] = $link->page_type;
+		$data['taxonomy'] = $link->taxonomy;
+		$data['term'] = $link->term;
+		$data['country_code'] = $link->country_code;
+		$data['post_id'] = $link->object_id;
+		
+		switch( $link->page_type )
+		{
+			case 'singular' : 
+			{
+				if( $link->taxonomy == 'single' )
+				{
+					if( $link->term != '--')
+					{
+						$post_type = $post_types[ $link->term ];
+						$data['post_type_name'] =  $post_type->name;
+					}
+				}
+				else
+				{
+					
+					$taxonomy = $taxonomies[ $link->taxonomy ];
+					$data['taxonomy_name'] = $taxonomy->labels->singular_name;
+					$data['hierarchical'] = ( $taxonomy->hierarchical ) ? 1 : 0;
+					$term = get_term_by('slug', $link->term, $link->taxonomy );
+					$data['term_name'] = $term->name;
+
+				}
+				break;
+			}
+			case 'taxonomy' : 
+			{
+				
+				if( $link->taxonomy != '--')
+				{
+					$taxonomy = $taxonomies[ $link->taxonomy ];
+					$data['taxonomy_name'] = $taxonomy->labels->singular_name;
+					$data['hierarchical'] = ( $taxonomy->hierarchical ) ? 1 : 0;
+					if( $data['hierarchical'] == 1 && $link->term != '--')
+					{
+						$term = get_term_by('slug', $link->term, $link->taxonomy );
+						$data['term_name'] = $term->name;
+					}
+				}
+				
+				break;
+			}
+			
 
 		}//end switch
 		

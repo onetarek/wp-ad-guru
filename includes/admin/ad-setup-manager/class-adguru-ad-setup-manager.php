@@ -65,17 +65,17 @@ class ADGURU_Ad_Setup_Manager{
 		$taxonomies = $this->get_taxonomy_list();
 		?>
 		<ul class="page-type-list">
-			<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"default" ) )?>>Default( all )</li>
-			<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"home" ) )?>>Home</li>
+			<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"--", 'taxonomy'=>'--', 'term'=>'--' ) )?>>Default( all )</li>
+			<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"home", 'taxonomy'=>'--', 'term'=>'--' ) )?>>Home</li>
 			<li>
 				<span class="group-name">Single Page</span>
 				<ul>
-					<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"single_post", "post_type"=>"any" ) )?>>Any type post</li>
+					<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"singular", 'taxonomy'=>'single', 'term'=>'--' ) )?>>Any type post</li>
 					<?php
 					
 					foreach( $post_types as $post_type_slug => $name )
 					{?>
-						<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"single_post", "post_type"=>$post_type_slug, "post_type_name"=>$name ) )?>><?php echo $name ?></li>
+						<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"singular", 'taxonomy'=>'single', 'term'=>$post_type_slug, "post_type_name"=>$name ) )?>><?php echo $name ?></li>
 					<?php 
 					}
 					?>
@@ -96,7 +96,7 @@ class ADGURU_Ad_Setup_Manager{
 									  foreach ($categories as $category)
 									  {
 									  ?>
-									  	<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"single_post_specific_term", "hierarchical"=>1, "term"=>$category->slug, "term_name"=>$category->cat_name, "taxonomy"=>$tax_slug,"taxonomy_name"=>$taxonomy->labels->singular_name ) )?>><?php echo $category->cat_name ?></li>
+									  	<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"singular", 'taxonomy'=>$tax_slug, 'term'=>$category->slug, "hierarchical"=>1, "term_name"=>$category->cat_name,"taxonomy_name"=>$taxonomy->labels->singular_name ) )?>><?php echo $category->cat_name ?></li>
 									  <?php 
 									  }
 									?>
@@ -107,7 +107,7 @@ class ADGURU_Ad_Setup_Manager{
 							else
 							{
 							?>
-								<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"single_post_specific_term", "hierarchical"=>0, "taxonomy"=>$tax_slug,"taxonomy_name"=>$taxonomy->labels->singular_name ) )?>>Specific <strong><?php echo $taxonomy->labels->singular_name; ?></strong></li>
+								<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"singular", "taxonomy"=>$tax_slug, 'term'=>"--", "hierarchical"=>0,"taxonomy_name"=>$taxonomy->labels->singular_name ) )?>>Specific <strong><?php echo $taxonomy->labels->singular_name; ?></strong></li>
 							<?php
 							}
 						}
@@ -119,7 +119,7 @@ class ADGURU_Ad_Setup_Manager{
 			<li>
 				<span class="group-name">Taxonomy Archive page</span>
 				<ul>
-					<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy_archive", "taxonomy"=>"--" ) )?>>Any Taxonomy page</li>
+					<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy", "taxonomy"=>"--","term"=>"--" ) )?>>Any Taxonomy page</li>
 				<?php 
 				foreach( $taxonomies as $tax_slug => $taxonomy )
 				{
@@ -130,12 +130,12 @@ class ADGURU_Ad_Setup_Manager{
 						<li>
 							<span class="group-name"><?php echo $taxonomy->labels->name; ?></span>
 							<ul>
-								<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy_archive", "hierarchical"=>1, "term"=>"--", "taxonomy"=>$tax_slug,"taxonomy_name"=>$taxonomy->labels->singular_name ) )?>>Any <?php echo $taxonomy->labels->singular_name; ?></li>
+								<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy", "taxonomy"=>$tax_slug, "term"=>"--", "hierarchical"=>1, "taxonomy_name"=>$taxonomy->labels->singular_name ) )?>>Any <?php echo $taxonomy->labels->singular_name; ?></li>
 							<?php
 							  foreach ($categories as $category)
 							  {
 							  ?>
-							  	<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy_archive", "hierarchical"=>1, "term"=>$category->slug, "term_name"=>$category->cat_name, "taxonomy"=>$tax_slug,"taxonomy_name"=>$taxonomy->labels->singular_name ) )?>><?php echo $category->cat_name ?></li>
+							  	<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy", "taxonomy"=>$tax_slug, "term"=>$category->slug, "hierarchical"=>1, "term_name"=>$category->cat_name,"taxonomy_name"=>$taxonomy->labels->singular_name ) )?>><?php echo $category->cat_name ?></li>
 							  <?php 
 							  }
 							?>
@@ -149,8 +149,8 @@ class ADGURU_Ad_Setup_Manager{
 					<li>
 						<span class="group-name"><?php echo $taxonomy->labels->name; ?></span>
 						<ul>
-							<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy_archive", "hierarchical"=>0, "term"=>"--", "taxonomy"=>$tax_slug,"taxonomy_name"=>$taxonomy->labels->singular_name ) )?>>Any <?php echo $taxonomy->labels->singular_name; ?></li>
-							<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy_archive", "hierarchical"=>0, "taxonomy"=>$tax_slug,"taxonomy_name"=>$taxonomy->labels->singular_name ) )?>>Specific <strong><?php echo $taxonomy->labels->singular_name; ?></strong></li>
+							<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy", "taxonomy"=>$tax_slug, "term"=>"--", "hierarchical"=>0, "taxonomy_name"=>$taxonomy->labels->singular_name ) )?>>Any <?php echo $taxonomy->labels->singular_name; ?></li>
+							<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy", "taxonomy"=>$tax_slug, "term"=>"", "hierarchical"=>0, "taxonomy_name"=>$taxonomy->labels->singular_name ) )?>>Specific <strong><?php echo $taxonomy->labels->singular_name; ?></strong></li>
 						</ul>
 					</li>
 					<?php
@@ -159,9 +159,9 @@ class ADGURU_Ad_Setup_Manager{
 				?>
 				</ul>
 			</li>
-			<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"author_archive" ) )?>>Author Archive Page</li>
-			<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"search_result" ) )?>>Search Result Page</li>
-			<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"404_page" ) )?>>404 Page</li>
+			<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"author", 'taxonomy'=>'--', 'term'=>'--' ) )?>>Author Archive Page</li>
+			<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"search", 'taxonomy'=>'--', 'term'=>'--' ) )?>>Search Result Page</li>
+			<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"404_not_found", 'taxonomy'=>'--', 'term'=>'--' ) )?>>404 Page</li>
 		</ul>
 		<?php 
 		$html = ob_get_clean();

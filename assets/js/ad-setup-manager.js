@@ -41,7 +41,7 @@ var ADGURU_ASM = {};
 				ADGURU_ASM.clear_duplicate_indicator();
 				var condition_set = $(this).closest('.condition-set');
 				var data = $(this).data('page_type_data');
-				ADGURU_ASM.set_page_type_display_html_and_query_data( condition_set, data );
+				ADGURU_ASM.set_page_type_display_html_and_query_data2( condition_set, data );
 				var target = $(this).closest('.page-type-list-box');
 				target.toggleClass('collapsed');
 			});
@@ -244,7 +244,7 @@ var ADGURU_ASM = {};
 			
 		},
 
-		create_condition_set : function( data ){console.log(data);
+		create_condition_set : function( data ){//console.log(data);
 			this.last_set_number++;
 			var html_id = 'condition_set_'+this.last_set_number;
 			var tmpl = ADGURU_ASM_DATA.condition_set_html_template;
@@ -357,7 +357,7 @@ var ADGURU_ASM = {};
 		},
 
 		set_page_type_display_html_and_query_data2 : function( condition_set, data ){
-			
+			console.log(data);
 			if( typeof data.page_type === 'undefined' ){ return; }
 			$(condition_set).removeAttr("need_term_input");
 			var country_code = $(condition_set).find('.country-select').first().val();
@@ -388,12 +388,10 @@ var ADGURU_ASM = {};
 				}//end case 'home'
 				case 'singular': //single_post
 				{
-					title_html = "Any type single post";
-
-
+					
 					if( data.taxonomy == 'single' )
 					{
-						if( data.term = '--')
+						if( data.term == '--')
 						{
 							title_html = "Any type single post";
 						}
@@ -411,7 +409,7 @@ var ADGURU_ASM = {};
 						}
 						else //tag type taxonomy
 						{
-							if( typeof data.term === 'undefined' || data.term == '' )
+							if( typeof data.term === 'undefined' || data.term == '--' )
 							{
 								title_html = 'Single post having <input type="text" placeholder="Term name/slug" class="term-name" taxonomy="'+data.taxonomy+'"> '+data.taxonomy_name;
 								$(condition_set).attr("need_term_input", 1 );
@@ -491,6 +489,7 @@ var ADGURU_ASM = {};
 
 			}//end switch( data.page_type )
 			//console.log(data);
+			console.log(query_data);
 			ADGURU_ASM.set_condition_set_query_data( condition_set, query_data );
 			//console.log("condition_set data");
 			//console.log($(condition_set).data('query_data'));

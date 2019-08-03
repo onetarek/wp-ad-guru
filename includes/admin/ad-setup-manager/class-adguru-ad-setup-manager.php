@@ -233,7 +233,7 @@ class ADGURU_Ad_Setup_Manager{
 	private function get_condition_set_html_template(){
 		ob_start();
 		?>
-		<div class="condition-set" id="{{SET_HTML_ID}}">
+		<div class="condition-set" id="{{SET_HTML_ID}}" previous_country_code="{{PREVIOUS_COUNTRY_CODE}}">
 			<div class="set-header">
 				<span class="ec-btn" title="Edit page type"></span>
 				<span class="page-type-display-box">{{PAGE_TYPE_DISPLAY_HTML}}</span>

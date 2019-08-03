@@ -249,6 +249,7 @@ var ADGURU_ASM = {};
 			var html_id = 'condition_set_'+this.last_set_number;
 			var tmpl = ADGURU_ASM_DATA.condition_set_html_template;
 			var html = tmpl.replace('{{SET_HTML_ID}}', html_id );
+			var html = html.replace('{{PREVIOUS_COUNTRY_CODE}}', data['country_code'] );
 
 			var html = html.replace('{{PAGE_TYPE_DISPLAY_HTML}}', '<span style="color:red">Select page type</span>' );
 			var html = html.replace('{{CONDITION_DETAIL}}', '' );
@@ -510,6 +511,15 @@ var ADGURU_ASM = {};
 			var data = ADGURU_ASM.get_condition_set_query_data(condition_set);
 			data[field] = value;
 			ADGURU_ASM.set_condition_set_query_data( condition_set, data );
+		},
+
+		get_condition_set_previous_country_code : function( condition_set ){
+			var prev_code = $( condition_set ).attr('previous_country_code');
+			return prev_code;
+		},
+
+		set_condition_set_previous_country_code : function( condition_set, code ){
+			$( condition_set ).attr('previous_country_code', code);
 		},
 
 		process_term_name_change : function( obj ){

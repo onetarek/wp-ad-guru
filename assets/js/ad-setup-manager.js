@@ -692,7 +692,7 @@ var ADGURU_ASM = {};
 
 			$.ajax({
 			   url: adGuruAdminVars.ajaxUrl,
-			   type: "GET",
+			   type: "POST",
 			   global: false,
 			   cache: false,
 			   async: true,

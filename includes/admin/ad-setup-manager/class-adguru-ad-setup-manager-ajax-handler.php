@@ -63,13 +63,13 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 	 
 	 public function save_ad_links(){
 	 	//start testing
-	 	write_log( $_REQUEST );
+	 	write_log( $_POST);
 	 	$response = array();
 	 	$response['status'] = 'success';
 		$response['message'] = "Saved";				
-		wp_send_json( $response );
+		//wp_send_json( $response );
 
-	 	return false;
+	 	//return false;
 
 	 	//end testing
 
@@ -84,7 +84,7 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 		
 		$all_ad_types = adguru()->ad_types->types;
 		$use_zone = false;
-		
+		//write_log("ad type : ",$_POST['ad_type'], $ad_type, $all_ad_types);
 		if( $ad_type != "" && isset( $all_ad_types[ $ad_type ] ) )
 		{
 			$ad_type_args = $all_ad_types[ $ad_type ];
@@ -104,11 +104,16 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 		
 
 		$set 		= array();
+		$slides 	= ( isset( $_POST['slides'] ) && is_array( $_POST['slides'] ) ) ? $_POST['slides'] : array();
 		$post_id 	= intval( $_POST['post_id'] );
 		$page_type 	= trim( $_POST['page_type'] ); if( $page_type == "" ) $page_type = "--";
 		$taxonomy 	= trim( $_POST['taxonomy'] ); if( $taxonomy == "" ) $taxonomy = "--";
 		$term 		= trim( $_POST['term'] ); if( $term == "" ) $term = "--";
 		$object_id	= 0;
+
+		$country_code = trim( $_POST['country_code'] ) ; if( $country_code == "" ) $country_code = "--";
+		$previous_country_code = ( isset( $_POST['previous_country_code'] )) ? trim( $_POST['previous_country_code'] ) : "" ;
+		if( $previous_country_code == "" ){ $previous_country_code = $country_code;}
 		
 		if( $post_id )
 		{
@@ -168,32 +173,30 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 		
 		}#end if($post_id)
 		
-		$ad_zone_link_set = $_POST['ad_zone_link_set']; 
 		$ad_ids = array();
-		foreach( $ad_zone_link_set as $link_set_item )
+		$slide_num = 0;
+		foreach( $slides as $slide )
 		{
-			$country_code = isset( $link_set_item['country_code'] ) ? $link_set_item['country_code'] : "";
-			if( $country_code == "" ) { continue; }
-			$ad_slide_set = isset( $link_set_item['ad_slide_set'] ) ? $link_set_item['ad_slide_set'] : "";
-			if( $ad_slide_set == "" ) { continue; }
-			$slide = 0;
-			if( is_array( $ad_slide_set ) && count( $ad_slide_set ) )
+	
+			if( !is_array($slide) || count($slide) == 0 ){ continue;}
+			
+			$slide_num++;
+			
+			foreach( $slide as $ad )
 			{
-				foreach( $ad_slide_set as $ad_slide )
-				{
-					$slide++;
-					foreach( $ad_slide as $ad )
-					{
-						$ad_id = $ad['ad_id'];
-						$ad_ids[] = $ad_id ;
-						$percentage = intval( $ad['percentage'] );
-						$xx = array( "ad_type" => $ad_type, "zone_id"=>$zone_id, "page_type"=>$page_type, "taxonomy"=>$taxonomy, "term"=>$term, "object_id"=>$object_id, "country_code"=>$country_code, "slide"=>$slide, "ad_id"=>$ad_id, "percentage"=>$percentage );
-						$set[]=$xx;
-					}
-				}
+				
+				$ad_id = $ad['ad_id'];
+				$ad_ids[] = $ad_id ;
+				$percentage = intval( $ad['percentage'] );
+				$adType = $ad['ad_type'];
+				$xx = array( "ad_type" => $adType, "zone_id"=>$zone_id, "page_type"=>$page_type, "taxonomy"=>$taxonomy, "term"=>$term, "object_id"=>$object_id, "country_code"=>$country_code, "slide"=>$slide_num, "ad_id"=>$ad_id, "percentage"=>$percentage );
+				$set[]=$xx;
+				
 			}
+			
 		
-		}#end foreach($ad_zone_link_set
+		}#end foreach($slides as $slide
+
 		$ad_ids = array_unique( $ad_ids );
 		$args = array(
 				'post_type'=> adguru()->ad_types->post_types, 
@@ -205,11 +208,11 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 		#delete all type of ads for this zone_id.
 		if( $use_zone )
 		{
-			$wpdb->query("DELETE FROM ".ADGURU_LINKS_TABLE." WHERE zone_id=".$zone_id." AND page_type='".$page_type."' AND taxonomy='".$taxonomy."' AND term='".$term."' AND object_id=".$object_id);	
+			$wpdb->query("DELETE FROM ".ADGURU_LINKS_TABLE." WHERE zone_id=".$zone_id." AND page_type='".$page_type."' AND taxonomy='".$taxonomy."' AND term='".$term."' AND object_id=".$object_id." AND country_code='".$previous_country_code."'");	
 		}
 		else
 		{
-			$wpdb->query("DELETE FROM ".ADGURU_LINKS_TABLE." WHERE ad_type='".$ad_type."' AND zone_id=".$zone_id." AND page_type='".$page_type."' AND taxonomy='".$taxonomy."' AND term='".$term."' AND object_id=".$object_id);
+			$wpdb->query("DELETE FROM ".ADGURU_LINKS_TABLE." WHERE ad_type='".$ad_type."' AND zone_id=".$zone_id." AND page_type='".$page_type."' AND taxonomy='".$taxonomy."' AND term='".$term."' AND object_id=".$object_id." AND country_code='".$country_code."'");
 		}
 		
 		#insert new record. here we are using multiple query for all new record, but we can inseart all at once. 

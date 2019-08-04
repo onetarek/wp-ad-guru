@@ -67,7 +67,7 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 	 	$response = array();
 	 	$response['status'] = 'success';
 		$response['message'] = "Saved";				
-		//wp_send_json( $response );
+		wp_send_json( $response );
 
 	 	//return false;
 

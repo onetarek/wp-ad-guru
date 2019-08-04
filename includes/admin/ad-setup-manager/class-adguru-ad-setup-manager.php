@@ -46,7 +46,7 @@ class ADGURU_Ad_Setup_Manager{
 	 **/
 	private function page_type_item_data_attr( $args ){
 		$json = json_encode($args);
-		echo ' data-page_type_data="'.esc_attr( $json ).'" ';
+		echo ' data-page_type_info_data="'.esc_attr( $json ).'" ';
 	}
 
 	/**
@@ -233,7 +233,7 @@ class ADGURU_Ad_Setup_Manager{
 	private function get_condition_set_html_template(){
 		ob_start();
 		?>
-		<div class="condition-set" id="{{SET_HTML_ID}}" previous_country_code="{{PREVIOUS_COUNTRY_CODE}}">
+		<div class="condition-set" id="{{SET_HTML_ID}}">
 			<div class="set-header">
 				<span class="ec-btn" title="Edit page type"></span>
 				<span class="page-type-display-box">{{PAGE_TYPE_DISPLAY_HTML}}</span>
@@ -498,10 +498,8 @@ class ADGURU_Ad_Setup_Manager{
 		}
 		foreach( $grouped as $key => $links )
 		{
-			$page_type_data = $this->get_page_type_data_for_a_link( $links[0] );
-			$page_type_info_data = $this->get_page_type_data_for_a_link2( $links[0] );
+			$page_type_info_data = $this->get_page_type_data_for_a_link( $links[0] );
 			$set = array(
-				'page_type_data' => $page_type_data,
 				'page_type_info_data' => $page_type_info_data,
 				'links' => $links
 			);
@@ -587,101 +585,6 @@ class ADGURU_Ad_Setup_Manager{
 	 */
 
 	private function get_page_type_data_for_a_link( $link ){
-
-		$post_types = $this->get_post_type_list();
-		$taxonomies = $this->get_taxonomy_list();
-		
-		$data = array();
-		$data['country_code'] = $link->country_code;
-		
-		switch( $link->page_type )
-		{
-			case '--' : 
-			{
-				$data['page_type'] = 'default';
-				break;
-			}
-			case 'home' : 
-			{
-				$data['page_type'] = 'home';
-				break;
-			}
-			case 'singular' : 
-			{
-				if( $link->taxonomy == 'single' )
-				{
-					$data['page_type'] = 'single_post';
-					if( $link->term == '--')
-					{
-						$data['post_type'] = 'any';
-					}
-					else
-					{
-						$data['post_type'] = $link->term;
-						$post_type = $post_types[ $link->term ];
-						$data['post_type_name'] =  $post_type->name;
-					}
-					
-				}
-				else
-				{
-					$data['page_type'] = 'single_post_specific_term';
-					$data['taxonomy'] = $link->taxonomy;
-					$taxonomy = $taxonomies[ $link->taxonomy ];
-					$data['taxonomy_name'] = $taxonomy->labels->singular_name;
-					$data['hierarchical'] = ( $taxonomy->hierarchical ) ? 1 : 0;
-					$data['term'] = $link->term;
-					$term = get_term_by('slug', $link->term, $link->taxonomy );
-					$data['term_name'] = $term->name;
-
-				}
-				break;
-			}
-			case 'taxonomy' : 
-			{
-				$data['page_type'] = 'taxonomy_archive';
-				if( $link->taxonomy == '--')
-				{
-					$data['taxonomy'] = '--';
-				}
-				else
-				{
-					$data['taxonomy'] = $link->taxonomy;
-					$taxonomy = $taxonomies[ $link->taxonomy ];
-					$data['taxonomy_name'] = $taxonomy->labels->singular_name;
-					$data['hierarchical'] = ( $taxonomy->hierarchical ) ? 1 : 0;
-					$data['term'] = $link->term;
-					if( $data['hierarchical'] == 1 && $link->term != '--')
-					{
-						$term = get_term_by('slug', $link->term, $link->taxonomy );
-						$data['term_name'] = $term->name;
-					}
-				}
-				
-				break;
-			}
-			case 'author' : 
-			{
-				$data['page_type'] = 'author_archive';
-				break;
-			}
-			case 'search' : 
-			{
-				$data['page_type'] = 'search_result';
-				break;
-			}
-			case '404_not_found' : 
-			{
-				$data['page_type'] = '404_page';
-				break;
-			}
-
-		}//end switch
-		
-		return $data;
-	}
-
-	private function get_page_type_data_for_a_link2( $link ){
 
 		$post_types = $this->get_post_type_list();
 		$taxonomies = $this->get_taxonomy_list();

@@ -40,8 +40,8 @@ var ADGURU_ASM = {};
 			$('#condition_sets_box').on('click', '.usable', function(){
 				ADGURU_ASM.clear_duplicate_indicator();
 				var condition_set = $(this).closest('.condition-set');
-				var data = $(this).data('page_type_data');
-				ADGURU_ASM.set_page_type_display_html_and_query_data2( condition_set, data );
+				var data = $(this).data('page_type_info_data');
+				ADGURU_ASM.set_page_type_display_html_and_query_data( condition_set, data );
 				var target = $(this).closest('.page-type-list-box');
 				target.toggleClass('collapsed');
 			});
@@ -249,7 +249,6 @@ var ADGURU_ASM = {};
 			var html_id = 'condition_set_'+this.last_set_number;
 			var tmpl = ADGURU_ASM_DATA.condition_set_html_template;
 			var html = tmpl.replace('{{SET_HTML_ID}}', html_id );
-			var html = html.replace('{{PREVIOUS_COUNTRY_CODE}}', data['country_code'] );
 
 			var html = html.replace('{{PAGE_TYPE_DISPLAY_HTML}}', '<span style="color:red">Select page type</span>' );
 			var html = html.replace('{{CONDITION_DETAIL}}', '' );
@@ -290,26 +289,31 @@ var ADGURU_ASM = {};
 			$("#condition_sets_box").append( html );
 			var condition_set = $("#"+html_id);
 			
-			//make old query data
-			var info = data['page_type_info_data'];
-			var initial_query_data = {
-				'ad_type' : ADGURU_ASM_DATA.current_ad_type,
-				'zone_id' : ADGURU_ASM_DATA.current_zone_id,
-				'post_id' : ADGURU_ASM_DATA.current_post_id,
-				'country_code' : info['country_code'],
-				'page_type' : info['page_type'],
-				'taxonomy' : info['taxonomy'],
-				'term' : info['term'],
-
-			};
-			ADGURU_ASM.set_condition_set_initial_query_data( condition_set, initial_query_data );
-			//end make old query data
-
-
 			condition_set.find('.country-select').val( data['country_code'] );
 			
-			//ADGURU_ASM.set_page_type_display_html_and_query_data( condition_set, data['page_type_data'] );
-			ADGURU_ASM.set_page_type_display_html_and_query_data2( condition_set, data['page_type_info_data'] );
+			//make old query data
+			var info = data['page_type_info_data'];
+			if( typeof info.page_type === 'undefined' )//for new blank condition set.
+			{
+				var initial_query_data = {}
+			}
+			else
+			{
+				var initial_query_data = {
+					'ad_type' : ADGURU_ASM_DATA.current_ad_type,
+					'zone_id' : ADGURU_ASM_DATA.current_zone_id,
+					'post_id' : ADGURU_ASM_DATA.current_post_id,
+					'country_code' : info['country_code'],
+					'page_type' : info['page_type'],
+					'taxonomy' : info['taxonomy'],
+					'term' : info['term'],
+
+				};
+			}
+			ADGURU_ASM.set_condition_set_initial_query_data( condition_set, initial_query_data );
+			//end make old query data
+		
+			ADGURU_ASM.set_page_type_display_html_and_query_data( condition_set, data['page_type_info_data'] );
 
 			this.refresh_slides( "#"+html_id );
 			this.make_slides_sortable();
@@ -317,7 +321,7 @@ var ADGURU_ASM = {};
 
 		create_blank_condition_set : function(){
 			var data = {
-				'page_type_data' : [],
+				'page_type_info_data' : {},
 				'country_code' : '--',
 				'links' : [],
 			};
@@ -334,9 +338,8 @@ var ADGURU_ASM = {};
 					var set = ADGURU_ASM_DATA.ad_zone_link_sets[i];
 					
 					var set_data = {
-						'page_type_data' : set.page_type_data,
 						'page_type_info_data' : set.page_type_info_data,
-						'country_code' : set.page_type_data.country_code,
+						'country_code' : set.page_type_info_data.country_code,
 						'links' : set.links
 					}
 					this.create_condition_set( set_data );
@@ -356,7 +359,7 @@ var ADGURU_ASM = {};
     		});
 		},
 
-		set_page_type_display_html_and_query_data2 : function( condition_set, data ){
+		set_page_type_display_html_and_query_data : function( condition_set, data ){
 			console.log(data);
 			if( typeof data.page_type === 'undefined' ){ return; }
 			$(condition_set).removeAttr("need_term_input");
@@ -498,7 +501,7 @@ var ADGURU_ASM = {};
 
 		},
 
-		set_page_type_display_html_and_query_data : function( condition_set, data ){
+		set_page_type_display_html_and_query_data3 : function( condition_set, data ){
 			
 			if( typeof data.page_type === 'undefined' ){ return; }
 			$(condition_set).removeAttr("need_term_input");
@@ -690,15 +693,6 @@ var ADGURU_ASM = {};
 			var data = ADGURU_ASM.get_condition_set_query_data(condition_set);
 			data[field] = value;
 			ADGURU_ASM.set_condition_set_query_data( condition_set, data );
-		},
-
-		get_condition_set_previous_country_code : function( condition_set ){
-			var prev_code = $( condition_set ).attr('previous_country_code');
-			return prev_code;
-		},
-
-		set_condition_set_previous_country_code : function( condition_set, code ){
-			$( condition_set ).attr('previous_country_code', code);
 		},
 
 		process_term_name_change : function( obj ){

@@ -64,10 +64,10 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 	 public function save_ad_links(){
 	 	//start testing
 	 	write_log( $_POST);
-	 	$response = array();
-	 	$response['status'] = 'success';
-		$response['message'] = "Saved";				
-		wp_send_json( $response );
+	 	//$response = array();
+	 	//$response['status'] = 'success';
+		//$response['message'] = "Saved";				
+		//wp_send_json( $response );
 
 	 	//return false;
 
@@ -84,6 +84,12 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 		
 		$all_ad_types = adguru()->ad_types->types;
 		$use_zone = false;
+
+		$initial_query_data = isset( $_POST['initial_query_data'] ) ? $_POST['initial_query_data'] : false;
+		if( !is_array( $initial_query_data ) )
+		{
+			$this->throw_error_response( __( 'Initial query data is required.', 'adguru' ) );
+		}
 		//write_log("ad type : ",$_POST['ad_type'], $ad_type, $all_ad_types);
 		if( $ad_type != "" && isset( $all_ad_types[ $ad_type ] ) )
 		{
@@ -116,8 +122,7 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 		$object_id	= 0;
 
 		$country_code = trim( $_POST['country_code'] ) ; if( $country_code == "" ){ $country_code = "--"; }
-		$previous_country_code = ( isset( $_POST['previous_country_code'] )) ? trim( $_POST['previous_country_code'] ) : "" ;
-		if( $previous_country_code == "" ){ $previous_country_code = $country_code;}
+		
 
 		if( $post_id )
 		{
@@ -209,19 +214,34 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 		$ads = adguru()->manager->get_ads( $args , true);
 		
 		#at first delete all exisiting record for this zone_id and post_id
-		#delete all type of ads for this zone_id.
-		$del_args = array(
-			'zone_id' => $zone_id,
-			'page_type' => $page_type,
-			'taxonomy' => $taxonomy,
-			'term' => $term,
-			'object_id' => $object_id,
-			'country_code' => $previous_country_code,
-			'ad_type' => $ad_type
-		);
+
 		
-		$this->delete_ad_links( $del_args );
-		
+
+		if( !( isset( $initial_query_data['new_entry'] ) && $initial_query_data['new_entry'] == 1 ) )
+		{
+
+
+			$prev_zone_id = $initial_query_data['zone_id'];
+			$prev_page_type = $initial_query_data['page_type'];
+			$prev_taxonomy = $initial_query_data['taxonomy'];
+			$prev_term = $initial_query_data['term'];
+			$prev_object_id = isset($initial_query_data['object_id']) ? $initial_query_data['object_id'] : 0;
+			$prev_country_code = $initial_query_data['country_code'];
+			$prev_ad_type = $initial_query_data['ad_type'];
+
+			#delete all type of ads for this zone_id.
+			$del_args = array(
+				'zone_id' => $prev_zone_id,
+				'page_type' => $prev_page_type,
+				'taxonomy' => $prev_taxonomy,
+				'term' => $prev_term,
+				'object_id' => $prev_object_id,
+				'country_code' => $prev_country_code,
+				'ad_type' => $prev_ad_type
+			);
+			
+			$this->delete_ad_links( $del_args );
+		}
 		
 		#insert new record. here we are using multiple query for all new record, but we can inseart all at once. 
 		foreach($set as $s)

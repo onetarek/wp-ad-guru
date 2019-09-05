@@ -294,7 +294,7 @@ var ADGURU_ASM = {};
 			var info = data['page_type_info_data'];
 			if( typeof info.page_type === 'undefined' )//for new blank condition set.
 			{
-				var initial_query_data = {}
+				var initial_query_data = { 'new_entry' : 1 };
 			}
 			else
 			{
@@ -504,7 +504,7 @@ var ADGURU_ASM = {};
 			var data = $(condition_set).data('initial_query_data');
 			if( typeof data === 'undefined' )
 			{
-				data = {};
+				data = {'new_entry' : 1 };
 			}
 			return data;
 		},

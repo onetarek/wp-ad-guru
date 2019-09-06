@@ -63,18 +63,7 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 	 }
 	 
 	 public function save_ad_links(){
-	 	//start testing
-	 	write_log( $_POST);
-	 	//$response = array();
-	 	//$response['status'] = 'success';
-		//$response['message'] = "Saved";				
-		//wp_send_json( $response );
-
-	 	//return false;
-
-	 	//end testing
-
-
+	 	
 	 	$this->check_permission( 'save_ad_links' );
 		
 		$response = array();
@@ -91,7 +80,7 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 		{
 			$this->throw_error_response( __( 'Initial query data is required.', 'adguru' ) );
 		}
-		//write_log("ad type : ",$_POST['ad_type'], $ad_type, $all_ad_types);
+		
 		if( $ad_type != "" && isset( $all_ad_types[ $ad_type ] ) )
 		{
 			$ad_type_args = $all_ad_types[ $ad_type ];

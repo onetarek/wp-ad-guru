@@ -7,6 +7,7 @@ var ADGURU_ASM = {};
 		last_set_number : 0,
 		selected_ads_box_to_insert_ad : null,
 		condition_set_query_data_stringify : {},
+		condition_set_initial_query_data_stringify : {},
 		
 		init : function(){
 			this.add_events();
@@ -516,6 +517,8 @@ var ADGURU_ASM = {};
 
 		set_condition_set_initial_query_data : function( condition_set, data ){
 			$(condition_set).data('initial_query_data', data);
+			var id = $(condition_set).attr('id');
+			ADGURU_ASM.condition_set_initial_query_data_stringify[id] = JSON.stringify( data );
 		},
 
 		set_condition_set_single_initial_query_data : function( condition_set, field, value ){
@@ -601,9 +604,9 @@ var ADGURU_ASM = {};
 			var this_data = ADGURU_ASM.condition_set_query_data_stringify[id];
 			var duplicate_id = false;
 			
-			for( var i in ADGURU_ASM.condition_set_query_data_stringify )
+			for( var i in ADGURU_ASM.condition_set_initial_query_data_stringify )
 			{
-				if( i != id && this_data == ADGURU_ASM.condition_set_query_data_stringify[i] )
+				if( i != id && this_data == ADGURU_ASM.condition_set_initial_query_data_stringify[i] )
 				{
 					duplicate_id = i;
 					break;
@@ -715,7 +718,7 @@ var ADGURU_ASM = {};
 				return false;
 			}
 			
-
+			ADGURU_ASM.clear_duplicate_indicator();
 			ADGURU_ASM.show_hide_save_loading( condition_set );
 			ADGURU_ASM.disable_save_btn( condition_set );
 
@@ -782,7 +785,7 @@ var ADGURU_ASM = {};
 
 			}
 			
-
+			ADGURU_ASM.clear_duplicate_indicator();
 			ADGURU_ASM.show_hide_delete_loading( condition_set );
 			ADGURU_ASM.disable_save_btn( condition_set );
 			ADGURU_ASM.enable_delete_btn( condition_set );

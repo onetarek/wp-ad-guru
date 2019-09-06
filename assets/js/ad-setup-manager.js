@@ -119,6 +119,11 @@ var ADGURU_ASM = {};
 				ADGURU_ASM.process_save_btn_click(obj);
 			});
 
+			$('#condition_sets_box').on('click', '.delete-set-btn', function(){
+				var obj = $(this);
+				ADGURU_ASM.process_delete_set_btn_click(obj);
+			});
+
 
 			$('.ads_list_item').click(function(){
 				$('.ads_list_item').removeClass('selected');
@@ -759,7 +764,63 @@ var ADGURU_ASM = {};
 
 		},
 
+		
+		process_delete_set_btn_click : function( obj ){
+			var condition_set = $(obj).closest('.condition-set');
+			ADGURU_ASM.remove_error_msg( condition_set );
+			ADGURU_ASM.delete_condition_set( condition_set );
+		},
+
 		delete_condition_set : function( condition_set ){
+
+			var initial_query_data = ADGURU_ASM.get_condition_set_initial_query_data( condition_set );
+			var query_data = ADGURU_ASM.get_condition_set_query_data( condition_set );
+
+			if( typeof query_data.page_type === 'undefined' )
+			{
+				return false;
+
+			}
+			
+
+			ADGURU_ASM.show_hide_delete_loading( condition_set );
+			ADGURU_ASM.disable_save_btn( condition_set );
+			ADGURU_ASM.enable_delete_btn( condition_set );
+
+
+			//console.log( query_data );
+			var qData = {
+				'action' : 'adguru_delete_condition_set', 
+				'initial_query_data' : initial_query_data
+			};
+
+			$.ajax({
+			   url: adGuruAdminVars.ajaxUrl,
+			   type: "POST",
+			   global: false,
+			   cache: false,
+			   async: true,
+			   data:qData,
+				success: function(response){
+					
+					ADGURU_ASM.show_hide_save_loading( condition_set );
+					ADGURU_ASM.enable_save_btn( condition_set );
+					ADGURU_ASM.enable_save_btn( condition_set );
+
+					if(response.status == 'success')
+					{
+						console.log(response.message);
+						ADGURU_ASM.destroy_condition_set( condition_set );
+										
+					}
+					else
+					{
+						alert(response.message);
+					}
+				},
+				error: function(xhr,errorThrown){}
+				   
+			});//end $.ajax
 
 		},
 
@@ -786,6 +847,15 @@ var ADGURU_ASM = {};
 		},
 		remove_error_msg : function( condition_set ){
 			$(condition_set).find('.set-error-msg-box').first().html('');
+		},
+
+		destroy_condition_set : function ( condition_set ){
+			ADGURU_ASM.clear_duplicate_indicator();
+			var id = $( condition_set ).attr('id');
+			console.log( ADGURU_ASM.condition_set_query_data_stringify );
+			delete ADGURU_ASM.condition_set_query_data_stringify[id];
+			console.log( ADGURU_ASM.condition_set_query_data_stringify );
+			$( condition_set ).remove();
 		}
 
 

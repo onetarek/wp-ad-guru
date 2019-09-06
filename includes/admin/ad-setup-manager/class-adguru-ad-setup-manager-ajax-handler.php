@@ -26,6 +26,7 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 		
 		add_action( 'wp_ajax_adguru_save_ad_links', array( $this, 'save_ad_links' ) );
 		add_action( 'wp_ajax_adguru_get_term_data', array( $this, 'get_term_data' ) );
+		add_action( 'wp_ajax_adguru_delete_condition_set', array( $this, 'delete_condition_set' ) );
 
 		
 	}//END FUNC 
@@ -215,33 +216,9 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 		
 		#at first delete all exisiting record for this zone_id and post_id
 
+		$this->delete_ad_links_by_initial_query_data( $initial_query_data );
+
 		
-
-		if( !( isset( $initial_query_data['new_entry'] ) && $initial_query_data['new_entry'] == 1 ) )
-		{
-
-
-			$prev_zone_id = $initial_query_data['zone_id'];
-			$prev_page_type = $initial_query_data['page_type'];
-			$prev_taxonomy = $initial_query_data['taxonomy'];
-			$prev_term = $initial_query_data['term'];
-			$prev_object_id = isset($initial_query_data['object_id']) ? $initial_query_data['object_id'] : 0;
-			$prev_country_code = $initial_query_data['country_code'];
-			$prev_ad_type = $initial_query_data['ad_type'];
-
-			#delete all type of ads for this zone_id.
-			$del_args = array(
-				'zone_id' => $prev_zone_id,
-				'page_type' => $prev_page_type,
-				'taxonomy' => $prev_taxonomy,
-				'term' => $prev_term,
-				'object_id' => $prev_object_id,
-				'country_code' => $prev_country_code,
-				'ad_type' => $prev_ad_type
-			);
-			
-			$this->delete_ad_links( $del_args );
-		}
 		
 		#insert new record. here we are using multiple query for all new record, but we can inseart all at once. 
 		foreach($set as $s)
@@ -309,6 +286,62 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 	 	wp_send_json( $response );
 		return;	
 	 }//end func
+
+	 public function delete_condition_set(){
+	 	$response = array();
+	 	$initial_query_data = isset( $_POST['initial_query_data'] ) ? $_POST['initial_query_data'] : false;
+		if( !is_array( $initial_query_data ) )
+		{
+			$this->throw_error_response( __( 'Initial query data is required.', 'adguru' ) );
+		}
+		else
+		{
+			$success = $this->delete_ad_links_by_initial_query_data( $initial_query_data );
+			if( $success )
+			{
+				$response['status'] = 'success';
+				$response['message'] = "deleted";
+				wp_send_json( $response );
+				return;
+			}
+			else
+			{
+				$this->throw_error_response( __( 'Delete operation has been failed based on given initial query data.', 'adguru' ) ); 
+			}
+			
+		}
+
+	 }
+
+	 private function delete_ad_links_by_initial_query_data( $initial_query_data ){
+	 	if( !( isset( $initial_query_data['new_entry'] ) && $initial_query_data['new_entry'] == 1 ) )
+		{
+
+
+			$prev_zone_id = $initial_query_data['zone_id'];
+			$prev_page_type = $initial_query_data['page_type'];
+			$prev_taxonomy = $initial_query_data['taxonomy'];
+			$prev_term = $initial_query_data['term'];
+			$prev_object_id = isset($initial_query_data['object_id']) ? $initial_query_data['object_id'] : 0;
+			$prev_country_code = $initial_query_data['country_code'];
+			$prev_ad_type = $initial_query_data['ad_type'];
+
+			#delete all type of ads for this zone_id.
+			$del_args = array(
+				'zone_id' => $prev_zone_id,
+				'page_type' => $prev_page_type,
+				'taxonomy' => $prev_taxonomy,
+				'term' => $prev_term,
+				'object_id' => $prev_object_id,
+				'country_code' => $prev_country_code,
+				'ad_type' => $prev_ad_type
+			);
+			
+			$this->delete_ad_links( $del_args );
+			return true;
+		}
+		return false;
+	 }
 	  
 }// end class
 

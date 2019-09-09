@@ -293,14 +293,15 @@ var ADGURU_ASM = {};
 
 			$("#condition_sets_box").append( html );
 			var condition_set = $("#"+html_id);
-			condition_set.addClass('collapsed');
-			condition_set.find('.country-select').val( data['country_code'] );
 			
+			condition_set.find('.country-select').val( data['country_code'] );
+			var new_entry = false;
 			//make old query data
 			var info = data['page_type_info_data'];
 			if( typeof info.page_type === 'undefined' )//for new blank condition set.
 			{
 				var initial_query_data = { 'new_entry' : 1 };
+				new_entry = true;
 			}
 			else
 			{
@@ -315,6 +316,13 @@ var ADGURU_ASM = {};
 
 				};
 			}
+
+
+			if( new_entry == 0 )//do not collapsed new blank set
+			{
+				condition_set.addClass('collapsed');
+			}
+
 			ADGURU_ASM.set_condition_set_initial_query_data( condition_set, initial_query_data );
 			//end make old query data
 		

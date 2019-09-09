@@ -494,8 +494,17 @@ class ADGURU_Ad_Setup_Manager{
 		$this->ad_zone_link_sets = array();
 		foreach( $this->ad_zone_links as $link )
 		{
-			$grouped[ $link->zone_id . $link->page_type . $link->taxonomy . $link->term . $link->object_id . $link->country_code ][] = $link;
+			$key = $link->zone_id . $link->page_type . $link->taxonomy . $link->term . $link->object_id . $link->country_code;
+			/*
+			Problem : we want default things ( '--' ) to prioritize in sort , but alphabetical order of '--' is lower.
+			Solution : convert all '--' in key to '00'
+			*/
+			$key = str_replace('--', '00', $key ); 
+			$grouped[ $key ][] = $link;
 		}
+		
+		ksort($grouped);
+
 		foreach( $grouped as $key => $links )
 		{
 			$page_type_info_data = $this->get_page_type_data_for_a_link( $links[0] );

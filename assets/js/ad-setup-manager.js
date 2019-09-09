@@ -298,7 +298,7 @@ var ADGURU_ASM = {};
 			var new_entry = false;
 			//make old query data
 			var info = data['page_type_info_data'];
-			if( typeof info.page_type === 'undefined' )//for new blank condition set.
+			if( typeof data.new_entry !== 'undefined' && data.new_entry == 1 )//for new blank condition set.
 			{
 				var initial_query_data = { 'new_entry' : 1 };
 				new_entry = true;
@@ -337,6 +337,26 @@ var ADGURU_ASM = {};
 				'page_type_info_data' : {},
 				'country_code' : '--',
 				'links' : [],
+				'new_entry' : 1,
+			};
+
+			this.create_condition_set(data);
+		},
+
+		create_blank_default_condition_set : function(){
+			var data = {
+				'page_type_info_data' : {
+					ad_type : ADGURU_ASM_DATA.current_ad_type,
+					zone_id : ADGURU_ASM_DATA.current_zone_id,
+					post_id : ADGURU_ASM_DATA.current_post_id,
+					page_type: "--",
+					taxonomy: "--",
+					term: "--",
+					country_code: "--",
+				},
+				'country_code' : '--',
+				'links' : [],
+				'new_entry' : 1,
 			};
 
 			this.create_condition_set(data);
@@ -345,6 +365,13 @@ var ADGURU_ASM = {};
 		create_condition_sets: function(){ //console.log(ADGURU_ASM_DATA.ad_zone_link_sets);
 			if( typeof ADGURU_ASM_DATA.ad_zone_link_sets != 'undefined' && ADGURU_ASM_DATA.ad_zone_link_sets.length != 0 )
 			{
+				//IF NO DEFAULT SET, then create new blank default set
+				var first = ADGURU_ASM_DATA.ad_zone_link_sets[0].page_type_info_data;
+				if( first.page_type != '--' || first.taxonomy != '--' || first.term != '--' || first.country_code != '--' ) 
+				{
+					ADGURU_ASM.create_blank_default_condition_set();
+				}
+
 				var i;
 				for( i in ADGURU_ASM_DATA.ad_zone_link_sets )
 				{
@@ -358,6 +385,10 @@ var ADGURU_ASM = {};
 					this.create_condition_set( set_data );
 				}
 				$("#condition_set_1").removeClass('collapsed');
+			}
+			else
+			{
+				ADGURU_ASM.create_blank_default_condition_set();
 			}
 		},
 

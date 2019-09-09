@@ -18,6 +18,14 @@ var ADGURU_ASM = {};
 		add_events : function(){
 			
 			
+			$("#exapnd_all_btn").click(function(){
+				$('.condition-set').removeClass('collapsed');
+			});
+			
+			$("#collapse_all_btn").click(function(){
+				$('.condition-set').addClass('collapsed');
+			});
+
 			$("#add_condition_set_btn").click(function(){
 				ADGURU_ASM.create_blank_condition_set();
 			});

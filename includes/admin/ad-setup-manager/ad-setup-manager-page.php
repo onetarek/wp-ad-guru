@@ -101,7 +101,9 @@ if( ! $zone_selection_needed )
 		if( ! $zone_selection_needed ) : 
 		
 		?>
-	
+		<div id="top_control_box">
+			<span class="collapse_exapnd_all_btn" id="exapnd_all_btn">expand all</span><span id="collapse_all_btn" class="collapse_exapnd_all_btn">collapse all</span>
+		</div>
 		<div id="condition_sets_box">
 			<!-- / all .condition-set will be placed here -->			
 		</div><!-- /#condition_sets_box -->

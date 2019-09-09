@@ -779,13 +779,24 @@ var ADGURU_ASM = {};
 			var initial_query_data = ADGURU_ASM.get_condition_set_initial_query_data( condition_set );
 			var query_data = ADGURU_ASM.get_condition_set_query_data( condition_set );
 
+			
+			
+			ADGURU_ASM.clear_duplicate_indicator();
+
+
+			if( typeof initial_query_data.new_entry !== 'undefined' && initial_query_data.new_entry == 1 )
+			{
+				ADGURU_ASM.destroy_condition_set( condition_set );
+				return true;
+
+			}
+
 			if( typeof query_data.page_type === 'undefined' )
 			{
 				return false;
 
 			}
-			
-			ADGURU_ASM.clear_duplicate_indicator();
+
 			ADGURU_ASM.show_hide_delete_loading( condition_set );
 			ADGURU_ASM.disable_save_btn( condition_set );
 			ADGURU_ASM.enable_delete_btn( condition_set );
@@ -855,9 +866,9 @@ var ADGURU_ASM = {};
 		destroy_condition_set : function ( condition_set ){
 			ADGURU_ASM.clear_duplicate_indicator();
 			var id = $( condition_set ).attr('id');
-			console.log( ADGURU_ASM.condition_set_query_data_stringify );
+			//console.log( ADGURU_ASM.condition_set_query_data_stringify );
 			delete ADGURU_ASM.condition_set_query_data_stringify[id];
-			console.log( ADGURU_ASM.condition_set_query_data_stringify );
+			//console.log( ADGURU_ASM.condition_set_query_data_stringify );
 			$( condition_set ).remove();
 		}
 

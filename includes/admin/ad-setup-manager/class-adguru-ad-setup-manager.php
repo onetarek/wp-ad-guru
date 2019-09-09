@@ -264,7 +264,7 @@ class ADGURU_Ad_Setup_Manager{
 				<div class="add-slide-btn-box"><span class="add-slide-btn">Add new slide</span></div>
 			</div><!-- /.set-body -->
 			<div class="set-footer">
-				<div class="set-error-msg-box">Error message will go here<!-- Error message will go here --></div>
+				<div class="set-error-msg-box"><!-- Error message will go here --></div>
 				<span class="save-btn">Save</span>
 				<span class="save-loading hidden"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
 				

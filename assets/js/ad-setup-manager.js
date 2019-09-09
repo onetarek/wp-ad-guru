@@ -293,7 +293,7 @@ var ADGURU_ASM = {};
 
 			$("#condition_sets_box").append( html );
 			var condition_set = $("#"+html_id);
-			
+			condition_set.addClass('collapsed');
 			condition_set.find('.country-select').val( data['country_code'] );
 			
 			//make old query data
@@ -349,6 +349,7 @@ var ADGURU_ASM = {};
 					}
 					this.create_condition_set( set_data );
 				}
+				$("#condition_set_1").removeClass('collapsed');
 			}
 		},
 

@@ -219,7 +219,7 @@ class ADGURU_Ad_Setup_Manager{
 			<div class="ads-box">
 				{{ADS_HTML}}
 			</div><!-- /.ads-box -->
-			<div class="add-ad-btn-box"><span class="add-ad-btn">Add new banner</span></div>
+			<div class="add-ad-btn-box"><span class="add-ad-btn">Add new <?php echo $this->current_ad_type_args['name']?></span></div>
 		</div><!-- /.slide -->
 		<?php 
 		$html = ob_get_clean();

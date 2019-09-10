@@ -47,6 +47,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				'file' 	=> ADGURU_PLUGIN_DIR."includes/admin/ad-edit.php",
 				'callback' => '' 
 				),
+			/*
 			'links' =>array( 
 				'slug'	=> 'links', 
 				'text'	=> ( $use_zone == true )? sprintf( __("Set %s to zone", "adguru" ) , $current_ad_type_args['plural_name'] ) : sprintf( __("Set %s to pages", "adguru" ) , $current_ad_type_args['plural_name'] ), 
@@ -54,9 +55,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				'file' 	=> ADGURU_PLUGIN_DIR."includes/admin/links-editor/links-editor-page.php",
 				'callback' => '' 
 				),
+			*/
 			'setup' =>array( 
 				'slug'	=> 'setup', 
-				'text'	=> __("Setup", "adguru" ), 
+				//'text'	=> __("Setup", "adguru" ), 
+				'text'	=> ( $use_zone == true )? sprintf( __("Set %s to zone", "adguru" ) , $current_ad_type_args['plural_name'] ) : sprintf( __("Set %s to pages", "adguru" ) , $current_ad_type_args['plural_name'] ),
 				'link'	=> 'admin.php?page=adguru_setup_ads&ad_type='.$current_ad_type,
 				'callback' => array( adguru()->ad_setup_manager, 'editor_page' ) 
 				),									

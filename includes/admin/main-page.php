@@ -28,6 +28,9 @@ if( ! defined( 'ABSPATH' ) ) exit;
 		$i++;
 		$class_name = ($i % 4 == 0 )? 'adg_feature_card item-'.($i).' last-col' : 'adg_feature_card item-'.($i);
 		$ptype = ADGURU_ADMANAGER_PAGE_SLUG_PREFIX.$type;
+		$links_tab_link = "admin.php?page=".$ptype."&manager_tab=links";
+		$setup_page_link = "admin.php?page=adguru_setup_ads&ad_type=".$type;
+		$setup_page_link_text = ( isset($args['use_zone']) && $args['use_zone'] == true ) ? __("Set to zone", "adguru" ) : __("Set to pages", "adguru");
 	?>
 		
 		<div class="<?php echo $class_name;?>">
@@ -35,9 +38,9 @@ if( ! defined( 'ABSPATH' ) ) exit;
 				<a href="admin.php?page=<?php echo $ptype ?>"><?php echo $args['plural_name'] ?></a>
 			</div>
 			<div class="link-area">
-				<div class="card-icon-col col_3"><a class="card-link" href="admin.php?page=<?php echo $ptype ?>&manager_tab=all"><span class="card-icon card-icon-all"></span><div class="card-link-text">All</div></a></div>
-				<div class="card-icon-col col_3"><a class="card-link" href="admin.php?page=<?php echo $ptype ?>&manager_tab=edit"><span class="card-icon card-icon-new"></span><div class="card-link-text">New</div></a></div>
-				<div class="card-icon-col col_3 last-col"><a class="card-link" href="admin.php?page=<?php echo $ptype ?>&manager_tab=links"><span class="card-icon card-icon-link"></span><div class="card-link-text">Links</div></a></div>
+				<div class="card-icon-col col_3"><a class="card-link" href="admin.php?page=<?php echo $ptype ?>&manager_tab=all"><span class="card-icon card-icon-all"></span><div class="card-link-text"><?php _e("All", "adguru" )?></div></a></div>
+				<div class="card-icon-col col_3"><a class="card-link" href="admin.php?page=<?php echo $ptype ?>&manager_tab=edit"><span class="card-icon card-icon-new"></span><div class="card-link-text"><?php _e("New", "adguru" )?></div></a></div>
+				<div class="card-icon-col col_3 last-col"><a class="card-link" href="<?php echo $setup_page_link ?>"><span class="card-icon card-icon-link"></span><div class="card-link-text"><?php echo $setup_page_link_text ?></div></a></div>
 				<div style="clear:left"></div>
 			</div>
 		</div>

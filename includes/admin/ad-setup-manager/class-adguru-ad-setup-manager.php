@@ -209,17 +209,18 @@ class ADGURU_Ad_Setup_Manager{
 	 */
 	private function get_slide_html_template(){
 		ob_start();
+		$slide_text = ( isset( $this->current_ad_type_args['use_zone'] ) && $this->current_ad_type_args['use_zone'] == true ) ? "Slide" : "Set";
 		?>
 		<div class="slide">
 			<span class="slide-delete-btn" title="Delete this slide"></span>
 			<div class="slide-header">
-				Slide <span class="slide_number">{{SLIDE_NUMBER}}</span>
+				<?php echo $slide_text?> <span class="slide_number">{{SLIDE_NUMBER}}</span>
 				<span class="equal-btn" title="Click to fill all rotate fields with equal value"></span>
 			</div>
 			<div class="ads-box">
 				{{ADS_HTML}}
 			</div><!-- /.ads-box -->
-			<div class="add-ad-btn-box"><span class="add-ad-btn">Add new <?php echo $this->current_ad_type_args['name']?></span></div>
+			<div class="add-ad-btn-box"><span class="add-ad-btn">Add <?php echo $this->current_ad_type_args['name']?></span></div>
 		</div><!-- /.slide -->
 		<?php 
 		$html = ob_get_clean();
@@ -232,6 +233,7 @@ class ADGURU_Ad_Setup_Manager{
 	 */
 	private function get_condition_set_html_template(){
 		ob_start();
+		$slide_text = ( isset( $this->current_ad_type_args['use_zone'] ) && $this->current_ad_type_args['use_zone'] == true ) ? "Slide" : "Set";
 		?>
 		<div class="condition-set" id="{{SET_HTML_ID}}">
 			<div class="set-header">
@@ -261,7 +263,7 @@ class ADGURU_Ad_Setup_Manager{
 				<div class="slides-box">
 					{{SLIDES_HTML}}
 				</div><!-- /.slides-box -->
-				<div class="add-slide-btn-box"><span class="add-slide-btn">Add new slide</span></div>
+				<div class="add-slide-btn-box"><span class="add-slide-btn">Add new <?php echo $slide_text ?></span></div>
 			</div><!-- /.set-body -->
 			<div class="set-footer">
 				<div class="set-error-msg-box"><!-- Error message will go here --></div>

@@ -21,7 +21,7 @@ var ADGURU_ASM = {};
 			$("#exapnd_all_btn").click(function(){
 				$('.condition-set').removeClass('collapsed');
 			});
-			
+
 			$("#collapse_all_btn").click(function(){
 				$('.condition-set').addClass('collapsed');
 			});
@@ -65,7 +65,7 @@ var ADGURU_ASM = {};
 				var condition_set = $(this).closest('.condition-set');
 				var value = $(this).val();
 				ADGURU_ASM.set_condition_set_single_query_data(condition_set, 'country_code', value );
-				//console.log($(condition_set).data('query_data'));
+				
 			});
 
 			$('#condition_sets_box').on('click', '.ad-remove-btn', function(){
@@ -257,7 +257,7 @@ var ADGURU_ASM = {};
 			
 		},
 
-		create_condition_set : function( data ){//console.log(data);
+		create_condition_set : function( data ){
 			this.last_set_number++;
 			var html_id = 'condition_set_'+this.last_set_number;
 			var tmpl = ADGURU_ASM_DATA.condition_set_html_template;
@@ -370,7 +370,7 @@ var ADGURU_ASM = {};
 			this.create_condition_set(data);
 		},
 
-		create_condition_sets: function(){ //console.log(ADGURU_ASM_DATA.ad_zone_link_sets);
+		create_condition_sets: function(){
 			if( typeof ADGURU_ASM_DATA.ad_zone_link_sets != 'undefined' && ADGURU_ASM_DATA.ad_zone_link_sets.length != 0 )
 			{
 				//IF NO DEFAULT SET, then create new blank default set
@@ -413,7 +413,7 @@ var ADGURU_ASM = {};
 		},
 
 		set_page_type_display_html_and_query_data : function( condition_set, data ){
-			//console.log(data);
+			
 			if( typeof data.page_type === 'undefined' ){ return; }
 			$(condition_set).removeAttr("need_term_input");
 			var country_code = $(condition_set).find('.country-select').first().val();
@@ -544,12 +544,9 @@ var ADGURU_ASM = {};
 				}//end case '404_not_found'
 
 			}//end switch( data.page_type )
-			//console.log(data);
-			//console.log(query_data);
+			
 			ADGURU_ASM.set_condition_set_query_data( condition_set, query_data );
-			//console.log("condition_set data");
-			//console.log($(condition_set).data('query_data'));
-
+			
 			$(condition_set).find('.page-type-display-box').first().html(title_html);
 
 		},
@@ -760,7 +757,7 @@ var ADGURU_ASM = {};
 			}
 
 			var result = ADGURU_ASM.check_input_error_and_make_data( condition_set );
-			//console.log( result );
+			
 			if( result.hasError )
 			{
 				return false;
@@ -770,8 +767,6 @@ var ADGURU_ASM = {};
 			ADGURU_ASM.show_hide_save_loading( condition_set );
 			ADGURU_ASM.disable_save_btn( condition_set );
 
-
-			//console.log( query_data );
 			var qData = {
 				'action' : 'adguru_save_ad_links',
 				'zone_id' : query_data.zone_id,
@@ -850,7 +845,6 @@ var ADGURU_ASM = {};
 			ADGURU_ASM.enable_delete_btn( condition_set );
 
 
-			//console.log( query_data );
 			var qData = {
 				'action' : 'adguru_delete_condition_set', 
 				'initial_query_data' : initial_query_data
@@ -914,9 +908,7 @@ var ADGURU_ASM = {};
 		destroy_condition_set : function ( condition_set ){
 			ADGURU_ASM.clear_duplicate_indicator();
 			var id = $( condition_set ).attr('id');
-			//console.log( ADGURU_ASM.condition_set_query_data_stringify );
 			delete ADGURU_ASM.condition_set_query_data_stringify[id];
-			//console.log( ADGURU_ASM.condition_set_query_data_stringify );
 			$( condition_set ).remove();
 		}
 

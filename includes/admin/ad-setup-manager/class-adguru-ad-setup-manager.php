@@ -461,7 +461,6 @@ class ADGURU_Ad_Setup_Manager{
 			}
 			
 		}
-		//write_log($this->ads);
 	}
 
 	/**
@@ -517,7 +516,6 @@ class ADGURU_Ad_Setup_Manager{
 			$this->ad_zone_link_sets[] = $set;
 		}
 		
-		//write_log($grouped);
 	}
 
 	/**

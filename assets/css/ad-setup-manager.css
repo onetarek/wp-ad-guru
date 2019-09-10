@@ -481,6 +481,7 @@
 .condition-set .set-footer .save-btn{
 	width: 100px;
 	border: 1px solid #49a0bc;
+	border-radius: 5px;
 	padding:5px;
 	padding-top: 7px;
 	position: absolute;

@@ -28,6 +28,9 @@ if( ! defined( 'ABSPATH' ) ) exit;
 		$i++;
 		$class_name = ($i % 4 == 0 )? 'adg_feature_card item-'.($i).' last-col' : 'adg_feature_card item-'.($i);
 		$ptype = ADGURU_ADMANAGER_PAGE_SLUG_PREFIX.$type;
+		$links_tab_link = "admin.php?page=".$ptype."&manager_tab=links";
+		$setup_page_link = "admin.php?page=adguru_setup_ads&ad_type=".$type;
+		$setup_page_link_text = ( isset($args['use_zone']) && $args['use_zone'] == true ) ? __("Set to zone", "adguru" ) : __("Set to pages", "adguru");
 	?>
 		
 		<div class="<?php echo $class_name;?>">
@@ -35,9 +38,9 @@ if( ! defined( 'ABSPATH' ) ) exit;
 				<a href="admin.php?page=<?php echo $ptype ?>"><?php echo $args['plural_name'] ?></a>
 			</div>
 			<div class="link-area">
-				<div class="card-icon-col col_3"><a class="card-link" href="admin.php?page=<?php echo $ptype ?>&manager_tab=all"><span class="card-icon card-icon-all"></span><div class="card-link-text">All</div></a></div>
-				<div class="card-icon-col col_3"><a class="card-link" href="admin.php?page=<?php echo $ptype ?>&manager_tab=edit"><span class="card-icon card-icon-new"></span><div class="card-link-text">New</div></a></div>
-				<div class="card-icon-col col_3 last-col"><a class="card-link" href="admin.php?page=<?php echo $ptype ?>&manager_tab=links"><span class="card-icon card-icon-link"></span><div class="card-link-text">Links</div></a></div>
+				<div class="card-icon-col col_3"><a class="card-link" href="admin.php?page=<?php echo $ptype ?>&manager_tab=all"><span class="card-icon card-icon-all"></span><div class="card-link-text"><?php _e("All", "adguru" )?></div></a></div>
+				<div class="card-icon-col col_3"><a class="card-link" href="admin.php?page=<?php echo $ptype ?>&manager_tab=edit"><span class="card-icon card-icon-new"></span><div class="card-link-text"><?php _e("New", "adguru" )?></div></a></div>
+				<div class="card-icon-col col_3 last-col"><a class="card-link" href="<?php echo $setup_page_link ?>"><span class="card-icon card-icon-link"></span><div class="card-link-text"><?php echo $setup_page_link_text ?></div></a></div>
 				<div style="clear:left"></div>
 			</div>
 		</div>
@@ -239,15 +242,16 @@ if( ! defined( 'ABSPATH' ) ) exit;
 			<strong>Step 3: Set a banner to a zone</strong><br />
 			To show your banner you have to specify the banner for a specific zone. 
 			<ul style="list-style-type:disc; padding-left:30px;">
-				<li>Go to <a href="admin.php?page=adguru_ad_banner&manager_tab=links"><strong>set banner to zone</strong></a> page.</li>
+				<li>Go to <a href="admin.php?page=adguru_setup_ads&ad_type=banner"><strong>set banner to zone</strong></a> page.</li>
 				<li>There is a list of zone names. Select a zone where you want to show your banner.</li>
-				<li>You will see some tab like default, home, singular......etc. A zone may be shown in many pages in your website. You can specify different ads set for different type of pages.
-				    Chose a type of page. As beginner click on default tab.
-				</li>
-				<li>Click on "Add new banner" link</li>
+				
+				<li>You will see a box where you can set banners to show in all types of pages and for vistors of any country</li>
+				<li>You can set different ads for different type of pages. Click on <strong>Add new ad set and condition</strong> button, you will get new setup area. Select type of page and country</li>
+
+				<li>Click on "Add banner" link</li>
 				<li>A popup will come with a list of banners you created. Select a banner and click insert</li>
 				<li>Your selected banner name will be shown with a text input field and a delete button. <strong>Put 100 in the % field</strong>.</li>
-				<li>Click on <strong>Save Change</strong> button</li>
+				<li>Click on <strong>Save</strong> button</li>
 			</ul><br />
 			<strong>Step 4: Show zone in website</strong><br />
 			You have done zone and banner setting. Now you have to set the zone to a place of your website. There are three method to set a zone in a place of website.
@@ -283,16 +287,17 @@ if( ! defined( 'ABSPATH' ) ) exit;
 		</div>
 		
 		
-		<h3>How to setup and show modal popups</h3>
+		<h3>How to setup and show modal popups?</h3>
 		<div>
 			<strong>Step 1: <a href="admin.php?page=adguru_ad_modal_popup&manager_tab=edit">Add new modal popups</a></strong><br />
-			<strong>Step 2: <a href="admin.php?page=adguru_ad_modal_popup&manager_tab=links">Set modal popups to pages</a></strong><br />
+			<strong>Step 2: <a href="admin.php?page=adguru_setup_ads&ad_type=modal_popup">Set modal popups to pages</a></strong><br />
 		</div>
-		<h3>How to setup and show window popups</h3>
+		<h3>How to setup and show window popups?</h3>
 		<div>
 			<strong>Step 1: <a href="admin.php?page=adguru_ad_window_popup&manager_tab=edit">Add new window popups</a></strong><br />
-			<strong>Step 2: <a href="admin.php?page=adguru_ad_window_popup&manager_tab=links">Set window popups to pages</a></strong><br />
+			<strong>Step 2: <a href="admin.php?page=adguru_setup_ads&ad_type=window_popup">Set window popups to pages</a></strong><br />
 		</div>
+		<!-- 
 		<h3>Ads and pages link editor guide</h3>
 		<div>
 			<div style="background:#F0F0F0; width:700px; padding:0px 5px 15px 5px; border:1px solid #DFDFDF;">
@@ -308,7 +313,7 @@ if( ! defined( 'ABSPATH' ) ) exit;
 				<strong>8. Remove ad button:</strong> To remove an ad item click on this button.<br />
 			</div>	
 		</div>
-
+		-->
 	</div>
 
 	<div style=" text-align:center; margin-top:30px;"><a id="advance_guide_btn" href="http://wpadguru.com?utm_source=plugin-dashboard-main-page&utm_medium=advance-user-guide-button" target="_blank" title="Detail guide">ADVANCE USER GUIDE</a></div>

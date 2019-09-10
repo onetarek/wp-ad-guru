@@ -7,8 +7,8 @@ Plugin URI: http://wpadguru.com
 Donate link: http://wpadguru.com/
 Tags: Ad Manager, Banner, Popup, Popup maker, Responsive popup, Optins, Lead generator, Advertising Tool, Marketing Tool, GeoLocation Tracker, Ad Rotator, Ad Slider
 Requires at least: 3.6.0
-Tested up to: 5.1
-Stable tag: 2.0.4
+Tested up to: 5.2.3
+Stable tag: 2.1.0
 License: GPLv2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -190,16 +190,20 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Changelog ==
+= 2.1.0 - September 11, 2019 =
+* New: Ad setup manager page. Completely new UI to create condition and setup ads to pages.
+* Update: Latest MaxMind GeoIP Database.
+
 = 2.0.4 - March 08, 2019 =
-* Update: Add new predefined sizes for zones and banners
-* Update: Redesign plugin main dashboard page
-* Update: Latest MaxMind GeoIP Database
+* Update: Add new predefined sizes for zones and banners.
+* Update: Redesign plugin main dashboard page.
+* Update: Latest MaxMind GeoIP Database.
 
 = 2.0.3 - February 17, 2019 =
 * Fix: PHP Warnings were being happened when there is no zone created yet.
 
 = 2.0.2 - February 10, 2019 =
-* Fix: content type image : image link was blank in output
+* Fix: content type image : image link was blank in output.
 
 = 2.0.1 - February 9, 2019 =
 * Fix: modal popup preview area was overlapping the media uploader modal.
@@ -210,16 +214,20 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Upgrade Notice ==
+= 2.1.0 - September 11, 2019 =
+* New: Ad setup manager page. Completely new UI to create condition and setup ads to pages.
+* Update: Latest MaxMind GeoIP Database.
+
 = 2.0.4 - March 08, 2019 =
-* Update: Add new predefined sizes for zones and banners
-* Update: Redesign plugin main dashboard page
-* Update: Latest MaxMind GeoIP Database
+* Update: Add new predefined sizes for zones and banners.
+* Update: Redesign plugin main dashboard page.
+* Update: Latest MaxMind GeoIP Database.
 
 = 2.0.3 - February 17, 2019 =
 * Fix: PHP Warnings were being happened when there is no zone created yet.
 
 = 2.0.2 - February 10, 2019 =
-* Fix: content type image : image link was blank in output
+* Fix: content type image : image link was blank in output.
 
 = 2.0.1 - February 9, 2019 =
 * Fix: modal popup preview area was overlapping the media uploader modal.

@@ -504,7 +504,7 @@ class ADGURU_Ad_Setup_Manager{
 			$grouped[ $key ][] = $link;
 		}
 		
-		ksort($grouped);
+		ksort($grouped,SORT_LOCALE_STRING);
 
 		foreach( $grouped as $key => $links )
 		{

@@ -5,7 +5,7 @@
  * Plugin URI: http://wpadguru.com
  * Author: oneTarek
  * Author URI: http://onetarek.com
- * Version: 2.0.4
+ * Version: 2.1.0
  * License: GPLv2+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -165,6 +165,14 @@ final class WP_Ad_Guru{
 	public $migration_needed = false;
 
 	/**
+	 * Ad setup manager
+	 * @var object|ADGURU_Ad_Setup_Manager
+	 * @since 2.1.0
+	 */
+	public $ad_setup_manager;
+
+
+	/**
 	 * Main WP_Ad_Guru Instance.
 	 *
 	 * Insures that only one instance of WP_Ad_Guru exists in memory at any one
@@ -227,6 +235,7 @@ final class WP_Ad_Guru{
 			$this->admin_notice = new ADGURU_Admin_Notice();
 			$this->settings = new ADGURU_Settings();
 			$this->form_builder = wpafb();
+			$this->ad_setup_manager = new ADGURU_Ad_Setup_Manager();
 		}
 		#for geo location feature strat session here before outputing anything to the browser.
 		if( session_id() == "" ){ session_start(); }
@@ -286,7 +295,7 @@ final class WP_Ad_Guru{
 
 		global $wpdb;
 		global $adguru_options;
-		define( 'ADGURU_VERSION', '2.0.4' );
+		define( 'ADGURU_VERSION', '2.1.0' );
 		define( 'ADGURU_DOCUMENTAION_URL', 'http://wpadguru.com/documentation/' );
 		define( 'ADGURU_PLUGIN_FILE', __FILE__ );
 		define( 'ADGURU_PLUGIN_DIR', plugin_dir_path( __FILE__ ) ); // Plugin Directory
@@ -356,6 +365,8 @@ final class WP_Ad_Guru{
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/class-adguru-menu.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/links-editor/class-adguru-links-editor.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/links-editor/class-adguru-links-editor-ajax-handler.php" );
+			require_once( ADGURU_PLUGIN_DIR."includes/admin/ad-setup-manager/class-adguru-ad-setup-manager.php" );
+			require_once( ADGURU_PLUGIN_DIR."includes/admin/ad-setup-manager/class-adguru-ad-setup-manager-ajax-handler.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/metaboxes/metabox.php" );	
 			require_once( ADGURU_PLUGIN_DIR."includes/functions.php" );
 

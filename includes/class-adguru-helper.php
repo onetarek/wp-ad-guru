@@ -78,7 +78,7 @@ class ADGURU_Helper{
 		}
 		
 		$country_list = array(
-			"--" => "---Select A Country---",
+			"--" => "Select A Country",
 			"AF" => "Afghanistan",
 			"AX" => "Aland Islands",
 			"AL" => "Albania",

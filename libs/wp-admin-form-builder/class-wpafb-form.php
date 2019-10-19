@@ -1605,7 +1605,10 @@ class WPAFB_Form{
 
     }//end function
         
-    
+    public function get_field_list(){
+    	return $this->field_list;
+    }
+
     public function set_data( $data ){
 
     	if( !is_array( $data ) ) { return ; }

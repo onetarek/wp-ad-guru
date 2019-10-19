@@ -13,7 +13,7 @@ $general_form_args = array(
 			'options' => array(
 				'none' => __("None", 'adguru' ),
 				'before_post' => __("Before Post", 'adguru' ),
-				'after_post' => __("Aefore Post", 'adguru' ),
+				'after_post' => __("After Post", 'adguru' ),
 				'before_content' => __("Before Content", 'adguru' ),
 				'after_content' => __("After Content", 'adguru' ),
 				
@@ -50,19 +50,21 @@ function adguru_show_zone_general_form( $zone )
 	if( $general_form )
 	{ 
 		$general_data = array();
-		if(! isset($zone->general) || !is_array($zone->general) )
-		{
-			$zone->general = array();
-		}
-		else
-		{
-			foreach( $zone->general as $key => $value )
+		
+		
+		//IMPORTANT : in this from , Data items are not be saved as an array in a single meta field. All array keys are stored as individual meta field.
+
+		$field_list = $general_form->get_field_list();
+		foreach( $field_list as $id => $opts ){
+			if( $opts['real_field'] != 1 ) { continue; }
+			$key = ADGURU_Helper::str_replace_beginning('general_', '', $id );
+			if( isset($zone->{$key} ) )
 			{
-				$id = 'animation_'.$key;
-				$general_data[$id] = $value;
+				$general_data[ $id ] = $zone->{$key};
 			}
-			
+
 		}
+
 		$general_form->set_data( $general_data );
 		//Before render modify the fields settings, specially update fields hidden status based on the value.
 		do_action('adguru_editor_form_modal_popup_animation_before_render', $general_form );

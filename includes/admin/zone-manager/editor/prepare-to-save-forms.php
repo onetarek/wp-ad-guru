@@ -6,8 +6,7 @@ if( $general_form )
 { 
 	$general_data = array();
 	$submitted_data = $general_form->prepare_submitted_data();
-	write_log($submitted_data);
-	//return;
+	
 	foreach( $submitted_data as $id => $value )
 	{
 		$key = ADGURU_Helper::str_replace_beginning('general_', '', $id );
@@ -18,8 +17,10 @@ if( $general_form )
 	
 	foreach( $general_data as $key => $value )
 	{
-		$zone->{$key} = $value;
+		if( ADGURU_Helper::is_valid_variable_name( $key ) )
+		{
+			$zone->{$key} = $value;
+		}
+		
 	}
-
-	write_log($zone);
 }

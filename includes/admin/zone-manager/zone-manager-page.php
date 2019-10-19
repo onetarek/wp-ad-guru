@@ -33,14 +33,14 @@ $manager_tabs = apply_filters(
 			'slug'	=> 'all', 
 			'text'	=> __("All Zones", "adguru" ), 
 			'link'	=> 'admin.php?page='.$page.'&manager_tab=all',
-			'file' 	=> ADGURU_PLUGIN_DIR."includes/admin/zone-list.php",
+			'file' 	=> ADGURU_PLUGIN_DIR."includes/admin/zone-manager/zone-list.php",
 			'callback' => '' 
 			),
 		'edit' =>array( 
 			'slug'	=> 'edit', 
 			'text'	=>  __("Add new zone", "adguru" ), 
 			'link'	=> 'admin.php?page='.$page.'&manager_tab=edit',
-			'file' 	=> ADGURU_PLUGIN_DIR."includes/admin/zone-edit.php",
+			'file' 	=> ADGURU_PLUGIN_DIR."includes/admin/zone-manager/zone-edit.php",
 			'callback' => '' 
 			)								
 	)

@@ -60,7 +60,7 @@ class ADGURU_Menu{
 	}
 	public function zone_manager_page(){
 
-		include_once(ADGURU_PLUGIN_DIR."includes/admin/zone-manager-page.php");
+		include_once(ADGURU_PLUGIN_DIR."includes/admin/zone-manager/zone-manager-page.php");
 	}
 
 	public function settings_page(){

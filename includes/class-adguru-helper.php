@@ -599,6 +599,16 @@ class ADGURU_Helper{
 		}
 	}
 
+	/**
+	 * Checks if a string can be used as a variable name
+	 * @param string
+	 * @return bool
+	 */
+	public static function is_valid_variable_name( $name ){
+		
+		return ( 1 === preg_match('/^[a-zA-Z][_]?[\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*/', $name) ) ? true : false;
+	}
+
 
 }//end class
 

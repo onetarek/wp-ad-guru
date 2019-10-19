@@ -159,6 +159,11 @@ $size_list = array(
 					</tr>
 					
 					<tr>
+						<td><label><?php echo __( 'Active', 'adguru' ) ?></label></td>
+						<td><input type="checkbox" name="active" value="1"  <?php echo  ( isset($zone->active) && $zone->active )? 'checked="checked"':''?> /></td>
+					</tr>
+
+					<tr>
 						<td><label><?php echo __( 'Size', 'adguru' ) ?></label></td>
 						<td>
 						<?php 
@@ -188,10 +193,7 @@ $size_list = array(
 						</span>
 						</td>
 					</tr>
-					<tr>
-						<td><label><?php echo __( 'Active', 'adguru' ) ?></label></td>
-						<td><input type="checkbox" name="active" value="1"  <?php echo  ( isset($zone->active) && $zone->active )? 'checked="checked"':''?> /></td>
-					</tr>
+					
 
 				</table>
 				

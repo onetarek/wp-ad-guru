@@ -606,7 +606,7 @@ class ADGURU_Helper{
 	 */
 	public static function is_valid_variable_name( $name ){
 		
-		return ( 1 === preg_match('/^[a-zA-Z][_]?[\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*/', $name) ) ? true : false;
+		return ( 1 === preg_match('/^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$/', $name) ) ? true : false;
 	}
 
 

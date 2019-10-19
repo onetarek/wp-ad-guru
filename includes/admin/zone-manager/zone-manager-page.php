@@ -50,6 +50,12 @@ $current_manager_tab = isset( $_REQUEST[ 'manager_tab'] ) ? $_REQUEST[ 'manager_
 #BASE URL OF CURRENT TAB WITHOUT ALL OTHER PARAMETERS
 $base_url = admin_url( 'admin.php?page='.$page.'&manager_tab='.$current_manager_tab );
 
+//Run some code before opening the zone editor page. Speially we need this hook to initialize the form builder for zone editor.
+if( $current_manager_tab == 'edit')
+{		
+	do_action( "adguru_zone_editor_init" );
+}
+
 //SETUP AN ARRAY CONTAINING ABOVE VARIABLES TO PASS WITH TAB CALLBACK FUNCTION and ACTION/FILTER HOOOKS
 $current_manager_vars = array(
 	"page" => $page,

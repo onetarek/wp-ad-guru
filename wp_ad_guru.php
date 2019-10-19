@@ -236,6 +236,7 @@ final class WP_Ad_Guru{
 			$this->settings = new ADGURU_Settings();
 			$this->form_builder = wpafb();
 			$this->ad_setup_manager = new ADGURU_Ad_Setup_Manager();
+			new ADGURU_Zone_Edit_Manager();
 		}
 		#for geo location feature strat session here before outputing anything to the browser.
 		if( session_id() == "" ){ session_start(); }
@@ -363,6 +364,7 @@ final class WP_Ad_Guru{
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/class-adguru-admin-notice.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/settings/class-adguru-settings.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/class-adguru-menu.php" );
+			require_once( ADGURU_PLUGIN_DIR."includes/admin/zone-manager/class-zone-edit-manager.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/links-editor/class-adguru-links-editor.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/links-editor/class-adguru-links-editor-ajax-handler.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/ad-setup-manager/class-adguru-ad-setup-manager.php" );

@@ -139,7 +139,7 @@ $size_list = array(
 		<div id="post-body" class="metabox-holder columns-2">
 			<div id="post-body-content" style="position: relative;" >
 
-				<?php do_action( "adguru_zone_editor_left_top", $zone, $error_msgs ) ?>	
+				<?php do_action( "adguru_zone_editor_main_top", $zone, $error_msgs ) ?>	
 
 				<table class="widefat" id="zone_editor" style="width:100%;">
 					<thead>
@@ -192,22 +192,28 @@ $size_list = array(
 						<td><label><?php echo __( 'Active', 'adguru' ) ?></label></td>
 						<td><input type="checkbox" name="active" value="1"  <?php echo  ( isset($zone->active) && $zone->active )? 'checked="checked"':''?> /></td>
 					</tr>
-								
-					
-					<?php do_action( "adguru_zone_editor_left_row", $zone, $error_msgs ) ?>
 
-
-					<tr>
-						<td colspan="2"><input type="submit" name="save" class="button-primary" value="Save" style="width:100px;" /></td>
-					</tr>
 				</table>
 				
-				<?php do_action( "adguru_zone_editor_left_bottom", $zone, $error_msgs ) ?>			
+				<?php do_action( "adguru_zone_editor_main", $zone, $error_msgs ) ?>
+
+				<?php do_action( "adguru_zone_editor_main_bottom", $zone, $error_msgs ) ?>			
 				
 				
 			</div><!--end #post-body-content-->
 			<!--Sidebar-->
 			<div id="postbox-container-1" class="postbox-container">
+				<div class="postbox">
+					<h3 class="hndle"><?php _e('Publishing', 'adguru')?></h3>
+					<div class="inside">
+						<div class="main" style="text-align:center;">	
+							
+							<input type="submit" name="save" class="button-primary" value="<?php echo esc_attr( __( 'Save', 'adguru' ) ) ?>" style="width:200px;" />
+							
+
+						</div><!-- .main -->
+					</div><!-- .inside -->
+				</div>
 				<div class="postbox">
 					<h3 class="hndle"><?php echo __( 'Hello', 'adguru' ) ?></h3>
 					<div class="inside">

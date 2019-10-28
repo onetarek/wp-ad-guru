@@ -19,7 +19,6 @@ class ADGURU_Ad_Setup_Manager{
 	private $current_zone;
 	private $current_post_id;
 	private $page_type_list_html;
-	private $taxonomy_list;
 	private $ad_zone_links;
 	private $ad_zone_link_sets = array();
 	private $ads_data = array();
@@ -62,7 +61,7 @@ class ADGURU_Ad_Setup_Manager{
 
 		ob_start();	
 		$post_types = ADGURU_Helper::get_post_type_list();
-		$taxonomies = $this->get_taxonomy_list();
+		$taxonomies = ADGURU_Helper::get_taxonomy_list();
 		?>
 		<ul class="page-type-list">
 			<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"--", 'taxonomy'=>'--', 'term'=>'--' ) )?>>Default( all )</li>
@@ -338,49 +337,6 @@ class ADGURU_Ad_Setup_Manager{
 
 
 	/**
-	 * Retrieve registred taxonomies those have real user facing usages.
-	 * @since 2.1.0
-	 */
-	private function get_taxonomy_list(){
-
-		if( isset( $this->taxonomy_list ) )
-		{
-			return $this->taxonomy_list;
-		}
-
-		$taxonomies = get_taxonomies(array(), 'objects');
-		
-		$remTax = array( "nav_menu", "link_category", "post_format", "single", "Single" ); #we remove "single" because it a reserve word for this plugin. This word "Single" we are using to store as a taxonomy for when  post types are stored as terms.	
-		
-		foreach( $taxonomies as $key => $taxobj )
-		{
-			if( in_array($key, $remTax ) )#remove taxonomies those are being used only for internal usages. Those object/post_types does not have show UI.
-			{
-				unset( $taxonomies[ $key ] );
-				continue;
-			}
-			
-			if( !isset( $taxobj->object_type ) || !is_array( $taxobj->object_type ) )
-			{ 
-				unset( $taxonomies[ $key ] );
-				continue;  
-			}
-
-			foreach( $taxobj->object_type  as $object_type )
-			{
-				$ptobj = get_post_type_object( $object_type );
-				if( !$ptobj->show_ui )
-				{ 
-					unset( $taxonomies[ $key ] ); 
-					break;
-				}
-			}
-		}
-		$this->taxonomy_list = $taxonomies;
-		return $taxonomies;
-	}
-
-	/**
 	 * Prepare required data before rendering condition sets
 	 *
 	 * @return void
@@ -562,7 +518,7 @@ class ADGURU_Ad_Setup_Manager{
 	private function get_page_type_data_for_a_link( $link ){
 
 		$post_types = ADGURU_Helper::get_post_type_list();
-		$taxonomies = $this->get_taxonomy_list();
+		$taxonomies = ADGURU_Helper::get_taxonomy_list();
 		
 		$data = array();
 		$data['ad_type'] = $link->ad_type;

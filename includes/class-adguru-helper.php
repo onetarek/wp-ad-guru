@@ -645,6 +645,50 @@ class ADGURU_Helper{
 
 	}
 
+	/**
+	 * Retrieve registred taxonomies those have real user facing usages.
+	 * @since 2.1.0 was in ADGURU_Ad_Setup_Manager class
+	 * @since 2.2.0 Moved to this class
+	 */
+	public static function get_taxonomy_list(){
+		static $taxonomy_list;
+		if( isset( $taxonomy_list ) )
+		{	
+			return $taxonomy_list;
+		}
+
+		$taxonomies = get_taxonomies(array(), 'objects');
+		
+		$remTax = array( "nav_menu", "link_category", "post_format", "single", "Single" ); #we remove "single" because it a reserve word for this plugin. This word "Single" we are using to store as a taxonomy for when  post types are stored as terms.	
+		
+		foreach( $taxonomies as $key => $taxobj )
+		{
+			if( in_array($key, $remTax ) )#remove taxonomies those are being used only for internal usages. Those object/post_types does not have show UI.
+			{
+				unset( $taxonomies[ $key ] );
+				continue;
+			}
+			
+			if( !isset( $taxobj->object_type ) || !is_array( $taxobj->object_type ) )
+			{ 
+				unset( $taxonomies[ $key ] );
+				continue;  
+			}
+
+			foreach( $taxobj->object_type  as $object_type )
+			{
+				$ptobj = get_post_type_object( $object_type );
+				if( !$ptobj->show_ui )
+				{ 
+					unset( $taxonomies[ $key ] ); 
+					break;
+				}
+			}
+		}
+		$taxonomy_list = $taxonomies;
+		return $taxonomies;
+	}
+
 }//end class
 
 endif;

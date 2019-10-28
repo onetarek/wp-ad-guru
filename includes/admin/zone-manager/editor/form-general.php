@@ -38,6 +38,8 @@ $general_form_args = array(
 					'type' 	=> 'multicheck',
 					'id'	=> 'general_page_types_misc',
 					'label'	=> '',
+					'fieldset' => array( 'legend'=> 'Misc pages' ),
+					
 					'items_direction' => 'vertical',
 					'on_off_values' => array( "1", "0" ),
 					'default'	=> $general_form_page_type_detail['misc_type_page_defaults'],
@@ -47,7 +49,8 @@ $general_form_args = array(
 				'general_page_types_single' => array(
 					'type' 	=> 'multicheck',
 					'id'	=> 'general_page_types_single',
-					'label'	=> sprintf('<strong>%s</strong>', __("Singe pages", 'adguru' ) ),
+					'fieldset' => array( 'legend'=> sprintf('<strong>%s</strong>', __("Singe pages", 'adguru' ) ) ),
+					'label'	=> '',
 					'items_direction' => 'horizontal',
 					'on_off_values' => array( "1", "0" ),
 					'default'	=> $general_form_page_type_detail['single_type_page_defaults'],
@@ -56,7 +59,8 @@ $general_form_args = array(
 				'general_page_types_archive' => array(
 					'type' 	=> 'multicheck',
 					'id'	=> 'general_page_types_archive',
-					'label'	=> sprintf('<strong>%s</strong>', __("Archive/List type pages", 'adguru' ) ),
+					'fieldset' => array( 'legend'=> sprintf('<strong>%s</strong>', __("Archive pages", 'adguru' ) ) ),
+					'label'	=> '',
 					'items_direction' => 'horizontal',
 					'on_off_values' => array( "1", "0" ),
 					'default'	=> $general_form_page_type_detail['archive_type_page_defaults'],

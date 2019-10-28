@@ -61,7 +61,7 @@ class ADGURU_Ad_Setup_Manager{
 		}
 
 		ob_start();	
-		$post_types = $this->get_post_type_list();
+		$post_types = ADGURU_Helper::get_post_type_list();
 		$taxonomies = $this->get_taxonomy_list();
 		?>
 		<ul class="page-type-list">
@@ -336,40 +336,6 @@ class ADGURU_Ad_Setup_Manager{
 	<?php	
 	}//END FUNC	
 
-	/**
-	 * Retrieve all registred post types.
-	 * @since 2.1.0
-	 */
-
-	private function get_post_type_list(){
-		#retrieve all registred post types.
-		$post_types = get_post_types( '', 'names' ); 		
-
-		#remove post types those are used for internal usage by WordPress.
-		$rempost = array( 'attachment', 'revision', 'nav_menu_item' );
-		$post_types = array_diff( $post_types, $rempost );	
-
-		#remove post types those are being used by ADGURU itself.
-		$post_types = array_diff( $post_types, adguru()->post_types->types );	
-
-		#remove post types those has no UI, means those are beings used for internal usages only.
-		foreach( $post_types as $key => $val )
-		{
-			$ptobj = get_post_type_object( $key );
-			if( !$ptobj->show_ui ) 
-			{ 
-				unset( $post_types[ $key ] );
-			}
-			else
-			{
-				#capitalize first char of name
-				$post_types[ $key ]	= ucfirst( $val );
-			}
-		}
-
-		return $post_types;
-
-	}
 
 	/**
 	 * Retrieve registred taxonomies those have real user facing usages.
@@ -595,7 +561,7 @@ class ADGURU_Ad_Setup_Manager{
 
 	private function get_page_type_data_for_a_link( $link ){
 
-		$post_types = $this->get_post_type_list();
+		$post_types = ADGURU_Helper::get_post_type_list();
 		$taxonomies = $this->get_taxonomy_list();
 		
 		$data = array();

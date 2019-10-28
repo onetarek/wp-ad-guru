@@ -609,6 +609,41 @@ class ADGURU_Helper{
 		return ( 1 === preg_match('/^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$/', $name) ) ? true : false;
 	}
 
+	/**
+	 * Retrieve all registred post types those have real user facing usages.
+	 * @since 2.1.0 was in ADGURU_Ad_Setup_Manager class
+	 * @since 2.2.0 Moved to this class
+	 */
+
+	public static function get_post_type_list(){
+		#retrieve all registred post types.
+		$post_types = get_post_types( '', 'names' ); 		
+
+		#remove post types those are used for internal usage by WordPress.
+		$rempost = array( 'attachment', 'revision', 'nav_menu_item' );
+		$post_types = array_diff( $post_types, $rempost );	
+
+		#remove post types those are being used by ADGURU itself.
+		$post_types = array_diff( $post_types, adguru()->post_types->types );	
+
+		#remove post types those has no UI, means those are beings used for internal usages only.
+		foreach( $post_types as $key => $val )
+		{
+			$ptobj = get_post_type_object( $key );
+			if( !$ptobj->show_ui ) 
+			{ 
+				unset( $post_types[ $key ] );
+			}
+			else
+			{
+				#capitalize first char of name
+				$post_types[ $key ]	= ucfirst( $val );
+			}
+		}
+
+		return $post_types;
+
+	}
 
 }//end class
 

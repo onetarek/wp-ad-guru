@@ -6,19 +6,51 @@ $general_form_args = array(
 	'footer_callback' => 'adguru_zone_form_general_footer_callback',
 	'fields' => array(
 		'general_place' => array(
-			'type' 	=> 'select',
+			'type' 	=> 'radio',
 			'id'	=> 'general_place',
-			'label'	=> __("Placement", 'adguru' ),
+			'label'	=> __("Automatic Insert", 'adguru' ),
+			'items_direction' => 'vertical',
 			'default'	=> 'none',
 			'options' => array(
-				'none' => __("None", 'adguru' ),
-				'before_post' => __("Before Post", 'adguru' ),
-				'after_post' => __("After Post", 'adguru' ),
+				'none' => __("Disabled (  Do not insert automatically )", 'adguru' ),
+				'before_posts' => __("Before Posts", 'adguru' ),
+				'between_posts' => __("Between Posts", 'adguru' ),
+				'after_posts' => __("After Posts", 'adguru' ),
 				'before_content' => __("Before Content", 'adguru' ),
 				'after_content' => __("After Content", 'adguru' ),
+				'before_comments' => __("Before Comments", 'adguru' ),
+				'between_comments' => __("Between Comments", 'adguru' ),
+				'after_comments' => __("After Comments", 'adguru' ),
+				'footer' => __("After Footer", 'adguru' ),
 				
 			),
 		),
+
+		'general_page_types' => array(
+			'type' 	=> 'multicheck',
+			'id'	=> 'general_page_types',
+			'label'	=> __("Page types", 'adguru' ),
+			'items_direction' => 'horizontal',
+			'on_off_values' => array( "1", "0" ),
+			'default'	=> array(
+				'any_page' => 1,
+				'singel_post' => 0,
+				'taxonomy_archive' => 0,
+				'date_archive' => 0,
+				'search_result' => 0,
+				'author_archive' => 0
+			),
+			'options' => array(
+				'any_page' => __("Any type page", 'adguru' ),
+				'singel_post' => __("Single Post", 'adguru' ),
+				'taxonomy_archive' => __("Taxonomy archive", 'adguru' ),
+				'date_archive' => __("Date archive", 'adguru' ),
+				'search_result' => __("Search result", 'adguru' ),
+				'author_archive' => __("Author archive", 'adguru' )
+				
+			),
+		),
+
 		
 
 	)//end of fields array 
@@ -64,7 +96,7 @@ function adguru_show_zone_general_form( $zone )
 			}
 
 		}
-
+write_log($general_data);
 		$general_form->set_data( $general_data );
 		//Before render modify the fields settings, specially update fields hidden status based on the value.
 		do_action('adguru_editor_form_modal_popup_animation_before_render', $general_form );

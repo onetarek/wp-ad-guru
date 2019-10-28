@@ -16,21 +16,16 @@ if( ! class_exists( 'ADGURU_Helper' ) ) :
 
 class ADGURU_Helper{
 
-	public static function curPageURL(){
-	
-		 $pageURL = 'http';
-		 if ( $_SERVER["HTTPS"] == "on" ) { $pageURL .= "s"; }
-		 $pageURL .= "://";
-		 if ( $_SERVER["SERVER_PORT"] != "80" )
-		 {
-		 	$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
-		 } 
-		 else
-		 {
-		 	$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-		 }
-		 return $pageURL;
-	
+	public static function current_page_url(){
+		if( isset( $_SERVER['REQUEST_URI'] ) )
+		{
+			return home_url( $_SERVER['REQUEST_URI'] );
+		}
+		else
+		{
+			return home_url();
+		}
+		
 	}
 	
 	public static function is_valid_url( $url ){

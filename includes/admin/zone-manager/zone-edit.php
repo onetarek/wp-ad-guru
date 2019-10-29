@@ -16,7 +16,7 @@ if( $zone_id || $cp_from_id )
 {
 	//load ad from db
 	$post_id = ( $zone_id != 0 ) ? $zone_id : $cp_from_id; 
-	$old_zone = adguru()->manager->get_ad( $post_id );
+	$old_zone = adguru()->manager->get_zone( $post_id );
 	#be confirm that zone is found.
 	if( $old_zone )
 	{

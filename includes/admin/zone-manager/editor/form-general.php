@@ -66,12 +66,12 @@ $general_form_args = array(
 					'options' => $general_form_page_type_detail['archive_type_page_options'],
 				),
 			)
-		),//end of sizing_custom_width_group
+		),//end of general_page_types_group
 
 		
 
 	)//end of fields array 
-); // end array $animation_form_args
+); // end array $general_form_args
 
 function adguru_zone_form_general_header_callback( $form_obj )
 {
@@ -100,7 +100,6 @@ function adguru_show_zone_general_form( $zone )
 	{ 
 		$general_data = array();
 		
-		
 		//IMPORTANT : in this from , Data items are not be saved as an array in a single meta field. All array keys are stored as individual meta field.
 
 		$field_list = $general_form->get_field_list();
@@ -123,8 +122,6 @@ function adguru_show_zone_general_form( $zone )
 
 		}
 		
-
-	write_log($general_data);
 		$general_form->set_data( $general_data );
 		//Before render modify the fields settings, specially update fields hidden status based on the value.
 		do_action('adguru_editor_form_zone_general_before_render', $general_form );
@@ -133,8 +130,6 @@ function adguru_show_zone_general_form( $zone )
 		
 	}//end if $animation_form
 }
-
-
 
 function adguru_get_page_types_multicheck_options_detail(){
 	$detail = array();
@@ -160,8 +155,6 @@ function adguru_get_page_types_multicheck_options_detail(){
 		$single_type_page_options[ 'single_'.$type ] = $name;
 		$single_type_page_defaults[ 'single_'.$type ] = 0;
 	}
-
-
 
 	$archive_type_page_options = array();
 	$archive_type_page_defaults = array();
@@ -189,7 +182,6 @@ function adguru_get_page_types_multicheck_options_detail(){
 	$detail['archive_type_page_options'] = $archive_type_page_options;
 	$detail['archive_type_page_defaults'] = $archive_type_page_defaults;
 	
-	//write_log($taxonomy_list, $post_types);
 	return $detail;
 
 }

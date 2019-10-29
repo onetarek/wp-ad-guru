@@ -108,7 +108,7 @@ class ADGURU_Server {
 	
 	private function generate_current_page_info(){
 		$info = array();
-				
+		$info['url'] = ADGURU_Helper::current_page_url();		
 		#Taking decision based on which type of page is being visited currently 
 		$page_type = "default";
 		$info['page_type'] = "default";

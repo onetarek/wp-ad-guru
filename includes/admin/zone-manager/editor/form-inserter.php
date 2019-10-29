@@ -6,9 +6,9 @@ $inserter_form_args = array(
 	'header_callback' => 'adguru_zone_form_inserter_header_callback',
 	'footer_callback' => 'adguru_zone_form_inserter_footer_callback',
 	'fields' => array(
-		'inserter_auto_insert_place' => array(
+		'inserter_place' => array(
 			'type' 	=> 'radio',
-			'id'	=> 'inserter_auto_insert_place',
+			'id'	=> 'inserter_place',
 			'label'	=> __("Automatic Insert", 'adguru' ),
 			'items_direction' => 'vertical',
 			'default'	=> 'none',
@@ -98,10 +98,26 @@ function adguru_show_zone_inserter_form( $zone )
 	$inserter_form = adguru()->form_builder->get_form('zone_inserter_form');
 	if( $inserter_form )
 	{ 
-		$inserter_data = array();
 		
-		//IMPORTANT : in this from , Data items are not be saved as an array in a single meta field. All array keys are stored as individual meta field.
+		$inserter_data = array();
+		if(! isset($zone->inserter) || !is_array($zone->inserter) )
+		{
+			$zone->inserter = array();
+		}
+		else
+		{
+			foreach( $zone->inserter as $key => $value )
+			{
+				$id = 'inserter_'.$key;
+				$inserter_data[$id] = $value;
+			}
+			
+		}
 
+		/* 
+		KEEPING THIS UNNECESSARY DISABLED CODE FOR FUTURE REFERENCE
+		WE CAN USE THIS TECHNIQUE FOR ANY OTHER FORM
+		//IMPORTANT : in this from , Data items are not be saved as an array in a single meta field. All array keys are stored as individual meta field.
 		$field_list = $inserter_form->get_field_list();
 		foreach( $field_list as $id => $opts ){
 			if( $opts['real_field'] != 1 ) { continue; }
@@ -112,15 +128,21 @@ function adguru_show_zone_inserter_form( $zone )
 			}
 
 		}
+		*/
+
 		//set merged page type related merged multicheck data for 3 fields
-		if( isset( $zone->auto_insert_to_pages ) )
+		if( isset( $inserter_data['inserter_page_types'] ) )
 		{
 			$auto_insert_to_pages = $zone->auto_insert_to_pages;
-			$inserter_data[ 'inserter_page_types_misc' ] = $auto_insert_to_pages;
-			$inserter_data[ 'inserter_page_types_single' ] = $auto_insert_to_pages;
-			$inserter_data[ 'inserter_page_types_archive' ] = $auto_insert_to_pages;
+			$inserter_data[ 'inserter_page_types_misc' ] = $inserter_data['inserter_page_types'];
+			$inserter_data[ 'inserter_page_types_single' ] = $inserter_data['inserter_page_types'];
+			$inserter_data[ 'inserter_page_types_archive' ] = $inserter_data['inserter_page_types'];
+			unset( $inserter_data['inserter_page_types'] );
 
 		}
+
+
+		//write_log($zone, $inserter_data);
 		
 		$inserter_form->set_data( $inserter_data );
 		//Before render modify the fields settings, specially update fields hidden status based on the value.

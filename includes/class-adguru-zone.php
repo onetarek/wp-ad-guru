@@ -103,6 +103,28 @@ class ADGURU_Zone{
         return '';
     }
 
+    /**
+     * Gets page types for automatic insertion
+     * @return array
+     */
+    public function get_auto_insert_page_types(){
+
+        if( isset( $this->inserter ) && is_array( $this->inserter ) && isset( $this->inserter['page_types'] ) && is_array( $this->inserter['page_types'] ) )
+        {
+            $list = array();
+            $items = $this->inserter['page_types'];
+            foreach( $items as $key=> $val )
+            {
+                if( intval( $val ) == 1 )
+                {
+                    $list[] = $key;
+                } 
+            }
+            return $list;
+        }
+        return array();
+    }
+
 }//end class
 
 endif;

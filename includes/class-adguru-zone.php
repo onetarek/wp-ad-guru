@@ -79,6 +79,7 @@ class ADGURU_Zone{
     
     /**
      * Checks whether automatic insertion is enabled or not
+     * @since 2.2.0
      * @return bool
      */
     public function auto_insert_enabled(){
@@ -92,6 +93,7 @@ class ADGURU_Zone{
 
     /**
      * Gets place for automatic insertion
+     * @since 2.2.0
      * @return string
      */
     public function get_auto_insert_place(){
@@ -105,6 +107,7 @@ class ADGURU_Zone{
 
     /**
      * Gets page types for automatic insertion
+     * @since 2.2.0
      * @return array
      */
     public function get_auto_insert_page_types(){
@@ -123,6 +126,22 @@ class ADGURU_Zone{
             return $list;
         }
         return array();
+    }
+
+    /**
+     * Checks whether automatic insertion is possible on current page
+     * @since 2.2.0
+     * @return bool
+     */
+    public function is_auto_insert_possible( $current_page_info ){
+        if( !$this->auto_insert_enabled() )
+        {
+            return false;
+        }
+        return true;
+        //$page_types = $this->get_auto_insert_page_types();
+
+
     }
 
 }//end class

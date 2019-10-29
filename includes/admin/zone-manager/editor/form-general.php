@@ -39,7 +39,6 @@ $general_form_args = array(
 					'id'	=> 'general_page_types_misc',
 					'label'	=> '',
 					'fieldset' => array( 'legend'=> 'Misc pages' ),
-					
 					'items_direction' => 'vertical',
 					'on_off_values' => array( "1", "0" ),
 					'default'	=> $general_form_page_type_detail['misc_type_page_defaults'],
@@ -49,7 +48,7 @@ $general_form_args = array(
 				'general_page_types_single' => array(
 					'type' 	=> 'multicheck',
 					'id'	=> 'general_page_types_single',
-					'fieldset' => array( 'legend'=> sprintf('<strong>%s</strong>', __("Singe pages", 'adguru' ) ) ),
+					'fieldset' => array( 'legend'=> sprintf('<strong>%s</strong>', __("Single pages", 'adguru' ) ) ),
 					'label'	=> '',
 					'items_direction' => 'horizontal',
 					'on_off_values' => array( "1", "0" ),
@@ -114,10 +113,17 @@ function adguru_show_zone_general_form( $zone )
 			}
 
 		}
-	//write_log($general_data);
+		//set merged page type related merged multicheck data for 3 fields
+		$auto_insert_to_pages = $zone->auto_insert_to_pages;
+		
+		$general_data[ 'page_types_misc' ] = $auto_insert_to_pages;
+		$general_data[ 'page_types_single' ] = $auto_insert_to_pages;
+		$general_data[ 'page_types_archive' ] = $auto_insert_to_pages;
+
+	write_log($general_data);
 		$general_form->set_data( $general_data );
 		//Before render modify the fields settings, specially update fields hidden status based on the value.
-		do_action('adguru_editor_form_modal_popup_animation_before_render', $general_form );
+		do_action('adguru_editor_form_zone_general_before_render', $general_form );
 		//render the form
 		$general_form->render();
 		

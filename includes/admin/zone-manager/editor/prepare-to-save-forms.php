@@ -15,6 +15,11 @@ if( $general_form )
 	//IMPORTANT : in this from , Data items will not be saved as an array in a single meta field. All array keys will create individual meta field.
 	$general_data = apply_filters('adguru_zone_prepare_to_save_general_data', $general_data, $submitted_data );
 	
+	//merge 3 page types related multicheck data to save in single meta
+	$auto_insert_to_pages = array_merge($general_data[ 'page_types_misc' ], $general_data[ 'page_types_single' ], $general_data[ 'page_types_archive' ] );
+	$general_data['auto_insert_to_pages'] = $auto_insert_to_pages;
+	unset($general_data[ 'page_types_misc' ], $general_data[ 'page_types_single' ], $general_data[ 'page_types_archive' ]);
+
 	foreach( $general_data as $key => $value )
 	{
 		if( ADGURU_Helper::is_valid_variable_name( $key ) )
@@ -23,4 +28,5 @@ if( $general_form )
 		}
 		
 	}
+
 }

@@ -44,8 +44,7 @@ final class ADGURU_Inserter{
 	  * @var array
 	  * @since 2.2.0
 	  */
-	private $places;
-
+	private $possible_places;
 
 	/**
 	 * Main ADGURU_Inserter Instance.
@@ -76,28 +75,110 @@ final class ADGURU_Inserter{
 		$this->zones = adguru()->server->get_zones();
 		$this->current_page_info = adguru()->server->get_current_page_info();
 		$this->prepare();
+		$this->add_hooks();
     }
 
     private function prepare(){
 
-    	$this->places = array();
-    	
+    	$this->possible_places = array();
+    	//write_log( $this->zones );
     	foreach( $this->zones as $zone )
     	{
     		if( $zone->is_auto_insert_possible( $this->current_page_info ) )
     		{
     			$place = $zone->get_auto_insert_place();
-    			if( ! isset( $this->place[ $place ] ) )
+    			if( ! isset( $this->possible_places[ $place ] ) )
     			{
-    				$this->place[ $place ] = array();
+    				$this->possible_places[ $place ] = array();
     			}
-    			$this->place[ $place ][] = $zone;
+    			$this->possible_places[ $place ][] = $zone;
     		}
     	}
 
-    	write_log( $this->places );
+    	//write_log( $this->places );
     }
+	
+	private function add_hooks(){
+
+		//VALID PLACES : 'before_post', 'between_posts', 'after_post', 'before_content', 'after_content', 'before_comments', 'between_comments', 'after_comments', 'footer'
+
 		
+		if( isset( $this->possible_places[ 'before_post' ] ) )
+		{
+			add_action('loop_start', array( $this, 'hook_before_post' ), -100 );
+		}
+
+		if( isset( $this->possible_places[ 'between_posts' ] ) )
+		{
+			
+		}
+
+		if( isset( $this->possible_places[ 'after_post' ] ) )
+		{
+			add_action('loop_end', array( $this, 'hook_after_post' ), 100 );
+		}
+
+		if( isset( $this->possible_places[ 'before_content' ] ) )
+		{
+			
+		}
+
+		if( isset( $this->possible_places[ 'after_content' ] ) )
+		{
+			
+		}
+
+		if( isset( $this->possible_places[ 'before_comments' ] ) )
+		{
+			
+		}
+
+		if( isset( $this->possible_places[ 'between_comments' ] ) )
+		{
+			
+		}
+
+		if( isset( $this->possible_places[ 'after_comments' ] ) )
+		{
+			
+		}
+
+		if( isset( $this->possible_places[ 'footer' ] ) )
+		{
+			
+		}
+		
+
+	}	
+
+
+	public function hook_before_post(){
+		if( !isset( $this->possible_places['before_post'] ) || !is_array($this->possible_places['before_post'] ) )
+		{
+			return;
+		}
+
+		foreach( $this->possible_places['before_post'] as $zone )
+		{
+			adguru()->server->show_zone( $zone->ID );
+		}
+
+	}
+
+	public function hook_after_post(){
+		if( !isset( $this->possible_places['after_post'] ) || !is_array($this->possible_places['after_post'] ) )
+		{
+			return;
+		}
+
+		foreach( $this->possible_places['after_post'] as $zone )
+		{
+			adguru()->server->show_zone( $zone->ID );
+		}
+	}
+
+
+	
 	/**
 	 * Throw error on object clone.
 	 *

@@ -84,7 +84,7 @@ class ADGURU_Zone{
      */
     public function auto_insert_enabled(){
 
-        if( isset( $this->inserter ) && is_array( $this->inserter ) && $this->inserter['enabled'] == 1 )
+        if( isset( $this->inserter ) && is_array( $this->inserter ) && isset( $this->inserter['enabled'] ) && $this->inserter['enabled'] == 1 )
         {
             return true;
         }

@@ -25,6 +25,8 @@ class ADGURU_Server {
 	public $current_term; #store the slug of current term
 	public $current_post_taxonomies_terms;#store an array of taxonomy and terms of current single post.
 
+	public $current_page_info; #all information about current visited page
+
 	public function __construct(){
 			
 
@@ -104,6 +106,105 @@ class ADGURU_Server {
 		return $this->zones;
 	}
 	
+	private function generate_current_page_info(){
+		$info = array();
+			
+			
+		#Taking decision based on which type of page is being visited currently 
+		$page_type = "default";
+		$info['page_type'] = "default";
+
+		if( is_home() || is_front_page( ) )
+		{ 
+			$page_type = "home"; 
+			$info['page_type'] = "home";
+		}
+		elseif( is_singular() )
+		{ 
+			$page_type = "singular"; 
+			$info['page_type'] = "singular";
+
+			global $post;
+			$info['post_type'] = $post->post_type;
+			$info['post_id'] = $post->ID;
+		}
+		elseif( is_category() )
+		{
+			$page_type = "category";
+			$info['page_type'] = "category";
+
+			$this->current_taxonomy = "category";
+			$info['taxonomy'] = "category";
+
+			$thisCat = get_category( get_query_var('cat'),false );
+
+			$this->current_term = $thisCat->slug;
+			$info['term'] = $thisCat->slug;
+		}
+		elseif( is_tag() )
+		{
+			$page_type = "tag";
+			$info['page_type'] = "tag";
+
+			$this->current_taxonomy = "post_tag"; 
+			$info['taxonomy'] = "post_tag";
+
+			$term = get_query_var('tag');
+			$this->current_term = $term;	
+			$info['term'] = $term;
+		}
+		elseif( is_tax() )
+		{
+			$page_type = "custom_taxonomy";
+			$info['page_type'] = "custom_taxonomy";
+
+			$taxonomy = get_query_var('taxonomy');
+			$this->current_taxonomy = $taxonomy;
+			$info['taxonomy'] = $taxonomy;
+
+			$term = get_query_var('term');
+			$this->current_term = $term;	
+			$info['term'] = $term;
+		
+		}#Note that when used without the $taxonomy parameter, is_tax() returns false on category archives and tag archives. You should use is_category() and is_tag() respectively when checking for category and tag archives. 
+		elseif( is_search() )
+		{ 
+			$page_type = "search"; 
+			$info['page_type'] = "search";
+		}
+		elseif( is_author() )
+		{ 
+			$page_type = "author";
+			$info['page_type'] = "author"; 
+		}
+		elseif( is_404() )
+		{ 
+			$page_type = "404_not_found"; 
+			$info['page_type'] = "404_not_found";
+		}
+		else
+		{ 
+			$page_type = "default"; 
+			$info['page_type'] = "default";
+		}									
+		#End Taking decision 
+		
+		$this->page_type = $page_type;
+		$this->current_page_info = $info;
+		
+		return $info;
+	}
+
+	public function get_current_page_info(){
+		if( isset( $this->current_page_info ) )
+		{
+			return $this->current_page_info;
+		}
+		$this->generate_current_page_info();
+		return $this->current_page_info;
+	}
+
+
 	public function get_page_type(){
 
 		if( $this->page_type != "" ) 

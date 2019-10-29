@@ -108,8 +108,7 @@ class ADGURU_Server {
 	
 	private function generate_current_page_info(){
 		$info = array();
-			
-			
+				
 		#Taking decision based on which type of page is being visited currently 
 		$page_type = "default";
 		$info['page_type'] = "default";
@@ -191,7 +190,7 @@ class ADGURU_Server {
 		
 		$this->page_type = $page_type;
 		$this->current_page_info = $info;
-		
+
 		return $info;
 	}
 
@@ -211,58 +210,8 @@ class ADGURU_Server {
 		{
 			return $this->page_type;
 		}	
-			
-		#Taking decision based on which type of page is being visited currently 
-		$page_type = "default";
-
-		if( is_home() || is_front_page( ) )
-		{ 
-			$page_type = "home"; 
-		}
-		elseif( is_singular() )
-		{ 
-			$page_type = "singular"; 
-		}
-		elseif( is_category() )
-		{
-			$page_type = "category";
-			$this->current_taxonomy = "category";
-			$thisCat = get_category( get_query_var('cat'),false );			
-			$this->current_term = $thisCat->slug;
-		}
-		elseif( is_tag() )
-		{
-			$page_type = "tag";
-			$this->current_taxonomy = "post_tag"; 
-			$this->current_term = get_query_var('tag');	
-		}
-		elseif(is_tax( ) )
-		{
-			$page_type = "custom_taxonomy";
-			$this->current_taxonomy = get_query_var('taxonomy');
-			$this->current_term = get_query_var('term');
-		
-		}#Note that when used without the $taxonomy parameter, is_tax() returns false on category archives and tag archives. You should use is_category() and is_tag() respectively when checking for category and tag archives. 
-		elseif( is_search() )
-		{ 
-			$page_type = "search"; 
-		}
-		elseif( is_author() )
-		{ 
-			$page_type = "author"; 
-		}
-		elseif( is_404() )
-		{ 
-			$page_type = "404_not_found"; 
-		}
-		else
-		{ 
-			$page_type = "default"; 
-		}									
-		#End Taking decision 
-		
-		$this->page_type = $page_type;
-		return $page_type;	
+		$this->generate_current_page_info();
+		return $this->page_type;	
 	}
 		
 	public function generate_ad_zone_and_links_data(){

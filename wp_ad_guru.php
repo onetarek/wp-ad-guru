@@ -356,6 +356,7 @@ final class WP_Ad_Guru{
 		require_once( ADGURU_PLUGIN_DIR."includes/widgets/widget.php" );
 		require_once( ADGURU_PLUGIN_DIR."includes/shortcodes/shortcode.php" );
 		require_once( ADGURU_PLUGIN_DIR."includes/class-adguru-request-handler.php" );
+		require_once( ADGURU_PLUGIN_DIR."includes/class-adguru-inserter.php" );
 		
 		if ( is_admin() )
 		{

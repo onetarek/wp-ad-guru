@@ -1,0 +1,88 @@
+<?php
+/**
+ * ADGURU_Inserter class
+ * responsible to insert zones to pages automatically
+ * @since 2.2.0
+ * @author oneTarek
+ */
+
+//Don't allow direct access
+if( ! defined( 'ABSPATH' ) ) exit;
+
+if( ! class_exists( 'ADGURU_Inserter' ) ) :
+
+/**
+ * ADGURU_Inserter Class.
+ *
+ * @since 2.2.0
+ */
+final class ADGURU_Inserter{
+	/** Singleton Class/
+
+	/**
+	 * @var ADGURU_Inserter The one true ADGURU_Inserter
+	 * @since 2.2.0
+	 */
+	private static $instance;
+
+
+	/**
+	 * Main ADGURU_Inserter Instance.
+	 *
+	 * Insures that only one instance of ADGURU_Inserter exists in memory at any one
+	 * time. Also prevents needing to define globals all over the place.
+	 *
+	 * @since 2.2.0
+	 * @static
+	 * @staticvar array $instance
+	 * @return object|ADGURU_Inserter The one true ADGURU_Inserter
+	 */
+	public static function instance(){
+		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof ADGURU_Inserter ) )
+		{
+			self::$instance = new self();
+			
+		}
+		return self::$instance;
+	}	
+
+    /**
+     * Private constructor so nobody else can instance it
+     *
+     */
+    private function __construct(){
+
+		
+    }
+		
+	/**
+	 * Throw error on object clone.
+	 *
+	 * The whole idea of the singleton design pattern is that there is a single
+	 * object therefore, we don't want the object to be cloned.
+	 *
+	 * @since 2.2.0
+	 * @access protected
+	 * @return void
+	 */
+	public function __clone(){
+		// Cloning instances of the class is forbidden.
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'adguru' ), '2.0' );
+	}
+
+	/**
+	 * Disable unserializing of the class.
+	 *
+	 * @since 2.2.0
+	 * @access protected
+	 * @return void
+	 */
+	public function __wakeup(){
+		// Unserializing instances of the class is forbidden.
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'adguru' ), '2.0' );
+	}	
+	
+	
+}//end class 
+
+endif;

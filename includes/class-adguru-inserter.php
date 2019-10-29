@@ -25,6 +25,27 @@ final class ADGURU_Inserter{
 	 */
 	private static $instance;
 
+	/**
+	  * Stores all active zone object
+	  * @var object
+	  * @since 2.2.0
+	  */
+	private $zones;
+
+	/**
+	  * Stores information about current visited page
+	  * @var array
+	  * @since 2.2.0
+	  */
+	private $current_page_info;
+
+	/**
+	  * Stores places as key and zones array as value
+	  * @var array
+	  * @since 2.2.0
+	  */
+	private $places;
+
 
 	/**
 	 * Main ADGURU_Inserter Instance.
@@ -52,7 +73,29 @@ final class ADGURU_Inserter{
      */
     private function __construct(){
 
-		
+		$this->zones = adguru()->server->get_zones();
+		$this->current_page_info = adguru()->server->get_current_page_info();
+		$this->prepare();
+    }
+
+    private function prepare(){
+
+    	$this->places = array();
+    	
+    	foreach( $this->zones as $zone )
+    	{
+    		if( $zone->is_auto_insert_possible( $this->current_page_info ) )
+    		{
+    			$place = $zone->get_auto_insert_place();
+    			if( ! isset( $this->place[ $place ] ) )
+    			{
+    				$this->place[ $place ] = array();
+    			}
+    			$this->place[ $place ][] = $zone;
+    		}
+    	}
+
+    	write_log( $this->places );
     }
 		
 	/**

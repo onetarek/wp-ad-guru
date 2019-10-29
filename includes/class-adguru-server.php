@@ -29,10 +29,14 @@ class ADGURU_Server {
 
 	public function __construct(){
 			
-
+		add_action('wp_head', array( $this, 'start_inserter' ) );
 		
 	}#end __construct
 	
+
+	public function start_inserter(){
+		ADGURU_Inserter::instance();
+	}
 
 	#some common functoins=========================================================================
 

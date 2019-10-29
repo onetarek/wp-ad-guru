@@ -153,6 +153,7 @@ final class ADGURU_Inserter{
 
 
 	public function hook_before_post(){
+
 		if( !isset( $this->possible_places['before_post'] ) || !is_array($this->possible_places['before_post'] ) )
 		{
 			return;
@@ -166,6 +167,7 @@ final class ADGURU_Inserter{
 	}
 
 	public function hook_after_post(){
+		
 		if( !isset( $this->possible_places['after_post'] ) || !is_array($this->possible_places['after_post'] ) )
 		{
 			return;
@@ -178,7 +180,7 @@ final class ADGURU_Inserter{
 	}
 
 
-	
+
 	/**
 	 * Throw error on object clone.
 	 *

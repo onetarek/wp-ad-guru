@@ -76,7 +76,20 @@ class ADGURU_Zone{
 		echo "<pre>"; print_r($this); echo "</pre>";
 	}
 
-	
+    
+    /**
+     * Checks whether automatic insertion is enabled or not
+     * @return bool
+     */
+    public function auto_insert_enabled(){
+
+        if( isset( $this->inserter ) && is_array( $this->inserter ) && $this->inserter['enabled'] == 1 )
+        {
+            return true;
+        }
+        return false;
+    }
+    
 }//end class
 
 endif;

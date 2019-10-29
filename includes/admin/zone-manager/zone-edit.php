@@ -141,7 +141,7 @@ $size_list = array(
 
 				<?php do_action( "adguru_zone_editor_main_top", $zone, $error_msgs ) ?>	
 
-				<table class="widefat" id="zone_editor" style="width:100%;">
+				<table class="widefat" id="zone_editor" style="width:100%; margin-bottom:20px;">
 					<thead>
 						<tr>
 						<th width="150">&nbsp;</th>

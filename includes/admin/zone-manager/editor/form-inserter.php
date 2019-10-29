@@ -6,23 +6,36 @@ $inserter_form_args = array(
 	'header_callback' => 'adguru_zone_form_inserter_header_callback',
 	'footer_callback' => 'adguru_zone_form_inserter_footer_callback',
 	'fields' => array(
+		'inserter_enable' => array(
+			'type' 	=> 'radio',
+			'id'	=> 'inserter_enable',
+			'label'	=> __("Enable", 'adguru' ),
+			'items_direction' => 'horizontal',
+			'default'	=> '0',
+			'options' => array(
+				'1' => __("Enable", 'adguru' ),
+				'0' => __("Disable", 'adguru' )
+				
+			),
+		),
+
 		'inserter_place' => array(
 			'type' 	=> 'radio',
 			'id'	=> 'inserter_place',
-			'label'	=> __("Automatic Insert", 'adguru' ),
+			'label'	=> __("Place", 'adguru' ),
 			'items_direction' => 'vertical',
 			'default'	=> 'none',
 			'options' => array(
-				'none' => __("Disabled (  Do not insert automatically )", 'adguru' ),
-				'before_posts' => __("Before Posts", 'adguru' ),
+				'none' => __("Nowhere", 'adguru' ),
+				'before_post' => __("Before Post", 'adguru' ),
 				'between_posts' => __("Between Posts", 'adguru' ),
-				'after_posts' => __("After Posts", 'adguru' ),
+				'after_post' => __("After Post", 'adguru' ),
 				'before_content' => __("Before Content", 'adguru' ),
 				'after_content' => __("After Content", 'adguru' ),
 				'before_comments' => __("Before Comments", 'adguru' ),
 				'between_comments' => __("Between Comments", 'adguru' ),
 				'after_comments' => __("After Comments", 'adguru' ),
-				'footer' => __("After Footer", 'adguru' ),
+				'footer' => __("Footer", 'adguru' ),
 				
 			),
 		),
@@ -31,7 +44,7 @@ $inserter_form_args = array(
 			'type'	=> 'group',
 			'group_type' => 'vertical',
 			'id' => 'inserter_page_types_group',
-			'label' => __("Page Types", 'adguru' ),
+			'label' => __("Pages", 'adguru' ),
 			'help' => __("Select type of pages where you want to insert this zone", 'adguru' ),
 			'fields' => array(
 				'inserter_page_types_misc' => array(
@@ -133,7 +146,6 @@ function adguru_show_zone_inserter_form( $zone )
 		//set merged page type related merged multicheck data for 3 fields
 		if( isset( $inserter_data['inserter_page_types'] ) )
 		{
-			$auto_insert_to_pages = $zone->auto_insert_to_pages;
 			$inserter_data[ 'inserter_page_types_misc' ] = $inserter_data['inserter_page_types'];
 			$inserter_data[ 'inserter_page_types_single' ] = $inserter_data['inserter_page_types'];
 			$inserter_data[ 'inserter_page_types_archive' ] = $inserter_data['inserter_page_types'];
@@ -163,6 +175,10 @@ function adguru_get_page_types_multicheck_options_detail(){
 
 	$misc_type_page_options['home'] = __('Home page', 'adguru');
 	$misc_type_page_defaults['home'] = 1;
+	
+	$misc_type_page_options['search'] =  __('Search result page', 'adguru');
+	$misc_type_page_defaults['search'] = 0;
+
 	$misc_type_page_options['404_not_found'] = __('404 page', 'adguru');
 	$misc_type_page_defaults['404_not_found'] = 0;
 
@@ -191,10 +207,7 @@ function adguru_get_page_types_multicheck_options_detail(){
 	$archive_type_page_options['archive_author'] =  __('Author', 'adguru');
 	$archive_type_page_defaults['archive_author'] = 0;
 
-	$archive_type_page_options['archive_search'] =  __('Search', 'adguru');
-	$archive_type_page_defaults['archive_search'] = 0;
-
-	$archive_type_page_options['archive_date'] =  __('Year/Month/Date', 'adguru');
+	$archive_type_page_options['archive_date'] =  __('Year/Month/Day', 'adguru');
 	$archive_type_page_defaults['archive_date'] = 0;
 
 	$detail['misc_type_page_options'] = $misc_type_page_options;

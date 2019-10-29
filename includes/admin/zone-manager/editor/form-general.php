@@ -1,14 +1,14 @@
 <?php
-$general_form_page_type_detail = adguru_get_page_types_multicheck_options_detail();
+$inserter_form_page_type_detail = adguru_get_page_types_multicheck_options_detail();
 
-$general_form_args = array(
-	'id' => 'zone_general_form',
-	'header_callback' => 'adguru_zone_form_general_header_callback',
-	'footer_callback' => 'adguru_zone_form_general_footer_callback',
+$inserter_form_args = array(
+	'id' => 'zone_inserter_form',
+	'header_callback' => 'adguru_zone_form_inserter_header_callback',
+	'footer_callback' => 'adguru_zone_form_inserter_footer_callback',
 	'fields' => array(
-		'general_auto_insert_place' => array(
+		'inserter_auto_insert_place' => array(
 			'type' 	=> 'radio',
-			'id'	=> 'general_auto_insert_place',
+			'id'	=> 'inserter_auto_insert_place',
 			'label'	=> __("Automatic Insert", 'adguru' ),
 			'items_direction' => 'vertical',
 			'default'	=> 'none',
@@ -27,88 +27,88 @@ $general_form_args = array(
 			),
 		),
 
-		'general_page_types_group' => array(
+		'inserter_page_types_group' => array(
 			'type'	=> 'group',
 			'group_type' => 'vertical',
-			'id' => 'general_page_types_group',
+			'id' => 'inserter_page_types_group',
 			'label' => __("Page Types", 'adguru' ),
 			'help' => __("Select type of pages where you want to insert this zone", 'adguru' ),
 			'fields' => array(
-				'general_page_types_misc' => array(
+				'inserter_page_types_misc' => array(
 					'type' 	=> 'multicheck',
-					'id'	=> 'general_page_types_misc',
+					'id'	=> 'inserter_page_types_misc',
 					'label'	=> '',
 					'fieldset' => array( 'legend'=> 'Misc pages' ),
 					'items_direction' => 'vertical',
 					'on_off_values' => array( "1", "0" ),
-					'default'	=> $general_form_page_type_detail['misc_type_page_defaults'],
-					'options' => $general_form_page_type_detail['misc_type_page_options'],
+					'default'	=> $inserter_form_page_type_detail['misc_type_page_defaults'],
+					'options' => $inserter_form_page_type_detail['misc_type_page_options'],
 				),
 
-				'general_page_types_single' => array(
+				'inserter_page_types_single' => array(
 					'type' 	=> 'multicheck',
-					'id'	=> 'general_page_types_single',
+					'id'	=> 'inserter_page_types_single',
 					'fieldset' => array( 'legend'=> sprintf('<strong>%s</strong>', __("Single pages", 'adguru' ) ) ),
 					'label'	=> '',
 					'items_direction' => 'horizontal',
 					'on_off_values' => array( "1", "0" ),
-					'default'	=> $general_form_page_type_detail['single_type_page_defaults'],
-					'options' => $general_form_page_type_detail['single_type_page_options'],
+					'default'	=> $inserter_form_page_type_detail['single_type_page_defaults'],
+					'options' => $inserter_form_page_type_detail['single_type_page_options'],
 				),
-				'general_page_types_archive' => array(
+				'inserter_page_types_archive' => array(
 					'type' 	=> 'multicheck',
-					'id'	=> 'general_page_types_archive',
+					'id'	=> 'inserter_page_types_archive',
 					'fieldset' => array( 'legend'=> sprintf('<strong>%s</strong>', __("Archive pages", 'adguru' ) ) ),
 					'label'	=> '',
 					'items_direction' => 'horizontal',
 					'on_off_values' => array( "1", "0" ),
-					'default'	=> $general_form_page_type_detail['archive_type_page_defaults'],
-					'options' => $general_form_page_type_detail['archive_type_page_options'],
+					'default'	=> $inserter_form_page_type_detail['archive_type_page_defaults'],
+					'options' => $inserter_form_page_type_detail['archive_type_page_options'],
 				),
 			)
-		),//end of general_page_types_group
+		),//end of inserter_page_types_group
 
 		
 
 	)//end of fields array 
-); // end array $general_form_args
+); // end array $inserter_form_args
 
-function adguru_zone_form_general_header_callback( $form_obj )
+function adguru_zone_form_inserter_header_callback( $form_obj )
 {
-	do_action('adguru_editor_form_zone_general_top', $form_obj );
+	do_action('adguru_editor_form_zone_inserter_top', $form_obj );
 }
 
-function adguru_zone_form_general_footer_callback( $form_obj )
+function adguru_zone_form_inserter_footer_callback( $form_obj )
 {
-	do_action('adguru_editor_form_zone_general_bottom', $form_obj );
+	do_action('adguru_editor_form_zone_inserter_bottom', $form_obj );
 }
 
 //Apply filters so that extensions can add/modify fields settings
-$general_form_args = apply_filters('adguru_zone_editor_form_general_args', $general_form_args );
+$inserter_form_args = apply_filters('adguru_zone_editor_form_inserter_args', $inserter_form_args );
 //reassign header and footer callback to prevent modification the value of  header and  footer callback key.
-$general_form_args['header_callback'] = 'adguru_zone_form_general_header_callback';
-$general_form_args['footer_callback'] = 'adguru_zone_form_general_footer_callback';
+$inserter_form_args['header_callback'] = 'adguru_zone_form_inserter_header_callback';
+$inserter_form_args['footer_callback'] = 'adguru_zone_form_inserter_footer_callback';
 //Create the form object
-$general_form = adguru()->form_builder->create_form($general_form_args);
+$inserter_form = adguru()->form_builder->create_form($inserter_form_args);
 
 
-function adguru_show_zone_general_form( $zone )
+function adguru_show_zone_inserter_form( $zone )
 {
 
-	$general_form = adguru()->form_builder->get_form('zone_general_form');
-	if( $general_form )
+	$inserter_form = adguru()->form_builder->get_form('zone_inserter_form');
+	if( $inserter_form )
 	{ 
-		$general_data = array();
+		$inserter_data = array();
 		
 		//IMPORTANT : in this from , Data items are not be saved as an array in a single meta field. All array keys are stored as individual meta field.
 
-		$field_list = $general_form->get_field_list();
+		$field_list = $inserter_form->get_field_list();
 		foreach( $field_list as $id => $opts ){
 			if( $opts['real_field'] != 1 ) { continue; }
-			$key = ADGURU_Helper::str_replace_beginning('general_', '', $id );
+			$key = ADGURU_Helper::str_replace_beginning('inserter_', '', $id );
 			if( isset($zone->{$key} ) )
 			{
-				$general_data[ $id ] = $zone->{$key};
+				$inserter_data[ $id ] = $zone->{$key};
 			}
 
 		}
@@ -116,17 +116,17 @@ function adguru_show_zone_general_form( $zone )
 		if( isset( $zone->auto_insert_to_pages ) )
 		{
 			$auto_insert_to_pages = $zone->auto_insert_to_pages;
-			$general_data[ 'general_page_types_misc' ] = $auto_insert_to_pages;
-			$general_data[ 'general_page_types_single' ] = $auto_insert_to_pages;
-			$general_data[ 'general_page_types_archive' ] = $auto_insert_to_pages;
+			$inserter_data[ 'inserter_page_types_misc' ] = $auto_insert_to_pages;
+			$inserter_data[ 'inserter_page_types_single' ] = $auto_insert_to_pages;
+			$inserter_data[ 'inserter_page_types_archive' ] = $auto_insert_to_pages;
 
 		}
 		
-		$general_form->set_data( $general_data );
+		$inserter_form->set_data( $inserter_data );
 		//Before render modify the fields settings, specially update fields hidden status based on the value.
-		do_action('adguru_editor_form_zone_general_before_render', $general_form );
+		do_action('adguru_editor_form_zone_inserter_before_render', $inserter_form );
 		//render the form
-		$general_form->render();
+		$inserter_form->render();
 		
 	}//end if $animation_form
 }

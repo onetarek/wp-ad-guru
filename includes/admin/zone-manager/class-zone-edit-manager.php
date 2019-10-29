@@ -28,7 +28,7 @@ class ADGURU_Zone_Edit_Manager{
 	 */
 	public function editor_init()
 	{
-		include_once( dirname(__FILE__)."/editor/form-general.php");
+		include_once( dirname(__FILE__)."/editor/form-inserter.php");
 	}
 
 	/**

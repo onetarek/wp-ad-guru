@@ -89,7 +89,20 @@ class ADGURU_Zone{
         }
         return false;
     }
-    
+
+    /**
+     * Gets place for automatic insertion
+     * @return string
+     */
+    public function get_auto_insert_place(){
+
+        if( isset( $this->inserter ) && is_array( $this->inserter ) && isset( $this->inserter['place'] ) )
+        {
+            return $this->inserter['place'];
+        }
+        return '';
+    }
+
 }//end class
 
 endif;

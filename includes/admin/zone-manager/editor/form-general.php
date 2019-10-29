@@ -114,11 +114,15 @@ function adguru_show_zone_general_form( $zone )
 
 		}
 		//set merged page type related merged multicheck data for 3 fields
-		$auto_insert_to_pages = $zone->auto_insert_to_pages;
+		if( isset( $zone->auto_insert_to_pages ) )
+		{
+			$auto_insert_to_pages = $zone->auto_insert_to_pages;
+			$general_data[ 'general_page_types_misc' ] = $auto_insert_to_pages;
+			$general_data[ 'general_page_types_single' ] = $auto_insert_to_pages;
+			$general_data[ 'general_page_types_archive' ] = $auto_insert_to_pages;
+
+		}
 		
-		$general_data[ 'page_types_misc' ] = $auto_insert_to_pages;
-		$general_data[ 'page_types_single' ] = $auto_insert_to_pages;
-		$general_data[ 'page_types_archive' ] = $auto_insert_to_pages;
 
 	write_log($general_data);
 		$general_form->set_data( $general_data );

@@ -35,9 +35,29 @@ $inserter_form_args = array(
 				'before_comments' => __("Before Comments", 'adguru' ),
 				'between_comments' => __("Between Comments", 'adguru' ),
 				'after_comments' => __("After Comments", 'adguru' ),
-				'footer' => __("Footer", 'adguru' ),
+				'before_footer' => __("Before Footer", 'adguru' ),
+				'after_footer' => __("After Footer", 'adguru' ),
 				
 			),
+		),
+
+		'inserter_after_post_number' => array(
+			'type'	=> 'text',
+			'id'	=> 'inserter_after_post_number',
+			'label'	=> __("After Post number(s)", 'adguru'),
+			'desc' => __( 'Add post number(s) in the loop after which you want to show this zone. You can use multiple numbers separated by comma', 'adguru'),
+			'default'	=> 0,
+			'size'  => 'medium',
+
+		),
+
+		'inserter_after_comment_number' => array(
+			'type'	=> 'text',
+			'id'	=> 'inserter_after_comment_number',
+			'label'	=> __("After Comment number(s)", 'adguru'),
+			'desc' => __( 'Add comment number(s) in the loop after which you want to show this zone. You can use multiple numbers separated by comma', 'adguru'),
+			'default'	=> 0,
+			'size'  => 'medium',
 		),
 
 		'inserter_page_types_group' => array(
@@ -93,6 +113,29 @@ function adguru_zone_form_inserter_header_callback( $form_obj )
 
 function adguru_zone_form_inserter_footer_callback( $form_obj )
 {
+	?>
+	<script type="text/javascript">
+		jQuery(document).on('wpafb-field:change:inserter_place', function(event , args){
+		
+			var value = args['value'];
+			
+			WPAFB.hideField('inserter_after_post_number');
+			WPAFB.hideField('inserter_after_comment_number');
+
+			if( value == 'between_posts' )
+			{
+				WPAFB.showField('inserter_after_post_number');
+				
+			}
+			else if( value == 'between_comments' )
+			{
+				WPAFB.showField('inserter_after_comment_number');
+			}
+		});
+
+
+	</script>
+	<?php
 	do_action('adguru_editor_form_zone_inserter_bottom', $form_obj );
 }
 
@@ -153,12 +196,26 @@ function adguru_show_zone_inserter_form( $zone )
 
 		}
 
-
-		//write_log($zone, $inserter_data);
 		
 		$inserter_form->set_data( $inserter_data );
+		
 		//Before render modify the fields settings, specially update fields hidden status based on the value.
+		$inserter_form->set_hidden_field('inserter_after_post_number');//hide
+		$inserter_form->set_hidden_field('inserter_after_comment_number');//hide
+
+		$inserter_place = $inserter_form->get_value('inserter_place');
+		if( $inserter_place == 'between_posts')
+		{
+			$inserter_form->set_hidden_field('inserter_after_post_number', false);//unhide
+		}
+		elseif( $inserter_place == 'between_comments' )
+		{
+			$inserter_form->set_hidden_field('inserter_after_comment_number', false);//unhide
+		}
+		
+
 		do_action('adguru_editor_form_zone_inserter_before_render', $inserter_form );
+		
 		//render the form
 		$inserter_form->render();
 		

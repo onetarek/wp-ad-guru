@@ -144,6 +144,21 @@ class ADGURU_Zone{
 
     }
 
+    /**
+     * Checks whether automatic insertion is possible before current post in loop
+     * @since 2.2.0
+     * @return bool
+     */
+    public function is_auto_insert_possible_before_post( $current_post_number ){
+        if( !$this->is_auto_insert_possible() )
+        {
+            return false;
+        }
+        //check the value of insertsion after posts field
+        return false; 
+
+    }
+
 }//end class
 
 endif;

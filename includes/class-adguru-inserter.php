@@ -47,6 +47,12 @@ final class ADGURU_Inserter{
 	private $possible_places;
 
 	/**
+ 	 * Stores the number of current post in wp main query loop
+ 	 */
+	private $current_post_number_in_loop = 0;
+
+
+	/**
 	 * Main ADGURU_Inserter Instance.
 	 *
 	 * Insures that only one instance of ADGURU_Inserter exists in memory at any one
@@ -105,27 +111,28 @@ final class ADGURU_Inserter{
 		
 		if( isset( $this->possible_places[ 'before_post' ] ) )
 		{
-			add_action('loop_start', array( $this, 'hook_before_post' ), -100 );
+			add_action('loop_start', array( $this, 'hook_before_post' ), -100 , 1 ); # loop_start : https://developer.wordpress.org/reference/hooks/loop_start/
 		}
 
 		if( isset( $this->possible_places[ 'between_posts' ] ) )
 		{
-			
+			add_action('loop_start', array( $this, 'hook_between_posts' ), -100 , 2 ); #the_post https://developer.wordpress.org/reference/hooks/the_post/
 		}
 
 		if( isset( $this->possible_places[ 'after_post' ] ) )
 		{
-			add_action('loop_end', array( $this, 'hook_after_post' ), 100 );
+			add_action('loop_end', array( $this, 'hook_after_post' ), 100 , 1 ); # loop_end : https://developer.wordpress.org/reference/hooks/loop_end/
 		}
 
 		if( isset( $this->possible_places[ 'before_content' ] ) )
 		{
 			
+			add_filter( 'the_content', array( $this, 'hook_before_content' ), 10, 1 ); #the_content : https://developer.wordpress.org/reference/hooks/the_content/
 		}
 
 		if( isset( $this->possible_places[ 'after_content' ] ) )
 		{
-			
+			add_filter( 'the_content', array( $this, 'hook_after_content' ), 10, 1 ); #the_content : https://developer.wordpress.org/reference/hooks/the_content/
 		}
 
 		if( isset( $this->possible_places[ 'before_comments' ] ) )
@@ -142,18 +149,30 @@ final class ADGURU_Inserter{
 		{
 			
 		}
+		//comment_form_before do_action( 'comment_form_before' ); 
+		//comment_form_after
 
-		if( isset( $this->possible_places[ 'footer' ] ) )
+
+		if( isset( $this->possible_places[ 'before_footer' ] ) )
 		{
-			
+			add_filter( 'get_footer', array( $this, 'hook_before_footer' )); #get_footer : https://codex.wordpress.org/Plugin_API/Action_Reference/get_footer
+		}
+
+		if( isset( $this->possible_places[ 'after_footer' ] ) )
+		{
+			add_filter( 'wp_footer', array( $this, 'hook_after_footer' ));
 		}
 		
 
 	}	
 
 
-	public function hook_before_post(){
+	public function hook_before_post( $wp_query ){
 
+		if( ! $wp_query->is_main_query() )
+		{
+			return;
+		}
 		if( !isset( $this->possible_places['before_post'] ) || !is_array($this->possible_places['before_post'] ) )
 		{
 			return;
@@ -166,8 +185,13 @@ final class ADGURU_Inserter{
 
 	}
 
-	public function hook_after_post(){
-		
+	public function hook_after_post($wp_query){
+
+		if( ! $wp_query->is_main_query() )
+		{
+			return;
+		}
+
 		if( !isset( $this->possible_places['after_post'] ) || !is_array($this->possible_places['after_post'] ) )
 		{
 			return;
@@ -178,6 +202,93 @@ final class ADGURU_Inserter{
 			adguru()->server->show_zone( $zone->ID );
 		}
 	}
+
+	public function hook_between_posts( $post, $wp_query ){
+
+		if( ! $wp_query->is_main_query() )
+		{
+			return;
+		}
+
+		$this->current_post_number_in_loop++;
+
+		if( !isset( $this->possible_places['between_posts'] ) || !is_array($this->possible_places['between_posts'] ) )
+		{
+			return;
+		}
+
+		foreach( $this->possible_places['between_posts'] as $zone )
+		{
+			if( $zone->is_auto_insert_possible_before_post( $this->current_post_number_in_loop ) )
+			{
+				adguru()->server->show_zone( $zone->ID );
+			}
+		}
+	}
+
+	public function hook_before_content( $content ){
+
+		// Check if we're inside the main loop in a single post page.
+	    if ( ! ( is_single() && in_the_loop() && is_main_query() ) ) {
+	        return $content;
+	    }
+	 
+		if( !isset( $this->possible_places['before_content'] ) || !is_array($this->possible_places['before_content'] ) )
+		{
+			return $content;
+		}
+		$ad_contents = '';
+		foreach( $this->possible_places['before_content'] as $zone )
+		{
+			$ad_contents = $ad_contents. adguru()->server->show_zone( $zone->ID , true );
+		}
+		return $ad_contents.$content;
+	}
+
+	public function hook_after_content( $content ){
+
+		// Check if we're inside the main loop in a single post page.
+	    if ( ! ( is_single() && in_the_loop() && is_main_query() ) ) {
+	        return $content;
+	    }
+	 
+		if( !isset( $this->possible_places['after_content'] ) || !is_array($this->possible_places['after_content'] ) )
+		{
+			return $content;
+		}
+		$ad_contents = '';
+		foreach( $this->possible_places['after_content'] as $zone )
+		{
+			$ad_contents = $ad_contents. adguru()->server->show_zone( $zone->ID , true );
+		}
+		return $content.$ad_contents;
+	}
+
+	public function hook_before_footer(){
+
+		if( !isset( $this->possible_places['before_footer'] ) || !is_array($this->possible_places['before_footer'] ) )
+		{
+			return;
+		}
+
+		foreach( $this->possible_places['before_footer'] as $zone )
+		{
+			adguru()->server->show_zone( $zone->ID );
+		}
+	}
+	public function hook_after_footer(){
+
+		if( !isset( $this->possible_places['after_footer'] ) || !is_array($this->possible_places['after_footer'] ) )
+		{
+			return;
+		}
+
+		foreach( $this->possible_places['after_footer'] as $zone )
+		{
+			adguru()->server->show_zone( $zone->ID );
+		}
+	}
+	
 
 
 

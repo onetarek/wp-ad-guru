@@ -89,7 +89,7 @@ final class ADGURU_Inserter{
     	$this->possible_places = array();
     	//write_log( $this->zones );
     	foreach( $this->zones as $zone )
-    	{
+    	{//write_log($zone);
     		if( $zone->is_auto_insert_possible( $this->current_page_info ) )
     		{
     			$place = $zone->get_auto_insert_place();

@@ -170,6 +170,12 @@ class ADGURU_Server {
 			$info['term'] = $term;
 		
 		}#Note that when used without the $taxonomy parameter, is_tax() returns false on category archives and tag archives. You should use is_category() and is_tag() respectively when checking for category and tag archives. 
+		elseif( is_date() )
+		{
+			#not ready yet. Right now use as 'default'
+			$page_type = "default"; //Have to change later.
+			$info['page_type'] = "date";
+		}
 		elseif( is_search() )
 		{ 
 			$page_type = "search"; 

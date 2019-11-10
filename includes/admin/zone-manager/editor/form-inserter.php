@@ -41,9 +41,9 @@ $inserter_form_args = array(
 			),
 		),
 
-		'inserter_after_post_number' => array(
+		'inserter_after_post_numbers' => array(
 			'type'	=> 'text',
-			'id'	=> 'inserter_after_post_number',
+			'id'	=> 'inserter_after_post_numbers',
 			'label'	=> __("After Post number(s)", 'adguru'),
 			'desc' => __( 'Add post number(s) in the loop after which you want to show this zone. You can use multiple numbers separated by comma', 'adguru'),
 			'default'	=> 0,
@@ -51,9 +51,9 @@ $inserter_form_args = array(
 
 		),
 
-		'inserter_after_comment_number' => array(
+		'inserter_after_comment_numbers' => array(
 			'type'	=> 'text',
-			'id'	=> 'inserter_after_comment_number',
+			'id'	=> 'inserter_after_comment_numbers',
 			'label'	=> __("After Comment number(s)", 'adguru'),
 			'desc' => __( 'Add comment number(s) in the loop after which you want to show this zone. You can use multiple numbers separated by comma', 'adguru'),
 			'default'	=> 0,
@@ -119,17 +119,17 @@ function adguru_zone_form_inserter_footer_callback( $form_obj )
 		
 			var value = args['value'];
 			
-			WPAFB.hideField('inserter_after_post_number');
-			WPAFB.hideField('inserter_after_comment_number');
+			WPAFB.hideField('inserter_after_post_numbers');
+			WPAFB.hideField('inserter_after_comment_numbers');
 
 			if( value == 'between_posts' )
 			{
-				WPAFB.showField('inserter_after_post_number');
+				WPAFB.showField('inserter_after_post_numbers');
 				
 			}
 			else if( value == 'between_comments' )
 			{
-				WPAFB.showField('inserter_after_comment_number');
+				WPAFB.showField('inserter_after_comment_numbers');
 			}
 		});
 
@@ -200,17 +200,17 @@ function adguru_show_zone_inserter_form( $zone )
 		$inserter_form->set_data( $inserter_data );
 		
 		//Before render modify the fields settings, specially update fields hidden status based on the value.
-		$inserter_form->set_hidden_field('inserter_after_post_number');//hide
-		$inserter_form->set_hidden_field('inserter_after_comment_number');//hide
+		$inserter_form->set_hidden_field('inserter_after_post_numbers');//hide
+		$inserter_form->set_hidden_field('inserter_after_comment_numbers');//hide
 
 		$inserter_place = $inserter_form->get_value('inserter_place');
 		if( $inserter_place == 'between_posts')
 		{
-			$inserter_form->set_hidden_field('inserter_after_post_number', false);//unhide
+			$inserter_form->set_hidden_field('inserter_after_post_numbers', false);//unhide
 		}
 		elseif( $inserter_place == 'between_comments' )
 		{
-			$inserter_form->set_hidden_field('inserter_after_comment_number', false);//unhide
+			$inserter_form->set_hidden_field('inserter_after_comment_numbers', false);//unhide
 		}
 		
 

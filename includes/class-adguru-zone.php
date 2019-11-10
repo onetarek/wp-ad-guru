@@ -115,7 +115,7 @@ class ADGURU_Zone{
         if( isset( $this->inserter ) && is_array( $this->inserter ) && isset( $this->inserter['page_types'] ) && is_array( $this->inserter['page_types'] ) )
         {
             $list = array();
-            $items = $this->inserter['page_types'];
+            $items = $this->inserter['page_types'];//write_log($items);
             foreach( $items as $key=> $val )
             {
                 if( intval( $val ) == 1 )
@@ -129,6 +129,58 @@ class ADGURU_Zone{
     }
 
     /**
+     * Gets post numbers in loop after which this zone should be inserted
+     * @since 2.2.0
+     * @return array
+     */
+    public function get_after_post_numbers(){
+        $list = array();
+        if( isset( $this->inserter ) && is_array( $this->inserter ) && isset( $this->inserter['after_post_numbers'] ) )
+        {
+            $str = trim( $this->inserter['after_post_numbers'] );
+            if( $str != "")
+            {
+               $parts = explode(',', $str );
+               foreach( $parts as $part )
+               {
+                    $num = intval( $part );
+                    if( $num )
+                    {
+                        $list[] = $num;
+                    }
+               }
+            }  
+        }
+        return $list;
+    }
+
+    /**
+     * Gets post numbers in loop after which this zone should be inserted
+     * @since 2.2.0
+     * @return array
+     */
+    public function get_after_comment_numbers(){
+        $list = array();
+        if( isset( $this->inserter ) && is_array( $this->inserter ) && isset( $this->inserter['after_comment_numbers'] ) )
+        {
+            $str = trim( $this->inserter['after_comment_numbers'] );
+            if( $str != "")
+            {
+               $parts = explode(',', $str );
+               foreach( $parts as $part )
+               {
+                    $num = intval( $part );
+                    if( $num )
+                    {
+                        $list[] = $num;
+                    }
+               }
+            }  
+        }
+        return $list;
+    }
+
+    /**
      * Checks whether automatic insertion is possible on current page
      * @since 2.2.0
      * @return bool
@@ -139,8 +191,101 @@ class ADGURU_Zone{
             return false;
         }
         return true;
-        //$page_types = $this->get_auto_insert_page_types();
+        $page_types = $this->get_auto_insert_page_types();
+        if( empty($page_types) )
+        {
+            return false;
+        }
 
+        $page_type = $current_page_info['page_type'];
+
+        if( in_array( $page_type, array( 'author', 'category', 'tag', 'custom_taxonomy', 'date' ) ) && in_array('archive_any', $page_types ) )
+        {
+            return true;
+        }
+
+        switch($page_type)
+        {
+            case 'home' : 
+            {
+               if( in_array('home', $page_types ) )
+                {
+                    return true;
+                } 
+                break;
+            }
+            case 'search' : 
+            {
+               if( in_array('search', $page_types ) )
+                {
+                    return true;
+                } 
+                break;
+            }
+            case '404_not_found' : 
+            {
+               if( in_array('404_not_found', $page_types ) )
+                {
+                    return true;
+                } 
+                break;
+            }
+            case 'singular':
+            {
+                if( in_array('single_any', $page_types ) )
+                {
+                    return true;
+                }
+                elseif( in_array('single_'.$current_page_info['page_type'], $page_types ) )
+                {
+                    return true;
+                }
+                break;
+            }
+            case 'author' : 
+            {
+               if( in_array('author', $page_types ) )
+                {
+                    return true;
+                } 
+                break;
+            }
+            case 'category':
+            {
+                if( in_array('archive_category', $page_types ) )
+                {
+                    return true;
+                }
+                break;
+            }
+            case 'tag':
+            {
+                if( in_array('archive_post_tag', $page_types ) )
+                {
+                    return true;
+                }
+                break;
+            }
+            case 'custom_taxonomy':
+            {
+                if( in_array('archive_'.$current_page_info['taxonomy'], $page_types ) )
+                {
+                    return true;
+                }
+                break;
+            }
+            case 'date':
+            {
+                if( in_array('archive_date', $page_types ) )
+                {
+                    return true;
+                }
+                break;
+            }
+
+        }//end switch
+
+        return false;
 
     }
 
@@ -150,11 +295,32 @@ class ADGURU_Zone{
      * @return bool
      */
     public function is_auto_insert_possible_before_post( $current_post_number ){
-        if( !$this->is_auto_insert_possible() )
-        {
-            return false;
-        }
+        
         //check the value of insertsion after posts field
+        $numbers = $this->get_after_post_numbers();
+        if( in_array( $current_post_number-1, $numbers ) )
+        {
+            return true;
+        }
+
+        return false; 
+
+    }
+
+    /**
+     * Checks whether automatic insertion is possible before current comment in loop
+     * @since 2.2.0
+     * @return bool
+     */
+    public function is_auto_insert_possible_before_comment( $current_comment_number ){
+        
+        //check the value of insertsion after comments field
+        $numbers = $this->get_after_comment_numbers();
+        if( in_array( $current_comment_number-1, $numbers ) )
+        {
+            return true;
+        }
+
         return false; 
 
     }

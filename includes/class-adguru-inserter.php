@@ -100,8 +100,7 @@ final class ADGURU_Inserter{
     			$this->possible_places[ $place ][] = $zone;
     		}
     	}
-
-    	//write_log( $this->places );
+    	//write_log($this->possible_places);
     }
 	
 	private function add_hooks(){
@@ -155,12 +154,12 @@ final class ADGURU_Inserter{
 
 		if( isset( $this->possible_places[ 'before_footer' ] ) )
 		{
-			add_filter( 'get_footer', array( $this, 'hook_before_footer' )); #get_footer : https://codex.wordpress.org/Plugin_API/Action_Reference/get_footer
+			add_action( 'get_footer', array( $this, 'hook_before_footer' )); #get_footer : https://codex.wordpress.org/Plugin_API/Action_Reference/get_footer
 		}
 
 		if( isset( $this->possible_places[ 'after_footer' ] ) )
 		{
-			add_filter( 'wp_footer', array( $this, 'hook_after_footer' ));
+			add_action( 'wp_footer', array( $this, 'hook_after_footer' ));
 		}
 		
 

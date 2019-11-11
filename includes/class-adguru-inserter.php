@@ -116,7 +116,7 @@ final class ADGURU_Inserter{
 
 		if( isset( $this->possible_places[ 'between_posts' ] ) )
 		{
-			add_action('loop_start', array( $this, 'hook_between_posts' ), -100 , 2 ); #the_post https://developer.wordpress.org/reference/hooks/the_post/
+			add_action('the_post', array( $this, 'hook_between_posts' ), -100 , 2 ); #the_post https://developer.wordpress.org/reference/hooks/the_post/
 		}
 
 		if( isset( $this->possible_places[ 'after_post' ] ) )

@@ -190,8 +190,9 @@ class ADGURU_Zone{
         {
             return false;
         }
-        return true;
+        
         $page_types = $this->get_auto_insert_page_types();
+        //write_log($page_types, $current_page_info);
         if( empty($page_types) )
         {
             return false;
@@ -236,7 +237,7 @@ class ADGURU_Zone{
                 {
                     return true;
                 }
-                elseif( in_array('single_'.$current_page_info['page_type'], $page_types ) )
+                elseif( in_array('single_'.$current_page_info['post_type'], $page_types ) )
                 {
                     return true;
                 }
@@ -244,7 +245,7 @@ class ADGURU_Zone{
             }
             case 'author' : 
             {
-               if( in_array('author', $page_types ) )
+               if( in_array('archive_author', $page_types ) )
                 {
                     return true;
                 } 

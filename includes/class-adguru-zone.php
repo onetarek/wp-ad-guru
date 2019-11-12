@@ -99,8 +99,8 @@ class ADGURU_Zone{
             
 
         }
-        
-        echo '<span class="adguru-zone">';
+        $zone_html_id = 'adguru_zone_'.$this->ID.'_'.$this->display_instance_number;
+        echo '<span id="'.$zone_html_id.'" class="adguru-zone">';
 
         $links = $server->get_appropiate_ad_links( $this->ID );
 

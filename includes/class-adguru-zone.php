@@ -190,6 +190,12 @@ class ADGURU_Zone{
     {
         return ( isset( $this->design ) && is_array( $this->design ) && isset( $this->design['wrapper'] ) && $this->design['wrapper'] == 1 );
     }
+
+    /**
+     * Get html attributes from zone wrapper DIV
+     * @since 2.2.0
+     * @return array
+     */
     private function get_wrapper_attrs(){
         $wrapper_class = 'adguru-zone-wrap';
         

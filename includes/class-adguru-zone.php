@@ -16,7 +16,9 @@ class ADGURU_Zone{
 	public $name;
 	public $description;
 	public $meta = array();
-		
+	
+    private $display_instance_number = 0;
+
 	public function __construct(){
 		
 	}
@@ -69,13 +71,165 @@ class ADGURU_Zone{
         return isset( $this->{$prop} ) || isset( $this->meta[ "_".$prop ] );
     }	
 	
-	
+	/**
+     * Renders output this zone
+     * @since 2.2.0
+     * @return string or void
+     */
 		
-	public function display(){
+	public function display( $ret = false ){
+
+        $this->display_instance_number++;
+        $server = adguru()->server;
+		$need_wrapper = $this->wrapper_needed();
         
-		echo "<pre>"; print_r($this); echo "</pre>";
+
+        ob_start(); 
+
+        if( $need_wrapper )
+        {
+            $wrap_attrs = $this->get_wrapper_attrs();
+            //print wrapper div
+            echo '<div ';
+            foreach( $wrap_attrs as $key => $attr )
+            {
+                echo ' '.sanitize_key($key).'="'.esc_attr( $attr ).'"';
+            }
+            echo ' >';
+            
+
+        }
+        
+        echo '<span class="adguru-zone">';
+
+        $links = $server->get_appropiate_ad_links( $this->ID );
+
+        if( is_array( $links  ) )
+        {
+            $tot_slide = count( $links );
+            if( $tot_slide == 0 )
+            {
+                #nothing to do
+            }
+            elseif( $tot_slide == 1 )
+            {
+                #show single ad
+                $ad_id = intval( $server->get_ad_by_percentage_probability( $links[0] ) );
+                
+                echo $server->show_ad( $ad_id , true);
+                
+            
+            }
+            else
+            {
+                
+                #show slider
+                $ad_id_list = array();
+                foreach( $links as $ad_set )
+                {
+                    $ad_id = intval( $server->get_ad_by_percentage_probability( $ad_set ) );          
+                    if( $ad_id )
+                    { 
+                        $ad_id_list[] = $ad_id; 
+                    }
+                }
+                
+                
+                $slider_html_id = "adguru_slider_".$this->ID."_".$this->display_instance_number;
+                $arg = array(
+                    "slider_html_id"=> $slider_html_id,
+                    "width"         => $this->width,
+                    "height"        => $this->height,
+                    "auto"          => 5000,
+                    "vertical"      => false,
+                    "pagination"    => false
+                );
+
+                echo '<ul id="'.$slider_html_id.'" class="adguru_ad_slider" style="width:'.$arg['width'].';height:'.$arg['height'].'" data-options="'.esc_attr( json_encode( $arg ) ).'">';
+                    foreach( $ad_id_list as $ad_id )
+                    {
+                        echo '<li style="width:'.$arg['width'].';height:'.$arg['height'].'">';
+                        echo $server->show_ad( $ad_id, true );
+                        echo '</li>';
+                    }
+                echo '</ul>';
+                
+                
+            }#end if( $tot_slide==0)
+        
+            
+        }#end if(is_array( $links ) )
+
+        echo '</span>';
+        if( $need_wrapper )
+        {
+            echo '</div>';//CLOSEING OF WRAPPER DIV
+        }
+
+        $output = ob_get_clean();
+        
+        $output = apply_filters("adguru_zone_output", $output , $this );
+        
+        if( $ret )
+        { 
+            return $output; 
+        }
+        else
+        {
+            echo $output;
+        }
 	}
 
+    /**
+     * Checks whether extra wrapper element is needed or not
+     * @since 2.2.0
+     * @return bool
+     */
+
+    private function wrapper_needed()
+    {
+        return ( isset( $this->design ) && is_array( $this->design ) && isset( $this->design['wrapper'] ) && $this->design['wrapper'] == 1 );
+    }
+    private function get_wrapper_attrs(){
+        $wrapper_class = 'adguru-zone-wrap';
+        
+        $alignment = (isset( $this->design['alignment'] ) ) ? $this->design['alignment'] : 'default';
+        switch ($alignment) {
+            case 'left':
+            {
+               $wrapper_class = $wrapper_class. ' align_left'; 
+               break; 
+            }
+            case 'center':
+            {
+               $wrapper_class = $wrapper_class. ' align_center'; 
+               break; 
+            }
+            case 'right':
+            {
+               $wrapper_class = $wrapper_class. ' align_right'; 
+               break; 
+            }
+            case 'float_left':
+            {
+               $wrapper_class = $wrapper_class. ' float_left'; 
+               break; 
+            }
+            case 'float_right':
+            {
+               $wrapper_class = $wrapper_class. ' float_right'; 
+               break; 
+            }
+        }//end switch
+
+        $attrs = array(
+            'id' => 'adguru_zone_wrap_'.$this->ID.'_'.$this->display_instance_number,
+            'class' => $wrapper_class,
+        );
+        $attrs = apply_filters('adguru_zone_wrapper_attrs', $attrs, $this );
+
+        return $attrs;
+    }
     
     /**
      * Checks whether automatic insertion is enabled or not

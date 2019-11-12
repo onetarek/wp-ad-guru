@@ -941,77 +941,14 @@ class ADGURU_Server {
 		
 		if( !isset( $zones[ $zone_id ] ) )
 		{
-			$output.=__("Zone not found or deactivated.", "adguru" )."Zone id : ".$zone_id; 
-			if( $ret )
-			{ 
-				return $output;
-			}
-			else
-			{
-				echo $output; 
-				return true;				
-			}
+			$output =__("Zone not found or deactivated.", "adguru" )."Zone id : ".$zone_id; 
+		}
+		else
+		{
+			$current_zone = $zones[ $zone_id ];
+			$output = $current_zone->display(true);//true for return output
 		}
 			
-		$current_zone = $zones[ $zone_id ];
-		$links = $this->get_appropiate_ad_links( $zone_id );
-
-		if( is_array( $links  ) )
-		{
-			$tot_slide = count( $links );
-			if( $tot_slide == 0 )
-			{
-				#nothing to do
-				return false;
-			}
-			elseif( $tot_slide == 1 )
-			{
-				#show single ad
-				$ad_id = intval( $this->get_ad_by_percentage_probability( $links[0] ) );
-				$this->instance_number++;
-				$output.= $this->show_ad( $ad_id, true );
-				
-			
-			}
-			else
-			{
-				#show slider
-				$ad_id_list = array();
-				foreach( $links as $ad_set )
-				{
-					$ad_id = intval( $this->get_ad_by_percentage_probability( $ad_set ) );			
-					if( $ad_id )
-					{ 
-						$ad_id_list[] = $ad_id; 
-					}
-				}
-				
-				$this->instance_number++;
-				
-				$slider_html_id = "adguru_slider_".$zone_id."_".$this->instance_number;
-				$arg = array(
-					"slider_html_id"=> $slider_html_id,
-					"width" 		=> $current_zone->width,
-					"height" 		=> $current_zone->height,
-					"auto" 			=> 5000,
-					"vertical" 		=> false,
-					"pagination" 	=> false
-				);
-				$output.= '<ul id="'.$slider_html_id.'" class="adguru_ad_slider" style="width:'.$arg['width'].';height:'.$arg['height'].'" data-options="'.esc_attr( json_encode( $arg ) ).'">';
-					foreach( $ad_id_list as $ad_id )
-					{
-						$output.= '<li style="width:'.$arg['width'].';height:'.$arg['height'].'">';
-						$output.= $this->show_ad( $ad_id, true );
-						$output.= '</li>';
-					}
-				$output.= '</ul>';
-				
-				
-			}#end if( $tot_slide==0)
-		
-			
-		}#end if(is_array( $links ) )
-		
 		if( $ret ){ return $output; } else { echo $output; }	 
 	 
 	 }//end func

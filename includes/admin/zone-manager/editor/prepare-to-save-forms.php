@@ -1,5 +1,32 @@
 <?php
 
+
+//DESIGN FORM
+$design_form = adguru()->form_builder->get_form('zone_design_form');
+if( $design_form )
+{ 
+	$design_data = array();
+	$submitted_data = $design_form->prepare_submitted_data();
+	
+	foreach( $submitted_data as $id => $value )
+	{
+		$key = ADGURU_Helper::str_replace_beginning('design_', '', $id );
+		$design_data[$key] = $value;
+	}
+	
+	$design_data = apply_filters('adguru_zone_prepare_to_save_design_data', $design_data, $submitted_data );
+	
+	/*
+	Keep old fields those are not exist with current submitted data. 
+	We need this because some fields might be added by extension and extension may be deactivated now
+	*/
+	if( $zone_from_db && isset($zone_from_db->design) && is_array( $zone_from_db->design ) )
+	{
+		$design_data = array_merge( $zone_from_db->design, $design_data );
+	}
+	$zone->design = $design_data;
+}
+
 //INSERTER FORM 
 $inserter_form = adguru()->form_builder->get_form('zone_inserter_form');
 if( $inserter_form )
@@ -44,3 +71,4 @@ if( $inserter_form )
 	}
 	$zone->inserter = $inserter_data;
 }
+

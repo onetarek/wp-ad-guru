@@ -219,7 +219,7 @@ function adguru_show_zone_inserter_form( $zone )
 		//render the form
 		$inserter_form->render();
 		
-	}//end if $animation_form
+	}//end if $inserter_form
 }
 
 function adguru_get_page_types_multicheck_options_detail(){

@@ -6,6 +6,19 @@ $design_form_args = array(
 	'footer_callback' => 'adguru_zone_form_design_footer_callback',
 	'fields' => array(
 
+		'design_wrapper' => array(
+			'type' 	=> 'radio',
+			'id'	=> 'design_wrapper',
+			'label'	=> __("Wrapper", 'adguru' ),
+			'items_direction' => 'horizontal',
+			'default'	=> '1',
+			'options' => array(
+				'1' => __("Use wrapper", 'adguru' ),
+				'0' => __("No wrapper", 'adguru' )
+				
+			),
+			'help' => __('Extra &lt;DIV&gt; element will wrap the zone html to set the alignment , margin etc.', 'adguru'),
+		),
 		'design_alignment' => array(
 			'type' 	=> 'select',
 			'id'	=> 'design_alignment',
@@ -32,6 +45,26 @@ function adguru_zone_form_design_header_callback( $form_obj )
 
 function adguru_zone_form_design_footer_callback( $form_obj )
 {
+	?>
+	<script type="text/javascript">
+		jQuery(document).on('wpafb-field:change:design_wrapper', function(event , args){
+		
+			var value = args['value'];
+
+			if( value == 1 )
+			{
+				WPAFB.showField('design_alignment');
+				
+			}
+			else if( value == 0 )
+			{
+				WPAFB.hideField('design_alignment');
+			}
+		});
+
+
+	</script>
+	<?php
 	do_action('adguru_editor_form_zone_design_bottom', $form_obj );
 }
 
@@ -69,6 +102,13 @@ function adguru_show_zone_design_form( $zone )
 		$design_form->set_data( $design_data );
 		
 		//Before render modify the fields settings, specially update fields hidden status based on the value.
+
+		$design_wrapper = $design_form->get_value('design_wrapper');
+		if( $design_wrapper == 0)
+		{
+			$design_form->set_hidden_field('design_alignment');
+		}
+		
 
 		do_action('adguru_editor_form_zone_design_before_render', $design_form );
 		

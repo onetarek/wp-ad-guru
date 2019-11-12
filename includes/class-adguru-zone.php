@@ -188,7 +188,14 @@ class ADGURU_Zone{
 
     private function wrapper_needed()
     {
-        return ( isset( $this->design ) && is_array( $this->design ) && isset( $this->design['wrapper'] ) && $this->design['wrapper'] == 1 );
+        if ( isset( $this->design ) && is_array( $this->design ) && isset( $this->design['wrapper'] ) && $this->design['wrapper'] == 0 )
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     /**
@@ -199,7 +206,7 @@ class ADGURU_Zone{
     private function get_wrapper_attrs(){
         $wrapper_class = 'adguru-zone-wrap';
         
-        $alignment = (isset( $this->design['alignment'] ) ) ? $this->design['alignment'] : 'default';
+        $alignment = (isset( $this->design['alignment'] ) ) ? $this->design['alignment'] : 'center';
         switch ($alignment) {
             case 'left':
             {

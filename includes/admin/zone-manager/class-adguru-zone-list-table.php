@@ -227,12 +227,14 @@ class ADGURU_Zone_List_Table extends WP_List_Table {
 	 * @return string output of name coulumn value
 	 */
 	function column_name( $item ){
+		$ad_setup_page_link = "admin.php?page=adguru_setup_ads&ad_type=banner&zone_id=".$item->ID;
 
 		$row_actions  = array();
 
 		$row_actions['get_code'] = '<a href="#" onclick="return show_zone_code_modal('.$item->ID.', \''.$item->name.'\')">' . __( 'Get Code', 'adguru' ) . '</a>';
 		$row_actions['edit'] = '<a href="' . add_query_arg( array( 'manager_tab' => 'edit', 'zone_id' => $item->ID ) , $this->base_url ) . '">' . __( 'Edit', 'adguru' ) . '</a>';
 		$row_actions['copy'] = '<a href="' . add_query_arg( array( 'manager_tab' => 'edit', 'cp_from_id' => $item->ID ) , $this->base_url ) . '">' . __( 'Copy', 'adguru' ) . '</a>';
+		$row_actions['setup_ads'] = '<a href="' . $ad_setup_page_link . '">' . __( 'Setup Ads', 'adguru' ) . '</a>';
 		//$row_actions['delete'] = '<a href="#">' . __( 'Delete', 'adguru' ) . '</a>';
 
 		$row_actions = apply_filters( "adguru_zone_list_row_actions", $row_actions, $item );

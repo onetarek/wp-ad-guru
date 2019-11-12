@@ -216,6 +216,24 @@ $size_list = array(
 						</div><!-- .main -->
 					</div><!-- .inside -->
 				</div>
+				<?php
+				if( $zone->ID )
+				{
+					$ad_setup_page_link = "admin.php?page=adguru_setup_ads&ad_type=banner&zone_id=".$zone->ID;
+				?>
+				<div class="postbox">
+					<h3 class="hndle"><?php echo __( 'Setup Ads', 'adguru' ) ?></h3>
+					<div class="inside">
+						<div class="main">
+							<a href="<?php echo $ad_setup_page_link?>" ><?php echo __( 'Setup Ads to this zone', 'adguru' ) ?></a>
+						</div><!-- .main -->
+					</div><!-- .inside -->
+				</div>
+				<?php 
+				}
+				else
+				{
+				?>
 				<div class="postbox">
 					<h3 class="hndle"><?php echo __( 'Hello', 'adguru' ) ?></h3>
 					<div class="inside">
@@ -224,6 +242,10 @@ $size_list = array(
 						</div><!-- .main -->
 					</div><!-- .inside -->
 				</div>
+				<?php 
+				}
+				?>
+				
 
 			<?php do_action( "adguru_zone_editor_sidebar_top", $zone, $error_msgs ) ?>		
 			<?php do_action( "adguru_zone_editor_sidebar", $zone, $error_msgs ) ?>

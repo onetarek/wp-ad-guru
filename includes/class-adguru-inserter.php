@@ -51,6 +51,11 @@ final class ADGURU_Inserter{
  	 */
 	private $current_post_number_in_loop = 0;
 
+	/**
+ 	 * Stores the number of current comment ( where depth is 0 ) in wp list comment loop
+ 	 */
+	private $current_comment_number_in_loop = 0;
+
 
 	/**
 	 * Main ADGURU_Inserter Instance.
@@ -87,9 +92,9 @@ final class ADGURU_Inserter{
     private function prepare(){
 
     	$this->possible_places = array();
-    	//write_log( $this->zones );
+    	
     	foreach( $this->zones as $zone )
-    	{//write_log($zone);
+    	{
     		if( $zone->is_auto_insert_possible( $this->current_page_info ) )
     		{
     			$place = $zone->get_auto_insert_place();
@@ -100,12 +105,11 @@ final class ADGURU_Inserter{
     			$this->possible_places[ $place ][] = $zone;
     		}
     	}
-    	//write_log($this->possible_places);
     }
 	
 	private function add_hooks(){
 
-		//VALID PLACES : 'before_post', 'between_posts', 'after_post', 'before_content', 'after_content', 'before_comments', 'between_comments', 'after_comments', 'footer'
+		//VALID PLACES : 'before_post', 'between_posts', 'after_post', 'before_content', 'after_content', 'before_comments', 'between_comments', 'before_comment_form', 'after_comment_form', 'before_footer', 'after_footer'
 
 		
 		if( isset( $this->possible_places[ 'before_post' ] ) )
@@ -136,21 +140,23 @@ final class ADGURU_Inserter{
 
 		if( isset( $this->possible_places[ 'before_comments' ] ) )
 		{
-			
+			add_filter('comments_template' , array( $this, 'hook_before_comments' ), -100, 1 );
 		}
 
 		if( isset( $this->possible_places[ 'between_comments' ] ) )
 		{
-			
+			add_filter('wp_list_comments_args' , array( $this, 'filter_wp_list_comments_args' ), 100, 1 );
 		}
 
-		if( isset( $this->possible_places[ 'after_comments' ] ) )
+		if( isset( $this->possible_places[ 'before_comment_form' ] ) )//same for place after_comments
 		{
-			
+			add_action('comment_form_before', array( $this, 'hook_before_comment_form' ), -100 );
 		}
-		//comment_form_before do_action( 'comment_form_before' ); 
-		//comment_form_after
 
+		if( isset( $this->possible_places[ 'after_comment_form' ] ) )//same for place after_comments
+		{
+			add_action('comment_form_after', array( $this, 'hook_after_comment_form' ), -100 );
+		}
 
 		if( isset( $this->possible_places[ 'before_footer' ] ) )
 		{
@@ -263,6 +269,78 @@ final class ADGURU_Inserter{
 		return $content.$ad_contents;
 	}
 
+
+	
+	public function hook_before_comments( $theme_template ){
+
+		if( !isset( $this->possible_places['before_comments'] ) || !is_array($this->possible_places['before_comments'] ) )
+		{
+			return;
+		}
+
+		foreach( $this->possible_places['before_comments'] as $zone )
+		{
+			adguru()->server->show_zone( $zone->ID );
+		}
+
+		return $theme_template;
+	}
+
+
+	public function filter_wp_list_comments_args ($args) {
+		$args ['end-callback'] = array( $this, 'hook_between_comments');
+		return $args;
+	}
+
+	public function hook_between_comments($comment, $args, $depth){
+	
+		if( $depth == 0 )
+		{
+			$this->current_comment_number_in_loop++;
+		}
+
+		if( !isset( $this->possible_places['between_comments'] ) || !is_array($this->possible_places['between_comments'] ) )
+		{
+			return;
+		}
+
+		foreach( $this->possible_places['between_comments'] as $zone )
+		{
+			if( $zone->is_auto_insert_possible_before_comment( $this->current_comment_number_in_loop ) )
+			{
+				adguru()->server->show_zone( $zone->ID );
+			}
+		}
+
+
+	}
+
+	public function hook_before_comment_form(){
+
+		if( !isset( $this->possible_places['before_comment_form'] ) || !is_array($this->possible_places['before_comment_form'] ) )
+		{
+			return;
+		}
+
+		foreach( $this->possible_places['before_comment_form'] as $zone )
+		{
+			adguru()->server->show_zone( $zone->ID );
+		}
+	}
+
+	public function hook_after_comment_form(){
+
+		if( !isset( $this->possible_places['after_comment_form'] ) || !is_array($this->possible_places['after_comment_form'] ) )
+		{
+			return;
+		}
+
+		foreach( $this->possible_places['after_comment_form'] as $zone )
+		{
+			adguru()->server->show_zone( $zone->ID );
+		}
+	}
+
 	public function hook_before_footer(){
 
 		if( !isset( $this->possible_places['before_footer'] ) || !is_array($this->possible_places['before_footer'] ) )
@@ -287,9 +365,6 @@ final class ADGURU_Inserter{
 			adguru()->server->show_zone( $zone->ID );
 		}
 	}
-	
-
-
 
 	/**
 	 * Throw error on object clone.

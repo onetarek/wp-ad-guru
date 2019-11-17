@@ -34,7 +34,8 @@ $inserter_form_args = array(
 				'after_content' => __("After Content", 'adguru' ),
 				'before_comments' => __("Before Comments", 'adguru' ),
 				'between_comments' => __("Between Comments", 'adguru' ),
-				'after_comments' => __("After Comments", 'adguru' ),
+				'before_comment_form' => __("Before Comment Form", 'adguru' ),
+				'after_comment_form' => __("After Comment Form", 'adguru' ),
 				'before_footer' => __("Before Footer", 'adguru' ),
 				'after_footer' => __("After Footer", 'adguru' ),
 				

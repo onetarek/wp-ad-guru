@@ -282,7 +282,7 @@ class ADGURU_Zone{
         if( isset( $this->inserter ) && is_array( $this->inserter ) && isset( $this->inserter['page_types'] ) && is_array( $this->inserter['page_types'] ) )
         {
             $list = array();
-            $items = $this->inserter['page_types'];//write_log($items);
+            $items = $this->inserter['page_types'];
             foreach( $items as $key=> $val )
             {
                 if( intval( $val ) == 1 )
@@ -359,7 +359,7 @@ class ADGURU_Zone{
         }
         
         $page_types = $this->get_auto_insert_page_types();
-        //write_log($page_types, $current_page_info);
+        
         if( empty($page_types) )
         {
             return false;

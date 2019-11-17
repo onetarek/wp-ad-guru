@@ -99,7 +99,13 @@ if( ! $zone_selection_needed )
 		}//end if( $use_zone )
 
 		if( ! $zone_selection_needed ) : 
-		
+			$current_zone = $this->get_current_zone();
+			if(  $current_zone && $current_zone->active != 1 )
+			{
+				?>
+					<div style="text-align:center"><span style="color:red"><?php _e("Selected zone is deactivated, you will not see any output for this zone", "adguru")?></span>, <a href="admin.php?page=adguru_zone&manager_tab=edit&zone_id=<?php echo $current_zone->ID?>"><?php _e("Edit this zone", "adguru") ?></a></div>
+				<?php 
+			}
 		?>
 		<div id="top_control_box">
 			<span class="collapse_exapnd_all_btn" id="exapnd_all_btn">expand all</span><span id="collapse_all_btn" class="collapse_exapnd_all_btn">collapse all</span>

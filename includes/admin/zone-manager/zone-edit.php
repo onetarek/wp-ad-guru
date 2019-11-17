@@ -160,7 +160,7 @@ $size_list = array(
 					
 					<tr>
 						<td><label><?php echo __( 'Active', 'adguru' ) ?></label></td>
-						<td><input type="checkbox" name="active" value="1"  <?php echo  ( isset($zone->active) && $zone->active )? 'checked="checked"':''?> /></td>
+						<td><input type="checkbox" name="active" value="1"  <?php echo  ( isset($zone->active) && $zone->active )? 'checked="checked"':''?> /><?php if( ! ( isset($zone->active) && $zone->active ) ) { ?> <span style="color:red"><?php _e("Must activate zone to see output", "adguru")?></span><?php }?></td>
 					</tr>
 
 					<tr>

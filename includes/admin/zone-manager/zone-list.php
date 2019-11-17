@@ -8,7 +8,7 @@
 // Don't allow direct access
 if( ! defined( 'ABSPATH' ) ) exit;
 
-require_once ADGURU_PLUGIN_DIR . 'includes/admin/class-adguru-zone-list-table.php';
+require_once ADGURU_PLUGIN_DIR . 'includes/admin/zone-manager/class-adguru-zone-list-table.php';
 $args = array(
 	'singular' => __("zone", "adguru"),
 	'plural'   => __("zones", "adguru"),

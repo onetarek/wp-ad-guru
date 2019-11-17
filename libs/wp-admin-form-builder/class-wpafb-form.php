@@ -944,7 +944,7 @@ class WPAFB_Form{
 			$value = array();
 		}
 		
-		$on_off_values 	= ( isset( $args['on_off_values'] ) && is_array( $args['on_off_values'] ) && count( $args['on_off_values'] ) == 2 ) ? $args['on_off_values'] : array( "0", "1" );
+		$on_off_values 	= ( isset( $args['on_off_values'] ) && is_array( $args['on_off_values'] ) && count( $args['on_off_values'] ) == 2 ) ? $args['on_off_values'] : array( "1", "0" );
 		$on_value = $on_off_values[0];
 		$off_value= $on_off_values[1];
 
@@ -979,7 +979,8 @@ class WPAFB_Form{
 
         foreach ( $options as $key => $label )
         {
-            $checked = checked( $value[$key], $on_value, false );
+            $val = isset( $value[$key] ) ? $value[$key] : $off_value;
+            $checked = checked( $val, $on_value, false );
 
             $item_name = $name.'['.$key.']';
             $item_id = $id.'_'.$key;
@@ -1605,7 +1606,10 @@ class WPAFB_Form{
 
     }//end function
         
-    
+    public function get_field_list(){
+    	return $this->field_list;
+    }
+
     public function set_data( $data ){
 
     	if( !is_array( $data ) ) { return ; }

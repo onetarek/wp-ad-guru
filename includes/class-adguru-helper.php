@@ -16,21 +16,16 @@ if( ! class_exists( 'ADGURU_Helper' ) ) :
 
 class ADGURU_Helper{
 
-	public static function curPageURL(){
-	
-		 $pageURL = 'http';
-		 if ( $_SERVER["HTTPS"] == "on" ) { $pageURL .= "s"; }
-		 $pageURL .= "://";
-		 if ( $_SERVER["SERVER_PORT"] != "80" )
-		 {
-		 	$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
-		 } 
-		 else
-		 {
-		 	$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-		 }
-		 return $pageURL;
-	
+	public static function current_page_url(){
+		if( isset( $_SERVER['REQUEST_URI'] ) )
+		{
+			return home_url( $_SERVER['REQUEST_URI'] );
+		}
+		else
+		{
+			return home_url();
+		}
+		
 	}
 	
 	public static function is_valid_url( $url ){
@@ -599,6 +594,95 @@ class ADGURU_Helper{
 		}
 	}
 
+	/**
+	 * Checks if a string can be used as a variable name
+	 * @param string
+	 * @return bool
+	 */
+	public static function is_valid_variable_name( $name ){
+		
+		return ( 1 === preg_match('/^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$/', $name) ) ? true : false;
+	}
+
+	/**
+	 * Retrieve all registred post types those have real user facing usages.
+	 * @since 2.1.0 was in ADGURU_Ad_Setup_Manager class
+	 * @since 2.2.0 Moved to this class
+	 */
+
+	public static function get_post_type_list(){
+		#retrieve all registred post types.
+		$post_types = get_post_types( '', 'names' ); 		
+
+		#remove post types those are used for internal usage by WordPress.
+		$rempost = array( 'attachment', 'revision', 'nav_menu_item' );
+		$post_types = array_diff( $post_types, $rempost );	
+
+		#remove post types those are being used by ADGURU itself.
+		$post_types = array_diff( $post_types, adguru()->post_types->types );	
+
+		#remove post types those has no UI, means those are beings used for internal usages only.
+		foreach( $post_types as $key => $val )
+		{
+			$ptobj = get_post_type_object( $key );
+			if( !$ptobj->show_ui ) 
+			{ 
+				unset( $post_types[ $key ] );
+			}
+			else
+			{
+				#capitalize first char of name
+				$post_types[ $key ]	= ucfirst( $val );
+			}
+		}
+
+		return $post_types;
+
+	}
+
+	/**
+	 * Retrieve registred taxonomies those have real user facing usages.
+	 * @since 2.1.0 was in ADGURU_Ad_Setup_Manager class
+	 * @since 2.2.0 Moved to this class
+	 */
+	public static function get_taxonomy_list(){
+		static $taxonomy_list;
+		if( isset( $taxonomy_list ) )
+		{	
+			return $taxonomy_list;
+		}
+
+		$taxonomies = get_taxonomies(array(), 'objects');
+		
+		$remTax = array( "nav_menu", "link_category", "post_format", "single", "Single" ); #we remove "single" because it a reserve word for this plugin. This word "Single" we are using to store as a taxonomy for when  post types are stored as terms.	
+		
+		foreach( $taxonomies as $key => $taxobj )
+		{
+			if( in_array($key, $remTax ) )#remove taxonomies those are being used only for internal usages. Those object/post_types does not have show UI.
+			{
+				unset( $taxonomies[ $key ] );
+				continue;
+			}
+			
+			if( !isset( $taxobj->object_type ) || !is_array( $taxobj->object_type ) )
+			{ 
+				unset( $taxonomies[ $key ] );
+				continue;  
+			}
+
+			foreach( $taxobj->object_type  as $object_type )
+			{
+				$ptobj = get_post_type_object( $object_type );
+				if( !$ptobj->show_ui )
+				{ 
+					unset( $taxonomies[ $key ] ); 
+					break;
+				}
+			}
+		}
+		$taxonomy_list = $taxonomies;
+		return $taxonomies;
+	}
 
 }//end class
 

@@ -16,7 +16,7 @@ if( $zone_id || $cp_from_id )
 {
 	//load ad from db
 	$post_id = ( $zone_id != 0 ) ? $zone_id : $cp_from_id; 
-	$old_zone = adguru()->manager->get_ad( $post_id );
+	$old_zone = adguru()->manager->get_zone( $post_id );
 	#be confirm that zone is found.
 	if( $old_zone )
 	{
@@ -139,9 +139,9 @@ $size_list = array(
 		<div id="post-body" class="metabox-holder columns-2">
 			<div id="post-body-content" style="position: relative;" >
 
-				<?php do_action( "adguru_zone_editor_left_top", $zone, $error_msgs ) ?>	
+				<?php do_action( "adguru_zone_editor_main_top", $zone, $error_msgs ) ?>	
 
-				<table class="widefat" id="zone_editor" style="width:100%;">
+				<table class="widefat" id="zone_editor" style="width:100%; margin-bottom:20px;">
 					<thead>
 						<tr>
 						<th width="150">&nbsp;</th>
@@ -158,6 +158,11 @@ $size_list = array(
 						<td><textarea name="description" id="description"  class="input_long" cols="15" rows="4"><?php  echo $zone->description;?></textarea></td>
 					</tr>
 					
+					<tr>
+						<td><label><?php echo __( 'Active', 'adguru' ) ?></label></td>
+						<td><input type="checkbox" name="active" value="1"  <?php echo  ( isset($zone->active) && $zone->active )? 'checked="checked"':''?> /><?php if( ! ( isset($zone->active) && $zone->active ) ) { ?> <span style="color:red"><?php _e("Must activate zone to see output", "adguru")?></span><?php }?></td>
+					</tr>
+
 					<tr>
 						<td><label><?php echo __( 'Size', 'adguru' ) ?></label></td>
 						<td>
@@ -188,26 +193,47 @@ $size_list = array(
 						</span>
 						</td>
 					</tr>
-					<tr>
-						<td><label><?php echo __( 'Active', 'adguru' ) ?></label></td>
-						<td><input type="checkbox" name="active" value="1"  <?php echo  ( isset($zone->active) && $zone->active )? 'checked="checked"':''?> /></td>
-					</tr>
-								
 					
-					<?php do_action( "adguru_zone_editor_left_row", $zone, $error_msgs ) ?>
 
-
-					<tr>
-						<td colspan="2"><input type="submit" name="save" class="button-primary" value="Save" style="width:100px;" /></td>
-					</tr>
 				</table>
 				
-				<?php do_action( "adguru_zone_editor_left_bottom", $zone, $error_msgs ) ?>			
+				<?php do_action( "adguru_zone_editor_main", $zone, $error_msgs ) ?>
+
+				<?php do_action( "adguru_zone_editor_main_bottom", $zone, $error_msgs ) ?>			
 				
 				
 			</div><!--end #post-body-content-->
 			<!--Sidebar-->
 			<div id="postbox-container-1" class="postbox-container">
+				<div class="postbox">
+					<h3 class="hndle"><?php _e('Publishing', 'adguru')?></h3>
+					<div class="inside">
+						<div class="main" style="text-align:center;">	
+							
+							<input type="submit" name="save" class="button-primary" value="<?php echo esc_attr( __( 'Save', 'adguru' ) ) ?>" style="width:200px;" />
+							
+
+						</div><!-- .main -->
+					</div><!-- .inside -->
+				</div>
+				<?php
+				if( $zone->ID )
+				{
+					$ad_setup_page_link = "admin.php?page=adguru_setup_ads&ad_type=banner&zone_id=".$zone->ID;
+				?>
+				<div class="postbox">
+					<h3 class="hndle"><?php echo __( 'Setup Ads', 'adguru' ) ?></h3>
+					<div class="inside">
+						<div class="main">
+							<a href="<?php echo $ad_setup_page_link?>" ><?php echo __( 'Setup Ads to this zone', 'adguru' ) ?></a>
+						</div><!-- .main -->
+					</div><!-- .inside -->
+				</div>
+				<?php 
+				}
+				else
+				{
+				?>
 				<div class="postbox">
 					<h3 class="hndle"><?php echo __( 'Hello', 'adguru' ) ?></h3>
 					<div class="inside">
@@ -216,6 +242,10 @@ $size_list = array(
 						</div><!-- .main -->
 					</div><!-- .inside -->
 				</div>
+				<?php 
+				}
+				?>
+				
 
 			<?php do_action( "adguru_zone_editor_sidebar_top", $zone, $error_msgs ) ?>		
 			<?php do_action( "adguru_zone_editor_sidebar", $zone, $error_msgs ) ?>

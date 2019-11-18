@@ -203,12 +203,12 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Changelog ==
-= 2.2.0 - November 18, 2019 =
-* New: Automatic zone inserter. Now you can inject an ad zone to various places of front-end pages automatically.
+= 2.2.0 - November 19, 2019 =
+* New: Automatic zone inserter : Now you can inject an ad zone to various places of front-end pages automatically.
 * Update: Latest MaxMind GeoIP Database.
 
 = 2.1.0 - September 11, 2019 =
-* New: Ad setup manager page. Completely new UI to create condition and setup ads to pages.
+* New: Ad setup manager page : Completely new UI to create condition and setup ads to pages.
 * Update: Latest MaxMind GeoIP Database.
 
 = 2.0.4 - March 08, 2019 =
@@ -231,12 +231,12 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Upgrade Notice ==
-= 2.2.0 - November 18, 2019 =
-* New: Automatic zone inserter. Now you can inject an ad zone to various places of front-end pages automatically.
+= 2.2.0 - November 19, 2019 =
+* New: Automatic zone inserter : Now you can inject an ad zone to various places of front-end pages automatically.
 * Update: Latest MaxMind GeoIP Database.
 
 = 2.1.0 - September 11, 2019 =
-* New: Ad setup manager page. Completely new UI to create condition and setup ads to pages.
+* New: Ad setup manager page : Completely new UI to create condition and setup ads to pages.
 * Update: Latest MaxMind GeoIP Database.
 
 = 2.0.4 - March 08, 2019 =

@@ -25,12 +25,18 @@ class ADGURU_Server {
 	public $current_term; #store the slug of current term
 	public $current_post_taxonomies_terms;#store an array of taxonomy and terms of current single post.
 
+	public $current_page_info; #all information about current visited page
+
 	public function __construct(){
 			
-
+		add_action('wp_head', array( $this, 'start_inserter' ) );
 		
 	}#end __construct
 	
+
+	public function start_inserter(){
+		ADGURU_Inserter::instance();
+	}
 
 	#some common functoins=========================================================================
 
@@ -104,64 +110,118 @@ class ADGURU_Server {
 		return $this->zones;
 	}
 	
+	private function generate_current_page_info(){
+		$info = array();
+		$info['url'] = ADGURU_Helper::current_page_url();		
+		#Taking decision based on which type of page is being visited currently 
+		$page_type = "default";
+		$info['page_type'] = "default";
+
+		if( is_home() || is_front_page( ) )
+		{ 
+			$page_type = "home"; 
+			$info['page_type'] = "home";
+		}
+		elseif( is_singular() )
+		{ 
+			$page_type = "singular"; 
+			$info['page_type'] = "singular";
+
+			global $post;
+			$info['post_type'] = $post->post_type;
+			$info['post_id'] = $post->ID;
+		}
+		elseif( is_category() )
+		{
+			$page_type = "category";
+			$info['page_type'] = "category";
+
+			$this->current_taxonomy = "category";
+			$info['taxonomy'] = "category";
+
+			$thisCat = get_category( get_query_var('cat'),false );
+
+			$this->current_term = $thisCat->slug;
+			$info['term'] = $thisCat->slug;
+		}
+		elseif( is_tag() )
+		{
+			$page_type = "tag";
+			$info['page_type'] = "tag";
+
+			$this->current_taxonomy = "post_tag"; 
+			$info['taxonomy'] = "post_tag";
+
+			$term = get_query_var('tag');
+			$this->current_term = $term;	
+			$info['term'] = $term;
+		}
+		elseif( is_tax() )
+		{
+			$page_type = "custom_taxonomy";
+			$info['page_type'] = "custom_taxonomy";
+
+			$taxonomy = get_query_var('taxonomy');
+			$this->current_taxonomy = $taxonomy;
+			$info['taxonomy'] = $taxonomy;
+
+			$term = get_query_var('term');
+			$this->current_term = $term;	
+			$info['term'] = $term;
+		
+		}#Note that when used without the $taxonomy parameter, is_tax() returns false on category archives and tag archives. You should use is_category() and is_tag() respectively when checking for category and tag archives. 
+		elseif( is_date() )
+		{
+			#not ready yet. Right now use as 'default'
+			$page_type = "default"; //Have to change later.
+			$info['page_type'] = "date";
+		}
+		elseif( is_search() )
+		{ 
+			$page_type = "search"; 
+			$info['page_type'] = "search";
+		}
+		elseif( is_author() )
+		{ 
+			$page_type = "author";
+			$info['page_type'] = "author"; 
+		}
+		elseif( is_404() )
+		{ 
+			$page_type = "404_not_found"; 
+			$info['page_type'] = "404_not_found";
+		}
+		else
+		{ 
+			$page_type = "default"; 
+			$info['page_type'] = "default";
+		}									
+		#End Taking decision 
+		
+		$this->page_type = $page_type;
+		$this->current_page_info = $info;
+
+		return $info;
+	}
+
+	public function get_current_page_info(){
+		if( isset( $this->current_page_info ) )
+		{
+			return $this->current_page_info;
+		}
+		$this->generate_current_page_info();
+		return $this->current_page_info;
+	}
+
+
 	public function get_page_type(){
 
 		if( $this->page_type != "" ) 
 		{
 			return $this->page_type;
 		}	
-			
-		#Taking decision based on which type of page is being visited currently 
-		$page_type = "default";
-
-		if( is_home() || is_front_page( ) )
-		{ 
-			$page_type = "home"; 
-		}
-		elseif( is_singular() )
-		{ 
-			$page_type = "singular"; 
-		}
-		elseif( is_category() )
-		{
-			$page_type = "category";
-			$this->current_taxonomy = "category";
-			$thisCat = get_category( get_query_var('cat'),false );			
-			$this->current_term = $thisCat->slug;
-		}
-		elseif( is_tag() )
-		{
-			$page_type = "tag";
-			$this->current_taxonomy = "post_tag"; 
-			$this->current_term = get_query_var('tag');	
-		}
-		elseif(is_tax( ) )
-		{
-			$page_type = "custom_taxonomy";
-			$this->current_taxonomy = get_query_var('taxonomy');
-			$this->current_term = get_query_var('term');
-		
-		}#Note that when used without the $taxonomy parameter, is_tax() returns false on category archives and tag archives. You should use is_category() and is_tag() respectively when checking for category and tag archives. 
-		elseif( is_search() )
-		{ 
-			$page_type = "search"; 
-		}
-		elseif( is_author() )
-		{ 
-			$page_type = "author"; 
-		}
-		elseif( is_404() )
-		{ 
-			$page_type = "404_not_found"; 
-		}
-		else
-		{ 
-			$page_type = "default"; 
-		}									
-		#End Taking decision 
-		
-		$this->page_type = $page_type;
-		return $page_type;	
+		$this->generate_current_page_info();
+		return $this->page_type;	
 	}
 		
 	public function generate_ad_zone_and_links_data(){
@@ -881,77 +941,14 @@ class ADGURU_Server {
 		
 		if( !isset( $zones[ $zone_id ] ) )
 		{
-			$output.=__("Zone not found or deactivated.", "adguru" )."Zone id : ".$zone_id; 
-			if( $ret )
-			{ 
-				return $output;
-			}
-			else
-			{
-				echo $output; 
-				return true;				
-			}
+			$output =__("Zone not found or deactivated.", "adguru" )."Zone id : ".$zone_id; 
+		}
+		else
+		{
+			$current_zone = $zones[ $zone_id ];
+			$output = $current_zone->display(true);//true for return output
 		}
 			
-		$current_zone = $zones[ $zone_id ];
-		$links = $this->get_appropiate_ad_links( $zone_id );
-
-		if( is_array( $links  ) )
-		{
-			$tot_slide = count( $links );
-			if( $tot_slide == 0 )
-			{
-				#nothing to do
-				return false;
-			}
-			elseif( $tot_slide == 1 )
-			{
-				#show single ad
-				$ad_id = intval( $this->get_ad_by_percentage_probability( $links[0] ) );
-				$this->instance_number++;
-				$output.= $this->show_ad( $ad_id, true );
-				
-			
-			}
-			else
-			{
-				#show slider
-				$ad_id_list = array();
-				foreach( $links as $ad_set )
-				{
-					$ad_id = intval( $this->get_ad_by_percentage_probability( $ad_set ) );			
-					if( $ad_id )
-					{ 
-						$ad_id_list[] = $ad_id; 
-					}
-				}
-				
-				$this->instance_number++;
-				
-				$slider_html_id = "adguru_slider_".$zone_id."_".$this->instance_number;
-				$arg = array(
-					"slider_html_id"=> $slider_html_id,
-					"width" 		=> $current_zone->width,
-					"height" 		=> $current_zone->height,
-					"auto" 			=> 5000,
-					"vertical" 		=> false,
-					"pagination" 	=> false
-				);
-				$output.= '<ul id="'.$slider_html_id.'" class="adguru_ad_slider" style="width:'.$arg['width'].';height:'.$arg['height'].'" data-options="'.esc_attr( json_encode( $arg ) ).'">';
-					foreach( $ad_id_list as $ad_id )
-					{
-						$output.= '<li style="width:'.$arg['width'].';height:'.$arg['height'].'">';
-						$output.= $this->show_ad( $ad_id, true );
-						$output.= '</li>';
-					}
-				$output.= '</ul>';
-				
-				
-			}#end if( $tot_slide==0)
-		
-			
-		}#end if(is_array( $links ) )
-		
 		if( $ret ){ return $output; } else { echo $output; }	 
 	 
 	 }//end func

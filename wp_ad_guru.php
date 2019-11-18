@@ -5,7 +5,7 @@
  * Plugin URI: http://wpadguru.com
  * Author: oneTarek
  * Author URI: http://onetarek.com
- * Version: 2.1.0
+ * Version: 2.2.0
  * License: GPLv2+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -236,6 +236,7 @@ final class WP_Ad_Guru{
 			$this->settings = new ADGURU_Settings();
 			$this->form_builder = wpafb();
 			$this->ad_setup_manager = new ADGURU_Ad_Setup_Manager();
+			new ADGURU_Zone_Edit_Manager();
 		}
 		#for geo location feature strat session here before outputing anything to the browser.
 		if( session_id() == "" ){ session_start(); }
@@ -295,7 +296,7 @@ final class WP_Ad_Guru{
 
 		global $wpdb;
 		global $adguru_options;
-		define( 'ADGURU_VERSION', '2.1.0' );
+		define( 'ADGURU_VERSION', '2.2.0' );
 		define( 'ADGURU_DOCUMENTAION_URL', 'http://wpadguru.com/documentation/' );
 		define( 'ADGURU_PLUGIN_FILE', __FILE__ );
 		define( 'ADGURU_PLUGIN_DIR', plugin_dir_path( __FILE__ ) ); // Plugin Directory
@@ -355,6 +356,7 @@ final class WP_Ad_Guru{
 		require_once( ADGURU_PLUGIN_DIR."includes/widgets/widget.php" );
 		require_once( ADGURU_PLUGIN_DIR."includes/shortcodes/shortcode.php" );
 		require_once( ADGURU_PLUGIN_DIR."includes/class-adguru-request-handler.php" );
+		require_once( ADGURU_PLUGIN_DIR."includes/class-adguru-inserter.php" );
 		
 		if ( is_admin() )
 		{
@@ -363,6 +365,7 @@ final class WP_Ad_Guru{
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/class-adguru-admin-notice.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/settings/class-adguru-settings.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/class-adguru-menu.php" );
+			require_once( ADGURU_PLUGIN_DIR."includes/admin/zone-manager/class-zone-edit-manager.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/links-editor/class-adguru-links-editor.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/links-editor/class-adguru-links-editor-ajax-handler.php" );
 			require_once( ADGURU_PLUGIN_DIR."includes/admin/ad-setup-manager/class-adguru-ad-setup-manager.php" );

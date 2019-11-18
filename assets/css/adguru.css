@@ -41,3 +41,54 @@
 	padding:0px; 
 	border:none; 
 }
+
+/* ZONE RELATED STYLES */
+
+.align_left{
+	text-align: left;
+}
+.align_right{
+	text-align: right;
+}
+.align_center{
+	text-align: center;
+}
+
+.float_left{
+	float: left;
+}
+.float_right{
+	float: right;
+}
+
+.adguru-zone-wrap{
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+	border: none;
+}
+
+.adguru-zone-wrap.align_left{
+	margin: 8px 0px;
+}
+.adguru-zone-wrap.align_right{
+	margin: 8px 0px;
+}
+.adguru-zone-wrap.align_center{
+	margin: 8px 0px;
+}
+
+.adguru-zone-wrap.float_left{
+	margin: 8px 8px 8px 0px;
+}
+.adguru-zone-wrap.float_right{
+	margin: 8px 0px 8px 8px;
+}
+
+
+.adguru-zone{
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}

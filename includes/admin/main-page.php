@@ -253,12 +253,14 @@ if( ! defined( 'ABSPATH' ) ) exit;
 				<li>Your selected banner name will be shown with a text input field and a delete button. <strong>Put 100 in the % field</strong>.</li>
 				<li>Click on <strong>Save</strong> button</li>
 			</ul><br />
+
 			<strong>Step 4: Show zone in website</strong><br />
 			You have done zone and banner setting. Now you have to set the zone to a place of your website. There are three method to set a zone in a place of website.
 			<ul style="list-style-type:disc; padding-left:30px;">
-				<li><strong>Method-1 Using Widget :</strong> Go to <a href="widgets.php" target="_blank"><strong>widget settings</strong></a> page. Add <strong>"adGuru Zone"</strong> widget in your sidebar and choose a zone from the zone list.</li>
+				<li><strong>Method-1 Automatic Insersion :</strong> Go to a zone edit page and see <strong>Automatic Insersion</strong> section. You can choose place and multiple page types to show a zone automatically</li>
+				<li><strong>Method-2 Using Widget :</strong> Go to <a href="widgets.php" target="_blank"><strong>widget settings</strong></a> page. Add <strong>"adGuru Zone"</strong> widget in your sidebar and choose a zone from the zone list.</li>
 				<li>
-				<strong>Method-2 Using PHP function :</strong>
+				<strong>Method-3 Using PHP function :</strong>
 						Add following php code anywhere in your site front-end pages. Replace the word <strong>'zone_id'</strong> with the <strong>id</strong> of the zone you want to show<br />
 						<code>
 							&lt;?php if(function_exists('adguru_zone')){adguru_zone(zone_id);} ?&gt;
@@ -269,7 +271,7 @@ if( ! defined( 'ABSPATH' ) ) exit;
 						</code>			
 				
 				</li>
-				<li><strong>Method-3 Using Shortcode :</strong>
+				<li><strong>Method-4 Using Shortcode :</strong>
 						Use following shortcode in your post content<br />
 						<code>
 							[adguru zoneid="zone_id"]

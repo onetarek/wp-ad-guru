@@ -5,10 +5,10 @@ Author: onetarek
 Author URI: http://onetarek.com
 Plugin URI: http://wpadguru.com
 Donate link: http://wpadguru.com/
-Tags: Ad Manager, Banner, Popup, Popup maker, Responsive popup, Optins, Lead generator, Advertising Tool, Marketing Tool, GeoLocation Tracker, Ad Rotator, Ad Slider
+Tags: Ad Manager, Banner, Popup, Popup maker, Responsive popup, Ad inserter, Optins, Lead generator, Advertising Tool, Marketing Tool, GeoLocation Tracker, Ad Rotator, Ad Slider
 Requires at least: 3.6.0
-Tested up to: 5.2.3
-Stable tag: 2.1.0
+Tested up to: 5.3
+Stable tag: 2.2.0
 License: GPLv2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,7 +17,7 @@ An essential set of advertising and marketing tools for blogger, website owner a
 == Description ==
 
 Essential set of advertising and marketing tools for blogger, website owner and marketer. As an ad management plugin it has many advanced features to select optimal ads for various positions and pages. It supports ad codes from all kind of ad networks including Google AdSense.
-Show various type of ads, email subscription form, affiliate links, special offers, video or anything using banners, modal popups and popup windows. Show different ads to the visitor of different countries by using Geolocation tracking system. Show different things on different type of wordpress pages. Add multiple ads in same place and display as carousel-slider. Rotate ads based on percentage you set. Easily collect leads on your website. This plugin is specially created to meet the needs and requirements of blogger, website owner, marketer and developers.
+Show various type of ads, email subscription form, affiliate links, special offers, video or anything using banners, modal popups and popup windows. Show different ads to the visitor of different countries by using Geolocation tracking system. Show different things on different type of WordPress pages. Add multiple ads in same place and display as carousel-slider. Rotate ads based on percentage you set. Easily collect leads on your website. This plugin is specially created to meet the needs and requirements of blogger, website owner, marketer and developers.
 
 **======== FEATURES ========**
 
@@ -72,10 +72,23 @@ A **Zone** can contains multiple banners, in that case banners will be shown as 
 
 **WAYS OF INJECTING THINGS TO FRONT-END**
 
-*	**Automatic -** Modal popup and Window popup type ads are injected automatically to the pages. 
-*   **Widgets -** by using widgets you can set zones to sidebars to show banners.
-*   **PHP Code -** by adding PHP code in your theme files you can show zone or a single ad.
-*   **SHORTCODE -** Use shortcode in post content to show a zone or a single ad.
+1.	**Automatic -** Modal popup and Window popup type ads are injected automatically to the pages. For **Banner** ads, you can choose places and type of pages to insert ad **Zones** where you will set **Banner** ads. Right now you can inject ads automatically to following places.
+	
+	- Before Post
+	- Between Posts
+	- After Post
+	- Before Content
+	- After Content
+	- Before Comments
+	- Between Comments
+	- Before Comment Form
+	- After Comment Form
+	- Before Footer
+	- After Footer
+
+2.   **Widgets -** by using widgets you can set zones to sidebars to show banners.
+3.   **PHP Code -** by adding PHP code in your theme files you can show zone or a single ad.
+4.   **SHORTCODE -** Use shortcode in post content to show a zone or a single ad.
 
 
 
@@ -152,7 +165,7 @@ You can extend **WP Ad Guru** without breaking anything.
 
 **Action & Filter Hooks :**
 
-There are action and filter hooks for nearly every process and output of **WP Ad Guru**. So you can modify any default behaviour and output. You can inject new functionality to this plugin.
+There are action and filter hooks for nearly every process and output of **WP Ad Guru**. So you can modify any default behavior and output. You can inject new functionality to this plugin.
 
 
 For more detail go to **[wpadguru.com](http://wpadguru.com/)**.
@@ -190,8 +203,12 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Changelog ==
+= 2.2.0 - November 19, 2019 =
+* New: Automatic zone inserter : Now you can inject an ad zone to various places of front-end pages automatically.
+* Update: Latest MaxMind GeoIP Database.
+
 = 2.1.0 - September 11, 2019 =
-* New: Ad setup manager page. Completely new UI to create condition and setup ads to pages.
+* New: Ad setup manager page : Completely new UI to create condition and setup ads to pages.
 * Update: Latest MaxMind GeoIP Database.
 
 = 2.0.4 - March 08, 2019 =
@@ -214,8 +231,12 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Upgrade Notice ==
+= 2.2.0 - November 19, 2019 =
+* New: Automatic zone inserter : Now you can inject an ad zone to various places of front-end pages automatically.
+* Update: Latest MaxMind GeoIP Database.
+
 = 2.1.0 - September 11, 2019 =
-* New: Ad setup manager page. Completely new UI to create condition and setup ads to pages.
+* New: Ad setup manager page : Completely new UI to create condition and setup ads to pages.
 * Update: Latest MaxMind GeoIP Database.
 
 = 2.0.4 - March 08, 2019 =

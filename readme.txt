@@ -7,7 +7,7 @@ Plugin URI: http://wpadguru.com
 Donate link: http://wpadguru.com/
 Tags: Ad Manager, Banner, Popup, Popup maker, Responsive popup, Ad inserter, Optins, Lead generator, Advertising Tool, Marketing Tool, GeoLocation Tracker, Ad Rotator, Ad Slider
 Requires at least: 3.6.0
-Tested up to: 5.3
+Tested up to: 5.5.1
 Stable tag: 2.3.0
 License: GPLv2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

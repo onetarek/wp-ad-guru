@@ -136,7 +136,7 @@ class ADGURU_Zone{
                 
                 
                 $slider_html_id = "adguru_slider_".$this->ID."_".$this->display_instance_number;
-                $arg = array(
+                $args = array(
                     "slider_html_id"=> $slider_html_id,
                     "width"         => $this->width,
                     "height"        => $this->height,
@@ -145,10 +145,12 @@ class ADGURU_Zone{
                     "pagination"    => false
                 );
 
-                echo '<ul id="'.$slider_html_id.'" class="adguru_ad_slider" style="width:'.$arg['width'].';height:'.$arg['height'].'" data-options="'.esc_attr( json_encode( $arg ) ).'">';
+                $args = apply_filters( 'adguru_zone_slider_options', $args, $this->ID, $this->display_instance_number );
+
+                echo '<ul id="'.$slider_html_id.'" class="adguru_ad_slider" style="width:'.$args['width'].';height:'.$args['height'].'" data-options="'.esc_attr( json_encode( $args ) ).'">';
                     foreach( $ad_id_list as $ad_id )
                     {
-                        echo '<li style="width:'.$arg['width'].';height:'.$arg['height'].'">';
+                        echo '<li style="width:'.$args['width'].';height:'.$args['height'].'">';
                         echo $server->show_ad( $ad_id, true );
                         echo '</li>';
                     }

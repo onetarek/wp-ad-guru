@@ -7,8 +7,8 @@ Plugin URI: http://wpadguru.com
 Donate link: http://wpadguru.com/
 Tags: Ad Manager, Banner, Popup, Popup maker, Responsive popup, Ad inserter, Optins, Lead generator, Advertising Tool, Marketing Tool, GeoLocation Tracker, Ad Rotator, Ad Slider
 Requires at least: 3.6.0
-Tested up to: 5.3
-Stable tag: 2.2.0
+Tested up to: 5.5.1
+Stable tag: 2.3.0
 License: GPLv2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -203,6 +203,9 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Changelog ==
+= 2.3.0 - October 03, 2020 =
+* Update: New hook to filter slider options.  
+
 = 2.2.0 - November 19, 2019 =
 * New: Automatic zone inserter : Now you can inject an ad zone to various places of front-end pages automatically.
 * Update: Latest MaxMind GeoIP Database.
@@ -231,6 +234,9 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Upgrade Notice ==
+= 2.3.0 - October 03, 2020 =
+* Update: New hook to filter slider options. 
+
 = 2.2.0 - November 19, 2019 =
 * New: Automatic zone inserter : Now you can inject an ad zone to various places of front-end pages automatically.
 * Update: Latest MaxMind GeoIP Database.

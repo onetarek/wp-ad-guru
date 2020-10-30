@@ -183,11 +183,10 @@ class ADGURU_Zone{
 	}
 
     /**
-     * Generate CSS with to show/hide zone based on visitbilty conditions.
+     * Generate CSS to show/hide zone based on visitbilty conditions
      * @since 2.4.0
      * @return string
      */
-
     private function get_visibility_style(){
         ob_start();
         if( isset( $this->visibility ) && isset( $this->visibility['show_on_screen_size'] ) && $this->visibility['show_on_screen_size'] == 'custom' )
@@ -199,7 +198,7 @@ class ADGURU_Zone{
             {
                 /*
                  * Hide the zone if the screen size is not in between min and max width.
-                 * We will apply opposite rule.
+                 * Apply opposite rule.
                  */
                 $html_id = ( !empty( $this->wrapper_attrs['id'] ) ) ? $this->wrapper_attrs['id'] : $this->html_id;
                 $rules = array();
@@ -230,7 +229,6 @@ class ADGURU_Zone{
      * @since 2.2.0
      * @return bool
      */
-
     private function wrapper_needed()
     {
         if ( isset( $this->design ) && is_array( $this->design ) && isset( $this->design['wrapper'] ) && $this->design['wrapper'] == 0 )

@@ -18,6 +18,8 @@ class ADGURU_Zone{
 	public $meta = array();
 	
     private $display_instance_number = 0;
+    private $html_id = '';
+    private $wrapper_attrs = array();
 
 	public function __construct(){
 		
@@ -80,6 +82,9 @@ class ADGURU_Zone{
 	public function display( $ret = false ){
 
         $this->display_instance_number++;
+        $this->html_id = 'adguru_zone_'.$this->ID.'_'.$this->display_instance_number;
+        $this->wrapper_attrs = array();
+
         $server = adguru()->server;
 		$need_wrapper = $this->wrapper_needed();
         
@@ -96,11 +101,9 @@ class ADGURU_Zone{
                 echo ' '.sanitize_key($key).'="'.esc_attr( $attr ).'"';
             }
             echo ' >';
-            
-
         }
-        $zone_html_id = 'adguru_zone_'.$this->ID.'_'.$this->display_instance_number;
-        echo '<span id="'.$zone_html_id.'" class="adguru-zone">';
+
+        echo '<span id="'.$this->html_id.'" class="adguru-zone">';
 
         $links = $server->get_appropiate_ad_links( $this->ID );
 
@@ -115,14 +118,10 @@ class ADGURU_Zone{
             {
                 #show single ad
                 $ad_id = intval( $server->get_ad_by_percentage_probability( $links[0] ) );
-                
                 echo $server->show_ad( $ad_id , true);
-                
-            
             }
             else
             {
-                
                 #show slider
                 $ad_id_list = array();
                 foreach( $links as $ad_set )
@@ -133,7 +132,6 @@ class ADGURU_Zone{
                         $ad_id_list[] = $ad_id; 
                     }
                 }
-                
                 
                 $slider_html_id = "adguru_slider_".$this->ID."_".$this->display_instance_number;
                 $args = array(
@@ -168,6 +166,8 @@ class ADGURU_Zone{
             echo '</div>';//CLOSEING OF WRAPPER DIV
         }
 
+        echo $this->get_visibility_style();
+        
         $output = ob_get_clean();
         
         $output = apply_filters("adguru_zone_output", $output , $this );
@@ -181,6 +181,49 @@ class ADGURU_Zone{
             echo $output;
         }
 	}
+
+    /**
+     * Generate CSS with to show/hide zone based on visitbilty conditions.
+     * @since 2.4.0
+     * @return string
+     */
+
+    private function get_visibility_style(){
+        ob_start();
+        if( isset( $this->visibility ) && isset( $this->visibility['show_on_screen_size'] ) && $this->visibility['show_on_screen_size'] == 'custom' )
+        {
+            $min_width = isset( $this->visibility['screen_min_width'] ) ? intval( $this->visibility['screen_min_width'] ) : 0;
+            $max_width = isset( $this->visibility['screen_max_width'] ) ? intval( $this->visibility['screen_max_width'] ) : 0;
+
+            if( $min_width || $max_width )
+            {
+                /*
+                 * Hide the zone if the screen size is not in between min and max width.
+                 * We will apply opposite rule.
+                 */
+                $html_id = ( !empty( $this->wrapper_attrs['id'] ) ) ? $this->wrapper_attrs['id'] : $this->html_id;
+                $rules = array();
+                echo '<style type="text/css">';
+                echo '@media ';
+                if( $min_width )
+                {
+                    $rules[] = 'screen and (max-width: ' . ( $min_width - 1 ) . 'px)';
+                }
+                if( $max_width )
+                {
+                    $rules[] = 'screen and (min-width: ' . ($max_width + 1) . 'px)';
+                }
+                echo implode(', ', $rules );
+                echo '{';
+                echo '#' . $html_id . '{display:none;}';
+                echo '}';
+                echo '</style>';
+            }
+        }
+
+        $output = ob_get_clean();
+        return $output;
+    }
 
     /**
      * Checks whether extra wrapper element is needed or not
@@ -206,6 +249,7 @@ class ADGURU_Zone{
      * @return array
      */
     private function get_wrapper_attrs(){
+
         $wrapper_class = 'adguru-zone-wrap';
         
         $alignment = (isset( $this->design['alignment'] ) ) ? $this->design['alignment'] : 'center';
@@ -241,9 +285,9 @@ class ADGURU_Zone{
             'id' => 'adguru_zone_wrap_'.$this->ID.'_'.$this->display_instance_number,
             'class' => $wrapper_class,
         );
-        $attrs = apply_filters('adguru_zone_wrapper_attrs', $attrs, $this );
+        $this->wrapper_attrs = apply_filters('adguru_zone_wrapper_attrs', $attrs, $this );
 
-        return $attrs;
+        return $this->wrapper_attrs;
     }
     
     /**

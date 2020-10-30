@@ -32,7 +32,7 @@ $visibility_form_args = array(
 					'size' => 'small',
 					'min' => 0,
 					'unit_text' => 'px',
-					'desc' => __( 'Set minimum screen width. 0 for no limit', 'adguru' )
+					'desc' => __( 'Set minimum screen width. 0 for no limit.', 'adguru' )
 				),
 
 				'visibility_screen_max_width' => array(
@@ -43,7 +43,7 @@ $visibility_form_args = array(
 					'size' => 'small',
 					'min' => 0,
 					'unit_text' => 'px',
-					'desc' => __( 'Set maximum screen width. 0 for no limit', 'adguru' )
+					'desc' => __( 'Set maximum screen width. 0 for no limit.', 'adguru' )
 				),
 
 				'visibility_screen_help_text' => array(

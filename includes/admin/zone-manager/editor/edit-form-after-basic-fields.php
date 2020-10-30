@@ -5,6 +5,13 @@
 	</div><!-- ./inside -->
 </div><!-- /.postbox -->
 
+<div id="zone_editor_visibility_box" class="postbox">
+	<h2 class='hndle'><span><?php _e('Visibility', 'adguru')?></span></h2>
+	<div class="inside">
+		<?php adguru_show_zone_visibility_form( $zone ); ?>
+	</div><!-- ./inside -->
+</div><!-- /.postbox -->
+
 <div id="zone_editor_inserter_box" class="postbox">
 	<h2 class='hndle'><span><?php _e('Automatic Insertion', 'adguru')?></span></h2>
 	<div class="inside">

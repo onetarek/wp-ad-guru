@@ -63,9 +63,11 @@
 
 .adguru-zone-wrap{
 	clear: both;
+	max-width: 100%;
 	padding: 0px;
 	margin: 0px;
 	border: none;
+	overflow: hidden !important;
 }
 
 .adguru-zone-wrap.align_left{
@@ -88,7 +90,18 @@
 
 .adguru-zone{
 	display: inline-block;
+	max-width: 100%;
 	margin: 0px;
 	padding: 0px;
 	border: none;
+	overflow: hidden !important;
+}
+
+.adguru-ad-banner{
+	display: inline-block;
+	max-width: 100%;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+	overflow: hidden !important;
 }

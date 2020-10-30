@@ -27,6 +27,32 @@ if( $design_form )
 	$zone->design = $design_data;
 }
 
+//VISIBILITY FORM
+$visibility_form = adguru()->form_builder->get_form('zone_visibility_form');
+if( $visibility_form )
+{ 
+	$visibility_data = array();
+	$submitted_data = $visibility_form->prepare_submitted_data();
+	
+	foreach( $submitted_data as $id => $value )
+	{
+		$key = ADGURU_Helper::str_replace_beginning('visibility_', '', $id );
+		$visibility_data[$key] = $value;
+	}
+	
+	$visibility_data = apply_filters('adguru_zone_prepare_to_save_visibility_data', $visibility_data, $submitted_data );
+	
+	/*
+	Keep old fields those are not exist with current submitted data. 
+	We need this because some fields might be added by extension and extension may be deactivated now
+	*/
+	if( $zone_from_db && isset($zone_from_db->visibility) && is_array( $zone_from_db->visibility ) )
+	{
+		$visibility_data = array_merge( $zone_from_db->visibility, $visibility_data );
+	}
+	$zone->visibility = $visibility_data;
+}
+
 //INSERTER FORM 
 $inserter_form = adguru()->form_builder->get_form('zone_inserter_form');
 if( $inserter_form )

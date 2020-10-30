@@ -314,7 +314,9 @@ class ADGURU_Banner{
 		#if we call an ad via shortcode, wordpress putting $content html outside of the wrapper <span> tag. 
 		#This is really strange.
 		$style = 'display:inline-block;width:'.$width.'px;height:'.$height.'px;';
-		$output = '<div style="'.esc_attr( $style ).'">'.$content.'</div>';
+		$output = '<span class="adguru-ad-banner">';
+		$output.= '<div style="'.esc_attr( $style ).'">'.$content.'</div>';
+		$output.= '</span>';
 		echo $output;
 		
 	}

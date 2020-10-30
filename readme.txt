@@ -7,8 +7,8 @@ Plugin URI: http://wpadguru.com
 Donate link: http://wpadguru.com/
 Tags: Ad Manager, Banner, Popup, Popup maker, Responsive popup, Ad inserter, Optins, Lead generator, Advertising Tool, Marketing Tool, GeoLocation Tracker, Ad Rotator, Ad Slider
 Requires at least: 3.6.0
-Tested up to: 5.5.1
-Stable tag: 2.3.0
+Tested up to: 5.5.2
+Stable tag: 2.4.0
 License: GPLv2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -203,6 +203,10 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Changelog ==
+= 2.4.0 - October 30, 2020 =
+* New: Zone visibility condition : Show/hide a zone based on screen size.
+* Fix: Set overflow hidden if the width of a zone or ad is greater that the container area.
+
 = 2.3.0 - October 03, 2020 =
 * Update: New hook to filter slider options.  
 
@@ -234,6 +238,10 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Upgrade Notice ==
+= 2.4.0 - October 30, 2020 =
+* New: Zone visibility condition : Show/hide a zone based on screen size.
+* Fix: Set overflow hidden if the width of a zone or ad is greater that the container area.
+
 = 2.3.0 - October 03, 2020 =
 * Update: New hook to filter slider options. 
 

@@ -141,7 +141,7 @@
 	top: 0;
 	right: 40px;
 	height: 40px;
-	padding-top: 5px;
+	padding-top: 4px;
 	padding-left: 5px;
 	box-sizing: border-box;
 }
@@ -159,11 +159,9 @@
 .condition-set .cs-box .country-select{
 	width: 200px;
 	max-width: 200px;
-	height: 30px;
-	border: 1px solid #ffffff;
-	background: #fff;
+	border: 1px solid #cccccc;
+	background-color: #fff;
 	margin: 0;
-	padding: 2px;
 	overflow: hidden;
 }
 .condition-set .ac-box .ac-btn{
@@ -357,8 +355,11 @@
 	padding: 3px;
 	text-align: center;
 	height: 24px;
-	margin: 3px;
-	margin-left: 0px;
+	margin: 0px;
+	border: 1px solid #c6e5ef;
+	border-top: none;
+	border-bottom: none;
+	border-radius: 0px;
 
 }
 .percentage-box .percentage.error{

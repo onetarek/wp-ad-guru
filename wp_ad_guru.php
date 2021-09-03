@@ -21,7 +21,7 @@ if( ! class_exists( 'WP_Ad_Guru' ) ) :
  * @since 2.0.0
  */
 final class WP_Ad_Guru{
-	/** Singleton Class/
+	/** Singleton Class */
 
 	/**
 	 * @var WP_Ad_Guru The one true WP_Ad_Guru

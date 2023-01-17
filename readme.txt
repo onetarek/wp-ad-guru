@@ -7,8 +7,8 @@ Plugin URI: http://wpadguru.com
 Donate link: http://wpadguru.com/
 Tags: Ad Manager, Banner, Popup, Popup maker, Responsive popup, Ad inserter, Optins, Lead generator, Advertising Tool, Marketing Tool, GeoLocation Tracker, Ad Rotator, Ad Slider
 Requires at least: 3.6.0
-Tested up to: 5.8
-Stable tag: 2.5.0
+Tested up to: 6.1.1
+Stable tag: 2.5.1
 License: GPLv2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -203,6 +203,9 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Changelog ==
+= 2.5.1 - January 17, 2023 =
+* Fix: PHP warning.
+
 = 2.5.0 - September 04, 2021 =
 * Fix: Some style issues.
 
@@ -241,6 +244,9 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Upgrade Notice ==
+= 2.5.1 - January 17, 2023 =
+* Fix: PHP warning.
+
 = 2.5.0 - September 04, 2021 =
 * Fix: Some style issues.
 

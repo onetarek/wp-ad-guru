@@ -5,7 +5,7 @@
  * Plugin URI: http://wpadguru.com
  * Author: oneTarek
  * Author URI: http://onetarek.com
- * Version: 2.5.0
+ * Version: 2.5.1
  * License: GPLv2+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -239,7 +239,7 @@ final class WP_Ad_Guru{
 			new ADGURU_Zone_Edit_Manager();
 		}
 		#for geo location feature strat session here before outputing anything to the browser.
-		if( session_id() == "" ){ session_start(); }
+		if( session_id() == "" && !defined( 'DOING_CRON' ) && !isset( $_GET['doing_wp_cron'] ) ){ session_start(); }
 		
 		$this->request_handler = new ADGURU_Request_Handler();
 
@@ -296,7 +296,7 @@ final class WP_Ad_Guru{
 
 		global $wpdb;
 		global $adguru_options;
-		define( 'ADGURU_VERSION', '2.5.0' );
+		define( 'ADGURU_VERSION', '2.5.1' );
 		define( 'ADGURU_DOCUMENTAION_URL', 'http://wpadguru.com/documentation/' );
 		define( 'ADGURU_PLUGIN_FILE', __FILE__ );
 		define( 'ADGURU_PLUGIN_DIR', plugin_dir_path( __FILE__ ) ); // Plugin Directory

@@ -239,7 +239,7 @@ final class WP_Ad_Guru{
 			new ADGURU_Zone_Edit_Manager();
 		}
 		#for geo location feature strat session here before outputing anything to the browser.
-		if( session_id() == "" ){ session_start(); }
+		if( session_id() == "" && !defined( 'DOING_CRON' ) && !isset( $_GET['doing_wp_cron'] ) ){ session_start(); }
 		
 		$this->request_handler = new ADGURU_Request_Handler();
 

@@ -471,8 +471,7 @@ class ADGURU_Server {
 				{
 					$links = $czl[ "home" ][ "--" ][ "--" ][ 0 ][ $visitor_contry_code ];
 				}
-				
-				if( isset( $czl[ "home" ][ "--" ][ "--" ][ 0 ][ "--" ] ) )
+				elseif( isset( $czl[ "home" ][ "--" ][ "--" ][ 0 ][ "--" ] ) )
 				{
 					$links = $czl[ "home" ][ "--" ][ "--" ][ 0 ][ "--" ];
 				}

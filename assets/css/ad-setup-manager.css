@@ -332,14 +332,15 @@
 	text-align: right;
 }
 .condition-set .ad .control-box .percentage-box{
-	width: 112px;
+	width: 114px;
 	height: 30px;
 	display: inline-block;
 	font-size: 13px;
 	line-height: 13px;
-	vertical-align: top;
 	text-align: left;
+	color: #cccccc;
 }
+
 .percentage-label{
 	color: #cccccc;
 	font-size: 13px;
@@ -349,19 +350,30 @@
 
 }
 .percentage-box .percentage{
-	width: 45px;
+	width: 50px;
 	font-size: 13px;
 	line-height: 13px;
 	padding: 3px;
 	text-align: center;
 	height: 24px;
-	margin: 3px;
-	margin-left: 0px;
-
+	margin: 0px;
+	color: #cccccc;
+	border-radius: 0px;
+	border-color: #cccccc;
+	border-top: 0px;
+	border-bottom: 0px;
 }
+
 .percentage-box .percentage.error{
 	background: #ffdddd;
 }
+
+.condition-set .ad:hover .control-box .percentage-box,
+.condition-set .ad:hover .control-box .percentage-box .percentage-label,
+.condition-set .ad:hover .control-box .percentage-box .percentage{
+	color:#000000;
+}
+
 .condition-set .ad .control-box .edit-btn{
 	width: 30px;
 	height: 30px;

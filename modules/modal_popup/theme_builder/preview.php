@@ -84,7 +84,7 @@
 		margin-top: -75px;
 	}
 
-	#adguru_modal_popup_example.sidebar_view .adguru-content-image{
+	#adguru_modal_popup_example .adguru-content-image{
 		display: flex;
 		justify-content: center;
 

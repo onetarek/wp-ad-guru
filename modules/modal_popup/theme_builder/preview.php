@@ -11,7 +11,7 @@
 					<div id="adguru_modal_popup_conatiner_example" class="mp-container" popup-id="example">
 						<div id="adguru_modal_popup_content_wrap_example" class="mp-content-wrap mp-content-wrap-image" popup-id="example">
 							<div id="adguru_modal_popup_content_example" class="adguru-content-image mp-content mp-content-image" popup-id="example">
-								<a href="javascript: return fasle" style="display:block;line-height:0;"><img src="http://localhost/adgurunew/wp-content/uploads/2019/01/pink-nature.jpg" class="adguru_content_image"></a>
+								<a href="javascript: return fasle" style="display:block;line-height:0;"><img src="<?php echo ADGURU_PLUGIN_URL ?>modules/modal_popup/assets/images/sunset_600x400_1.jpeg" class="adguru_content_image"></a>
 							</div>
 						</div>
 						<div id="adguru_modal_popup_close_wrap_example" class="mp-close-wrap top-right"><div id="adguru_modal_popup_close_example" class="mp-close adguru-modal-popup-close " popup-id="example"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/close-icons/close-default.png" alt="X"></div></div>
@@ -80,10 +80,18 @@
 		position: static;
 	}
 
+	#adguru_modal_popup_example.sidebar_view #adguru_modal_popup_container_wrap_example{
+		margin-top: -75px;
+	}
 
+	#adguru_modal_popup_example.sidebar_view .adguru-content-image{
+		display: flex;
+		justify-content: center;
+
+	}
 
 	#adguru_modal_popup_example.sidebar_view .adguru_content_image{
-		margin-left: -300px;
+		/*margin-left: -190px;*/
 
 	}
 

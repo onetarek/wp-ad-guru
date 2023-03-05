@@ -8,7 +8,7 @@ Donate link: http://wpadguru.com/
 Tags: Ad Manager, Banner, Popup, Popup maker, Responsive popup, Ad inserter, Optins, Lead generator, Advertising Tool, Marketing Tool, GeoLocation Tracker, Ad Rotator, Ad Slider
 Requires at least: 3.6.0
 Tested up to: 6.1.1
-Stable tag: 2.5.1
+Stable tag: 2.5.2
 License: GPLv2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -201,6 +201,13 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Changelog ==
+= 2.5.2 - March 06, 2023 =
+* Fix: PHP Notice: A non well formed numeric value encountered.
+* Fix: Bug in the logic of serving ads on the home page.
+* Fix: Style issues on the ad setup manager page.
+* Improve: Modal Popup sidebar preview.
+* Fix: Extra blank space at bottom and right side of a modal popup. Stop horizontal scrollbar for big image.
+
 = 2.5.1 - January 17, 2023 =
 * Fix: PHP warning.
 
@@ -242,6 +249,13 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Upgrade Notice ==
+= 2.5.2 - March 06, 2023 =
+* Fix: PHP Notice: A non well formed numeric value encountered.
+* Fix: Bug in the logic of serving ads on the home page.
+* Fix: Style issues on the ad setup manager page.
+* Improve: Modal Popup sidebar preview.
+* Fix: Extra blank space at bottom and right side of a modal popup. Stop horizontal scrollbar for big image.
+
 = 2.5.1 - January 17, 2023 =
 * Fix: PHP warning.
 

@@ -8,21 +8,20 @@ Donate link: http://wpadguru.com/
 Tags: Ad Manager, Banner, Popup, Popup maker, Responsive popup, Ad inserter, Optins, Lead generator, Advertising Tool, Marketing Tool, GeoLocation Tracker, Ad Rotator, Ad Slider
 Requires at least: 3.6.0
 Tested up to: 6.1.1
-Stable tag: 2.5.1
+Stable tag: 2.5.2
 License: GPLv2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-An essential set of advertising and marketing tools for blogger, website owner and marketer. Manage banner ad, modal popup and window popup. ad zones, ad rotator, GeoLocation tracker, ads carousel-slider, different ads by multiple conditions of visited page.
+An essential set of advertising and marketing tools for bloggers, website owners and marketers. Manage banner ads, modal popups and window popups. Ad zones, ad rotator, GeoLocation tracker, ads carousel-slider, different ads by multiple conditions of the visited page.
 
 == Description ==
 
-Essential set of advertising and marketing tools for blogger, website owner and marketer. As an ad management plugin it has many advanced features to select optimal ads for various positions and pages. It supports ad codes from all kind of ad networks including Google AdSense.
-Show various type of ads, email subscription form, affiliate links, special offers, video or anything using banners, modal popups and popup windows. Show different ads to the visitor of different countries by using Geolocation tracking system. Show different things on different type of WordPress pages. Add multiple ads in same place and display as carousel-slider. Rotate ads based on percentage you set. Easily collect leads on your website. This plugin is specially created to meet the needs and requirements of blogger, website owner, marketer and developers.
+An essential set of advertising and marketing tools for bloggers, website owners and marketers. As an ad management plugin, it has many advanced features to select optimal ads for various positions and pages. It supports ad codes from all kinds of ad networks including Google AdSense.
+Show various types of ads, email subscription forms, affiliate links, special offers, videos or anything using banners, modal popups and popup windows. Show different ads to visitors from different countries by using a Geolocation tracking system. Show different things on different types of WordPress pages. Add multiple ads in the same place and display them as carousel-slider. Rotate ads based on the percentage you set. Easily collect leads on your website. This plugin is specially created to meet the needs and requirements of bloggers, website owners, marketers and developers.
 
 **======== FEATURES ========**
 
-We call various types of advertisement and marketing materials as **Content**. Contents are categorised based on the type of programming codes and input methods. And we have different ways to represent contents to the visitors. We call those ways as **Container( ad )**. An ad contains different types of contents.
-  
+**Contents and Containers**: Here, the **contents** are various types of advertisement and marketing materials. Contents are categorized based on the type of programming codes and input methods. This plugin has different ways of representing content to visitors. We call it **Container( ad )**. An ad contains different types of content.
 
 **CONTENT TYPES**
 
@@ -35,18 +34,17 @@ There are 4 types of content
 
 **CONATAINER( AD ) TYPES**
 
-There are 3 types way you can represent your ad or marketing contents to the visitors.
+There are 3 ways of represent your ad or marketing contents to the visitors.
 
 *   **Banner**
 *   **Modal popup**
 *	**Popup Window**
 
-We have another type container that contains banner ads. We call that **Zone**.
-A **Zone** can contains multiple banners, in that case banners will be shown as carousel. You can set a zone to any place of your website using widget or adding PHP code in your theme files.
+**Zone:** This plugin has another type of container that contains banner ads. We call that Zone. A Zone can contain multiple banners, in that case, banners are shown as a carousel. You can show a zone to any place on your website using a widget or adding PHP code to your theme files. Also, you can insert a zone automatically into some places on a page.
 
 **CONDITIONS ( Display Rules )**
 
-**Type of WordPress pages :** You can load different ads to your websites based on type of visited pages. Types of pages are below.
+**Type of WordPress pages:** You can load different ads to your websites based on the type of visited pages. The types of pages are below.
 
 *	Home page
 *	Single page
@@ -55,7 +53,7 @@ A **Zone** can contains multiple banners, in that case banners will be shown as 
 *	Individual single post of a custom post type
 *	Posts
 *	Pages
-*	Post of a **custom post type
+*	Post of a **custom post type**
 *	Any kind of **archive page**
 *   **Category** archive page.
 *   **Specific category** archive page.
@@ -66,13 +64,13 @@ A **Zone** can contains multiple banners, in that case banners will be shown as 
 *   **Author archive** page.
 *   **404 page**.
 *   **Search result page**.
-*   Posts those contain a specific **category, tag**, or any other **custom taxonomy term**.
+*   Posts that contain a specific **category, tag**, or any other **custom taxonomy term**.
 
-**GeoLocation :** This plugin detects visitor's GeoLocation by tracking IP address. You can show some special ads only to the visitor of a targeted country.
+**GeoLocation:** This plugin detects visitors' GeoLocation by tracking IP addresses. You can show some special ads only to the visitor of a targeted country.
 
 **WAYS OF INJECTING THINGS TO FRONT-END**
 
-1.	**Automatic -** Modal popup and Window popup type ads are injected automatically to the pages. For **Banner** ads, you can choose places and type of pages to insert ad **Zones** where you will set **Banner** ads. Right now you can inject ads automatically to following places.
+1.	**Automatic -** Modal popup and Window popup ads are injected automatically into the pages. For **Banner** ads, you can choose places and types of pages to insert ad **Zones** where you will set **Banner** ads. Right now you can inject ads automatically to the following places.
 	
 	- Before Post
 	- Between Posts
@@ -87,8 +85,8 @@ A **Zone** can contains multiple banners, in that case banners will be shown as 
 	- After Footer
 
 2.   **Widgets -** by using widgets you can set zones to sidebars to show banners.
-3.   **PHP Code -** by adding PHP code in your theme files you can show zone or a single ad.
-4.   **SHORTCODE -** Use shortcode in post content to show a zone or a single ad.
+3.   **PHP Code -** by adding PHP code to your theme files you can show a zone or a single ad.
+4.   **SHORTCODE -** Use a shortcode in post content to show a zone or a single ad.
 
 
 
@@ -100,17 +98,17 @@ A **Zone** can contains multiple banners, in that case banners will be shown as 
 You can put any HTML and JavaScript and any SHORTCODE provided by other plugins.
 
 *	Ad code that you get from ad networks like Google Adsense. 
-*	Product embedded code of affiliate network like Amazon
+*	Product embedded code of affiliate networks like Amazon.
 *	Any SHORTCODE provided by other plugins.
 *	Any video embedded code like Youtube, Vimeo, Daily Motion videos.
-*	Embedded code like Google map, Facebook page likebox ,Twitter feed, Instagram feed etc.
-*	Social share & like buttons code form social networks like Facebook, LinkedIn, Twitter, Google Plus, etc. 
+*	Embedded code like Google map, Facebook page likebox,Twitter feed, Instagram feed, etc.
+*	Social share & like buttons code from social networks like Facebook, LinkedIn, Twitter, Google Plus, etc. 
 *	Custom HTML/JS code as your need.
-*	Convert your visitors into subscribers by using newsletter signup form of Email Marketing Services like MailChimp, GetResponse, AWeber, MailPoet, Drip, Hubspot, Marketo, ConvertKit, Infusionsoft, ConstantContact, MailerLite, CampaignMonitor, ActiveCampaign, Emma, Pardot, iContact, TotalSend, Customer.io , FeedBlitz etc.
+*	Convert your visitors into subscribers by using newsletter signup form of Email Marketing Services like MailChimp, GetResponse, AWeber, MailPoet, Drip, Hubspot, Marketo, ConvertKit, Infusionsoft, ConstantContact, MailerLite, CampaignMonitor, ActiveCampaign, Emma, Pardot, iContact, TotalSend, Customer.io, FeedBlitz, etc.
 *	You can also use custom HTML forms as well as use shortcodes to add other form plugins such as Gravity forms, Contact form 7, WPForms, Formidable Forms, etc
 
 
-**Image Content -** Show any image with link to an webpage. Provide any image url or choose from media gallery or upload from your computer.
+**Image Content -** Show an image with a link to a webpage. Provide any image URL or choose from the media gallery or upload from your computer.
 
 **iFrame Content -** Embed any webpage using iFrame type content
 
@@ -121,51 +119,51 @@ You can put any HTML and JavaScript and any SHORTCODE provided by other plugins.
 
 **MODAL POPUP**
  
-Popups are a good marketing tool, they are impressively high converting. A web page with a modal popup typically gets more conversions than other pages without popup. An excellent feature of **WP Ad Guru** is **Modal Popup**. This is also modal popup plugin for WordPress websites. You can also call this plugin as **popup maker** or **popup builder**. It allows you to add highly customizable lightbox.
+Popups are a good marketing tool, they are impressively high converting. A web page with a modal popup typically gets more conversions than other pages without a popup. An excellent feature of **WP Ad Guru** is **Modal Popup**. This is also a modal popup plugin for WordPress websites. You can also call this plugin a **popup maker** or **popup builder**. It allows you to add a highly customizable lightbox.
 
 *	**Unlimited Popup -** Create and manage as many popups as you want
 *	100% Customizable Popups
-*	**Responsive popup -** popups can be responsive so that they are easily viewable in mobile devices
-*	**Control Size -** set various sizing options like width, height, max-width, min-width, max-height, min-height in unit of 'px' or '%' to make your popup fixed sized or responsive.
+*	**Responsive popup -** popups can be responsive so that they are easily viewable on mobile devices
+*	**Control Size -** set various sizing options like width, height, max-width, min-width, max-height and min-height in units of 'px' or '%' to make your popup fixed-sized or responsive.
 *	**Control Position -** Set popup location on the screen( top-left, top-center, top-right, middle-left, middle-center, middle-rith, bottom-left, bottom-center, bottom-right )
 *	
 
-*	**Customizable design -** Customize the look and feel of the popup. Change color, border, background, opacity, shadow of container, overlay and close button. Control the position of close button, Set location of close button in/out of popup container. Use custom text or image for close button. Choose various predefined close button icons, also change their color as needed.  
-*	**Predefined popup themes -** There are some builtin good looking themes you can choose for a popup
+*	**Customizable design -** Customize the look and feel of the popup. Change color, border, background, opacity and shadow of the container, overlay and close button. Control the position of close button, Set the location of the close button in/out of the popup container. Use custom text or image for the close button. Choose various predefined close button icons, and also change their color as needed.  
+*	**Predefined popup themes -** There are some builtin good looking themes you can choose for a popup.
 *	**Popup theme builder -** to create custom themes for your popup use a **visual theme builder**. See the live preview on the editor.
-*	**Export** popup themes to use in another website
-*	**Import** popup themes form other website
-*	**Opening animation effects -** On opening of a popup you can apply an animation like bounce, swing, fadeIn, slideInDown, slideInUp etc. Also you can set the speed of animation
-*	**Closing animation effects -** On closing of a popup you can apply an animation like bounceOut, fadeOut, slideOutDown, slideOutUp etc. Speed of closing animation is changeable
-*	**Live Preview -** With a preview link you can see the live output of your popup on your home page without applying that popup for any page.
-*	**Automatic open -** Automatically open the popup after certain amount of time you select
-*	Show popup always in every page visit
-*	Show popup X number of time to a visitor
-*	Reset the cookie after X days
-*	Apply popup showing limitation for each page individually
-*	Create various type of popup using different content : HTML popup, Image popup, iFrame popup, Video popup, Newsletter signup popup, Contact form popup, Email subscription popup etc.
+*	**Export** popup themes to use on another website.
+*	**Import** popup themes from another website.
+*	**Opening animation effects -** On the opening of a popup you can apply an animation like bounce, swing, fadeIn, slideInDown, slideInUp, etc. Also, you can set the speed of the animation.
+*	**Closing animation effects -** On the closing of a popup you can apply an animation like bounceOut, fadeOut, slideOutDown, slideOutUp, etc. The speed of closing animation is changeable.
+*	**Live Preview -** With a preview link you can see the live output of your popup on your home page without applying that popup to any page.
+*	**Automatic open -** Automatically open the popup after a certain amount of time you select.
+*	Show popup always on every page visit.
+*	Show popup X number of times to a visitor.
+*	Reset the cookie after X days.
+*	Apply a popup showing limitations for each page individually.
+*	Create various types of popups using different content: HTML popup, Image popup, iFrame popup, Video popup, Newsletter signup popup, Contact form popup, Email subscription popup, etc.
 
  
 **WINDOW POPUP**
 
-This is another type of popup that will be opened as a new browser window. We also call this as popup window.
+This is another type of popup that will be opened as a new browser window. We also call this a popup window.
 
-*	**Control Size -** set width and height in unit of 'px' or '%' to make your popup fixed sized.
-*	**Custom Title -** show your custom text on the titlebar of the new window
-*	**Control window features -** you can enable or disable of window features ( Titlebar
+*	**Control Size -** set width and height in units of 'px' or '%' to make your popup fixed-sized.
+*	**Custom Title -** show your custom text on the titlebar of the new window.
+*	**Control window features -** you can enable or disable window features ( Titlebar.
 Location, Menubar, Resizable, Scrollbars, Statusbar and Toolbar )
-*	**Open on BODY click -** Open the popup after the first click on anywhere of the page.
-*	Show popup always in every page visit
-*	Show popup X number of time to a visitor
-*	Reset the cookie after X days
-*	Apply popup showing limitation for each page individually
+*	**Open on BODY click -** Open the popup after the first click on anywhere on the page.
+*	Show popup always on every page visit.
+*	Show popup X number of times to a visitor.
+*	Reset the cookie after X days.
+*	Apply a popup showing limitations for each page individually.
 
 **Developer Friendly & Extendable :**
 You can extend **WP Ad Guru** without breaking anything.
 
 **Action & Filter Hooks :**
 
-There are action and filter hooks for nearly every process and output of **WP Ad Guru**. So you can modify any default behavior and output. You can inject new functionality to this plugin.
+There are action and filter hooks for nearly every process and output of **WP Ad Guru**. So you can modify any default behavior and output. You can inject new functionality into this plugin.
 
 
 For more detail go to **[wpadguru.com](http://wpadguru.com/)**.
@@ -203,6 +201,13 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Changelog ==
+= 2.5.2 - March 06, 2023 =
+* Fix: PHP Notice: A non well formed numeric value encountered.
+* Fix: Bug in the logic of serving ads on the home page.
+* Fix: Style issues on the ad setup manager page.
+* Improve: Modal Popup sidebar preview.
+* Fix: Extra blank space at bottom and right side of a modal popup. Stop horizontal scrollbar for big image.
+
 = 2.5.1 - January 17, 2023 =
 * Fix: PHP warning.
 
@@ -210,18 +215,18 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 * Fix: Some style issues.
 
 = 2.4.0 - October 30, 2020 =
-* New: Zone visibility condition : Show/hide a zone based on screen size.
+* New: Zone visibility condition: Show/hide a zone based on screen size.
 * Fix: Set overflow hidden if the width of a zone or ad is greater that the container area.
 
 = 2.3.0 - October 03, 2020 =
 * Update: New hook to filter slider options.  
 
 = 2.2.0 - November 19, 2019 =
-* New: Automatic zone inserter : Now you can inject an ad zone to various places of front-end pages automatically.
+* New: Automatic zone inserter: Now you can inject an ad zone to various places of front-end pages automatically.
 * Update: Latest MaxMind GeoIP Database.
 
 = 2.1.0 - September 11, 2019 =
-* New: Ad setup manager page : Completely new UI to create condition and setup ads to pages.
+* New: Ad setup manager page: Completely new UI to create conditions and setup ads to pages.
 * Update: Latest MaxMind GeoIP Database.
 
 = 2.0.4 - March 08, 2019 =
@@ -233,7 +238,7 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 * Fix: PHP Warnings were being happened when there is no zone created yet.
 
 = 2.0.2 - February 10, 2019 =
-* Fix: content type image : image link was blank in output.
+* Fix: content type image: image link was blank in output.
 
 = 2.0.1 - February 9, 2019 =
 * Fix: modal popup preview area was overlapping the media uploader modal.
@@ -244,6 +249,13 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Upgrade Notice ==
+= 2.5.2 - March 06, 2023 =
+* Fix: PHP Notice: A non well formed numeric value encountered.
+* Fix: Bug in the logic of serving ads on the home page.
+* Fix: Style issues on the ad setup manager page.
+* Improve: Modal Popup sidebar preview.
+* Fix: Extra blank space at bottom and right side of a modal popup. Stop horizontal scrollbar for big image.
+
 = 2.5.1 - January 17, 2023 =
 * Fix: PHP warning.
 
@@ -251,18 +263,18 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 * Fix: Some style issues.
 
 = 2.4.0 - October 30, 2020 =
-* New: Zone visibility condition : Show/hide a zone based on screen size.
+* New: Zone visibility condition: Show/hide a zone based on screen size.
 * Fix: Set overflow hidden if the width of a zone or ad is greater that the container area.
 
 = 2.3.0 - October 03, 2020 =
 * Update: New hook to filter slider options. 
 
 = 2.2.0 - November 19, 2019 =
-* New: Automatic zone inserter : Now you can inject an ad zone to various places of front-end pages automatically.
+* New: Automatic zone inserter: Now you can inject an ad zone to various places of front-end pages automatically.
 * Update: Latest MaxMind GeoIP Database.
 
 = 2.1.0 - September 11, 2019 =
-* New: Ad setup manager page : Completely new UI to create condition and setup ads to pages.
+* New: Ad setup manager page: Completely new UI to create conditions and setup ads to pages.
 * Update: Latest MaxMind GeoIP Database.
 
 = 2.0.4 - March 08, 2019 =
@@ -274,7 +286,7 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 * Fix: PHP Warnings were being happened when there is no zone created yet.
 
 = 2.0.2 - February 10, 2019 =
-* Fix: content type image : image link was blank in output.
+* Fix: content type image: image link was blank in output.
 
 = 2.0.1 - February 9, 2019 =
 * Fix: modal popup preview area was overlapping the media uploader modal.

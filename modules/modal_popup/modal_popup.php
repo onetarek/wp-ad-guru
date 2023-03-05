@@ -594,12 +594,12 @@ class ADGURU_Modal_Popup{
 		$container_border_width = 0;
 		if( isset($design['container_border_enable']) && $design['container_border_enable'] == 1 )
 		{
-			$w = ( isset( $design['container_border_width'] ) ) ? $design['container_border_width']."px" : '5px';
+			$container_border_width = ( isset( $design['container_border_width'] ) ) ? $design['container_border_width'] : 5;
+			$w = $container_border_width."px";
 			$s = ( isset( $design['container_border_style'] ) ) ? $design['container_border_style'] : 'solid';
 			$c = ( isset( $design['container_border_color'] ) ) ? $design['container_border_color'] : '#cccccc';
 			$rules['container']['border'] = $w.' '.$s.' '.$c;
 			$rules['container']['border-radius'] = ( isset( $design['container_border_radius'] ) ) ? $design['container_border_radius']."px" : '0';
-			$container_border_width = $w;
 		}
 		$container_padding = ( isset( $design['container_padding'] ) ) ? $design['container_padding'] : 0;
 		$rules['container']['padding'] = $container_padding.'px';
@@ -629,7 +629,7 @@ class ADGURU_Modal_Popup{
 			$rules['container']['-webkit-box-shadow'] = $rules['container']['box-shadow'];
 		}
 		#CONTENT
-		$rules['content']['overflow'] = ( isset($sizing['enable_scrollbar']) && $sizing['enable_scrollbar'] == 1 ) ? 'scroll' : 'hidden';
+		$rules['content']['overflow'] = ( isset($sizing['enable_scrollbar']) && $sizing['enable_scrollbar'] == 1 ) ? 'auto' : 'hidden';
 		if( $container_max_height != 0 && $container_max_height_unit == 'px' )//for container_max_height_unit == '%' will do nothing here. We will assign the rule using JS.
 		{
 			$content_max_height = $container_max_height - ( $container_border_width * 2 ) - ( $container_padding * 2 );

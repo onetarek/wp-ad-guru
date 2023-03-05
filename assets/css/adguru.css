@@ -19,6 +19,16 @@
 	flex-grow: 1; border: none; margin: 0; padding: 0;
 }
 
+/* content type html */
+.adguru-content-html img{
+	max-width: 100%;
+}
+
+/* content type wysiwyg */
+.adguru-content-wysiwyg img{
+	max-width: 100%;
+}
+
 .adguru_ad_slider{
 	margin:0;
 	padding:0;

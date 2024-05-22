@@ -17,8 +17,6 @@
 /*==========CONTAINER=============*/ /* https://stackoverflow.com/questions/1776915/how-to-center-absolutely-positioned-element-in-div */
 .adguru-modal-popup .mp-container-wrap{
 	width: 100%;
-	height: 100%;
-	overflow-y: scroll;
 	position: fixed;
 	z-index: 999999;
 }

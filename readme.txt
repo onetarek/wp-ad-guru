@@ -5,10 +5,10 @@ Author: onetarek
 Author URI: http://onetarek.com
 Plugin URI: http://wpadguru.com
 Donate link: http://wpadguru.com/
-Tags: Ad Manager, Banner, Popup, Popup maker, Responsive popup, Ad inserter, Optins, Lead generator, Advertising Tool, Marketing Tool, GeoLocation Tracker, Ad Rotator, Ad Slider
+Tags: Ad Manager, Banner, Popup, Popup maker, Responsive Popup, Ad Inserter, Optins, Lead Generator, Advertising Tool, Marketing Tool, GeoLocation Tracker, Ad Rotator, Ad Slider
 Requires at least: 3.6.0
-Tested up to: 6.1.1
-Stable tag: 2.5.2
+Tested up to: 6.5.3
+Stable tag: 2.5.3
 License: GPLv2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,7 +34,7 @@ There are 4 types of content
 
 **CONATAINER( AD ) TYPES**
 
-There are 3 ways of represent your ad or marketing contents to the visitors.
+There are 3 ways of representing your ad or marketing content to the visitors.
 
 *   **Banner**
 *   **Modal popup**
@@ -66,7 +66,7 @@ There are 3 ways of represent your ad or marketing contents to the visitors.
 *   **Search result page**.
 *   Posts that contain a specific **category, tag**, or any other **custom taxonomy term**.
 
-**GeoLocation:** This plugin detects visitors' GeoLocation by tracking IP addresses. You can show some special ads only to the visitor of a targeted country.
+**GeoLocation:** This plugin detects visitors' GeoLocation by tracking IP addresses. You can show some special ads only to the visitors of a targeted country.
 
 **WAYS OF INJECTING THINGS TO FRONT-END**
 
@@ -84,7 +84,7 @@ There are 3 ways of represent your ad or marketing contents to the visitors.
 	- Before Footer
 	- After Footer
 
-2.   **Widgets -** by using widgets you can set zones to sidebars to show banners.
+2.   **Widgets -** By using widgets you can set zones to sidebars to show banners.
 3.   **PHP Code -** by adding PHP code to your theme files you can show a zone or a single ad.
 4.   **SHORTCODE -** Use a shortcode in post content to show a zone or a single ad.
 
@@ -98,38 +98,38 @@ There are 3 ways of represent your ad or marketing contents to the visitors.
 You can put any HTML and JavaScript and any SHORTCODE provided by other plugins.
 
 *	Ad code that you get from ad networks like Google Adsense. 
-*	Product embedded code of affiliate networks like Amazon.
+*	Product-embedded code of affiliate networks like Amazon.
 *	Any SHORTCODE provided by other plugins.
-*	Any video embedded code like Youtube, Vimeo, Daily Motion videos.
-*	Embedded code like Google map, Facebook page likebox,Twitter feed, Instagram feed, etc.
+*	Any video embedded code like YouTube, Vimeo or Daily Motion videos.
+*	Embedded code like Google map, Facebook page likebox, Twitter feed, Instagram feed, etc.
 *	Social share & like buttons code from social networks like Facebook, LinkedIn, Twitter, Google Plus, etc. 
-*	Custom HTML/JS code as your need.
+*	Custom HTML/JS code as you need.
 *	Convert your visitors into subscribers by using newsletter signup form of Email Marketing Services like MailChimp, GetResponse, AWeber, MailPoet, Drip, Hubspot, Marketo, ConvertKit, Infusionsoft, ConstantContact, MailerLite, CampaignMonitor, ActiveCampaign, Emma, Pardot, iContact, TotalSend, Customer.io, FeedBlitz, etc.
-*	You can also use custom HTML forms as well as use shortcodes to add other form plugins such as Gravity forms, Contact form 7, WPForms, Formidable Forms, etc
+*	You can also use custom HTML forms as well as use shortcodes to add other form plugins such as Gravity Forms, Contact Form 7, WPForms, Formidable Forms, etc
 
 
 **Image Content -** Show an image with a link to a webpage. Provide any image URL or choose from the media gallery or upload from your computer.
 
 **iFrame Content -** Embed any webpage using iFrame type content
 
-**WYSIWYG Content -** You will get a TinyMCE visual editor to create any custom output as you need.
+**WYSIWYG Content -** You will get a TinyMCE visual editor to create any custom output you need.
 
 
 
 
 **MODAL POPUP**
  
-Popups are a good marketing tool, they are impressively high converting. A web page with a modal popup typically gets more conversions than other pages without a popup. An excellent feature of **WP Ad Guru** is **Modal Popup**. This is also a modal popup plugin for WordPress websites. You can also call this plugin a **popup maker** or **popup builder**. It allows you to add a highly customizable lightbox.
+Popups are a good marketing tool, they are impressively high-converting. A web page with a modal popup typically gets more conversions than other pages without a popup. An excellent feature of **WP Ad Guru** is **Modal Popup**. This is also a modal popup plugin for WordPress websites. You can also call this plugin a **popup maker** or **popup builder**. It allows you to add a highly customizable lightbox.
 
 *	**Unlimited Popup -** Create and manage as many popups as you want
 *	100% Customizable Popups
-*	**Responsive popup -** popups can be responsive so that they are easily viewable on mobile devices
-*	**Control Size -** set various sizing options like width, height, max-width, min-width, max-height and min-height in units of 'px' or '%' to make your popup fixed-sized or responsive.
-*	**Control Position -** Set popup location on the screen( top-left, top-center, top-right, middle-left, middle-center, middle-rith, bottom-left, bottom-center, bottom-right )
+*	**Responsive popup -** Popups can be responsive so that they are easily viewable on mobile devices
+*	**Control Size -** Set various sizing options like width, height, max-width, min-width, max-height and min-height in units of 'px' or '%' to make your popup fixed-sized or responsive.
+*	**Control Position -** Set popup location on the screen( top-left, top-center, top-right, middle-left, middle-center, middle-rigth, bottom-left, bottom-center, bottom-right )
 *	
 
-*	**Customizable design -** Customize the look and feel of the popup. Change color, border, background, opacity and shadow of the container, overlay and close button. Control the position of close button, Set the location of the close button in/out of the popup container. Use custom text or image for the close button. Choose various predefined close button icons, and also change their color as needed.  
-*	**Predefined popup themes -** There are some builtin good looking themes you can choose for a popup.
+*	**Customizable design -** Customize the look and feel of the popup. Change the color, border, background, opacity and shadow of the container, overlay and close button. Control the position of the close button, Set the location of the close button in/out of the popup container. Use custom text or images for the close button. Choose various predefined close button icons, and also change their color as needed.  
+*	**Predefined popup themes -** There are some built-in good-looking themes you can choose for a popup.
 *	**Popup theme builder -** to create custom themes for your popup use a **visual theme builder**. See the live preview on the editor.
 *	**Export** popup themes to use on another website.
 *	**Import** popup themes from another website.
@@ -148,9 +148,9 @@ Popups are a good marketing tool, they are impressively high converting. A web p
 
 This is another type of popup that will be opened as a new browser window. We also call this a popup window.
 
-*	**Control Size -** set width and height in units of 'px' or '%' to make your popup fixed-sized.
-*	**Custom Title -** show your custom text on the titlebar of the new window.
-*	**Control window features -** you can enable or disable window features ( Titlebar.
+*	**Control Size -** Set width and height in units of 'px' or '%' to make your popup fixed-sized.
+*	**Custom Title -** Show your custom text on the titlebar of the new window.
+*	**Control window features -** You can enable or disable window features ( Titlebar.
 Location, Menubar, Resizable, Scrollbars, Statusbar and Toolbar )
 *	**Open on BODY click -** Open the popup after the first click on anywhere on the page.
 *	Show popup always on every page visit.
@@ -168,7 +168,7 @@ There are action and filter hooks for nearly every process and output of **WP Ad
 
 For more detail go to **[wpadguru.com](http://wpadguru.com/)**.
 
-**Credits :** 
+**Credits:** 
 
 This product includes GeoLite2 data created by MaxMind, available from [https://www.maxmind.com](https://www.maxmind.com)
 
@@ -201,12 +201,15 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Changelog ==
+= 2.5.3 - May 24, 2024 =
+* Fix: PHP deprecation notices.
+
 = 2.5.2 - March 06, 2023 =
-* Fix: PHP Notice: A non well formed numeric value encountered.
+* Fix: PHP Notice: A non-well-formed numeric value encountered.
 * Fix: Bug in the logic of serving ads on the home page.
 * Fix: Style issues on the ad setup manager page.
 * Improve: Modal Popup sidebar preview.
-* Fix: Extra blank space at bottom and right side of a modal popup. Stop horizontal scrollbar for big image.
+* Fix: Extra blank space at the bottom and right side of a modal popup. Stop the horizontal scrollbar for big images.
 
 = 2.5.1 - January 17, 2023 =
 * Fix: PHP warning.
@@ -216,7 +219,7 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 = 2.4.0 - October 30, 2020 =
 * New: Zone visibility condition: Show/hide a zone based on screen size.
-* Fix: Set overflow hidden if the width of a zone or ad is greater that the container area.
+* Fix: Set overflow hidden if the width of a zone or ad is greater than the container area.
 
 = 2.3.0 - October 03, 2020 =
 * Update: New hook to filter slider options.  
@@ -226,7 +229,7 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 * Update: Latest MaxMind GeoIP Database.
 
 = 2.1.0 - September 11, 2019 =
-* New: Ad setup manager page: Completely new UI to create conditions and setup ads to pages.
+* New: Ad setup manager page: Completely new UI to create conditions and set up ads to pages.
 * Update: Latest MaxMind GeoIP Database.
 
 = 2.0.4 - March 08, 2019 =
@@ -238,10 +241,10 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 * Fix: PHP Warnings were being happened when there is no zone created yet.
 
 = 2.0.2 - February 10, 2019 =
-* Fix: content type image: image link was blank in output.
+* Fix: content-type image: image link was blank in output.
 
 = 2.0.1 - February 9, 2019 =
-* Fix: modal popup preview area was overlapping the media uploader modal.
+* Fix: The modal popup preview area was overlapping the media uploader modal.
 
 = 2.0.0 - February 9, 2019 =
 * Initial release including all features of 'WP Ad Guru Lite' and premium 'WP Ad Guru' plugins.
@@ -249,12 +252,15 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Upgrade Notice ==
+= 2.5.3 - May 24, 2024 =
+* Fix: PHP deprecation notices.
+
 = 2.5.2 - March 06, 2023 =
-* Fix: PHP Notice: A non well formed numeric value encountered.
+* Fix: PHP Notice: A non-well-formed numeric value encountered.
 * Fix: Bug in the logic of serving ads on the home page.
 * Fix: Style issues on the ad setup manager page.
 * Improve: Modal Popup sidebar preview.
-* Fix: Extra blank space at bottom and right side of a modal popup. Stop horizontal scrollbar for big image.
+* Fix: Extra blank space at the bottom and right side of a modal popup. Stop the horizontal scrollbar for big images.
 
 = 2.5.1 - January 17, 2023 =
 * Fix: PHP warning.
@@ -264,7 +270,7 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 = 2.4.0 - October 30, 2020 =
 * New: Zone visibility condition: Show/hide a zone based on screen size.
-* Fix: Set overflow hidden if the width of a zone or ad is greater that the container area.
+* Fix: Set overflow hidden if the width of a zone or ad is greater than the container area.
 
 = 2.3.0 - October 03, 2020 =
 * Update: New hook to filter slider options. 
@@ -274,7 +280,7 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 * Update: Latest MaxMind GeoIP Database.
 
 = 2.1.0 - September 11, 2019 =
-* New: Ad setup manager page: Completely new UI to create conditions and setup ads to pages.
+* New: Ad setup manager page: Completely new UI to create conditions and set up ads to pages.
 * Update: Latest MaxMind GeoIP Database.
 
 = 2.0.4 - March 08, 2019 =
@@ -286,10 +292,10 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 * Fix: PHP Warnings were being happened when there is no zone created yet.
 
 = 2.0.2 - February 10, 2019 =
-* Fix: content type image: image link was blank in output.
+* Fix: content-type image: image link was blank in output.
 
 = 2.0.1 - February 9, 2019 =
-* Fix: modal popup preview area was overlapping the media uploader modal.
+* Fix: The modal popup preview area was overlapping the media uploader modal.
 
 = 2.0.0 - February 9, 2019 =
 * Initial release including all features of 'WP Ad Guru Lite' and premium 'WP Ad Guru' plugins.

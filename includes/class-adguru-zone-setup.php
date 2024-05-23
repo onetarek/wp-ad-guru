@@ -13,6 +13,7 @@ if( ! class_exists( 'ADGURU_Zone_Setup' ) ) :
 class ADGURU_Zone_Setup{
 	
 	public $post_type;
+	public $post_type_args;
 	
 	public function __construct(){
 

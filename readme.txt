@@ -5,14 +5,14 @@ Author: onetarek
 Author URI: http://onetarek.com
 Plugin URI: http://wpadguru.com
 Donate link: http://wpadguru.com/
-Tags: Ad Manager, Banner, Popup, Popup maker, Responsive Popup, Ad Inserter, Optins, Lead Generator, Advertising Tool, Marketing Tool, GeoLocation Tracker, Ad Rotator, Ad Slider
+Tags: Ad Manager, Popup maker, Ad Inserter, Ad Rotator, Ad Slider
 Requires at least: 3.6.0
 Tested up to: 6.5.3
 Stable tag: 2.5.3
 License: GPLv2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-An essential set of advertising and marketing tools for bloggers, website owners and marketers. Manage banner ads, modal popups and window popups. Ad zones, ad rotator, GeoLocation tracker, ads carousel-slider, different ads by multiple conditions of the visited page.
+Manage banner ads, popups, ad zones, ad rotator, ads carousel-slider, and different ads based on multiple conditions of GeoLocation and visited page.
 
 == Description ==
 

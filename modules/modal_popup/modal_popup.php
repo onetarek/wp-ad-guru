@@ -430,7 +430,7 @@ class ADGURU_Modal_Popup{
 		
 		$print_content_args = array(
 			'wrapper_attributes' => array(
-				'id' => 'adguru_modal_popup_content'.$ad->ID,
+				'id' => 'adguru_modal_popup_content_'.$ad->ID,
 				'class' => 'mp-content mp-content-'.$ad->content_type,
 				'popup-id' => $ad->ID
 				)

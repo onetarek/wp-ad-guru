@@ -630,6 +630,7 @@ class ADGURU_Modal_Popup{
 		}
 		#CONTENT
 		$rules['content']['overflow'] = ( isset($sizing['enable_scrollbar']) && $sizing['enable_scrollbar'] == 1 ) ? 'auto' : 'hidden';
+		$rules['content']['height'] = '100%';
 		if( $container_max_height != 0 && $container_max_height_unit == 'px' )//for container_max_height_unit == '%' will do nothing here. We will assign the rule using JS.
 		{
 			$content_max_height = $container_max_height - ( $container_border_width * 2 ) - ( $container_padding * 2 );

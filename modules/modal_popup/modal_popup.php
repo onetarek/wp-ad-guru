@@ -857,7 +857,7 @@ class ADGURU_Modal_Popup{
 			if( isset( $close_bottom_negative ) ){ $container_bottom = max( $container_bottom, abs($close_bottom_negative) ); }
 			$rules['container-wrap']['bottom'] = $container_bottom.'px';
 		}
-		elseif( $location == 'botom_right' )
+		elseif( $location == 'bottom_right' )
 		{
 			$container_right = ( isset( $position['right'] ) ) ? $position['right'] : 0;
 			if( isset( $close_right_negative ) ){ $container_right = max( $container_right, abs($close_right_negative) ); }

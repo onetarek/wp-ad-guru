@@ -12,7 +12,7 @@ $content_wysiwyg_form_args = array(
 			'label' => __('Create your own', 'adguru'),
 			'default' => '',
 			'size' => 'large',
-			'settings' => array('editor_height' => '300px'),
+			'settings' => array('editor_height' => 300), //Do not use 'px' like '300px', use only integer value.
 			'desc' => 'You can use <a href="https://codex.wordpress.org/Shortcode_API" target="_blank">Shortcodes</a> and <a href="https://codex.wordpress.org/Embeds" target="_blank">Embeds</a>',
 		)
 	)//end of fields array 

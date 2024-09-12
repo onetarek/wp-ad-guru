@@ -430,7 +430,7 @@ class ADGURU_Modal_Popup{
 		
 		$print_content_args = array(
 			'wrapper_attributes' => array(
-				'id' => 'adguru_modal_popup_content'.$ad->ID,
+				'id' => 'adguru_modal_popup_content_'.$ad->ID,
 				'class' => 'mp-content mp-content-'.$ad->content_type,
 				'popup-id' => $ad->ID
 				)
@@ -630,6 +630,7 @@ class ADGURU_Modal_Popup{
 		}
 		#CONTENT
 		$rules['content']['overflow'] = ( isset($sizing['enable_scrollbar']) && $sizing['enable_scrollbar'] == 1 ) ? 'auto' : 'hidden';
+		$rules['content']['height'] = '100%';
 		if( $container_max_height != 0 && $container_max_height_unit == 'px' )//for container_max_height_unit == '%' will do nothing here. We will assign the rule using JS.
 		{
 			$content_max_height = $container_max_height - ( $container_border_width * 2 ) - ( $container_padding * 2 );
@@ -856,7 +857,7 @@ class ADGURU_Modal_Popup{
 			if( isset( $close_bottom_negative ) ){ $container_bottom = max( $container_bottom, abs($close_bottom_negative) ); }
 			$rules['container-wrap']['bottom'] = $container_bottom.'px';
 		}
-		elseif( $location == 'botom_right' )
+		elseif( $location == 'bottom_right' )
 		{
 			$container_right = ( isset( $position['right'] ) ) ? $position['right'] : 0;
 			if( isset( $close_right_negative ) ){ $container_right = max( $container_right, abs($close_right_negative) ); }

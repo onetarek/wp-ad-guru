@@ -7,8 +7,8 @@ Plugin URI: http://wpadguru.com
 Donate link: http://wpadguru.com/
 Tags: Ad Manager, Popup maker, Ad Inserter, Ad Rotator, Ad Slider
 Requires at least: 3.6.0
-Tested up to: 6.5.3
-Stable tag: 2.5.3
+Tested up to: 6.6.2
+Stable tag: 2.5.4
 License: GPLv2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -201,6 +201,11 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Changelog ==
+= 2.5.4 - September 12, 2024 =
+* Fix: WYSIWYG editor default height issue.
+* Fix: Modal popup bottom right position issue.
+* Fix: Modal popup content scrollbar issue.
+
 = 2.5.3 - May 24, 2024 =
 * Fix: PHP deprecation notices.
 
@@ -252,6 +257,11 @@ For more detail read **[WP Ad Guru Documentation](http://wpadguru.com/documentat
 
 
 == Upgrade Notice ==
+= 2.5.4 - September 12, 2024 =
+* Fix: WYSIWYG editor default height issue.
+* Fix: Modal popup bottom right position issue.
+* Fix: Modal popup content scrollbar issue.
+
 = 2.5.3 - May 24, 2024 =
 * Fix: PHP deprecation notices.
 

@@ -299,7 +299,7 @@ class ADGURU_Ad_List_Table extends WP_List_Table {
 	 * @access public
 	 */
 	function no_items(){
-
+		/* translators: %s: Current ad type singular name */
 		echo sprintf(__( 'No %s found.', 'wp-ad-guru' ) , $this->_args['singular'] );
 	}
 

@@ -43,7 +43,13 @@ global $wpdb;
 
 $zone_id = isset( $_GET['zone_id'] ) ? intval( $_GET['zone_id'] ) : 0 ;
 
-if( $use_zone ){ $msg = sprintf( __("Set %s to Zone", "wp-ad-guru" ) , $current_ad_type_args['plural_name'] );  } else {  $msg =  sprintf( __("Set %s to pages", "wp-ad-guru" ) , $current_ad_type_args['plural_name'] ); }
+if( $use_zone ){ 
+	/* translators: %s: Current ad type plural name */
+	$msg = sprintf( __("Set %s to Zone", "wp-ad-guru" ) , $current_ad_type_args['plural_name'] );  
+} else {  
+	/* translators: %s: Current ad type plural name */
+	$msg =  sprintf( __("Set %s to pages", "wp-ad-guru" ) , $current_ad_type_args['plural_name'] ); 
+}
 
 echo '<h2 style="text-align:center">'.$msg.'</h2>';	
 
@@ -99,6 +105,7 @@ if( ( $zone_id && $valid_zone_id ) || $use_zone == false )
 	{
 		case "--": #default
 		{
+			/* translators: %s: Current ad type plural name */
 			adguru()->html->print_msg( sprintf( __("Set default %s for <strong>all pages</strong> of this website", "wp-ad-guru" ) , $current_ad_type_args['plural_name'] ) );
 			$links_editor = new ADGURU_Links_Editor( array( "ad_type_args"=>$current_ad_type_args, "zone_id"=>$zone_id, "page_type"=>"--", "taxonomy"=>"--", "term"=>"--", "post_id"=>0) );
 			$links_editor->display();
@@ -107,6 +114,7 @@ if( ( $zone_id && $valid_zone_id ) || $use_zone == false )
 		}
 		case "home":
 		{
+			/* translators: %s: Current ad type plural name */
 			adguru()->html->print_msg( sprintf( __("Set default %s only for <strong>home pages</strong>", "wp-ad-guru" ) , $current_ad_type_args['plural_name'] ) );
 			$links_editor = new ADGURU_Links_Editor( array( "ad_type_args"=>$current_ad_type_args, "zone_id"=>$zone_id, "page_type"=>"home", "taxonomy"=>"--", "term"=>"--", "post_id"=>0) );
 			$links_editor->display();
@@ -129,6 +137,7 @@ if( ( $zone_id && $valid_zone_id ) || $use_zone == false )
 		}
 		case "author":
 		{
+			/* translators: %s: Current ad type plural name */
 			adguru()->html->print_msg( sprintf( __("Set default %s only for <strong>Author</strong> archive page", "wp-ad-guru" ) , $current_ad_type_args['plural_name'] ) );
 			$links_editor = new ADGURU_Links_Editor( array( "ad_type_args"=>$current_ad_type_args, "zone_id"=>$zone_id, "page_type"=>"author", "taxonomy"=>"--", "term"=>"--", "post_id"=>0));
 			$links_editor->display();
@@ -137,6 +146,7 @@ if( ( $zone_id && $valid_zone_id ) || $use_zone == false )
 		}									
 		case "404_not_found":
 		{
+			/* translators: %s: Current ad type plural name */
 			adguru()->html->print_msg( sprintf( __("Set default %s only for <strong>404 not found</strong> page", "wp-ad-guru" ) , $current_ad_type_args['plural_name'] ) );
 			$links_editor = new ADGURU_Links_Editor( array( "ad_type_args"=>$current_ad_type_args, "zone_id"=>$zone_id, "page_type"=>"404_not_found", "taxonomy"=>"--", "term"=>"--", "post_id"=>0) );
 			$links_editor->display();
@@ -145,6 +155,7 @@ if( ( $zone_id && $valid_zone_id ) || $use_zone == false )
 		}
 		case "search":
 		{
+			/* translators: %s: Current ad type plural name */
 			adguru()->html->print_msg( sprintf( __("Set default %s only for <strong>Search Result</strong> page", "wp-ad-guru" ) , $current_ad_type_args['plural_name'] ) );
 			$links_editor = new ADGURU_Links_Editor(array( "ad_type_args"=>$current_ad_type_args, "zone_id"=>$zone_id, "page_type"=>"search", "taxonomy"=>"--", "term"=>"--", "post_id"=>0));
 			$links_editor->display();

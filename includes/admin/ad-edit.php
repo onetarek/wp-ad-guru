@@ -105,7 +105,8 @@ elseif( $ad_id || $cp_from_id )
 	else
 	{
 		$ad->ID = 0;
-		echo '<div class="error"><p>'; echo sprintf( __( 'No %s found for the ID %d , Create new.' , 'wp-ad-guru' ) , $current_ad_type_args['name'], $post_id ); echo '</p></div>';
+		/* translators: 1: Current ad type name, 2: Post ID */
+		echo '<div class="error"><p>'; echo sprintf( __( 'No %1$s found for the ID %2$d , Create new.' , 'wp-ad-guru' ) , $current_ad_type_args['name'], $post_id ); echo '</p></div>';
 		
 	}
 	
@@ -119,7 +120,7 @@ if( ( $ad->content_type == "" ) && count( $content_types ) )
 
 if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] ) )
 {
-	echo '<div class="updated"><p>'; echo sprintf( __( 'Your %s has been saved successfully' , 'wp-ad-guru' ) , $current_ad_type_args['name'] ); echo '</p></div>';
+	echo '<div class="updated"><p>'; /* translators: %s: Current ad type name */ echo sprintf( __( 'Your %s has been saved successfully' , 'wp-ad-guru' ) , $current_ad_type_args['name'] ); echo '</p></div>';
 } 
 ?>
 <form action="" method="post">
@@ -141,7 +142,7 @@ if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] 
 					</thead>
 					<?php $error_class = isset( $error_msgs['ad_name'] )? " adg_error_field" : ""; ?>
 					<tr>
-						<td><label for="ad_name"><?php echo sprintf( __( '%s Name', 'wp-ad-guru' ) , $current_ad_type_args['name'] ) ?></label></td>
+						<td><label for="ad_name"><?php /* translators: %s: Current ad type name */ echo sprintf( __( '%s Name', 'wp-ad-guru' ) , $current_ad_type_args['name'] ) ?></label></td>
 						<td><input type="text" name="ad_name" id="ad_name" class="input_long<?php echo $error_class;?>" size="30" value="<?php  echo esc_attr( $ad->name );?>" /></td>
 					</tr>
 					<tr>

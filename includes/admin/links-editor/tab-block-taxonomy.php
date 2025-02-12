@@ -70,7 +70,8 @@ else
 	
 	if( $tab3 == "--" )
 	{
-		$msg = sprintf( __("Set default %s for <strong>%s archive</strong> pages", "wp-ad-guru" ) , $current_ad_type_args['plural_name'], $taxonomy_name );
+		/* translators: 1: Current ad type plural name, 2: Taxonomy name */
+		$msg = sprintf( __('Set default %1$s for <strong>%2$s archive</strong> pages', 'wp-ad-guru' ) , $current_ad_type_args['plural_name'], $taxonomy_name );
 		adguru()->html->print_msg( $msg );
 		$links_editor = new ADGURU_Links_Editor( array( "ad_type_args"=>$current_ad_type_args, "zone_id"=>$zone_id, "page_type"=>"taxonomy", "taxonomy"=>$taxonomy_slug, "term"=>"--", "post_id"=>0) );
 		$links_editor->display();
@@ -117,7 +118,7 @@ else
 			<input type="hidden" name="tab" value="taxonomy" />
 													
 		<select name="term_slug"  onchange="this.form.submit()"> 
-		 <option value=""><?php echo sprintf( __('Select a %s', 'wp-ad-guru' ), $taxonomy_name ); ?></option> 
+		 <option value=""><?php /* translators: %s: Taxonomy name */echo sprintf( __('Select a %s', 'wp-ad-guru' ), $taxonomy_name ); ?></option> 
 		 <?php 
 		  foreach ($categories as $category)
 		  {
@@ -134,7 +135,8 @@ else
 			
 			if( $selected_term_exists )
 			{
-				$msg = sprintf( __("Set default %s for <strong>%s archive</strong> page when term is <strong>%s</strong>", "wp-ad-guru" ) , $current_ad_type_args['plural_name'], $taxonomy_name, $selected_term_slug );
+				/* translators: 1: Current ad type plural name, 2: Taxonomy name, 3: Selected term slug */
+				$msg = sprintf( __('Set default %1$s for <strong>%2$s archive</strong> page when term is <strong>%3$s</strong>', 'wp-ad-guru' ) , $current_ad_type_args['plural_name'], $taxonomy_name, $selected_term_slug );
 				adguru()->html->print_msg( $msg );
 				$links_editor = new ADGURU_Links_Editor( array( "ad_type_args"=>$current_ad_type_args, "zone_id"=>$zone_id, "page_type"=>"taxonomy", "taxonomy"=>$taxonomy_slug, "term"=>$selected_term_slug, "post_id"=>0) );
 				$links_editor->display();
@@ -145,7 +147,8 @@ else
 		 
 			if( $selected_term_exists )
 			{
-				$msg = sprintf( __("Set default %s for <strong>%s archive</strong> page when term is <strong>%s</strong>", "wp-ad-guru" ) , $current_ad_type_args['plural_name'], $taxonomy_name, $selected_term_slug );
+				/* translators: 1: Current ad type plural name, 2: Taxonomy name, 3: Selected term slug */
+				$msg = sprintf( __('Set default %1$s for <strong>%2$s archive</strong> page when term is <strong>%3$s</strong>', 'wp-ad-guru' ) , $current_ad_type_args['plural_name'], $taxonomy_name, $selected_term_slug );
 				adguru()->html->print_msg( $msg );
 				$links_editor = new ADGURU_Links_Editor( array( "ad_type_args"=>$current_ad_type_args, "zone_id"=>$zone_id, "page_type"=>"taxonomy", "taxonomy"=>$taxonomy_slug, "term"=>$selected_term_slug, "post_id"=>0) );
 				$links_editor->display();

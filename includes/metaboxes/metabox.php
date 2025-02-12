@@ -152,7 +152,8 @@ class ADGURU_Metabox{
 		
 		echo '<div class="wrap" style="margin-left:20px;  margin-bottom:50px;">';
 			echo '<div id="icon-link-manager" class="icon32"><br></div><h2>';
-			printf( __("Setup %s for this %s", 'wp-ad-guru' ),$current_ad_type_args['name'], $post_type);
+			/* translators: 1: Current ad type name 2: Post type */
+			printf( __('Setup %1$s for this %2$s', 'wp-ad-guru' ),$current_ad_type_args['name'], $post_type);
 			echo '</h2>';
 
 			if( $use_zone )

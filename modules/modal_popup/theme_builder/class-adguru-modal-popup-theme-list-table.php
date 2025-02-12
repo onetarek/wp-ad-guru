@@ -128,7 +128,7 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 		$total_count_text = '&nbsp;<span class="count">(' . $this->total_count    . ')</span>';
 
 		$views = array(
-			'all' => sprintf( '<a href="%s"%s>%s</a>', remove_query_arg( 'status', $this->base_url ), ( $current === 'all' || $current == '' ) ? ' class="current"' : '', __('All', 'adguru') . $total_count_text ),
+			'all' => sprintf( '<a href="%s"%s>%s</a>', remove_query_arg( 'status', $this->base_url ), ( $current === 'all' || $current == '' ) ? ' class="current"' : '', __('All', 'wp-ad-guru') . $total_count_text ),
 			#add more view item here
 		);
 
@@ -148,14 +148,14 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 		$columns = array(
 			'cb'         => '<input type="checkbox" />',
 			'ID'		=> 'ID',
-			'name'       => __( 'Name', 'adguru' ),
-			'description'       => __( 'Description', 'adguru' ),
-			'type'       => __( 'Type', 'adguru' ),
+			'name'       => __( 'Name', 'wp-ad-guru' ),
+			'description'       => __( 'Description', 'wp-ad-guru' ),
+			'type'       => __( 'Type', 'wp-ad-guru' ),
 		);
 		
 		//get colum names from module and addons
 		$columns = apply_filters( "adguru_modal_popup_theme_list_columns",  $columns );
-		$columns['usage_detail'] =  __( 'Usage', 'adguru' );
+		$columns['usage_detail'] =  __( 'Usage', 'wp-ad-guru' );
 		return $columns;
 	}
 
@@ -233,13 +233,13 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 		$delete_url = add_query_arg( array('action'=>'adguru_mp_delete_theme','delete_id' => $item->ID ) , admin_url( 'admin.php' ) );
 		$delete_url = wp_nonce_url( $delete_url, "adguru_mp_delete_theme", "adguru_mp_delete_theme_nonce" );
 
-		$row_actions['edit'] = '<a href="' . add_query_arg( array( 'manager_tab' => 'edit_theme', 'theme_id' => $item->ID ) , $this->base_url ) . '">' . __( 'Edit', 'adguru' ) . '</a>';
-		$row_actions['copy'] = '<a href="' . add_query_arg( array( 'manager_tab' => 'edit_theme', 'cp_from_id' => $item->ID ) , $this->base_url ) . '">' . __( 'Copy', 'adguru' ) . '</a>';
-		$row_actions['export'] = '<a href="#" onclick="return show_theme_export_modal('.$item->ID.', \''.$item->name.'\')">' . __( 'Export', 'adguru' ) . '</a>';
+		$row_actions['edit'] = '<a href="' . add_query_arg( array( 'manager_tab' => 'edit_theme', 'theme_id' => $item->ID ) , $this->base_url ) . '">' . __( 'Edit', 'wp-ad-guru' ) . '</a>';
+		$row_actions['copy'] = '<a href="' . add_query_arg( array( 'manager_tab' => 'edit_theme', 'cp_from_id' => $item->ID ) , $this->base_url ) . '">' . __( 'Copy', 'wp-ad-guru' ) . '</a>';
+		$row_actions['export'] = '<a href="#" onclick="return show_theme_export_modal('.$item->ID.', \''.$item->name.'\')">' . __( 'Export', 'wp-ad-guru' ) . '</a>';
 		
 		if( adguru()->user->is_permitted_to('delete_mp_theme') && !( isset( $item->builtin ) && $item->builtin == 1 ) )
 		{
-			$row_actions['delete'] = '<a onclick="javascript: return confirm(\'Are you sure you want to delete this theme?\')" href="'.esc_url($delete_url).'">' . __( 'Delete', 'adguru' ) . '</a>';
+			$row_actions['delete'] = '<a onclick="javascript: return confirm(\'Are you sure you want to delete this theme?\')" href="'.esc_url($delete_url).'">' . __( 'Delete', 'wp-ad-guru' ) . '</a>';
 		}
 
 		$row_actions = apply_filters( "adguru_modal_popup_theme_list_row_actions", $row_actions, $item );
@@ -340,7 +340,7 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 	 */
 	function no_items(){
 
-		echo sprintf(__( 'No %s found.', 'adguru' ) , $this->_args['singular'] );
+		echo sprintf(__( 'No %s found.', 'wp-ad-guru' ) , $this->_args['singular'] );
 	}
 
 	/**
@@ -353,7 +353,7 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 	public function get_bulk_actions(){
 
 		$actions = array(
-			//'delete'     => __( 'Delete', 'adguru' ),
+			//'delete'     => __( 'Delete', 'wp-ad-guru' ),
 		);
 
 		return apply_filters( "adguru_modal_popup_theme_list_bulk_actions",  $actions );

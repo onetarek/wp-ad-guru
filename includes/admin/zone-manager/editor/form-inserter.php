@@ -9,12 +9,12 @@ $inserter_form_args = array(
 		'inserter_enabled' => array(
 			'type' 	=> 'radio',
 			'id'	=> 'inserter_enabled',
-			'label'	=> __("Enable", 'adguru' ),
+			'label'	=> __("Enable", 'wp-ad-guru' ),
 			'items_direction' => 'horizontal',
 			'default'	=> '0',
 			'options' => array(
-				'1' => __("Enable", 'adguru' ),
-				'0' => __("Disable", 'adguru' )
+				'1' => __("Enable", 'wp-ad-guru' ),
+				'0' => __("Disable", 'wp-ad-guru' )
 				
 			),
 		),
@@ -22,22 +22,22 @@ $inserter_form_args = array(
 		'inserter_place' => array(
 			'type' 	=> 'radio',
 			'id'	=> 'inserter_place',
-			'label'	=> __("Place", 'adguru' ),
+			'label'	=> __("Place", 'wp-ad-guru' ),
 			'items_direction' => 'vertical',
 			'default'	=> 'none',
 			'options' => array(
-				'none' => __("Nowhere", 'adguru' ),
-				'before_post' => __("Before Post", 'adguru' ),
-				'between_posts' => __("Between Posts", 'adguru' ),
-				'after_post' => __("After Post", 'adguru' ),
-				'before_content' => __("Before Content", 'adguru' ),
-				'after_content' => __("After Content", 'adguru' ),
-				'before_comments' => __("Before Comments", 'adguru' ),
-				'between_comments' => __("Between Comments", 'adguru' ),
-				'before_comment_form' => __("Before Comment Form", 'adguru' ),
-				'after_comment_form' => __("After Comment Form", 'adguru' ),
-				'before_footer' => __("Before Footer", 'adguru' ),
-				'after_footer' => __("After Footer", 'adguru' ),
+				'none' => __("Nowhere", 'wp-ad-guru' ),
+				'before_post' => __("Before Post", 'wp-ad-guru' ),
+				'between_posts' => __("Between Posts", 'wp-ad-guru' ),
+				'after_post' => __("After Post", 'wp-ad-guru' ),
+				'before_content' => __("Before Content", 'wp-ad-guru' ),
+				'after_content' => __("After Content", 'wp-ad-guru' ),
+				'before_comments' => __("Before Comments", 'wp-ad-guru' ),
+				'between_comments' => __("Between Comments", 'wp-ad-guru' ),
+				'before_comment_form' => __("Before Comment Form", 'wp-ad-guru' ),
+				'after_comment_form' => __("After Comment Form", 'wp-ad-guru' ),
+				'before_footer' => __("Before Footer", 'wp-ad-guru' ),
+				'after_footer' => __("After Footer", 'wp-ad-guru' ),
 				
 			),
 		),
@@ -45,8 +45,8 @@ $inserter_form_args = array(
 		'inserter_after_post_numbers' => array(
 			'type'	=> 'text',
 			'id'	=> 'inserter_after_post_numbers',
-			'label'	=> __("After Post number(s)", 'adguru'),
-			'desc' => __( 'Add post number(s) in the loop after which you want to show this zone. You can use multiple numbers separated by comma', 'adguru'),
+			'label'	=> __("After Post number(s)", 'wp-ad-guru'),
+			'desc' => __( 'Add post number(s) in the loop after which you want to show this zone. You can use multiple numbers separated by comma', 'wp-ad-guru'),
 			'default'	=> 0,
 			'size'  => 'medium',
 
@@ -55,8 +55,8 @@ $inserter_form_args = array(
 		'inserter_after_comment_numbers' => array(
 			'type'	=> 'text',
 			'id'	=> 'inserter_after_comment_numbers',
-			'label'	=> __("After Comment number(s)", 'adguru'),
-			'desc' => __( 'Add comment number(s) in the loop after which you want to show this zone. You can use multiple numbers separated by comma', 'adguru'),
+			'label'	=> __("After Comment number(s)", 'wp-ad-guru'),
+			'desc' => __( 'Add comment number(s) in the loop after which you want to show this zone. You can use multiple numbers separated by comma', 'wp-ad-guru'),
 			'default'	=> 0,
 			'size'  => 'medium',
 		),
@@ -65,8 +65,8 @@ $inserter_form_args = array(
 			'type'	=> 'group',
 			'group_type' => 'vertical',
 			'id' => 'inserter_page_types_group',
-			'label' => __("Pages", 'adguru' ),
-			'help' => __("Select type of pages where you want to insert this zone", 'adguru' ),
+			'label' => __("Pages", 'wp-ad-guru' ),
+			'help' => __("Select type of pages where you want to insert this zone", 'wp-ad-guru' ),
 			'fields' => array(
 				'inserter_page_types_misc' => array(
 					'type' 	=> 'multicheck',
@@ -82,7 +82,7 @@ $inserter_form_args = array(
 				'inserter_page_types_single' => array(
 					'type' 	=> 'multicheck',
 					'id'	=> 'inserter_page_types_single',
-					'fieldset' => array( 'legend'=> sprintf('<strong>%s</strong>', __("Single pages", 'adguru' ) ) ),
+					'fieldset' => array( 'legend'=> sprintf('<strong>%s</strong>', __("Single pages", 'wp-ad-guru' ) ) ),
 					'label'	=> '',
 					'items_direction' => 'horizontal',
 					'on_off_values' => array( "1", "0" ),
@@ -92,7 +92,7 @@ $inserter_form_args = array(
 				'inserter_page_types_archive' => array(
 					'type' 	=> 'multicheck',
 					'id'	=> 'inserter_page_types_archive',
-					'fieldset' => array( 'legend'=> sprintf('<strong>%s</strong>', __("Archive pages", 'adguru' ) ) ),
+					'fieldset' => array( 'legend'=> sprintf('<strong>%s</strong>', __("Archive pages", 'wp-ad-guru' ) ) ),
 					'label'	=> '',
 					'items_direction' => 'horizontal',
 					'on_off_values' => array( "1", "0" ),
@@ -231,20 +231,20 @@ function adguru_get_page_types_multicheck_options_detail(){
 	$misc_type_page_options = array();
 	$misc_type_page_defaults = array();
 
-	$misc_type_page_options['home'] = __('Home page', 'adguru');
+	$misc_type_page_options['home'] = __('Home page', 'wp-ad-guru');
 	$misc_type_page_defaults['home'] = 1;
 	
-	$misc_type_page_options['search'] =  __('Search result page', 'adguru');
+	$misc_type_page_options['search'] =  __('Search result page', 'wp-ad-guru');
 	$misc_type_page_defaults['search'] = 0;
 
-	$misc_type_page_options['404_not_found'] = __('404 page', 'adguru');
+	$misc_type_page_options['404_not_found'] = __('404 page', 'wp-ad-guru');
 	$misc_type_page_defaults['404_not_found'] = 0;
 
 
 	$single_type_page_options = array();
 	$single_type_page_defaults = array();
 
-	$single_type_page_options['single_any'] = __('Any single page', 'adguru');
+	$single_type_page_options['single_any'] = __('Any single page', 'wp-ad-guru');
 	$single_type_page_defaults['single_any'] = 1;
 	foreach( $post_types as $type => $name )
 	{
@@ -254,7 +254,7 @@ function adguru_get_page_types_multicheck_options_detail(){
 
 	$archive_type_page_options = array();
 	$archive_type_page_defaults = array();
-	$archive_type_page_options['archive_any'] =  __('Any archive page', 'adguru');
+	$archive_type_page_options['archive_any'] =  __('Any archive page', 'wp-ad-guru');
 	$archive_type_page_defaults['archive_any'] = 1;
 	foreach( $taxonomy_list as $key => $tax )
 	{
@@ -262,10 +262,10 @@ function adguru_get_page_types_multicheck_options_detail(){
 		$archive_type_page_defaults['archive_'.$key] = 0;
 	}
 
-	$archive_type_page_options['archive_author'] =  __('Author', 'adguru');
+	$archive_type_page_options['archive_author'] =  __('Author', 'wp-ad-guru');
 	$archive_type_page_defaults['archive_author'] = 0;
 
-	$archive_type_page_options['archive_date'] =  __('Year/Month/Day', 'adguru');
+	$archive_type_page_options['archive_date'] =  __('Year/Month/Day', 'wp-ad-guru');
 	$archive_type_page_defaults['archive_date'] = 0;
 
 	$detail['misc_type_page_options'] = $misc_type_page_options;

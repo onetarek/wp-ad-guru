@@ -42,7 +42,7 @@ class ADGURU_Links_Editor_Ajax_Handler{
 		}
 		else
 		{
-			$this->throw_error_response( __( 'No permission, either your are not permitted for this action or you are not logged in', 'adguru' ) );
+			$this->throw_error_response( __( 'No permission, either your are not permitted for this action or you are not logged in', 'wp-ad-guru' ) );
 		}	 
 	 }//end func
 	 
@@ -80,14 +80,14 @@ class ADGURU_Links_Editor_Ajax_Handler{
 			
 			if( $use_zone && $zone_id == 0 )
 			{
-				$this->throw_error_response( __( 'This type of ad needs zone, no zone id given.', 'adguru' ) );
+				$this->throw_error_response( __( 'This type of ad needs zone, no zone id given.', 'wp-ad-guru' ) );
 			} 
 			
 			
 		}
 		else
 		{
-			$this->throw_error_response( __( 'Given ad type is not valid', 'adguru' ) );
+			$this->throw_error_response( __( 'Given ad type is not valid', 'wp-ad-guru' ) );
 		}
 		
 

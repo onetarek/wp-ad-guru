@@ -9,15 +9,15 @@ $content_iframe_form_args = array(
 		'content_iframe_source_url' => array(
 			'type' => 'url',
 			'id' => 'content_iframe_source_url',
-			'label' => __('Link in iFrame', 'adguru'),
+			'label' => __('Link in iFrame', 'wp-ad-guru'),
 			'default' => '',
 			'size' => 'medium',
-			'placeholder' => __('Enter url', 'adguru'),
+			'placeholder' => __('Enter url', 'wp-ad-guru'),
 		),
 		'content_iframe_scrolling' => array(
 			'type' => 'select',
 			'id' => 'content_iframe_scrolling',
-			'label' => __('Use Scolling', 'adguru'),
+			'label' => __('Use Scolling', 'wp-ad-guru'),
 			'default'	=> 'yes',
 			'options' => array(
 				'yes'=> 'Yes',
@@ -92,11 +92,11 @@ function adguru_content_iframe_form_validation_callback( $data, $args, $form )
 		{
 			if( $value == "")
 			{
-				$error = __('iFrame source url is blank', 'adguru');
+				$error = __('iFrame source url is blank', 'wp-ad-guru');
 			}
 			elseif(false == ADGURU_Helper::is_valid_url( $value ) ) 
 			{
-				$error = __('iFrame source url is not valid', 'adguru');
+				$error = __('iFrame source url is not valid', 'wp-ad-guru');
 			}
 			break;
 		}

@@ -21,7 +21,7 @@ class ADGURU_Content_Type_Iframe extends ADGURU_Content_Type{
 	public function __construct(){
 
 		parent::__construct();
-		$this->description = __('Show any webpage in an iFrame', 'adguru');
+		$this->description = __('Show any webpage in an iFrame', 'wp-ad-guru');
 	}
 
 	protected function _editor_init( $current_ad_type ){

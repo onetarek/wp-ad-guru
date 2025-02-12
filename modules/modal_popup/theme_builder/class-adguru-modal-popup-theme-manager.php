@@ -37,24 +37,24 @@ class ADGURU_Modal_Popup_Theme_Manager{
 	public function register(){
 		
 		$labels = array(
-			'name'               => __('Modal Popup Theme', 'adguru'),
-			'singular_name'      => __('Modal Popup Theme', 'adguru'),
-			'menu_name'          => __('Modal Popup Themes', 'adguru'),
-			'add_new'            => __( 'Add New Theme', 'adguru' ),
-			'add_new_item'       => __( 'Add New Theme', 'adguru' ),
-			'new_item'           => __( 'New Theme', 'adguru' ),
-			'edit_item'          => __( 'Edit Theme', 'adguru' ),
-			'view_item'          => __( 'View Theme', 'adguru' ),
-			'all_items'          => __( 'All Themes', 'adguru' ),
-			'search_items'       => __( 'Search Theme', 'adguru' ),
-			'parent_item_colon'  => __( 'Parent Theme', 'adguru' ),
-			'not_found'          => __( 'No theme found', 'adguru' ),
-			'not_found_in_trash' => __( 'No theme found in Trash', 'adguru' ),
+			'name'               => __('Modal Popup Theme', 'wp-ad-guru'),
+			'singular_name'      => __('Modal Popup Theme', 'wp-ad-guru'),
+			'menu_name'          => __('Modal Popup Themes', 'wp-ad-guru'),
+			'add_new'            => __( 'Add New Theme', 'wp-ad-guru' ),
+			'add_new_item'       => __( 'Add New Theme', 'wp-ad-guru' ),
+			'new_item'           => __( 'New Theme', 'wp-ad-guru' ),
+			'edit_item'          => __( 'Edit Theme', 'wp-ad-guru' ),
+			'view_item'          => __( 'View Theme', 'wp-ad-guru' ),
+			'all_items'          => __( 'All Themes', 'wp-ad-guru' ),
+			'search_items'       => __( 'Search Theme', 'wp-ad-guru' ),
+			'parent_item_colon'  => __( 'Parent Theme', 'wp-ad-guru' ),
+			'not_found'          => __( 'No theme found', 'wp-ad-guru' ),
+			'not_found_in_trash' => __( 'No theme found in Trash', 'wp-ad-guru' ),
 		);		
 
 		$this->post_type_args = array(
 			'labels'             => $labels,
-			'description'        => __( 'Design template for a modal popup', 'adguru' ),
+			'description'        => __( 'Design template for a modal popup', 'wp-ad-guru' ),
 			'public'             => false,
 			'publicly_queryable' => false,
 			'show_ui'            => false,
@@ -77,14 +77,14 @@ class ADGURU_Modal_Popup_Theme_Manager{
 		$page = $_REQUEST['page'];
 		$tabs['themes'] = array( 
 			'slug'	=> 'themes', 
-			'text'	=> __('Themes', 'adguru' ), 
+			'text'	=> __('Themes', 'wp-ad-guru' ), 
 			'link'	=> 'admin.php?page='.$page.'&manager_tab=themes',
 			'file' 	=> ADGURU_PLUGIN_DIR."modules/modal_popup/theme_builder/theme-list.php",
 			'callback' => '' 
 		);
 		$tabs['edit_theme'] = array( 
 			'slug'	=> 'edit_theme', 
-			'text'	=> __('Add new theme', 'adguru' ), 
+			'text'	=> __('Add new theme', 'wp-ad-guru' ), 
 			'link'	=> 'admin.php?page='.$page.'&manager_tab=edit_theme',
 			'file' 	=> ADGURU_PLUGIN_DIR."modules/modal_popup/theme_builder/theme-edit.php",
 			'callback' => '' 

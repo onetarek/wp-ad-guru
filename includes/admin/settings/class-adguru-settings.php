@@ -34,20 +34,20 @@ class ADGURU_Settings{
 	public function admin_init() {
 	
 		//Add Tabs
-		$this->add_tab( 'general' , __( 'General', 'adguru' ) );
-		//$this->add_tab( 'emails' , __( 'Emails', 'adguru' ) );
+		$this->add_tab( 'general' , __( 'General', 'wp-ad-guru' ) );
+		//$this->add_tab( 'emails' , __( 'Emails', 'wp-ad-guru' ) );
 		
 		//Add sections to tabs
-		$this->add_section( 'general' , 'main',  __( 'General Settings', 'adguru' ) );
-		//$this->add_section( 'emails' , 'main',  __( 'General Emails', 'adguru' ) );
+		$this->add_section( 'general' , 'main',  __( 'General Settings', 'wp-ad-guru' ) );
+		//$this->add_section( 'emails' , 'main',  __( 'General Emails', 'wp-ad-guru' ) );
 		
 		#======Add fields here =============
 		$this->add_field("general", 'main', array(
 			'type'	=>	'checkbox',
 			'id'	=>	'enable_geo_location',
-			'name'	=> __('Geo Location', 'adguru'),
-			'label'	=> __('Enable', 'adguru'),
-			'desc'	=> __("Geo location feature to serve ads based on visitor's country.<br>This feature does not work perfectly with caching enabled", 'adguru'),
+			'name'	=> __('Geo Location', 'wp-ad-guru'),
+			'label'	=> __('Enable', 'wp-ad-guru'),
+			'desc'	=> __("Geo location feature to serve ads based on visitor's country.<br>This feature does not work perfectly with caching enabled", 'wp-ad-guru'),
 			'default' => 'off'
 		));
 		
@@ -64,7 +64,7 @@ class ADGURU_Settings{
 		#Filter sections
 		foreach( $this->tabs as $tab => $text )
 		{
-			$sections = isset( $this->sections[ $tab ] ) ? $this->sections[ $tab ] : array( 'main' =>__( 'General Settings', 'adguru' ) );
+			$sections = isset( $this->sections[ $tab ] ) ? $this->sections[ $tab ] : array( 'main' =>__( 'General Settings', 'wp-ad-guru' ) );
 			$sections = apply_filters( "adguru_settings_sections_{$tab}", $sections );
 			$this->sections[ $tab ] = $sections;
 		}
@@ -122,9 +122,9 @@ class ADGURU_Settings{
      *
      */
     public function example_settings_fields() {
-		$this->add_tab( 'example' , __( 'Example of Settings Fields', 'adguru' ) );
-		$this->add_section( 'example' , 'main',  __( 'Main Section', 'adguru' ) );
-		$this->add_section( 'example' , 'secondary',  __( 'Secondary Section', 'adguru' ) );
+		$this->add_tab( 'example' , __( 'Example of Settings Fields', 'wp-ad-guru' ) );
+		$this->add_section( 'example' , 'main',  __( 'Main Section', 'wp-ad-guru' ) );
+		$this->add_section( 'example' , 'secondary',  __( 'Secondary Section', 'wp-ad-guru' ) );
 
 
 		$this->add_field('general' , 'main', array(
@@ -138,8 +138,8 @@ class ADGURU_Settings{
 		$this->add_field('example' , 'main', array(
 			'type'  => 'text',
 			'id'    => 'example_text_small',
-			'name'  => __( 'Small Text Input', 'adguru' ),
-            'desc'  => __( 'Text input description', 'adguru' ),
+			'name'  => __( 'Small Text Input', 'wp-ad-guru' ),
+            'desc'  => __( 'Text input description', 'wp-ad-guru' ),
             'default' => '',
             'size'  => 'small'
 		));
@@ -147,8 +147,8 @@ class ADGURU_Settings{
 		$this->add_field('example' , 'main', array(
 			'type'  => 'text',
 			'id'    => 'example_text_medium',
-			'name'  => __( 'Medium Text Input', 'adguru' ),
-            'desc'  => __( 'Text input description', 'adguru' ),
+			'name'  => __( 'Medium Text Input', 'wp-ad-guru' ),
+            'desc'  => __( 'Text input description', 'wp-ad-guru' ),
             'default' => '',
             'placeholder' => 'I am a placeholder',
             'size'  => 'medium'
@@ -157,8 +157,8 @@ class ADGURU_Settings{
 		$this->add_field('example' , 'main', array(
 			'type'  => 'text',
 			'id'    => 'example_text_large',
-			'name'  => __( 'Large Text Input', 'adguru' ),
-            'desc'  => __( 'Text input description', 'adguru' ),
+			'name'  => __( 'Large Text Input', 'wp-ad-guru' ),
+            'desc'  => __( 'Text input description', 'wp-ad-guru' ),
             'default' => '',
             'placeholder' => 'I am a placeholder',
             'size'  => 'large'
@@ -168,8 +168,8 @@ class ADGURU_Settings{
 			'type' => 'number',
 			'id'   => 'example_number_1',
 			'name' => 'Number 1',
-            'label'=> __( 'Number Input', 'adguru' ),
-            'desc' => __( 'Number input description', 'adguru' ),
+            'label'=> __( 'Number Input', 'wp-ad-guru' ),
+            'desc' => __( 'Number input description', 'wp-ad-guru' ),
             'default' => '',
             'placeholder' => 'I am a placeholder'
 		));
@@ -178,8 +178,8 @@ class ADGURU_Settings{
 			'type' => 'number',
 			'id'   => 'example_number_2',
 			'name' => 'Number 2',
-            'label'=> __( 'Number Input', 'adguru' ),
-            'desc' => __( 'Number input with max min and step', 'adguru' ),
+            'label'=> __( 'Number Input', 'wp-ad-guru' ),
+            'desc' => __( 'Number input with max min and step', 'wp-ad-guru' ),
             'max'  =>50,
             'min'  =>20,
             'step' =>5,
@@ -190,8 +190,8 @@ class ADGURU_Settings{
 		$this->add_field('example' , 'main', array(
 			'type'    => 'password',
 			'id'      => 'example_password_1',
-            'name'   => __( 'Password', 'adguru' ),
-            'desc'    => __( 'Password description', 'adguru' ),
+            'name'   => __( 'Password', 'wp-ad-guru' ),
+            'desc'    => __( 'Password description', 'wp-ad-guru' ),
             'default' => '',
             'placeholder' => 'Enter password'
 		));
@@ -199,24 +199,24 @@ class ADGURU_Settings{
 		$this->add_field('example' , 'main', array(
 			'type'  => 'textarea',
 			'id'    => 'example_textarea_1',
-			'name' => __( 'Textarea Input', 'adguru' ),
-			'desc'  => __( 'Textarea description', 'adguru' ),
+			'name' => __( 'Textarea Input', 'wp-ad-guru' ),
+			'desc'  => __( 'Textarea description', 'wp-ad-guru' ),
 			'placeholder' => 'I am a placeholder'		
 		));
 
 		$this->add_field('example' , 'main', array(
 			'type'  => 'checkbox',
 			'id'    => 'example_checkbox_1',
-			'name'  => __( 'Checkbox', 'adguru' ),
-            'label' => __( 'Checkbox Label', 'adguru' ),
-            'desc'  => __( 'Checkbox descrition', 'adguru' ),		
+			'name'  => __( 'Checkbox', 'wp-ad-guru' ),
+            'label' => __( 'Checkbox Label', 'wp-ad-guru' ),
+            'desc'  => __( 'Checkbox descrition', 'wp-ad-guru' ),		
 		));
 
 		$this->add_field('example' , 'main', array(
 			'type' => 'radio',
 			'id'   => 'example_radio_1',
-            'name' => __( 'Radio Button', 'adguru' ),
-            'desc' => __( 'A radio button', 'adguru' ),
+            'name' => __( 'Radio Button', 'wp-ad-guru' ),
+            'desc' => __( 'A radio button', 'wp-ad-guru' ),
             'options' => array(
                 'yes' => 'Yes',
                 'no' => 'No'
@@ -226,8 +226,8 @@ class ADGURU_Settings{
 		$this->add_field('example' , 'main', array(
 			'type'    => 'multicheck',
 			'id'      => 'example_multicheck_1',
-            'name'   => __( 'Multile checkbox', 'adguru' ),
-            'desc'    => __( 'Multi checkbox description', 'adguru' ),
+            'name'   => __( 'Multile checkbox', 'wp-ad-guru' ),
+            'desc'    => __( 'Multi checkbox description', 'wp-ad-guru' ),
             'options' => array(
                   'one'   => 'One',
                   'two'   => 'Two',
@@ -239,8 +239,8 @@ class ADGURU_Settings{
 		$this->add_field('example' , 'main', array(
 			'type'    => 'select',
 			'id'      => 'example_selectbox_1',
-            'name'   => __( 'A Dropdown selectbox', 'adguru' ),
-            'desc'    => __( 'Dropdown description', 'adguru' ),
+            'name'   => __( 'A Dropdown selectbox', 'wp-ad-guru' ),
+            'desc'    => __( 'Dropdown description', 'wp-ad-guru' ),
             'default' => 'no',
             'options' => array(
                  'yes' => 'Yes',
@@ -252,8 +252,8 @@ class ADGURU_Settings{
 		$this->add_field('example' , 'main', array(
 			'type'    => 'file',
 			'id'      => 'example_file_1',
-            'name'   => __( 'File', 'adguru' ),
-            'desc'    => __( 'File description', 'adguru' ),
+            'name'   => __( 'File', 'wp-ad-guru' ),
+            'desc'    => __( 'File description', 'wp-ad-guru' ),
             'default' => '',
             'placeholder' => 'Browse a file',
 		));
@@ -261,24 +261,24 @@ class ADGURU_Settings{
 		$this->add_field('example' , 'main', array(
 			'type' 	  => 'editor',
 			'id'   	  => 'example_wysiwyg_1',
-            'name'   => __( 'WYSIWYG Editor', 'adguru' ),
-            'desc' 	  => __( 'wysiwyg editor example', 'adguru' ),
+            'name'   => __( 'WYSIWYG Editor', 'wp-ad-guru' ),
+            'desc' 	  => __( 'wysiwyg editor example', 'wp-ad-guru' ),
             'default' => ''	
 		));
 
 		$this->add_field('example' , 'main', array(
 			'type'    => 'color',
 			'id'      => 'example_color_1',
-            'name'   => __( 'Color', 'adguru' ),
-            'desc'    => __( 'Color description', 'adguru' ),
+            'name'   => __( 'Color', 'wp-ad-guru' ),
+            'desc'    => __( 'Color description', 'wp-ad-guru' ),
             'default' => ''	
 		));
 
 		$this->add_field('example' , 'secondary', array(
 			'type'  => 'text',
 			'id'    => 'example_text_2',
-			'name'  => __( 'Text Input', 'adguru' ),
-            'desc'  => __( 'Text input description', 'adguru' ),
+			'name'  => __( 'Text Input', 'wp-ad-guru' ),
+            'desc'  => __( 'Text input description', 'wp-ad-guru' ),
             'default' => 'Title 2',
             'placeholder' => 'I am a placeholder'
 		));
@@ -286,8 +286,8 @@ class ADGURU_Settings{
 		$this->add_field('example' , 'secondary', array(
 			'type'    => 'color',
 			'id'      => 'example_color_2',
-            'name'   => __( 'Color', 'adguru' ),
-            'desc'    => __( 'Color description', 'adguru' ),
+            'name'   => __( 'Color', 'wp-ad-guru' ),
+            'desc'    => __( 'Color description', 'wp-ad-guru' ),
             'default' => '#CFEE00'	
 		));
 

@@ -8,9 +8,9 @@ $closing_form_args = array(
 		'closing_close_on_overlay_click' => array(
 			'type' 	=> 'checkbox',
 			'id'	=> 'closing_close_on_overlay_click',
-			'label'	=> __("Close on overlay click", 'adguru' ),
+			'label'	=> __("Close on overlay click", 'wp-ad-guru' ),
 			'default'	=> '0',
-			'help' => __('Close the popup on overlay click', 'adguru')
+			'help' => __('Close the popup on overlay click', 'wp-ad-guru')
 		),
 
 	)//end of fields array 

@@ -29,11 +29,11 @@ if( $use_zone )
 	{
 		$zone_selection_needed = true;
 	}
-	$editor_title = sprintf( __("Setup %s to Zone", "adguru" ) , $current_ad_type_args['plural_name'] );  
+	$editor_title = sprintf( __("Setup %s to Zone", "wp-ad-guru" ) , $current_ad_type_args['plural_name'] );  
 } 
 else 
 {  
-	$editor_title =  sprintf( __("Setup %s to pages", "adguru" ) , $current_ad_type_args['plural_name'] ); 
+	$editor_title =  sprintf( __("Setup %s to pages", "wp-ad-guru" ) , $current_ad_type_args['plural_name'] ); 
 }
 
 if( ! $zone_selection_needed )
@@ -45,7 +45,7 @@ if( ! $zone_selection_needed )
 ?>
 <link rel="stylesheet" type="text/css" href="<?php echo ADGURU_PLUGIN_URL ?>assets/css/ad-setup-manager.css" />
 <div class="wrap" id="ad_setup_manger_wrap">
-	<h2><?php _e( "Setup Ads", "adguru" ); ?></h2>
+	<h2><?php _e( "Setup Ads", "wp-ad-guru" ); ?></h2>
 
 	<?php do_action( "adguru_ad_setup_manager_top" , $current_ad_type_args ); ?>
 	<?php do_action( "adguru_ad_setup_manager_top_{$current_ad_type}" , $current_ad_type_args ); ?>
@@ -77,9 +77,9 @@ if( ! $zone_selection_needed )
 				<form action="" method="get">
 					<input type="hidden" name="page" value="<?php echo $page ?>" />
 					<input type="hidden" name="ad_type" value="<?php echo $current_ad_type ?>" />
-					<strong><?php _e( 'Zone', 'adguru' )?> : </strong> 
+					<strong><?php _e( 'Zone', 'wp-ad-guru' )?> : </strong> 
 					<select id="zone_id_list" name="zone_id" onchange="this.form.submit()">
-						<option value="0" <?php echo ( $zone_id == 0 ) ? ' selected="selected" ': ""  ?>><?php echo __( "Select A Zone", "adguru" ) ?></option>
+						<option value="0" <?php echo ( $zone_id == 0 ) ? ' selected="selected" ': ""  ?>><?php echo __( "Select A Zone", "wp-ad-guru" ) ?></option>
 						<?php 
 						$valid_zone_id = false;
 						foreach($zones as $zone)
@@ -103,7 +103,7 @@ if( ! $zone_selection_needed )
 			if(  $current_zone && $current_zone->active != 1 )
 			{
 				?>
-					<div style="text-align:center"><span style="color:red"><?php _e("Selected zone is deactivated, you will not see any output for this zone", "adguru")?></span>, <a href="admin.php?page=adguru_zone&manager_tab=edit&zone_id=<?php echo $current_zone->ID?>"><?php _e("Edit this zone", "adguru") ?></a></div>
+					<div style="text-align:center"><span style="color:red"><?php _e("Selected zone is deactivated, you will not see any output for this zone", "wp-ad-guru")?></span>, <a href="admin.php?page=adguru_zone&manager_tab=edit&zone_id=<?php echo $current_zone->ID?>"><?php _e("Edit this zone", "wp-ad-guru") ?></a></div>
 				<?php 
 			}
 		?>

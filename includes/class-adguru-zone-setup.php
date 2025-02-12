@@ -24,24 +24,24 @@ class ADGURU_Zone_Setup{
 	public function register(){
 		
 		$labels = array(
-			'name'               => __('Zone', 'adguru'),
-			'singular_name'      => __('Zone', 'adguru'),
-			'menu_name'          => __('Zones', 'adguru'),
-			'add_new'            => __( 'Add New Zone', 'adguru' ),
-			'add_new_item'       => __( 'Add New Zone', 'adguru' ),
-			'new_item'           => __( 'New Zone', 'adguru' ),
-			'edit_item'          => __( 'Edit Zone', 'adguru' ),
-			'view_item'          => __( 'View Zone', 'adguru' ),
-			'all_items'          => __( 'All Zones', 'adguru' ),
-			'search_items'       => __( 'Search Zone', 'adguru' ),
-			'parent_item_colon'  => __( 'Parent Zone', 'adguru' ),
-			'not_found'          => __( 'No zone found', 'adguru' ),
-			'not_found_in_trash' => __( 'No zone found in Trash', 'adguru' ),
+			'name'               => __('Zone', 'wp-ad-guru'),
+			'singular_name'      => __('Zone', 'wp-ad-guru'),
+			'menu_name'          => __('Zones', 'wp-ad-guru'),
+			'add_new'            => __( 'Add New Zone', 'wp-ad-guru' ),
+			'add_new_item'       => __( 'Add New Zone', 'wp-ad-guru' ),
+			'new_item'           => __( 'New Zone', 'wp-ad-guru' ),
+			'edit_item'          => __( 'Edit Zone', 'wp-ad-guru' ),
+			'view_item'          => __( 'View Zone', 'wp-ad-guru' ),
+			'all_items'          => __( 'All Zones', 'wp-ad-guru' ),
+			'search_items'       => __( 'Search Zone', 'wp-ad-guru' ),
+			'parent_item_colon'  => __( 'Parent Zone', 'wp-ad-guru' ),
+			'not_found'          => __( 'No zone found', 'wp-ad-guru' ),
+			'not_found_in_trash' => __( 'No zone found in Trash', 'wp-ad-guru' ),
 		);		
 
 		$this->post_type_args = array(
 			'labels'             => $labels,
-			'description'        => __( 'A container to hold ads in frontend', 'adguru' ),
+			'description'        => __( 'A container to hold ads in frontend', 'wp-ad-guru' ),
 			'public'             => false,
 			'publicly_queryable' => false,
 			'show_ui'            => false,

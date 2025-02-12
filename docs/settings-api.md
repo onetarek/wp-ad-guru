@@ -23,7 +23,7 @@ Write codes in `ADGURU_Settings` class and its methods.
 
 Example:
 
-	$this->add_tab( 'general' , __( 'General', 'adguru' ) ); 
+	$this->add_tab( 'general' , __( 'General', 'wp-ad-guru' ) ); 
 
 
 ### Add new Section
@@ -35,7 +35,7 @@ Example:
 
 Example:
 
-	$this->add_section( 'general' , 'main',  __( 'General Settings', 'adguru' ) );
+	$this->add_section( 'general' , 'main',  __( 'General Settings', 'wp-ad-guru' ) );
 *Note : section text and link will not be displayed when the parent tab has only one section*
 
 ### Add new field
@@ -51,19 +51,19 @@ Example:
 		'type' => 'text',
 		'id'   => 'example_text_1',
 		'name' => 'Text Input',
-        'desc' => __( 'Text input description', 'adguru' ),
+        'desc' => __( 'Text input description', 'wp-ad-guru' ),
         'default' => 'Default value',
         'placeholder' => 'I am a placeholder'
 	));
 
 #### Complete Example
-	$this->add_tab( 'general' , __( 'General', 'adguru' ) );
-	$this->add_section( 'general' , 'main',  __( 'General Settings', 'adguru' ) );
+	$this->add_tab( 'general' , __( 'General', 'wp-ad-guru' ) );
+	$this->add_section( 'general' , 'main',  __( 'General Settings', 'wp-ad-guru' ) );
 	$this->add_field('example' , 'main', array(
 		'type' => 'text',
 		'id'   => 'example_text_1',
 		'name' => 'Text Input',
-        'desc' => __( 'Text input description', 'adguru' ),
+        'desc' => __( 'Text input description', 'wp-ad-guru' ),
         'default' => 'Default value',
         'placeholder' => 'I am a placeholder'
 	));
@@ -78,13 +78,13 @@ Example :
 	add_action("adguru_settings_add", 'add_my_settings_fields');
 	function add_my_settings_fields( $settings )
 	{
-		$settings->add_tab( 'general' , __( 'General', 'adguru' ) );
-		$settings->add_section( 'general' , 'main',  __( 'General Settings', 'adguru' ) );
+		$settings->add_tab( 'general' , __( 'General', 'wp-ad-guru' ) );
+		$settings->add_section( 'general' , 'main',  __( 'General Settings', 'wp-ad-guru' ) );
 		$settings->add_field('example' , 'main', array(
 			'type' => 'text',
 			'id'   => 'example_text_1',
 			'name' => 'Text Input',
-	        'desc' => __( 'Text input description', 'adguru' ),
+	        'desc' => __( 'Text input description', 'wp-ad-guru' ),
 	        'default' => 'Default value',
 	        'placeholder' => 'I am a placeholder'
 		));
@@ -147,9 +147,9 @@ Example :
 	add_action("adguru_settings_add", 'example_settings_fields');
 
 	function example_settings_fields( $settings ) {
-		$settings->add_tab( 'example' , __( 'Example of Settings Fields', 'adguru' ) );
-		$settings->add_section( 'example' , 'main',  __( 'Main Section', 'adguru' ) );
-		$settings->add_section( 'example' , 'secondary',  __( 'Secondary Section', 'adguru' ) );
+		$settings->add_tab( 'example' , __( 'Example of Settings Fields', 'wp-ad-guru' ) );
+		$settings->add_section( 'example' , 'main',  __( 'Main Section', 'wp-ad-guru' ) );
+		$settings->add_section( 'example' , 'secondary',  __( 'Secondary Section', 'wp-ad-guru' ) );
 
 		$settings->add_field('general' , 'main', array(
 			'type' => 'header',
@@ -162,8 +162,8 @@ Example :
 		$settings->add_field('example' , 'main', array(
 			'type'  => 'text',
 			'id'    => 'example_text_small',
-			'name'  => __( 'Small Text Input', 'adguru' ),
-	        'desc'  => __( 'Text input description', 'adguru' ),
+			'name'  => __( 'Small Text Input', 'wp-ad-guru' ),
+	        'desc'  => __( 'Text input description', 'wp-ad-guru' ),
 	        'default' => '',
 	        'size'  => 'small'
 		));
@@ -171,8 +171,8 @@ Example :
 		$settings->add_field('example' , 'main', array(
 			'type'  => 'text',
 			'id'    => 'example_text_medium',
-			'name'  => __( 'Medium Text Input', 'adguru' ),
-	        'desc'  => __( 'Text input description', 'adguru' ),
+			'name'  => __( 'Medium Text Input', 'wp-ad-guru' ),
+	        'desc'  => __( 'Text input description', 'wp-ad-guru' ),
 	        'default' => '',
 	        'placeholder' => 'I am a placeholder',
 	        'size'  => 'medium'
@@ -181,8 +181,8 @@ Example :
 		$settings->add_field('example' , 'main', array(
 			'type'  => 'text',
 			'id'    => 'example_text_large',
-			'name'  => __( 'Large Text Input', 'adguru' ),
-	        'desc'  => __( 'Text input description', 'adguru' ),
+			'name'  => __( 'Large Text Input', 'wp-ad-guru' ),
+	        'desc'  => __( 'Text input description', 'wp-ad-guru' ),
 	        'default' => '',
 	        'placeholder' => 'I am a placeholder',
 	        'size'  => 'large'
@@ -192,8 +192,8 @@ Example :
 			'type' => 'number',
 			'id'   => 'example_number_1',
 			'name' => 'Number 1',
-	        'label'=> __( 'Number Input', 'adguru' ),
-	        'desc' => __( 'Number input description', 'adguru' ),
+	        'label'=> __( 'Number Input', 'wp-ad-guru' ),
+	        'desc' => __( 'Number input description', 'wp-ad-guru' ),
 	        'default' => '',
 	        'placeholder' => 'I am a placeholder'
 		));
@@ -202,8 +202,8 @@ Example :
 			'type' => 'number',
 			'id'   => 'example_number_2',
 			'name' => 'Number 2',
-	        'label'=> __( 'Number Input', 'adguru' ),
-	        'desc' => __( 'Number input with max min and step', 'adguru' ),
+	        'label'=> __( 'Number Input', 'wp-ad-guru' ),
+	        'desc' => __( 'Number input with max min and step', 'wp-ad-guru' ),
 	        'max'  =>50,
 	        'min'  =>20,
 	        'step' =>5,
@@ -214,8 +214,8 @@ Example :
 		$settings->add_field('example' , 'main', array(
 			'type'    => 'password',
 			'id'      => 'example_password_1',
-	        'name'   => __( 'Password', 'adguru' ),
-	        'desc'    => __( 'Password description', 'adguru' ),
+	        'name'   => __( 'Password', 'wp-ad-guru' ),
+	        'desc'    => __( 'Password description', 'wp-ad-guru' ),
 	        'default' => '',
 	        'placeholder' => 'Enter password'
 		));
@@ -223,24 +223,24 @@ Example :
 		$settings->add_field('example' , 'main', array(
 			'type'  => 'textarea',
 			'id'    => 'example_textarea_1',
-			'name' => __( 'Textarea Input', 'adguru' ),
-			'desc'  => __( 'Textarea description', 'adguru' ),
+			'name' => __( 'Textarea Input', 'wp-ad-guru' ),
+			'desc'  => __( 'Textarea description', 'wp-ad-guru' ),
 			'placeholder' => 'I am a placeholder'		
 		));
 
 		$settings->add_field('example' , 'main', array(
 			'type'  => 'checkbox',
 			'id'    => 'example_checkbox_1',
-			'name'  => __( 'Checkbox', 'adguru' ),
-	        'label' => __( 'Checkbox Label', 'adguru' ),
-	        'desc'  => __( 'Checkbox descrition', 'adguru' ),		
+			'name'  => __( 'Checkbox', 'wp-ad-guru' ),
+	        'label' => __( 'Checkbox Label', 'wp-ad-guru' ),
+	        'desc'  => __( 'Checkbox descrition', 'wp-ad-guru' ),		
 		));
 
 		$settings->add_field('example' , 'main', array(
 			'type' => 'radio',
 			'id'   => 'example_radio_1',
-	        'name' => __( 'Radio Button', 'adguru' ),
-	        'desc' => __( 'A radio button', 'adguru' ),
+	        'name' => __( 'Radio Button', 'wp-ad-guru' ),
+	        'desc' => __( 'A radio button', 'wp-ad-guru' ),
 	        'options' => array(
 	            'yes' => 'Yes',
 	            'no' => 'No'
@@ -250,8 +250,8 @@ Example :
 		$settings->add_field('example' , 'main', array(
 			'type'    => 'multicheck',
 			'id'      => 'example_multicheck_1',
-	        'name'   => __( 'Multile checkbox', 'adguru' ),
-	        'desc'    => __( 'Multi checkbox description', 'adguru' ),
+	        'name'   => __( 'Multile checkbox', 'wp-ad-guru' ),
+	        'desc'    => __( 'Multi checkbox description', 'wp-ad-guru' ),
 	        'options' => array(
 	              'one'   => 'One',
 	              'two'   => 'Two',
@@ -263,8 +263,8 @@ Example :
 		$settings->add_field('example' , 'main', array(
 			'type'    => 'select',
 			'id'      => 'example_selectbox_1',
-	        'name'   => __( 'A Dropdown selectbox', 'adguru' ),
-	        'desc'    => __( 'Dropdown description', 'adguru' ),
+	        'name'   => __( 'A Dropdown selectbox', 'wp-ad-guru' ),
+	        'desc'    => __( 'Dropdown description', 'wp-ad-guru' ),
 	        'default' => 'no',
 	        'options' => array(
 	             'yes' => 'Yes',
@@ -275,8 +275,8 @@ Example :
 		$settings->add_field('example' , 'main', array(
 			'type'    => 'file',
 			'id'      => 'example_file_1',
-	        'name'   => __( 'File', 'adguru' ),
-	        'desc'    => __( 'File description', 'adguru' ),
+	        'name'   => __( 'File', 'wp-ad-guru' ),
+	        'desc'    => __( 'File description', 'wp-ad-guru' ),
 	        'default' => '',
 	        'placeholder' => 'Browse a file',
 		));
@@ -284,24 +284,24 @@ Example :
 		$settings->add_field('example' , 'main', array(
 			'type' 	  => 'editor',
 			'id'   	  => 'example_wysiwyg_1',
-	        'name'   => __( 'WYSIWYG Editor', 'adguru' ),
-	        'desc' 	  => __( 'wysiwyg editor example', 'adguru' ),
+	        'name'   => __( 'WYSIWYG Editor', 'wp-ad-guru' ),
+	        'desc' 	  => __( 'wysiwyg editor example', 'wp-ad-guru' ),
 	        'default' => ''	
 		));
 
 		$settings->add_field('example' , 'main', array(
 			'type'    => 'color',
 			'id'      => 'example_color_1',
-	        'name'   => __( 'Color', 'adguru' ),
-	        'desc'    => __( 'Color description', 'adguru' ),
+	        'name'   => __( 'Color', 'wp-ad-guru' ),
+	        'desc'    => __( 'Color description', 'wp-ad-guru' ),
 	        'default' => ''	
 		));
 
 		$settings->add_field('example' , 'secondary', array(
 			'type'  => 'text',
 			'id'    => 'example_text_2',
-			'name'  => __( 'Text Input', 'adguru' ),
-	        'desc'  => __( 'Text input description', 'adguru' ),
+			'name'  => __( 'Text Input', 'wp-ad-guru' ),
+	        'desc'  => __( 'Text input description', 'wp-ad-guru' ),
 	        'default' => 'Title 2',
 	        'placeholder' => 'I am a placeholder'
 		));
@@ -309,8 +309,8 @@ Example :
 		$settings->add_field('example' , 'secondary', array(
 			'type'    => 'color',
 			'id'      => 'example_color_2',
-	        'name'   => __( 'Color', 'adguru' ),
-	        'desc'    => __( 'Color description', 'adguru' ),
+	        'name'   => __( 'Color', 'wp-ad-guru' ),
+	        'desc'    => __( 'Color description', 'wp-ad-guru' ),
 	        'default' => '#CFEE00'	
 		));
 
@@ -333,8 +333,8 @@ To take value of  `name` , `id` and `value` attributes must use method `get_fiel
 		$settings->add_field("banner-ad", "main", array(
 			'type' => 'my_custom_type',
 			'id'   => 'my_custom_field',
-			'name' => __( 'My Custom Field', 'adguru' ),
-			'desc' => __( 'Custom type field', 'adguru' ),
+			'name' => __( 'My Custom Field', 'wp-ad-guru' ),
+			'desc' => __( 'Custom type field', 'wp-ad-guru' ),
 			'default'  => '',
 			'callback' => 'custom_field_callback'
 

@@ -46,7 +46,7 @@ if( ! empty( $_POST ) && isset( $_POST['save'] ) && check_admin_referer( 'adguru
 	$ad->name = stripslashes ( trim( $_POST['ad_name'] ) );
 	if( $ad->name == "" )
 	{ 
-		adguru_set_ad_input_error( 'ad_name' , __( "Name is required", 'adguru' ) ); 
+		adguru_set_ad_input_error( 'ad_name' , __( "Name is required", 'wp-ad-guru' ) ); 
 	}
 	
 	$ad->description = stripslashes ( trim( $_POST['description'] ) );
@@ -105,7 +105,7 @@ elseif( $ad_id || $cp_from_id )
 	else
 	{
 		$ad->ID = 0;
-		echo '<div class="error"><p>'; echo sprintf( __( 'No %s found for the ID %d , Create new.' , 'adguru' ) , $current_ad_type_args['name'], $post_id ); echo '</p></div>';
+		echo '<div class="error"><p>'; echo sprintf( __( 'No %s found for the ID %d , Create new.' , 'wp-ad-guru' ) , $current_ad_type_args['name'], $post_id ); echo '</p></div>';
 		
 	}
 	
@@ -119,7 +119,7 @@ if( ( $ad->content_type == "" ) && count( $content_types ) )
 
 if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] ) )
 {
-	echo '<div class="updated"><p>'; echo sprintf( __( 'Your %s has been saved successfully' , 'adguru' ) , $current_ad_type_args['name'] ); echo '</p></div>';
+	echo '<div class="updated"><p>'; echo sprintf( __( 'Your %s has been saved successfully' , 'wp-ad-guru' ) , $current_ad_type_args['name'] ); echo '</p></div>';
 } 
 ?>
 <form action="" method="post">
@@ -141,11 +141,11 @@ if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] 
 					</thead>
 					<?php $error_class = isset( $error_msgs['ad_name'] )? " adg_error_field" : ""; ?>
 					<tr>
-						<td><label for="ad_name"><?php echo sprintf( __( '%s Name', 'adguru' ) , $current_ad_type_args['name'] ) ?></label></td>
+						<td><label for="ad_name"><?php echo sprintf( __( '%s Name', 'wp-ad-guru' ) , $current_ad_type_args['name'] ) ?></label></td>
 						<td><input type="text" name="ad_name" id="ad_name" class="input_long<?php echo $error_class;?>" size="30" value="<?php  echo esc_attr( $ad->name );?>" /></td>
 					</tr>
 					<tr>
-						<td><label for="description"><?php echo __( 'Description', 'adguru' ) ?></label></td>
+						<td><label for="description"><?php echo __( 'Description', 'wp-ad-guru' ) ?></label></td>
 						<td><textarea name="description" id="description"  class="input_long" cols="15" rows="4"><?php  echo $ad->description;?></textarea></td>
 					</tr>
 				</table>
@@ -158,12 +158,12 @@ if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] 
 
 				<div id="content_type_box" class="postbox" >
 					
-					<h2 class='hndle'><span><?php _e( 'Content Type', 'adguru' ) ?></span></h2>
+					<h2 class='hndle'><span><?php _e( 'Content Type', 'wp-ad-guru' ) ?></span></h2>
 					<div class="inside">
 						<p>
 							<table style="width:100%;">
 								<tr>
-									<td width="150"><?php _e( 'Select Contnet Type', 'adguru' ) ?></td>
+									<td width="150"><?php _e( 'Select Contnet Type', 'wp-ad-guru' ) ?></td>
 									<td>
 										
 										<select id="content_type" name="content_type" class="adguru_toggler_dropdown" to_toggle="content_editor_box">
@@ -190,7 +190,7 @@ if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] 
 				?>
 				<div id="content_editor_box_<?php $content_type ?>" class="postbox content_editor_box content_editor_box_<?php echo $content_type ?><?php echo $hidden ?>">
 					
-					<h2 class='hndle'><span><?php _e( 'Content Editor', 'adguru' ) ?>: <?php echo $args['name']?></span></h2>
+					<h2 class='hndle'><span><?php _e( 'Content Editor', 'wp-ad-guru' ) ?>: <?php echo $args['name']?></span></h2>
 					<div id="content_editor_<?php $content_type ?>" class="inside content_editor content_editor_<?php echo $content_type ?>">
 
 						<?php do_action( "adguru_content_editor_{$content_type}", $ad, $error_msgs ); ?>
@@ -209,7 +209,7 @@ if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] 
 					<h2 class='hndle'><span><!-- section heading --></span></h2>
 					<div class="inside">
 						<p>
-							<input type="submit" name="save" class="button-primary" value="<?php echo esc_attr( __( 'Save', 'adguru' ) ) ?>" style="width:100px;" />
+							<input type="submit" name="save" class="button-primary" value="<?php echo esc_attr( __( 'Save', 'wp-ad-guru' ) ) ?>" style="width:100px;" />
 						<p>
 					</div>
 
@@ -223,11 +223,11 @@ if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] 
 			<!--Sidebar-->
 			<div id="postbox-container-1" class="postbox-container">
 				<div class="postbox">
-					<h3 class="hndle"><?php _e('Publishing', 'adguru')?></h3>
+					<h3 class="hndle"><?php _e('Publishing', 'wp-ad-guru')?></h3>
 					<div class="inside">
 						<div class="main" style="text-align:center;">	
 							
-							<input type="submit" name="save" class="button-primary" value="<?php echo esc_attr( __( 'Save', 'adguru' ) ) ?>" style="width:200px;" />
+							<input type="submit" name="save" class="button-primary" value="<?php echo esc_attr( __( 'Save', 'wp-ad-guru' ) ) ?>" style="width:200px;" />
 							
 
 						</div><!-- .main -->

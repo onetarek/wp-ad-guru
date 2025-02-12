@@ -1,12 +1,12 @@
 <link rel="stylesheet" type="text/css" href="<?php echo ADGURU_PLUGIN_URL ?>modules/modal_popup/assets/css/modal-popup-preview.css?var=<?php echo ADGURU_VERSION ?>" >
 <div class="postbox" id="adguru_mp_preview_box">
-	<h3 class="hndle"><?php _e('Theme Preview', 'adguru');?> <a onclick="javascript: return adguru_mp_show_preview_in_full_view()" style="font-size:14px; cursor:pointer;float:right;"><?php _e('See full view', 'adguru');?></a></h3>
+	<h3 class="hndle"><?php _e('Theme Preview', 'wp-ad-guru');?> <a onclick="javascript: return adguru_mp_show_preview_in_full_view()" style="font-size:14px; cursor:pointer;float:right;"><?php _e('See full view', 'wp-ad-guru');?></a></h3>
 	<div class="inside" style="padding:0px;margin:0px;">
 		<div id="adguru_mp_preview_area">
 
 			<div id="adguru_modal_popup_example" class="adguru-modal-popup sidebar_view hidden" popup-id="example">
 				<div id="adguru_modal_popup_overlay_example" class="mp-overlay adguru-modal-popup-overlay" popup-id="example"></div>
-				<div id="adguru_mp_preview_full_view_close_btn_wrap" class="hidden"><div id="adguru_mp_preview_full_view_close_btn" onclick="adguru_mp_show_preview_in_sidebar_view()"><?php _e('Close preview', 'adguru');?></div></div>
+				<div id="adguru_mp_preview_full_view_close_btn_wrap" class="hidden"><div id="adguru_mp_preview_full_view_close_btn" onclick="adguru_mp_show_preview_in_sidebar_view()"><?php _e('Close preview', 'wp-ad-guru');?></div></div>
 				<div id="adguru_modal_popup_container_wrap_example" class="mp-container-wrap middle-center">
 					<div id="adguru_modal_popup_conatiner_example" class="mp-container" popup-id="example">
 						<div id="adguru_modal_popup_content_wrap_example" class="mp-content-wrap mp-content-wrap-image" popup-id="example">

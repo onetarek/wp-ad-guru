@@ -31,14 +31,14 @@ $manager_tabs = apply_filters(
 	array(
 		'all' =>array( 
 			'slug'	=> 'all', 
-			'text'	=> __("All Zones", "adguru" ), 
+			'text'	=> __("All Zones", "wp-ad-guru" ), 
 			'link'	=> 'admin.php?page='.$page.'&manager_tab=all',
 			'file' 	=> ADGURU_PLUGIN_DIR."includes/admin/zone-manager/zone-list.php",
 			'callback' => '' 
 			),
 		'edit' =>array( 
 			'slug'	=> 'edit', 
-			'text'	=>  __("Add new zone", "adguru" ), 
+			'text'	=>  __("Add new zone", "wp-ad-guru" ), 
 			'link'	=> 'admin.php?page='.$page.'&manager_tab=edit',
 			'file' 	=> ADGURU_PLUGIN_DIR."includes/admin/zone-manager/zone-edit.php",
 			'callback' => '' 
@@ -67,7 +67,7 @@ $current_manager_vars = array(
 
 ?>
 <div class="wrap">
-	<h2><?php echo __("Zones", "adguru" ) ?></h2>
+	<h2><?php echo __("Zones", "wp-ad-guru" ) ?></h2>
 	<?php do_action( "adguru_zone_manager_top" ); ?>
 	
 	<h2 class="nav-tab-wrapper">
@@ -96,13 +96,13 @@ $current_manager_vars = array(
 			}
 			else
 			{
-				echo __( 'No file or callback function found for this tab', 'adguru' );
+				echo __( 'No file or callback function found for this tab', 'wp-ad-guru' );
 			}								
 		
 		}
 		else
 		{
-			echo "<h2>".__( 'Nothing to show', 'adguru' )."</h2>";
+			echo "<h2>".__( 'Nothing to show', 'wp-ad-guru' )."</h2>";
 		}			
 	?>
 	

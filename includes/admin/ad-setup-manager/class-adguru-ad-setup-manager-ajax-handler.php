@@ -44,7 +44,7 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 		}
 		else
 		{
-			$this->throw_error_response( __( 'No permission, either your are not permitted for this action or you are not logged in', 'adguru' ) );
+			$this->throw_error_response( __( 'No permission, either your are not permitted for this action or you are not logged in', 'wp-ad-guru' ) );
 		}	 
 	 }//end func
 	 
@@ -78,7 +78,7 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 		$initial_query_data = isset( $_POST['initial_query_data'] ) ? $_POST['initial_query_data'] : false;
 		if( !is_array( $initial_query_data ) )
 		{
-			$this->throw_error_response( __( 'Initial query data is required.', 'adguru' ) );
+			$this->throw_error_response( __( 'Initial query data is required.', 'wp-ad-guru' ) );
 		}
 		
 		if( $ad_type != "" && isset( $all_ad_types[ $ad_type ] ) )
@@ -88,19 +88,19 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 			
 			if( $use_zone && $zone_id == 0 )
 			{
-				$this->throw_error_response( __( 'This type of ad needs zone, no zone id given.', 'adguru' ) );
+				$this->throw_error_response( __( 'This type of ad needs zone, no zone id given.', 'wp-ad-guru' ) );
 			} 
 			
 			
 		}
 		else
 		{
-			$this->throw_error_response( __( 'Given ad type is not valid', 'adguru' ) );
+			$this->throw_error_response( __( 'Given ad type is not valid', 'wp-ad-guru' ) );
 		}
 		
 		if( $zone_id == 0 && $ad_type == '' )
 		{
-			$this->throw_error_response( __( 'Ad type is required', 'adguru' ) );
+			$this->throw_error_response( __( 'Ad type is required', 'wp-ad-guru' ) );
 		}
 
 		$set 		= array();
@@ -281,7 +281,7 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 	 	$initial_query_data = isset( $_POST['initial_query_data'] ) ? $_POST['initial_query_data'] : false;
 		if( !is_array( $initial_query_data ) )
 		{
-			$this->throw_error_response( __( 'Initial query data is required.', 'adguru' ) );
+			$this->throw_error_response( __( 'Initial query data is required.', 'wp-ad-guru' ) );
 		}
 		else
 		{
@@ -295,7 +295,7 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 			}
 			else
 			{
-				$this->throw_error_response( __( 'Delete operation has been failed based on given initial query data.', 'adguru' ) ); 
+				$this->throw_error_response( __( 'Delete operation has been failed based on given initial query data.', 'wp-ad-guru' ) ); 
 			}
 			
 		}

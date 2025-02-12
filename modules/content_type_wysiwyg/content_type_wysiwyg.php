@@ -21,7 +21,7 @@ class ADGURU_Content_Type_Wysiwyg extends ADGURU_Content_Type{
 	public function __construct(){
 
 		parent::__construct();
-		$this->description = __('Create content using WYSIWYG editor', 'adguru');
+		$this->description = __('Create content using WYSIWYG editor', 'wp-ad-guru');
 	}
 
 	protected function _editor_init( $current_ad_type ){

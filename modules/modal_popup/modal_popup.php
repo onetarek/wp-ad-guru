@@ -95,9 +95,9 @@ class ADGURU_Modal_Popup{
 	  **/
 	 public function __construct(){
 	 
-		$this->name = __( 'Modal Popup', 'adguru' );
-		$this->plural_name = __( 'Modal Popups', 'adguru' );
-		$this->description = __( 'Modal Popup Ad Management.', 'adguru' );
+		$this->name = __( 'Modal Popup', 'wp-ad-guru' );
+		$this->plural_name = __( 'Modal Popups', 'wp-ad-guru' );
+		$this->description = __( 'Modal Popup Ad Management.', 'wp-ad-guru' );
 		
 	 	add_action( "adguru_init", array( $this, "register" ) );
 	 	add_filter( "adguru_ad_editor_init_{$this->type}", array( $this, "ad_editor_init" ) );
@@ -204,11 +204,11 @@ class ADGURU_Modal_Popup{
 		{
 		?>
 		<div class="postbox">
-			<h3 class="hndle"><?php _e('Live Preview', 'adguru')?></h3>
+			<h3 class="hndle"><?php _e('Live Preview', 'wp-ad-guru')?></h3>
 			<div class="inside">
 				<div class="main">
 						
-					<a href="<?php echo $this->get_preview_url( $ad->ID ) ?>" target="_blank"><?php _e('Preview Popup', 'adguru')?></a>
+					<a href="<?php echo $this->get_preview_url( $ad->ID ) ?>" target="_blank"><?php _e('Preview Popup', 'wp-ad-guru')?></a>
 
 				</div><!-- .main -->
 			</div><!-- .inside -->
@@ -228,8 +228,8 @@ class ADGURU_Modal_Popup{
 	 */
 	public function list_table_columns( $columns ){
 
-		$columns['size'] = __( 'Size', 'adguru' );
-		//$columns['width'] = __( 'Width', 'adguru' );
+		$columns['size'] = __( 'Size', 'wp-ad-guru' );
+		//$columns['width'] = __( 'Width', 'wp-ad-guru' );
 		return $columns; 
 	
 	}//end func

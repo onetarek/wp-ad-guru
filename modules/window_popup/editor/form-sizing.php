@@ -8,15 +8,15 @@ $sizing_form_args = array(
 		'sizing_mode' => array(
 			'type' 	=> 'radio',
 			'id'	=> 'sizing_mode',
-			'label'	=> __("Sizing Mode", 'adguru' ),
+			'label'	=> __("Sizing Mode", 'wp-ad-guru' ),
 			'default'	=> 'custom',
-			'options' => array('custom'=> __("Custom", 'adguru' ), 'full'=>__("Full Screen", 'adguru' ), 'responsive'=>__("Responsive", 'adguru' )),
+			'options' => array('custom'=> __("Custom", 'wp-ad-guru' ), 'full'=>__("Full Screen", 'wp-ad-guru' ), 'responsive'=>__("Responsive", 'wp-ad-guru' )),
 			'disabled' => array('full', 'responsive')
 		),
 		'sizing_custom_width' => array(
 			'type' => 'number',
 			'id' => 'sizing_custom_width',
-			'label' => __("Custom Width", 'adguru' ),
+			'label' => __("Custom Width", 'wp-ad-guru' ),
 			'default' => '500',
 			'size' => 'small',
 			'min' => 100,
@@ -25,7 +25,7 @@ $sizing_form_args = array(
 		'sizing_custom_height' => array(
 			'type' => 'number',
 			'id' => 'sizing_custom_height',
-			'label' => __("Custom Height", 'adguru' ),
+			'label' => __("Custom Height", 'wp-ad-guru' ),
 			'default' => '500',
 			'size' => 'small',
 			'min' => 100,

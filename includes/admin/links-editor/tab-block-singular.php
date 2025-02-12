@@ -44,11 +44,11 @@ $post_type = $tab2;
 	{
 		if( $post_type == "--" )
 		{
-			$msg = sprintf( __("Set default %s only for <strong>any type</strong> of single page", "adguru" ) , $current_ad_type_args['plural_name'] ) ;
+			$msg = sprintf( __("Set default %s only for <strong>any type</strong> of single page", "wp-ad-guru" ) , $current_ad_type_args['plural_name'] ) ;
 		}
 		else
 		{
-			$msg = sprintf( __("Set default %s for a single page where post type is <strong>%s</strong>", "adguru" ) , $current_ad_type_args['plural_name'], $post_type ) ;
+			$msg = sprintf( __("Set default %s for a single page where post type is <strong>%s</strong>", "wp-ad-guru" ) , $current_ad_type_args['plural_name'], $post_type ) ;
 		}
 					
 		adguru()->html->print_msg($msg);
@@ -136,7 +136,7 @@ $post_type = $tab2;
 			<input type="hidden" name="tab" value="singular" />						
 						
 		<select name="term_slug"  onchange="this.form.submit()"> 
-		 <option value=""><?php echo sprintf( __( 'Select a %s', 'adguru' ), $taxonomy_name ); ?></option> 
+		 <option value=""><?php echo sprintf( __( 'Select a %s', 'wp-ad-guru' ), $taxonomy_name ); ?></option> 
 		 <?php 
 		  foreach ($categories as $category)
 		  {
@@ -153,7 +153,7 @@ $post_type = $tab2;
 			
 			if($selected_term_exists)
 			{
-				$msg = sprintf( __("Set default %s for a single post which is in <strong>%s %s</strong> of single page", "adguru" ) , $current_ad_type_args['plural_name'], $selected_term_slug, $taxonomy_name );
+				$msg = sprintf( __("Set default %s for a single post which is in <strong>%s %s</strong> of single page", "wp-ad-guru" ) , $current_ad_type_args['plural_name'], $selected_term_slug, $taxonomy_name );
 				adguru()->html->print_msg( $msg );
 				$links_editor = new ADGURU_Links_Editor( array( "ad_type_args"=>$current_ad_type_args, "zone_id"=>$zone_id, "page_type"=>"singular", "taxonomy"=>$taxonomy_slug,"term"=>$selected_term_slug, "post_id"=>0) );
 				$links_editor->display();
@@ -163,7 +163,7 @@ $post_type = $tab2;
 		{
 			if( $selected_term_exists )
 			{
-				$msg = sprintf( __("Set default %s for a single post which is in <strong>%s %s</strong> of single page", "adguru" ) , $current_ad_type_args['plural_name'], $selected_term_slug, $taxonomy_name );
+				$msg = sprintf( __("Set default %s for a single post which is in <strong>%s %s</strong> of single page", "wp-ad-guru" ) , $current_ad_type_args['plural_name'], $selected_term_slug, $taxonomy_name );
 				adguru()->html->print_msg( $msg );
 				$links_editor = new ADGURU_Links_Editor( array( "ad_type_args"=>$current_ad_type_args, "zone_id"=>$zone_id, "page_type"=>"singular", "taxonomy"=>$taxonomy_slug, "term"=>$selected_term_slug, "post_id"=>0) );
 				$links_editor->display();
@@ -173,7 +173,7 @@ $post_type = $tab2;
 			{
 				if(isset($_GET['term_slug']))
 				{
-					echo '<span style="color:#ff0000;">'; echo __( "Your given term does not exists. Enter a valid term slug", "adguru" ); echo '</span><br><br>';
+					echo '<span style="color:#ff0000;">'; echo __( "Your given term does not exists. Enter a valid term slug", "wp-ad-guru" ); echo '</span><br><br>';
 				}
 			}
 		  
@@ -190,10 +190,10 @@ $post_type = $tab2;
 			<input type="hidden" name="tab3" value="<?php echo $tab3 ?>" />
 			<input type="hidden" name="tab2" value="specific_term" />
 			<input type="hidden" name="tab" value="singular" />
-			<?php echo __( "Add new term slug", "adguru" )?> :
-			<input type="text" size="15"  name="term_slug" /><input type="submit" class="button" name="add_term" value="<?php echo esc_attr( __( 'Add and Select', 'adguru' ) )?>" />
+			<?php echo __( "Add new term slug", "wp-ad-guru" )?> :
+			<input type="text" size="15"  name="term_slug" /><input type="submit" class="button" name="add_term" value="<?php echo esc_attr( __( 'Add and Select', 'wp-ad-guru' ) )?>" />
 		  </form><br />
-		  <?php echo __( "OR click on any previously used term below to edit.", "adguru" ) ?>
+		  <?php echo __( "OR click on any previously used term below to edit.", "wp-ad-guru" ) ?>
 		  <div id="used_term_list">
 			<?php 
 				
@@ -209,7 +209,7 @@ $post_type = $tab2;
 				}
 				else
 				{
-					echo __( 'You did not use any term for this taxonomy and zone yet', 'adguru' );
+					echo __( 'You did not use any term for this taxonomy and zone yet', 'wp-ad-guru' );
 				}
 			?>
 		  </div><!--used_term_list-->

@@ -9,10 +9,10 @@ $other_form_args = array(
 			'type' 	=> 'text',
 			'id'	=> 'other_z_index',
 			'size'	=> 'medium',
-			'label'	=> __("Popup z-index", 'adguru' ),
+			'label'	=> __("Popup z-index", 'wp-ad-guru' ),
 			'placeholder' => 'Ex : 999999',
 			'default'	=> '',
-			'help' => __("CSS z-index value for the popup", 'adguru' ),
+			'help' => __("CSS z-index value for the popup", 'wp-ad-guru' ),
 		)
 		
 

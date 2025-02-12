@@ -129,7 +129,7 @@ class ADGURU_Zone_List_Table extends WP_List_Table {
 		$total_count_text = '&nbsp;<span class="count">(' . $this->total_count    . ')</span>';
 
 		$views = array(
-			'all' => sprintf( '<a href="%s"%s>%s</a>', remove_query_arg( 'status', $this->base_url ), ( $current === 'all' || $current == '' ) ? ' class="current"' : '', __( 'All', 'adguru' ) . $total_count_text ),
+			'all' => sprintf( '<a href="%s"%s>%s</a>', remove_query_arg( 'status', $this->base_url ), ( $current === 'all' || $current == '' ) ? ' class="current"' : '', __( 'All', 'wp-ad-guru' ) . $total_count_text ),
 			#add more view item here
 		);
 
@@ -149,10 +149,10 @@ class ADGURU_Zone_List_Table extends WP_List_Table {
 		$columns = array(
 			'cb'         	=> '<input type="checkbox" />',
 			'ID'			=> 'ID',
-			'name'       	=> __( 'Name', 'adguru' ),
-			'description'	=> __( 'Description', 'adguru' ),
-			'size'			=> __( 'Size', 'adguru' ),
-			'active'		=> __( 'Active', 'adguru' ),
+			'name'       	=> __( 'Name', 'wp-ad-guru' ),
+			'description'	=> __( 'Description', 'wp-ad-guru' ),
+			'size'			=> __( 'Size', 'wp-ad-guru' ),
+			'active'		=> __( 'Active', 'wp-ad-guru' ),
 		);
 		
 		//get colum names from module and addons
@@ -231,11 +231,11 @@ class ADGURU_Zone_List_Table extends WP_List_Table {
 
 		$row_actions  = array();
 
-		$row_actions['get_code'] = '<a href="#" onclick="return show_zone_code_modal('.$item->ID.', \''.$item->name.'\')">' . __( 'Get Code', 'adguru' ) . '</a>';
-		$row_actions['edit'] = '<a href="' . add_query_arg( array( 'manager_tab' => 'edit', 'zone_id' => $item->ID ) , $this->base_url ) . '">' . __( 'Edit', 'adguru' ) . '</a>';
-		$row_actions['copy'] = '<a href="' . add_query_arg( array( 'manager_tab' => 'edit', 'cp_from_id' => $item->ID ) , $this->base_url ) . '">' . __( 'Copy', 'adguru' ) . '</a>';
-		$row_actions['setup_ads'] = '<a href="' . $ad_setup_page_link . '">' . __( 'Setup Ads', 'adguru' ) . '</a>';
-		//$row_actions['delete'] = '<a href="#">' . __( 'Delete', 'adguru' ) . '</a>';
+		$row_actions['get_code'] = '<a href="#" onclick="return show_zone_code_modal('.$item->ID.', \''.$item->name.'\')">' . __( 'Get Code', 'wp-ad-guru' ) . '</a>';
+		$row_actions['edit'] = '<a href="' . add_query_arg( array( 'manager_tab' => 'edit', 'zone_id' => $item->ID ) , $this->base_url ) . '">' . __( 'Edit', 'wp-ad-guru' ) . '</a>';
+		$row_actions['copy'] = '<a href="' . add_query_arg( array( 'manager_tab' => 'edit', 'cp_from_id' => $item->ID ) , $this->base_url ) . '">' . __( 'Copy', 'wp-ad-guru' ) . '</a>';
+		$row_actions['setup_ads'] = '<a href="' . $ad_setup_page_link . '">' . __( 'Setup Ads', 'wp-ad-guru' ) . '</a>';
+		//$row_actions['delete'] = '<a href="#">' . __( 'Delete', 'wp-ad-guru' ) . '</a>';
 
 		$row_actions = apply_filters( "adguru_zone_list_row_actions", $row_actions, $item );
 
@@ -265,7 +265,7 @@ class ADGURU_Zone_List_Table extends WP_List_Table {
 	 */
 	function column_active( $item ){
 
-		return ( isset( $item->active ) && $item->active == 1 ) ? __('Yes', 'adguru' ) : __('No', 'adguru' ) ;
+		return ( isset( $item->active ) && $item->active == 1 ) ? __('Yes', 'wp-ad-guru' ) : __('No', 'wp-ad-guru' ) ;
 	}
 
 	/**
@@ -306,7 +306,7 @@ class ADGURU_Zone_List_Table extends WP_List_Table {
 	 */
 	function no_items(){
 
-		echo sprintf(__( 'No %s found.', 'adguru' ) , $this->_args['singular'] );
+		echo sprintf(__( 'No %s found.', 'wp-ad-guru' ) , $this->_args['singular'] );
 	}
 
 	/**
@@ -319,7 +319,7 @@ class ADGURU_Zone_List_Table extends WP_List_Table {
 	public function get_bulk_actions(){
 
 		$actions = array(
-			//'delete'     => __( 'Delete', 'adguru' ),
+			//'delete'     => __( 'Delete', 'wp-ad-guru' ),
 		);
 
 		return apply_filters( "adguru_zone_list_bulk_actions",  $actions );

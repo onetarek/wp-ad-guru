@@ -1,26 +1,26 @@
 <div id="zone_editor_design_box" class="postbox">
-	<h2 class='hndle'><span><?php _e('Design', 'adguru')?></span></h2>
+	<h2 class='hndle'><span><?php _e('Design', 'wp-ad-guru')?></span></h2>
 	<div class="inside">
 		<?php adguru_show_zone_design_form( $zone ); ?>
 	</div><!-- ./inside -->
 </div><!-- /.postbox -->
 
 <div id="zone_editor_visibility_box" class="postbox">
-	<h2 class='hndle'><span><?php _e('Visibility', 'adguru')?></span></h2>
+	<h2 class='hndle'><span><?php _e('Visibility', 'wp-ad-guru')?></span></h2>
 	<div class="inside">
 		<?php adguru_show_zone_visibility_form( $zone ); ?>
 	</div><!-- ./inside -->
 </div><!-- /.postbox -->
 
 <div id="zone_editor_inserter_box" class="postbox">
-	<h2 class='hndle'><span><?php _e('Automatic Insertion', 'adguru')?></span></h2>
+	<h2 class='hndle'><span><?php _e('Automatic Insertion', 'wp-ad-guru')?></span></h2>
 	<div class="inside">
 		<?php adguru_show_zone_inserter_form( $zone ); ?>
 	</div><!-- ./inside -->
 </div><!-- /.postbox -->
 
 <div id="zone_editor_manual_inserter_box" class="postbox">
-	<h2 class='hndle'><span><?php _e('Manual Insertion', 'adguru')?></span></h2>
+	<h2 class='hndle'><span><?php _e('Manual Insertion', 'wp-ad-guru')?></span></h2>
 	<div class="inside">
 			<?php $zid = (isset($zone->ID) && $zone->ID != 0 ) ? $zone->ID : 'zone_id';?>
 			<div style="list-style-type:disc; padding-left:30px;font-size:14px">

@@ -20,22 +20,22 @@
 
 ?>
 <div id="modal_popup_ad_editor_design_box" class="postbox">
-	<h2 class='hndle'><span><?php _e('Design', 'adguru')?></span></h2>
+	<h2 class='hndle'><span><?php _e('Design', 'wp-ad-guru')?></span></h2>
 	<div class="inside">
 		<div>
 			<table class="widefat" style="width:100%; margin-bottom:20px;">
 				<tr>
-					<td width="150"><strong><label><?php _e('Popup design source', 'adguru')?> : </label></strong></td>
+					<td width="150"><strong><label><?php _e('Popup design source', 'wp-ad-guru')?> : </label></strong></td>
 					<td>
-						<label for="design_source_theme"><input type="radio" id="design_source_theme" name="design_source" value="theme" <?php if($ad->design_source == 'theme'){ echo ' checked="checked"';}?> > <?php _e('Popup Theme', 'adguru')?></label> &nbsp;
-						<label for="design_source_custom"><input type="radio" id="design_source_custom" name="design_source" value="custom" <?php if($ad->design_source == 'custom'){ echo ' checked="checked"';}?> > <?php _e('Custom Design', 'adguru')?></label>
+						<label for="design_source_theme"><input type="radio" id="design_source_theme" name="design_source" value="theme" <?php if($ad->design_source == 'theme'){ echo ' checked="checked"';}?> > <?php _e('Popup Theme', 'wp-ad-guru')?></label> &nbsp;
+						<label for="design_source_custom"><input type="radio" id="design_source_custom" name="design_source" value="custom" <?php if($ad->design_source == 'custom'){ echo ' checked="checked"';}?> > <?php _e('Custom Design', 'wp-ad-guru')?></label>
 					</td>
 					<td>
 						<div id="mp_editor_loading_box" class="hidden">Loading....</div>
 					<td>
 				</tr>
 				<tr id="popup_theme_row" class="<?php if($ad->design_source == 'custom'){ echo 'hidden';}?>">
-					<td><strong><label><?php _e('Popup Theme', 'adguru')?> :</label></strong></td>
+					<td><strong><label><?php _e('Popup Theme', 'wp-ad-guru')?> :</label></strong></td>
 					<td>
 						<select name="theme_id" id="theme_id">
 							<optgroup label="Builtin">
@@ -57,56 +57,56 @@
 								?>
 							</optgroup>
 						</select>
-						<a id="customize_theme_btn" class="hidden" style="font-size:14px; cursor:pointer;" onclick="javascript: return adguru_mp_customize_selected_theme()"><?php _e('Customize this theme', 'adguru');?></a>
+						<a id="customize_theme_btn" class="hidden" style="font-size:14px; cursor:pointer;" onclick="javascript: return adguru_mp_customize_selected_theme()"><?php _e('Customize this theme', 'wp-ad-guru');?></a>
 					</td>
 					
 				</tr>
 			</table>
 		</div>
 		<div id="popup_custom_design_form_wrap" class="<?php if($ad->design_source == 'theme'){ echo 'hidden';}?>">
-			<h2 style="font-size:30px; text-align:center;border-bottom: 1px solid #efefef;"><?php _e('Custom design', 'adguru')?></h2>
+			<h2 style="font-size:30px; text-align:center;border-bottom: 1px solid #efefef;"><?php _e('Custom design', 'wp-ad-guru')?></h2>
 			<?php adguru_show_modal_popup_design_form( $ad ); ?>
 		</div>
 	</div><!-- ./inside -->
 </div><!-- /.postbox -->
 
 <div id="modal_popup_ad_editor_sizing_box" class="postbox">
-	<h2 class='hndle'><span><?php _e('Sizing', 'adguru')?></span></h2>
+	<h2 class='hndle'><span><?php _e('Sizing', 'wp-ad-guru')?></span></h2>
 	<div class="inside">
 		<?php adguru_show_modal_popup_sizing_form( $ad ); ?>
 	</div><!-- ./inside -->
 </div><!-- /.postbox -->
 
 <div id="modal_popup_ad_editor_animation_box" class="postbox">
-	<h2 class='hndle'><span><?php _e('Animation', 'adguru')?></span></h2>
+	<h2 class='hndle'><span><?php _e('Animation', 'wp-ad-guru')?></span></h2>
 	<div class="inside">
 		<?php adguru_show_modal_popup_animation_form( $ad ); ?>
 	</div><!-- ./inside -->
 </div><!-- /.postbox -->
 
 <div id="modal_popup_ad_editor_position_box" class="postbox">
-	<h2 class='hndle'><span><?php _e('Position', 'adguru')?></span></h2>
+	<h2 class='hndle'><span><?php _e('Position', 'wp-ad-guru')?></span></h2>
 	<div class="inside">
 		<?php adguru_show_modal_popup_position_form( $ad ); ?>
 	</div><!-- ./inside -->
 </div><!-- /.postbox -->
 
 <div id="modal_popup_ad_editor_triggering_box" class="postbox">
-	<h2 class='hndle'><span><?php _e('Triggering', 'adguru')?></span></h2>
+	<h2 class='hndle'><span><?php _e('Triggering', 'wp-ad-guru')?></span></h2>
 	<div class="inside">
 		<?php adguru_show_modal_popup_triggering_form( $ad ); ?>
 	</div><!-- ./inside -->
 </div><!-- /.postbox -->
 
 <div id="modal_popup_ad_editor_closing_box" class="postbox">
-	<h2 class='hndle'><span><?php _e('Closing', 'adguru')?></span></h2>
+	<h2 class='hndle'><span><?php _e('Closing', 'wp-ad-guru')?></span></h2>
 	<div class="inside">
 		<?php adguru_show_modal_popup_closing_form( $ad ); ?>
 	</div><!-- ./inside -->
 </div><!-- /.postbox -->
 
 <div id="modal_popup_ad_editor_advanced_box" class="postbox">
-	<h2 class='hndle'><span><?php _e('Other/Advanced Options', 'adguru')?></span></h2>
+	<h2 class='hndle'><span><?php _e('Other/Advanced Options', 'wp-ad-guru')?></span></h2>
 	<div class="inside">
 		<?php adguru_show_modal_popup_other_form( $ad ); ?>
 	</div><!-- ./inside -->

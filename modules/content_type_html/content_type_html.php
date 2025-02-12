@@ -21,7 +21,7 @@ class ADGURU_Content_Type_Html extends ADGURU_Content_Type{
 	public function __construct(){
 
 		parent::__construct();
-		$this->description = __('Any HTML and JavaScript code, JavaScript code must be wrapped with &lt;script&gt; tag.', 'adguru');
+		$this->description = __('Any HTML and JavaScript code, JavaScript code must be wrapped with &lt;script&gt; tag.', 'wp-ad-guru');
 	}
 
 	protected function _editor_init( $current_ad_type ){

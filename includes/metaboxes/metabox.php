@@ -34,7 +34,7 @@ class ADGURU_Metabox{
 	
 			add_meta_box(
 				'adguru_setup',
-				__( 'AdGuru Setup', 'adguru' ),
+				__( 'AdGuru Setup', 'wp-ad-guru' ),
 				array( $this, 'metabox' ),
 				$screen
 			);
@@ -128,13 +128,13 @@ class ADGURU_Metabox{
 
 		if( !array_key_exists( $ad_type, $ad_types ) )
 		{
-			echo __( "Ad type not found" , 'adguru' ); 
+			echo __( "Ad type not found" , 'wp-ad-guru' ); 
 			return;
 		}
 		
 		if( ! $post_id )
 		{
-			echo __( "This settings page is only for individual post. No post id found.", "adguru");
+			echo __( "This settings page is only for individual post. No post id found.", "wp-ad-guru");
 			return;
 		
 		}
@@ -143,7 +143,7 @@ class ADGURU_Metabox{
 		
 		if( ! $post )
 		{
-			echo __( "No post found.", "adguru");
+			echo __( "No post found.", "wp-ad-guru");
 			return;
 		}
 		
@@ -152,7 +152,7 @@ class ADGURU_Metabox{
 		
 		echo '<div class="wrap" style="margin-left:20px;  margin-bottom:50px;">';
 			echo '<div id="icon-link-manager" class="icon32"><br></div><h2>';
-			printf( __("Setup %s for this %s", 'adguru' ),$current_ad_type_args['name'], $post_type);
+			printf( __("Setup %s for this %s", 'wp-ad-guru' ),$current_ad_type_args['name'], $post_type);
 			echo '</h2>';
 
 			if( $use_zone )
@@ -168,7 +168,7 @@ class ADGURU_Metabox{
 			}
 			else
 			{
-				echo __( "Select a zone", "adguru" );
+				echo __( "Select a zone", "wp-ad-guru" );
 			}
 
 		echo "</div>";

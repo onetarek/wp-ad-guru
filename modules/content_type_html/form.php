@@ -9,10 +9,10 @@ $content_html_form_args = array(
 		'content_html_html' => array(
 			'type' => 'textarea',
 			'id' => 'content_html_html',
-			'label' => __('HTML/JavaScript Code', 'adguru'),
+			'label' => __('HTML/JavaScript Code', 'wp-ad-guru'),
 			'default' => '',
 			'size' => 'medium',
-			'placeholder' => __('Enter HTML or JavaScript code here', 'adguru'),
+			'placeholder' => __('Enter HTML or JavaScript code here', 'wp-ad-guru'),
 		)
 	)//end of fields array 
 ); // end array $content_html_form_args
@@ -80,7 +80,7 @@ function adguru_content_html_form_validation_callback( $data, $args, $form )
 		{
 			if( $value == "")
 			{
-				$error = __('HTML code field is blank', 'adguru');
+				$error = __('HTML code field is blank', 'wp-ad-guru');
 			}
 			break;
 		}

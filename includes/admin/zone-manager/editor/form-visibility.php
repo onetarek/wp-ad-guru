@@ -8,12 +8,12 @@ $visibility_form_args = array(
 		'visibility_show_on_screen_size' => array(
 			'type' 	=> 'radio',
 			'id'	=> 'visibility_show_on_screen_size',
-			'label'	=> __( 'Show on screen size', 'adguru' ),
+			'label'	=> __( 'Show on screen size', 'wp-ad-guru' ),
 			'items_direction' => 'horizontal',
 			'default'	=> 'all',
 			'options' => array(
-				'all' => __( 'All screen', 'adguru' ),
-				'custom' => __( 'Custom', 'adguru' )
+				'all' => __( 'All screen', 'wp-ad-guru' ),
+				'custom' => __( 'Custom', 'wp-ad-guru' )
 				
 			),
 		),
@@ -22,28 +22,28 @@ $visibility_form_args = array(
 			'type' 	=> 'group',
 			'group_type' => 'row',
 			'id' 	=> 'visibility_screen_size_group',
-			'fieldset' => array( 'legend' => __( 'Condition', 'adguru' ) ),
+			'fieldset' => array( 'legend' => __( 'Condition', 'wp-ad-guru' ) ),
 			'fields'=> array(
 				'visibility_screen_min_width' => array(
 					'type' => 'number',
 					'id' => 'visibility_screen_min_width',
-					'label'	=> __( 'Screen min width', 'adguru' ),
+					'label'	=> __( 'Screen min width', 'wp-ad-guru' ),
 					'default' => '0',
 					'size' => 'small',
 					'min' => 0,
 					'unit_text' => 'px',
-					'desc' => __( 'Set minimum screen width. 0 for no limit.', 'adguru' )
+					'desc' => __( 'Set minimum screen width. 0 for no limit.', 'wp-ad-guru' )
 				),
 
 				'visibility_screen_max_width' => array(
 					'type' => 'number',
 					'id' => 'visibility_screen_max_width',
-					'label'	=> __( 'Screen max width', 'adguru' ),
+					'label'	=> __( 'Screen max width', 'wp-ad-guru' ),
 					'default' => '0',
 					'size' => 'small',
 					'min' => 0,
 					'unit_text' => 'px',
-					'desc' => __( 'Set maximum screen width. 0 for no limit.', 'adguru' )
+					'desc' => __( 'Set maximum screen width. 0 for no limit.', 'wp-ad-guru' )
 				),
 
 				'visibility_screen_help_text' => array(
@@ -51,7 +51,7 @@ $visibility_form_args = array(
 					'id' => 'visibility_screen_help_text',
 					'single_column' => true,
 					'value'	=> '<div style="color:#999999">
-								<strong>' . __( 'Some common breakpoints for widths of devices', 'adguru' ) . '</strong>
+								<strong>' . __( 'Some common breakpoints for widths of devices', 'wp-ad-guru' ) . '</strong>
 								<ul>
 									<li>320px — 480px : Mobile devices</li>
 									<li>481px — 768px : iPads, Tablets</li>

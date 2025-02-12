@@ -9,23 +9,23 @@ $content_image_form_args = array(
 		'content_image_source_url' => array(
 			'type' => 'image',
 			'id' => 'content_image_source_url',
-			'label' => __('Image source Url', 'adguru'),
+			'label' => __('Image source Url', 'wp-ad-guru'),
 			'default' => '',
 			'size' => 'medium',
-			'placeholder' => __('Enter image url', 'adguru'),
+			'placeholder' => __('Enter image url', 'wp-ad-guru'),
 		),
 		'content_image_link_url' => array(
 			'type' => 'url',
 			'id' => 'content_image_link_url',
-			'label' => __('Image link Url', 'adguru'),
+			'label' => __('Image link Url', 'wp-ad-guru'),
 			'default' => '',
 			'size' => 'medium',
-			'placeholder' => __('Enter image link url', 'adguru'),
+			'placeholder' => __('Enter image link url', 'wp-ad-guru'),
 		),
 		'content_image_link_target' => array(
 			'type' => 'select',
 			'id' => 'content_image_link_target',
-			'label' => __('Link target', 'adguru'),
+			'label' => __('Link target', 'wp-ad-guru'),
 			'default'	=> '_blank',
 			'options' => array(
 				'_blank'=> '_blank',
@@ -102,11 +102,11 @@ function adguru_content_image_form_validation_callback( $data, $args, $form )
 		{
 			if( $value == "")
 			{
-				$error = __('Image source url is blank', 'adguru');
+				$error = __('Image source url is blank', 'wp-ad-guru');
 			}
 			elseif(false == ADGURU_Helper::is_valid_url( $value ) ) 
 			{
-				$error = __('Image source url is not valid', 'adguru');
+				$error = __('Image source url is not valid', 'wp-ad-guru');
 			}
 			break;
 		}
@@ -114,11 +114,11 @@ function adguru_content_image_form_validation_callback( $data, $args, $form )
 		{
 			if( $value == "")
 			{
-				$error = __('Image link url is blank', 'adguru');
+				$error = __('Image link url is blank', 'wp-ad-guru');
 			}
 			elseif($value != '#' && false == ADGURU_Helper::is_valid_url( $value ) ) 
 			{
-				$error = __('Image link url is not valid', 'adguru');
+				$error = __('Image link url is not valid', 'wp-ad-guru');
 			}
 			break;
 		}

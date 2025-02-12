@@ -39,7 +39,7 @@ if( ! empty( $_POST ) && isset( $_POST['save'] ) && check_admin_referer( 'adguru
 	$theme->name = stripslashes ( trim($_POST['theme_name']) );
 	if( $theme->name == "" )
 	{ 
-		adguru_set_ad_input_error( 'theme_name' , __( "Name is required", 'adguru' ) ); 
+		adguru_set_ad_input_error( 'theme_name' , __( "Name is required", 'wp-ad-guru' ) ); 
 	}
 	
 	$theme->description = stripslashes ( trim($_POST['description']) );
@@ -89,7 +89,7 @@ elseif( $theme_id || $cp_from_id )
 	else
 	{
 		$theme->ID = 0;
-		echo '<div class="error"><p>'; echo sprintf( __( 'No theme found for the ID %d , Create new.' , 'adguru' ) , $post_id ); echo '</p></div>';
+		echo '<div class="error"><p>'; echo sprintf( __( 'No theme found for the ID %d , Create new.' , 'wp-ad-guru' ) , $post_id ); echo '</p></div>';
 		
 	}
 	
@@ -97,7 +97,7 @@ elseif( $theme_id || $cp_from_id )
 
 if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] ) )
 {
-	echo '<div class="updated"><p>'; echo __( 'Your theme has been saved successfully' , 'adguru' ); echo '</p></div>';
+	echo '<div class="updated"><p>'; echo __( 'Your theme has been saved successfully' , 'wp-ad-guru' ); echo '</p></div>';
 } 
 ?>
 <form action="" method="post">
@@ -118,11 +118,11 @@ if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] 
 					</thead>
 					<?php $error_class = isset( $error_msgs['theme_name'] )? " adg_error_field" : ""; ?>
 					<tr>
-						<td><label for="theme_name"><?php echo __( 'Theme Name', 'adguru' ) ?></label></td>
+						<td><label for="theme_name"><?php echo __( 'Theme Name', 'wp-ad-guru' ) ?></label></td>
 						<td><input type="text" name="theme_name" id="theme_name" class="input_long<?php echo $error_class;?>" size="30" value="<?php  echo esc_attr( $theme->name );?>" /></td>
 					</tr>
 					<tr>
-						<td><label for="description"><?php echo __( 'Description', 'adguru' ) ?></label></td>
+						<td><label for="description"><?php echo __( 'Description', 'wp-ad-guru' ) ?></label></td>
 						<td><textarea name="description" id="description"  class="input_long" cols="15" rows="4"><?php  echo $theme->description;?></textarea></td>
 					</tr>
 				</table>
@@ -137,10 +137,10 @@ if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] 
 					<div class="inside">
 						<p>
 							<?php if(isset($theme->builtin)&&$theme->builtin==1){ ?>
-							<input type="submit" name="save" class="button-primary" value="<?php _e('Save', 'adguru' )?>" style="width:100px;" disabled /><br>
-							<?php _e('This is a <b>builtin theme</b>,You can not modify.', 'adguru' )?> 
+							<input type="submit" name="save" class="button-primary" value="<?php _e('Save', 'wp-ad-guru' )?>" style="width:100px;" disabled /><br>
+							<?php _e('This is a <b>builtin theme</b>,You can not modify.', 'wp-ad-guru' )?> 
 							<?php } else { ?>
-							<input type="submit" name="save" class="button-primary" value="<?php _e('Save', 'adguru' )?>" style="width:100px;" />
+							<input type="submit" name="save" class="button-primary" value="<?php _e('Save', 'wp-ad-guru' )?>" style="width:100px;" />
 							<?php } ?>
 						<p>
 					</div>
@@ -159,10 +159,10 @@ if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] 
 						<div class="main" style="text-align:center;">	
 							
 							<?php if(isset($theme->builtin)&&$theme->builtin==1){ ?>
-							<input type="submit" name="save" class="button-primary" value="<?php _e('Save', 'adguru' )?>" style="width:200px;" disabled /><br>
-							<?php _e('This is a <b>builtin theme</b>,You can not modify.', 'adguru' )?> 
+							<input type="submit" name="save" class="button-primary" value="<?php _e('Save', 'wp-ad-guru' )?>" style="width:200px;" disabled /><br>
+							<?php _e('This is a <b>builtin theme</b>,You can not modify.', 'wp-ad-guru' )?> 
 							<?php } else { ?>
-							<input type="submit" name="save" class="button-primary" value="<?php _e('Save', 'adguru' )?>" style="width:200px;" />
+							<input type="submit" name="save" class="button-primary" value="<?php _e('Save', 'wp-ad-guru' )?>" style="width:200px;" />
 							<?php } ?>
 							
 

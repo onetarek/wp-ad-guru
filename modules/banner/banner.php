@@ -79,9 +79,9 @@ class ADGURU_Banner{
 	  **/
 	 public function __construct(){
 	 
-		$this->name = __( 'Banner', 'adguru' );
-		$this->plural_name = __( 'Banners', 'adguru' );
-		$this->description = __( 'Banner Ad Management.', 'adguru' );
+		$this->name = __( 'Banner', 'wp-ad-guru' );
+		$this->plural_name = __( 'Banners', 'wp-ad-guru' );
+		$this->description = __( 'Banner Ad Management.', 'wp-ad-guru' );
 		
 	 	add_action( "adguru_init", array( $this, "register" ) );
 
@@ -230,8 +230,8 @@ class ADGURU_Banner{
 	 */
 	public function list_table_columns( $columns ){
 
-		$columns['size'] = __( 'Size', 'adguru' );
-		//$columns['width'] = __( 'Width', 'adguru' );
+		$columns['size'] = __( 'Size', 'wp-ad-guru' );
+		//$columns['width'] = __( 'Width', 'wp-ad-guru' );
 		return $columns; 
 	
 	}//end func

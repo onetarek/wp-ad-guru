@@ -9,10 +9,10 @@ $content_url_form_args = array(
 		'content_url_url' => array(
 			'type' => 'url',
 			'id' => 'content_url_url',
-			'label' => __('URL', 'adguru'),
+			'label' => __('URL', 'wp-ad-guru'),
 			'default' => '',
 			'size' => 'medium',
-			'placeholder' => __('Enter a valid url', 'adguru'),
+			'placeholder' => __('Enter a valid url', 'wp-ad-guru'),
 		)
 	)//end of fields array 
 ); // end array $content_url_form_args
@@ -80,11 +80,11 @@ function adguru_content_url_form_validation_callback( $data, $args, $form )
 		{
 			if( $value == "")
 			{
-				$error = __('URL field is blank', 'adguru');
+				$error = __('URL field is blank', 'wp-ad-guru');
 			}
 			elseif(false == ADGURU_Helper::is_valid_url( $value ) ) 
 			{
-				$error = __('URL is not valid', 'adguru');
+				$error = __('URL is not valid', 'wp-ad-guru');
 			}
 			break;
 		}

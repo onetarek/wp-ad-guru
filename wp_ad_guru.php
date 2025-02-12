@@ -6,6 +6,7 @@
  * Author: oneTarek
  * Author URI: http://onetarek.com
  * Version: 2.5.4
+ * Text Domain: wp-ad-guru
  * License: GPLv2+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -270,7 +271,7 @@ final class WP_Ad_Guru{
 	 */
 	public function __clone(){
 		// Cloning instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'adguru' ), '2.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'wp-ad-guru' ), '2.0' );
 	}
 
 	/**
@@ -282,7 +283,7 @@ final class WP_Ad_Guru{
 	 */
 	public function __wakeup(){
 		// Unserializing instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'adguru' ), '2.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'wp-ad-guru' ), '2.0' );
 	}	
 
 	/**
@@ -385,7 +386,7 @@ final class WP_Ad_Guru{
 	 * @return void
 	 */
 	public function load_textdomain(){
-		load_plugin_textdomain( 'adguru', false, ADGURU_PLUGIN_DIR."languages/" );
+		load_plugin_textdomain( 'wp-ad-guru', false, ADGURU_PLUGIN_DIR."languages/" );
 	}
 
 	/**

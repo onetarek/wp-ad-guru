@@ -8,13 +8,13 @@ $triggering_form_args = array(
 		'triggering_auto_open_enable' => array(
 			'type' 	=> 'checkbox',
 			'id'	=> 'triggering_auto_open_enable',
-			'label'	=> __("Popup Auto Open", 'adguru' ),
+			'label'	=> __("Popup Auto Open", 'wp-ad-guru' ),
 			'default'	=> '1'
 		),
 		'triggering_auto_open_delay' => array(
 			'type' => 'slider',
 			'id' => 'triggering_auto_open_delay',
-			'label' => __("Auto Open Delay", 'adguru' ),
+			'label' => __("Auto Open Delay", 'wp-ad-guru' ),
 			'default' => 0,
 			'max' => 600,
 			'min' => 0,
@@ -25,7 +25,7 @@ $triggering_form_args = array(
 		'triggering_limitation_show_always' => array(
 			'type' 	=> 'checkbox',
 			'id'	=> 'triggering_limitation_show_always',
-			'label'	=> __("Show always", 'adguru' ),
+			'label'	=> __("Show always", 'wp-ad-guru' ),
 			'default'	=> '0'
 		),
 		'triggering_limitation_show_always_group' => array(
@@ -36,28 +36,28 @@ $triggering_form_args = array(
 				'triggering_limitation_showing_count' => array(
 					'type' => 'number',
 					'id' => 'triggering_limitation_showing_count',
-					'label' => __("Popup showing count", 'adguru' ),
+					'label' => __("Popup showing count", 'wp-ad-guru' ),
 					'size' => 'small',
 					'default' => 1,
 					'max' => 50,
 					'min' => 1,
-					'help' => __( 'Select how many times the popup will be shown for the same user', 'adguru' )
+					'help' => __( 'Select how many times the popup will be shown for the same user', 'wp-ad-guru' )
 				),
 				'triggering_limitation_reset_count_after_days' => array(
 					'type' => 'number',
 					'id' => 'triggering_limitation_reset_count_after_days',
-					'label' => __("Reset count after days", 'adguru' ),
+					'label' => __("Reset count after days", 'wp-ad-guru' ),
 					'size' => 'small',
 					'default' => 7,
 					'min' => 0,
-					'unit_text' => __('days', 'adguru')
+					'unit_text' => __('days', 'wp-ad-guru')
 				)
 			)
 		),//end triggering_limitation_show_always_group
 		'triggering_limitation_apply_for_individual_page' => array(
 			'type' 	=> 'checkbox',
 			'id'	=> 'triggering_limitation_apply_for_individual_page',
-			'label'	=> __("Apply limitation for each page individually", 'adguru' ),
+			'label'	=> __("Apply limitation for each page individually", 'wp-ad-guru' ),
 			'default'	=> '0'
 		),
 		

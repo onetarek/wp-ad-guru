@@ -48,7 +48,7 @@ $taxonomy_slug = $tab2;
 
 if( $tab2 == '--' )
 {
-	$msg =  __( "Set ads for <strong>category</strong>, <strong>tag</strong> or any kind of <strong>custom taxonomy</strong> archive pages", "adguru" );
+	$msg =  __( "Set ads for <strong>category</strong>, <strong>tag</strong> or any kind of <strong>custom taxonomy</strong> archive pages", "wp-ad-guru" );
 	adguru()->html->print_msg( $msg );
 	$links_editor = new ADGURU_Links_Editor( array( "ad_type_args"=>$current_ad_type_args, "zone_id"=>$zone_id, "page_type"=>"taxonomy", "taxonomy"=>"--", "term"=>"--", "post_id"=>0) );
 	$links_editor->display();
@@ -62,15 +62,15 @@ else
 	<?php
 	
 	$tabs = array(
-		"--"			=>	__( "All Terms", "adguru" ), 
-		"specific_term"	=>	__( "Specific Term", "adguru" ) 
+		"--"			=>	__( "All Terms", "wp-ad-guru" ), 
+		"specific_term"	=>	__( "Specific Term", "wp-ad-guru" ) 
 	);
 		
 	adguru_links_manager_tabs( $tabs , $tab3 , 'tab3', array( 'tab2' => $tab2,'tab' => 'taxonomy' ), false ); 
 	
 	if( $tab3 == "--" )
 	{
-		$msg = sprintf( __("Set default %s for <strong>%s archive</strong> pages", "adguru" ) , $current_ad_type_args['plural_name'], $taxonomy_name );
+		$msg = sprintf( __("Set default %s for <strong>%s archive</strong> pages", "wp-ad-guru" ) , $current_ad_type_args['plural_name'], $taxonomy_name );
 		adguru()->html->print_msg( $msg );
 		$links_editor = new ADGURU_Links_Editor( array( "ad_type_args"=>$current_ad_type_args, "zone_id"=>$zone_id, "page_type"=>"taxonomy", "taxonomy"=>$taxonomy_slug, "term"=>"--", "post_id"=>0) );
 		$links_editor->display();
@@ -117,7 +117,7 @@ else
 			<input type="hidden" name="tab" value="taxonomy" />
 													
 		<select name="term_slug"  onchange="this.form.submit()"> 
-		 <option value=""><?php echo sprintf( __('Select a %s', 'adguru' ), $taxonomy_name ); ?></option> 
+		 <option value=""><?php echo sprintf( __('Select a %s', 'wp-ad-guru' ), $taxonomy_name ); ?></option> 
 		 <?php 
 		  foreach ($categories as $category)
 		  {
@@ -134,7 +134,7 @@ else
 			
 			if( $selected_term_exists )
 			{
-				$msg = sprintf( __("Set default %s for <strong>%s archive</strong> page when term is <strong>%s</strong>", "adguru" ) , $current_ad_type_args['plural_name'], $taxonomy_name, $selected_term_slug );
+				$msg = sprintf( __("Set default %s for <strong>%s archive</strong> page when term is <strong>%s</strong>", "wp-ad-guru" ) , $current_ad_type_args['plural_name'], $taxonomy_name, $selected_term_slug );
 				adguru()->html->print_msg( $msg );
 				$links_editor = new ADGURU_Links_Editor( array( "ad_type_args"=>$current_ad_type_args, "zone_id"=>$zone_id, "page_type"=>"taxonomy", "taxonomy"=>$taxonomy_slug, "term"=>$selected_term_slug, "post_id"=>0) );
 				$links_editor->display();
@@ -145,7 +145,7 @@ else
 		 
 			if( $selected_term_exists )
 			{
-				$msg = sprintf( __("Set default %s for <strong>%s archive</strong> page when term is <strong>%s</strong>", "adguru" ) , $current_ad_type_args['plural_name'], $taxonomy_name, $selected_term_slug );
+				$msg = sprintf( __("Set default %s for <strong>%s archive</strong> page when term is <strong>%s</strong>", "wp-ad-guru" ) , $current_ad_type_args['plural_name'], $taxonomy_name, $selected_term_slug );
 				adguru()->html->print_msg( $msg );
 				$links_editor = new ADGURU_Links_Editor( array( "ad_type_args"=>$current_ad_type_args, "zone_id"=>$zone_id, "page_type"=>"taxonomy", "taxonomy"=>$taxonomy_slug, "term"=>$selected_term_slug, "post_id"=>0) );
 				$links_editor->display();
@@ -155,7 +155,7 @@ else
 			{
 				if(isset($_GET['term_slug']))
 				{
-					echo '<span style="color:#ff0000;">'; echo __( 'Your given term does not exists. Enter a valid term slug', 'adguru' ); echo '</span><br><br>';
+					echo '<span style="color:#ff0000;">'; echo __( 'Your given term does not exists. Enter a valid term slug', 'wp-ad-guru' ); echo '</span><br><br>';
 				}
 			}						  
 
@@ -171,10 +171,10 @@ else
 			<input type="hidden" name="tab2" value="<?php echo $tab2 ?>" />
 			<input type="hidden" name="tab3" value="specific_term" />
 			<input type="hidden" name="tab" value="taxonomy" />						 
-			<?php echo __( "Add new term slug", "adguru" ) ?> :
-			<input type="text" size="15"  name="term_slug" /><input type="submit" class="button" name="add_term" value="<?php echo esc_attr( __( 'Add and Select', 'adguru' ) ) ?>" />
+			<?php echo __( "Add new term slug", "wp-ad-guru" ) ?> :
+			<input type="text" size="15"  name="term_slug" /><input type="submit" class="button" name="add_term" value="<?php echo esc_attr( __( 'Add and Select', 'wp-ad-guru' ) ) ?>" />
 		  </form><br />
-		  <?php echo __( "OR click on any previously used term below to edit.", "adguru" ) ?>
+		  <?php echo __( "OR click on any previously used term below to edit.", "wp-ad-guru" ) ?>
 		  <div id="used_term_list">
 			<?php 
 				
@@ -189,7 +189,7 @@ else
 				}
 				else
 				{
-					echo __( 'You did not use any term for this taxonomy and zone yet', 'adguru' );
+					echo __( 'You did not use any term for this taxonomy and zone yet', 'wp-ad-guru' );
 				}
 			?>
 		  </div>

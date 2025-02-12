@@ -301,7 +301,7 @@ class ADGURU_Ad_Setup_Manager{
 	
 		 <div id="ad_list_modal" title="Insert <?php echo $this->current_ad_type_args['name'] ?>" style="display:none;">
 			<div style="padding:5px;">
-				<div style="width:470px; float:left;"><strong><?php echo sprintf( __( 'Select a %s and click insert', 'adguru' ) , $this->current_ad_type_args['name'] )?></strong></div>
+				<div style="width:470px; float:left;"><strong><?php echo sprintf( __( 'Select a %s and click insert', 'wp-ad-guru' ) , $this->current_ad_type_args['name'] )?></strong></div>
 				<div style="float:right; width:182px; text-align:right;"><input style="width:180px;" placeholder="Search" type="text" size="15" id="search_ad_list" /></div>
 				<div style="clear:both"></div>
 			</div>
@@ -311,11 +311,11 @@ class ADGURU_Ad_Setup_Manager{
 			if( !is_array( $ads ) )
 			{
 				echo '<span style="color:#cc0000;">';
-					echo sprintf( __( 'You have no %s for this zone size', 'adguru' ), $this->current_ad_type_args['name'] ).' <strong>'.$zone_width.'x'.$zone_height.'</strong>';
+					echo sprintf( __( 'You have no %s for this zone size', 'wp-ad-guru' ), $this->current_ad_type_args['name'] ).' <strong>'.$zone_width.'x'.$zone_height.'</strong>';
 					echo ' <a href="admin.php?page='.ADGURU_ADMANAGER_PAGE_SLUG_PREFIX.$this->ad_type.'">';
-						echo sprintf( __( 'Enter new ad', 'adguru') );
+						echo sprintf( __( 'Enter new ad', 'wp-ad-guru') );
 					echo '</a> ' ;
-					echo sprintf( __( 'in %s size', 'adguru' ), '<strong>'.$zone_width.'x'.$zone_height.'</strong>' );
+					echo sprintf( __( 'in %s size', 'wp-ad-guru' ), '<strong>'.$zone_width.'x'.$zone_height.'</strong>' );
 				echo '</span>';
 			}
 			else

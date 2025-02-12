@@ -9,7 +9,7 @@ $content_wysiwyg_form_args = array(
 		'content_wysiwyg_html' => array(
 			'type' => 'editor',
 			'id' => 'content_wysiwyg_html',
-			'label' => __('Create your own', 'adguru'),
+			'label' => __('Create your own', 'wp-ad-guru'),
 			'default' => '',
 			'size' => 'large',
 			'settings' => array('editor_height' => 300), //Do not use 'px' like '300px', use only integer value.
@@ -81,7 +81,7 @@ function adguru_content_wysiwyg_form_validation_callback( $data, $args, $form )
 		{
 			if( $value == "")
 			{
-				$error = __('WYSIWYG Editor field is blank', 'adguru');
+				$error = __('WYSIWYG Editor field is blank', 'wp-ad-guru');
 			}
 			break;
 		}

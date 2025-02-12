@@ -940,7 +940,7 @@ class ADGURU_Server {
 		
 		if( !isset( $zones[ $zone_id ] ) )
 		{
-			$output =__("Zone not found or deactivated.", "adguru" )."Zone id : ".$zone_id; 
+			$output =__("Zone not found or deactivated.", "wp-ad-guru" )."Zone id : ".$zone_id; 
 		}
 		else
 		{

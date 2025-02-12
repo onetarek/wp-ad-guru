@@ -21,7 +21,7 @@ class ADGURU_Content_Type_Url extends ADGURU_Content_Type{
 	public function __construct(){
 
 		parent::__construct();
-		$this->description = __('Set url for window popup', 'adguru');
+		$this->description = __('Set url for window popup', 'wp-ad-guru');
 	}
 
 	protected function _editor_init( $current_ad_type ){

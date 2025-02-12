@@ -10,7 +10,7 @@ $design_form_args = array(
 		"df_header_container" => array(
 			'type' 	=> 'header',
 			'id' 	=> 'df_header_container',
-			'value'	=> __("CONTAINER", 'adguru' ),
+			'value'	=> __("CONTAINER", 'wp-ad-guru' ),
 			'align' => 'left',
 			'tag'	=>'h3',
 			'single_column' => true
@@ -18,33 +18,33 @@ $design_form_args = array(
 		"design_container_border_enable" => array(
 			'type' 	=> 'checkbox',
 			'id' 	=> 'design_container_border_enable',
-			'label' => __('Show border', 'adguru' ),
+			'label' => __('Show border', 'wp-ad-guru' ),
 			'default'	=> "0",
-			'help'	=> __('Check this if you want to show a border around the popup container' , 'adguru' )
+			'help'	=> __('Check this if you want to show a border around the popup container' , 'wp-ad-guru' )
 		),
 		"design_container_border_group" => array(
 			'type' 	=> 'group',
 			'group_type' => 'row',
 			'id' 	=> 'design_container_border_group',
-			'fieldset' => array('legend'=>__( 'Border', 'adguru' ) ),
+			'fieldset' => array('legend'=>__( 'Border', 'wp-ad-guru' ) ),
 			'fields'=> array(
 				"design_container_border_width" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_container_border_width',
-					'label' => __('Width', 'adguru' ),
+					'label' => __('Width', 'wp-ad-guru' ),
 					'default'	=> 5,
 					'min' 	=> 0,
 					'max' 	=> 100,
 					'step' 	=> 1,
 					'display_text' => 'px',
-					'help'	=> __('Thickness of cotainer border in pixel', 'adguru' ),
+					'help'	=> __('Thickness of cotainer border in pixel', 'wp-ad-guru' ),
 				),
 				"design_container_border_style" => array(
 					'type' 	=> 'select',
 					'id' 	=> 'design_container_border_style',
 					'label' => 'Style',
 					'default'	=> "solid",
-					'help'	=> __('Style of cotainer border', 'adguru' ),
+					'help'	=> __('Style of cotainer border', 'wp-ad-guru' ),
 					'options' => array(
 						'solid'		=> 'solid',
 						'dotted'	=> 'dotted',
@@ -63,20 +63,20 @@ $design_form_args = array(
 				"design_container_border_color" => array(
 					'type' 	=> 'color',
 					'id' 	=> 'design_container_border_color',
-					'label' => __('Color', 'adguru' ),
+					'label' => __('Color', 'wp-ad-guru' ),
 					'default'	=> "#dddddd",
-					'help'	=> __('Color of cotainer border', 'adguru' ),
+					'help'	=> __('Color of cotainer border', 'wp-ad-guru' ),
 				),
 				"design_container_border_radius" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_container_border_radius',
-					'label' => __('Radius', 'adguru' ),
+					'label' => __('Radius', 'wp-ad-guru' ),
 					'default'	=> 0,
 					'min' 	=> 0,
 					'max' 	=> 500,
 					'step' 	=> 1,
 					'display_text' => 'px',
-					'help'	=> __('Radius of cotainer border in pixel', 'adguru' ),
+					'help'	=> __('Radius of cotainer border in pixel', 'wp-ad-guru' ),
 				),
 				
 			)// end of group fields
@@ -84,140 +84,140 @@ $design_form_args = array(
 		"design_container_padding" => array(
 			'type' 	=> 'slider',
 			'id' 	=> 'design_container_padding',
-			'label' => __('Padding', 'adguru' ),
+			'label' => __('Padding', 'wp-ad-guru' ),
 			'default'	=> 0,
 			'min' 	=> 0,
 			'max' 	=> 100,
 			'step' 	=> 1,
 			'display_text' => 'px',
-			'help'	=> __('Space between the cotainer border and content in pixel', 'adguru' ),
+			'help'	=> __('Space between the cotainer border and content in pixel', 'wp-ad-guru' ),
 		),
 		"design_container_background_enable" => array(
 			'type' 	=> 'checkbox',
 			'id' 	=> 'design_container_background_enable',
-			'label' => __('Use Background', 'adguru' ),
+			'label' => __('Use Background', 'wp-ad-guru' ),
 			'default'	=> "1",
-			'help'	=> __('Check this if you want to use background of the popup container' , 'adguru' )
+			'help'	=> __('Check this if you want to use background of the popup container' , 'wp-ad-guru' )
 		),
 		"design_container_background_group" => array(
 			'type' 	=> 'group',
 			'group_type' => 'row',
 			'id' 	=> 'design_container_background_group',
-			'fieldset' => array('legend'=>__( 'Background', 'adguru' ) ),
+			'fieldset' => array('legend'=>__( 'Background', 'wp-ad-guru' ) ),
 			'fields'=> array(
 				"design_container_background_color" => array(
 					'type' 	=> 'color',
 					'id' 	=> 'design_container_background_color',
-					'label' => __('Color', 'adguru' ),
+					'label' => __('Color', 'wp-ad-guru' ),
 					'default'	=> "#ffffff",
-					'help'	=> __('Color of cotainer background', 'adguru' ),
+					'help'	=> __('Color of cotainer background', 'wp-ad-guru' ),
 				),
 				"design_container_background_opacity" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_container_background_opacity',
-					'label' => __('Opacity', 'adguru' ),
+					'label' => __('Opacity', 'wp-ad-guru' ),
 					'default'	=> 100,
 					'min' 	=> 0,
 					'max' 	=> 100,
 					'step' 	=> 1,
 					'display_text' => '%',
-					'help'	=> __('Opacity of cotainer background in %', 'adguru' ),
+					'help'	=> __('Opacity of cotainer background in %', 'wp-ad-guru' ),
 				),
 			)
 		),//end of design_container_background_group
 		"design_container_box_shadow_enable" => array(
 			'type' 	=> 'checkbox',
 			'id' 	=> 'design_container_box_shadow_enable',
-			'label' => __('Show Shadow', 'adguru' ),
+			'label' => __('Show Shadow', 'wp-ad-guru' ),
 			'default'	=> "1",
-			'help'	=> __('Check this if you want to show box shadow of the popup container' , 'adguru' )
+			'help'	=> __('Check this if you want to show box shadow of the popup container' , 'wp-ad-guru' )
 		),
 		"design_container_box_shadow_group" => array(
 			'type' 	=> 'group',
 			'group_type' => 'row',
 			'id' 	=> 'design_container_box_shadow_group',
-			'fieldset' => array('legend'=>__( 'Box shadow', 'adguru' ) ),
+			'fieldset' => array('legend'=>__( 'Box shadow', 'wp-ad-guru' ) ),
 			'fields'=> array(
 				"design_container_box_shadow_h_offset" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_container_box_shadow_h_offset',
-					'label' => __('Horizontal position', 'adguru' ),
+					'label' => __('Horizontal position', 'wp-ad-guru' ),
 					'default'	=> 1,
 					'min' 	=> 0,
 					'max' 	=> 100,
 					'step' 	=> 1,
 					'display_text' => 'px',
-					'help'	=> __('Horizontal position of cotainer box shadow in pixel', 'adguru' ),
+					'help'	=> __('Horizontal position of cotainer box shadow in pixel', 'wp-ad-guru' ),
 				),
 				"design_container_box_shadow_v_offset" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_container_box_shadow_v_offset',
-					'label' => __('Vertical position', 'adguru' ),
+					'label' => __('Vertical position', 'wp-ad-guru' ),
 					'default'	=> 1,
 					'min' 	=> 0,
 					'max' 	=> 100,
 					'step' 	=> 1,
 					'display_text' => 'px',
-					'help'	=> __('Vertical position of cotainer box shadow in pixel', 'adguru' ),
+					'help'	=> __('Vertical position of cotainer box shadow in pixel', 'wp-ad-guru' ),
 				),
 				"design_container_box_shadow_blur_radius" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_container_box_shadow_blur_radius',
-					'label' => __('Blur radius', 'adguru' ),
+					'label' => __('Blur radius', 'wp-ad-guru' ),
 					'default'	=> 3,
 					'min' 	=> 0,
 					'max' 	=> 100,
 					'step' 	=> 1,
 					'display_text' => 'px',
-					'help'	=> __('Blur radius of cotainer box shadow in pixel', 'adguru' ),
+					'help'	=> __('Blur radius of cotainer box shadow in pixel', 'wp-ad-guru' ),
 				),
 				"design_container_box_shadow_spread" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_container_box_shadow_spread',
-					'label' => __('Spread', 'adguru' ),
+					'label' => __('Spread', 'wp-ad-guru' ),
 					'default'	=> 0,
 					'min' 	=> 0,
 					'max' 	=> 100,
 					'step' 	=> 1,
 					'display_text' => 'px',
-					'help'	=> __('Spread of cotainer box shadow in pixel', 'adguru' ),
+					'help'	=> __('Spread of cotainer box shadow in pixel', 'wp-ad-guru' ),
 				),
 				"design_container_box_shadow_color" => array(
 					'type' 	=> 'color',
 					'id' 	=> 'design_container_box_shadow_color',
-					'label' => __('Color', 'adguru' ),
+					'label' => __('Color', 'wp-ad-guru' ),
 					'default'	=> "#000000",
-					'help'	=> __('Color of cotainer box shadow', 'adguru' ),
+					'help'	=> __('Color of cotainer box shadow', 'wp-ad-guru' ),
 				),
 				"design_container_box_shadow_opacity" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_container_box_shadow_opacity',
 					'name' 	=> 'design[container][box-shadow-opacity]',
-					'label' => __('Opacity', 'adguru' ),
+					'label' => __('Opacity', 'wp-ad-guru' ),
 					'default'	=> 25,
 					'min' 	=> 0,
 					'max' 	=> 100,
 					'step' 	=> 1,
 					'display_text' => '%',
-					'help'	=> __('Opacity of cotainer box shadow in %', 'adguru' ),
+					'help'	=> __('Opacity of cotainer box shadow in %', 'wp-ad-guru' ),
 				),
 				"design_container_box_shadow_inset" => array(
 					'type' 	=> 'select',
 					'id' 	=> 'design_container_box_shadow_inset',
-					'label' => __('Inset', 'adguru' ),
+					'label' => __('Inset', 'wp-ad-guru' ),
 					'default'	=> 'no',
 					'options' => array('no'=>'No', 'yes'=>'Yes'),
-					'help'	=> __('Set the box shadow to inset (inner shadow)', 'adguru' ),
+					'help'	=> __('Set the box shadow to inset (inner shadow)', 'wp-ad-guru' ),
 				),
 			)
 		),//end of design_container_box_shadow_group
 		"design_container_custom_css_class" => array(
 			'type' 	=> 'text',
 			'id' 	=> 'design_container_custom_css_class',
-			'label' => __('Custom CSS class', 'adguru' ),
+			'label' => __('Custom CSS class', 'wp-ad-guru' ),
 			'default'	=> '',
 			'size'  => 'medium',
-			'help'	=> __('Add custom CSS class name to the container element. For multiple class names use space between two classes', 'adguru' ),
+			'help'	=> __('Add custom CSS class name to the container element. For multiple class names use space between two classes', 'wp-ad-guru' ),
 		),
 		//----------END CONTAINER --------------------------------------------------------
 		//----------START CLOSE BUTTON ----------------------------------------------------
@@ -225,7 +225,7 @@ $design_form_args = array(
 		"df_header_close" => array(
 			'type' 	=> 'header',
 			'id' 	=> 'df_header_close',
-			'value'	=> __("CLOSE BUTTON", 'adguru' ),
+			'value'	=> __("CLOSE BUTTON", 'wp-ad-guru' ),
 			'align' => 'left',
 			'tag'	=>'h3',
 			'single_column' => true
@@ -233,66 +233,66 @@ $design_form_args = array(
 		"design_close_height" => array(
 			'type' 	=> 'slider',
 			'id' 	=> 'design_close_height',
-			'label' => __('Height', 'adguru' ),
+			'label' => __('Height', 'wp-ad-guru' ),
 			'default'	=> 30,
 			'min' 	=> 0,
 			'max' 	=> 100,
 			'step' 	=> 1,
 			'display_text' => 'px',
-			'help'	=> __('Height of the close button in pixel. Note : this value includes padding and border width value', 'adguru' ),
+			'help'	=> __('Height of the close button in pixel. Note : this value includes padding and border width value', 'wp-ad-guru' ),
 		),
 		"design_close_width" => array(
 			'type' 	=> 'slider',
 			'id' 	=> 'design_close_width',
-			'label' => __('Width', 'adguru' ),
+			'label' => __('Width', 'wp-ad-guru' ),
 			'default'	=> 30,
 			'min' 	=> 0,
 			'max' 	=> 100,
 			'step' 	=> 1,
 			'display_text' => 'px',
-			'help'	=> __('Width of the close button in pixel. Note : this value includes padding and border width value', 'adguru' ),
+			'help'	=> __('Width of the close button in pixel. Note : this value includes padding and border width value', 'wp-ad-guru' ),
 		),
 		"design_close_padding" => array(
 			'type' 	=> 'slider',
 			'id' 	=> 'design_close_padding',
-			'label' => __('Padding', 'adguru' ),
+			'label' => __('Padding', 'wp-ad-guru' ),
 			'default'	=> 0,
 			'min' 	=> 0,
 			'max' 	=> 30,
 			'step' 	=> 1,
 			'display_text' => 'px',
-			'help'	=> __('Space between the close button border and text or image in pixel', 'adguru' ),
+			'help'	=> __('Space between the close button border and text or image in pixel', 'wp-ad-guru' ),
 		),
 		"design_close_border_enable" => array(
 			'type' 	=> 'checkbox',
 			'id' 	=> 'design_close_border_enable',
-			'label' => __('Show border', 'adguru' ),
+			'label' => __('Show border', 'wp-ad-guru' ),
 			'default'	=> "0",
-			'help'	=> __('Check this if you want to show a border around the close button' , 'adguru' )
+			'help'	=> __('Check this if you want to show a border around the close button' , 'wp-ad-guru' )
 		),
 		"design_close_border_group" => array(
 			'type' 	=> 'group',
 			'group_type' => 'row',
 			'id' 	=> 'design_close_border_group',
-			'fieldset' => array('legend'=>__( 'Border', 'adguru' ) ),
+			'fieldset' => array('legend'=>__( 'Border', 'wp-ad-guru' ) ),
 			'fields'=> array(
 				"design_close_border_width" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_close_border_width',
-					'label' => __('Width', 'adguru' ),
+					'label' => __('Width', 'wp-ad-guru' ),
 					'default'	=> 5,
 					'min' 	=> 0,
 					'max' 	=> 30,
 					'step' 	=> 1,
 					'display_text' => 'px',
-					'help'	=> __('Thickness of border in pixel', 'adguru' ),
+					'help'	=> __('Thickness of border in pixel', 'wp-ad-guru' ),
 				),
 				"design_close_border_style" => array(
 					'type' 	=> 'select',
 					'id' 	=> 'design_close_border_style',
 					'label' => 'Style',
 					'default'	=> "solid",
-					'help'	=> __('Style of border', 'adguru' ),
+					'help'	=> __('Style of border', 'wp-ad-guru' ),
 					'options' => array(
 						'solid'		=> 'solid',
 						'dotted'	=> 'dotted',
@@ -311,20 +311,20 @@ $design_form_args = array(
 				"design_close_border_color" => array(
 					'type' 	=> 'color',
 					'id' 	=> 'design_close_border_color',
-					'label' => __('Color', 'adguru' ),
+					'label' => __('Color', 'wp-ad-guru' ),
 					'default'	=> "#dddddd",
-					'help'	=> __('Color of border', 'adguru' ),
+					'help'	=> __('Color of border', 'wp-ad-guru' ),
 				),
 				"design_close_border_radius" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_close_border_radius',
-					'label' => __('Radius', 'adguru' ),
+					'label' => __('Radius', 'wp-ad-guru' ),
 					'default'	=> 0,
 					'min' 	=> 0,
 					'max' 	=> 50,
 					'step' 	=> 1,
 					'display_text' => 'px',
-					'help'	=> __('Radius of border in pixel', 'adguru' ),
+					'help'	=> __('Radius of border in pixel', 'wp-ad-guru' ),
 				),
 				
 			)// end of group fields
@@ -332,10 +332,10 @@ $design_form_args = array(
 		"design_close_button_type" => array(
 			'type' 	=> 'radio',
 			'id' 	=> 'design_close_button_type',
-			'label' => __('Button type', 'adguru' ),
+			'label' => __('Button type', 'wp-ad-guru' ),
 			'default'	=> 'image',
-			'options' => array('text'=>__("Text", 'adguru' ), 'image'=>__("Image", 'adguru' )),
-			'help'	=> __('Select the type of button. You can use either text or image for the close button', 'adguru' ),
+			'options' => array('text'=>__("Text", 'wp-ad-guru' ), 'image'=>__("Image", 'wp-ad-guru' )),
+			'help'	=> __('Select the type of button. You can use either text or image for the close button', 'wp-ad-guru' ),
 		),
 		"design_close_button_type_text_group" => array(
 			'type' 	=> 'group',
@@ -345,27 +345,27 @@ $design_form_args = array(
 				"design_close_text" => array(
 					'type' 	=> 'text',
 					'id' 	=> 'design_close_text',
-					'label' => __('Button text', 'adguru' ),
+					'label' => __('Button text', 'wp-ad-guru' ),
 					'default'	=> 'X',
 					'size'  => 'small',
-					'help'	=> __('Text to show in close button', 'adguru' ),
+					'help'	=> __('Text to show in close button', 'wp-ad-guru' ),
 				),
 				"design_close_font_group" => array(
 					'type' 	=> 'group',
 					'group_type' => 'row',
 					'id' 	=> 'design_close_font_group',
-					'fieldset' => array('legend'=>__( 'Font', 'adguru' ) ),
+					'fieldset' => array('legend'=>__( 'Font', 'wp-ad-guru' ) ),
 					'fields'=> array(
 						"design_close_color" => array(
 							'type' 	=> 'color',
 							'id' 	=> 'design_close_color',
-							'label' => __('Color', 'adguru' ),
+							'label' => __('Color', 'wp-ad-guru' ),
 							'default'	=> "#ffffff",
 						),
 						"design_close_font_size" => array(
 							'type' 	=> 'slider',
 							'id' 	=> 'design_close_font_size',
-							'label' => __('Size', 'adguru' ),
+							'label' => __('Size', 'wp-ad-guru' ),
 							'default'	=> 18,
 							'min' 	=> 0,
 							'max' 	=> 100,
@@ -375,7 +375,7 @@ $design_form_args = array(
 						"design_close_line_height" => array(
 							'type' 	=> 'slider',
 							'id' 	=> 'design_close_line_height',
-							'label' => __('Line height', 'adguru' ),
+							'label' => __('Line height', 'wp-ad-guru' ),
 							'default'	=> 18,
 							'min' 	=> 0,
 							'max' 	=> 100,
@@ -385,15 +385,15 @@ $design_form_args = array(
 						"design_close_font_family" => array(
 							'type' 	=> 'select',
 							'id' 	=> 'design_close_font_family',
-							'label' => __('Family', 'adguru' ),
+							'label' => __('Family', 'wp-ad-guru' ),
 							'default'	=> 'Arial',
 							'options' => array_merge( array('use_from_theme'=>'Use From Theme'), ADGURU_Helper::get_common_font_list() ),
-							'help'	=> __("If you don't want to use any font from this list then select 'Use From Theme', font-family will be inherited from the active WordPress theme" , 'adguru' )
+							'help'	=> __("If you don't want to use any font from this list then select 'Use From Theme', font-family will be inherited from the active WordPress theme" , 'wp-ad-guru' )
 						),
 						"design_close_font_weight" => array(
 							'type' 	=> 'select',
 							'id' 	=> 'design_close_font_weight',
-							'label' => __('Weight', 'adguru' ),
+							'label' => __('Weight', 'wp-ad-guru' ),
 							'default'	=> 'normal',
 							'options' => array(
 								'normal' => "normal",
@@ -414,7 +414,7 @@ $design_form_args = array(
 						"design_close_font_style" => array(
 							'type' 	=> 'select',
 							'id' 	=> 'design_close_font_style',
-							'label' => __('Style', 'adguru' ),
+							'label' => __('Style', 'wp-ad-guru' ),
 							'default'	=> 'normal',
 							'options' => array(
 								'normal' => "normal",
@@ -427,20 +427,20 @@ $design_form_args = array(
 				"design_close_text_shadow_enable" => array(
 					'type' 	=> 'checkbox',
 					'id' 	=> 'design_close_text_shadow_enable',
-					'label' => __('Use text shadow', 'adguru' ),
+					'label' => __('Use text shadow', 'wp-ad-guru' ),
 					'default'	=> "1",
-					'help'	=> __('Check this if you want to show text shadow for close button' , 'adguru' )
+					'help'	=> __('Check this if you want to show text shadow for close button' , 'wp-ad-guru' )
 				),
 				"design_close_text_shadow_group" => array(
 					'type' 	=> 'group',
 					'group_type' => 'row',
 					'id' 	=> 'design_close_text_shadow_group',
-					'fieldset' => array('legend'=>__( 'Text shadow', 'adguru' ) ),
+					'fieldset' => array('legend'=>__( 'Text shadow', 'wp-ad-guru' ) ),
 					'fields'=> array(
 						"design_close_text_shadow_h_offset" => array(
 							'type' 	=> 'slider',
 							'id' 	=> 'design_close_text_shadow_h_offset',
-							'label' => __('Horizontal position', 'adguru' ),
+							'label' => __('Horizontal position', 'wp-ad-guru' ),
 							'default'	=> 1,
 							'min' 	=> 0,
 							'max' 	=> 100,
@@ -450,7 +450,7 @@ $design_form_args = array(
 						"design_close_text_shadow_v_offset" => array(
 							'type' 	=> 'slider',
 							'id' 	=> 'design_close_text_shadow_v_offset',
-							'label' => __('Vertical position', 'adguru' ),
+							'label' => __('Vertical position', 'wp-ad-guru' ),
 							'default'	=> 1,
 							'min' 	=> 0,
 							'max' 	=> 100,
@@ -460,7 +460,7 @@ $design_form_args = array(
 						"design_close_text_shadow_blur_radius" => array(
 							'type' 	=> 'slider',
 							'id' 	=> 'design_close_text_shadow_blur_radius',
-							'label' => __('Blur radius', 'adguru' ),
+							'label' => __('Blur radius', 'wp-ad-guru' ),
 							'default'	=> 1,
 							'min' 	=> 0,
 							'max' 	=> 100,
@@ -470,7 +470,7 @@ $design_form_args = array(
 						"design_close_text_shadow_color" => array(
 							'type' 	=> 'color',
 							'id' 	=> 'design_close_text_shadow_color',
-							'label' => __('Color', 'adguru' ),
+							'label' => __('Color', 'wp-ad-guru' ),
 							'default'	=> "#444444",
 						),
 					)
@@ -486,7 +486,7 @@ $design_form_args = array(
 				"design_close_image_source_type" => array(
 					'type' 	=> 'radio',
 					'id' 	=> 'design_close_image_source_type',
-					'label' => __('Button image source', 'adguru' ),
+					'label' => __('Button image source', 'wp-ad-guru' ),
 					'default'	=> 'builtin',
 					'options' => array('builtin'=>'Select from list', 'custom'=>'Custom'),
 					'disabled' => array('custom'), //will enable this when advanced designer extension is ready
@@ -494,14 +494,14 @@ $design_form_args = array(
 				"design_close_image_list_heading" => array(
 					'type' 	=> 'html',
 					'id' 	=> 'design_close_image_list_heading',
-					'label' => __('Built-in close button image list', 'adguru' ),
+					'label' => __('Built-in close button image list', 'wp-ad-guru' ),
 					'single_column' => true,
 				),
 				
 				"design_close_image_name" => array(
 					'type' 	=> 'radio_image',
 					'id' 	=> 'design_close_image_name',
-					//'label' => __('Button image list', 'adguru' ),
+					//'label' => __('Button image list', 'wp-ad-guru' ),
 					'default'	=> 'core_close_default_png',
 					'options' => ADGURU_Helper::get_close_icon_list('png'),
 					'single_column' => true,
@@ -510,7 +510,7 @@ $design_form_args = array(
 				"design_close_custom_image_url" => array(
 					'type' 	=> 'image',
 					'id' 	=> 'design_close_custom_image_url',
-					'label' => __('Custom Image', 'adguru' )
+					'label' => __('Custom Image', 'wp-ad-guru' )
 				),
 
 			),
@@ -518,26 +518,26 @@ $design_form_args = array(
 		"design_close_background_enable" => array(
 			'type' 	=> 'checkbox',
 			'id' 	=> 'design_close_background_enable',
-			'label' => __('Use Background', 'adguru' ),
+			'label' => __('Use Background', 'wp-ad-guru' ),
 			'default'	=> "0",
-			'help'	=> __('Check this if you want to use background of the popup close button' , 'adguru' )
+			'help'	=> __('Check this if you want to use background of the popup close button' , 'wp-ad-guru' )
 		),
 		"design_close_background_group" => array(
 			'type' 	=> 'group',
 			'group_type' => 'row',
 			'id' 	=> 'design_close_background_group',
-			'fieldset' => array('legend'=>__( 'Background', 'adguru' ) ),
+			'fieldset' => array('legend'=>__( 'Background', 'wp-ad-guru' ) ),
 			'fields'=> array(
 				"design_close_background_color" => array(
 					'type' 	=> 'color',
 					'id' 	=> 'design_close_background_color',
-					'label' => __('Color', 'adguru' ),
+					'label' => __('Color', 'wp-ad-guru' ),
 					'default'	=> "#ffffff",
 				),
 				"design_close_background_opacity" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_close_background_opacity',
-					'label' => __('Opacity', 'adguru' ),
+					'label' => __('Opacity', 'wp-ad-guru' ),
 					'default'	=> 100,
 					'min' 	=> 0,
 					'max' 	=> 100,
@@ -550,20 +550,20 @@ $design_form_args = array(
 		"design_close_box_shadow_enable" => array(
 			'type' 	=> 'checkbox',
 			'id' 	=> 'design_close_box_shadow_enable',
-			'label' => __('Show Shadow', 'adguru' ),
+			'label' => __('Show Shadow', 'wp-ad-guru' ),
 			'default'	=> "0",
-			'help'	=> __('Check this if you want to show box shadow of the close button' , 'adguru' )
+			'help'	=> __('Check this if you want to show box shadow of the close button' , 'wp-ad-guru' )
 		),
 		"design_close_box_shadow_group" => array(
 			'type' 	=> 'group',
 			'group_type' => 'row',
 			'id' 	=> 'design_close_box_shadow_group',
-			'fieldset' => array('legend'=>__( 'Drop shadow', 'adguru' ) ),
+			'fieldset' => array('legend'=>__( 'Drop shadow', 'wp-ad-guru' ) ),
 			'fields'=> array(
 				"design_close_box_shadow_h_offset" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_close_box_shadow_h_offset',
-					'label' => __('Horizontal position', 'adguru' ),
+					'label' => __('Horizontal position', 'wp-ad-guru' ),
 					'default'	=> 1,
 					'min' 	=> 0,
 					'max' 	=> 100,
@@ -573,7 +573,7 @@ $design_form_args = array(
 				"design_close_box_shadow_v_offset" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_close_box_shadow_v_offset',
-					'label' => __('Vertical position', 'adguru' ),
+					'label' => __('Vertical position', 'wp-ad-guru' ),
 					'default'	=> 1,
 					'min' 	=> 0,
 					'max' 	=> 100,
@@ -583,7 +583,7 @@ $design_form_args = array(
 				"design_close_box_shadow_blur_radius" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_close_box_shadow_blur_radius',
-					'label' => __('Blur radius', 'adguru' ),
+					'label' => __('Blur radius', 'wp-ad-guru' ),
 					'default'	=> 3,
 					'min' 	=> 0,
 					'max' 	=> 100,
@@ -593,7 +593,7 @@ $design_form_args = array(
 				"design_close_box_shadow_spread" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_close_box_shadow_spread',
-					'label' => __('Spread', 'adguru' ),
+					'label' => __('Spread', 'wp-ad-guru' ),
 					'default'	=> 0,
 					'min' 	=> 0,
 					'max' 	=> 100,
@@ -603,13 +603,13 @@ $design_form_args = array(
 				"design_close_box_shadow_color" => array(
 					'type' 	=> 'color',
 					'id' 	=> 'design_close_box_shadow_color',
-					'label' => __('Color', 'adguru' ),
+					'label' => __('Color', 'wp-ad-guru' ),
 					'default'	=> "#000000"
 				),
 				"design_close_box_shadow_opacity" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_close_box_shadow_opacity',
-					'label' => __('Opacity', 'adguru' ),
+					'label' => __('Opacity', 'wp-ad-guru' ),
 					'default'	=> 25,
 					'min' 	=> 0,
 					'max' 	=> 100,
@@ -619,10 +619,10 @@ $design_form_args = array(
 				"design_close_box_shadow_inset" => array(
 					'type' 	=> 'select',
 					'id' 	=> 'design_close_box_shadow_inset',
-					'label' => __('Inset', 'adguru' ),
+					'label' => __('Inset', 'wp-ad-guru' ),
 					'default'	=> 'no',
 					'options' => array('no'=>'No', 'yes'=>'Yes'),
-					'help'	=> __('Set the box shadow to inset (inner shadow)', 'adguru' ),
+					'help'	=> __('Set the box shadow to inset (inner shadow)', 'wp-ad-guru' ),
 				),
 			)
 		),//end of design_close_box_shadow_group
@@ -630,12 +630,12 @@ $design_form_args = array(
 			'type' => 'group',
 			'group_type' => 'row',
 			'id' => 'design_close_location_group',
-			'fieldset' => array('legend' => __('Location of close button', 'adguru') ),
+			'fieldset' => array('legend' => __('Location of close button', 'wp-ad-guru') ),
 			'fields' => array(
 				"design_close_location" => array(
 					'type' 	=> 'select',
 					'id' 	=> 'design_close_location',
-					'label' => __('Location', 'adguru' ),
+					'label' => __('Location', 'wp-ad-guru' ),
 					'default'	=> 'top_left',
 					'options' => array(
 						'top_left' 		=> 'Top Left',
@@ -648,12 +648,12 @@ $design_form_args = array(
 						'bottom_center' => 'Bottom Center',
 						'bottom_right' 	=> 'Bottom Right'
 					),
-					'help' => __('Location of close button', 'adguru' ),
+					'help' => __('Location of close button', 'wp-ad-guru' ),
 				),
 				"design_close_top" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_close_top',
-					'label' => __('Top', 'adguru' ),
+					'label' => __('Top', 'wp-ad-guru' ),
 					'default'	=> 0,
 					'min' 	=> -100,
 					'max' 	=> 100,
@@ -664,7 +664,7 @@ $design_form_args = array(
 				"design_close_left" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_close_left',
-					'label' => __('Left', 'adguru' ),
+					'label' => __('Left', 'wp-ad-guru' ),
 					'default'	=> 0,
 					'min' 	=> -100,
 					'max' 	=> 100,
@@ -675,7 +675,7 @@ $design_form_args = array(
 				"design_close_right" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_close_right',
-					'label' => __('Right', 'adguru' ),
+					'label' => __('Right', 'wp-ad-guru' ),
 					'default'	=> 0,
 					'min' 	=> -100,
 					'max' 	=> 100,
@@ -686,7 +686,7 @@ $design_form_args = array(
 				"design_close_bottom" => array(
 					'type' 	=> 'slider',
 					'id' 	=> 'design_close_bottom',
-					'label' => __('Bottom', 'adguru' ),
+					'label' => __('Bottom', 'wp-ad-guru' ),
 					'default'	=> 0,
 					'min' 	=> -100,
 					'max' 	=> 100,
@@ -700,10 +700,10 @@ $design_form_args = array(
 		"design_close_custom_css_class" => array(
 			'type' 	=> 'text',
 			'id' 	=> 'design_close_custom_css_class',
-			'label' => __('Custom CSS class', 'adguru' ),
+			'label' => __('Custom CSS class', 'wp-ad-guru' ),
 			'default'	=> '',
 			'size'  => 'medium',
-			'help'	=> __('Add custom CSS class name to the close button element. For multiple class names use space between two classes', 'adguru' ),
+			'help'	=> __('Add custom CSS class name to the close button element. For multiple class names use space between two classes', 'wp-ad-guru' ),
 		),
 		//----------END CLOSE BUTTON ------------------------------------------------------
 		//----------START OVERLAY  --------------------------------------------------------
@@ -711,7 +711,7 @@ $design_form_args = array(
 		"df_header_overlay" => array(
 			'type' 	=> 'header',
 			'id' 	=> 'df_header_overlay',
-			'value'	=> __("OVERLAY", 'adguru' ),
+			'value'	=> __("OVERLAY", 'wp-ad-guru' ),
 			'align' => 'left',
 			'tag'	=>'h3',
 			'single_column' => true
@@ -719,20 +719,20 @@ $design_form_args = array(
 		"design_overlay_background_color" => array(
 			'type' 	=> 'color',
 			'id' 	=> 'design_overlay_background_color',
-			'label' => __('Color', 'adguru' ),
+			'label' => __('Color', 'wp-ad-guru' ),
 			'default'	=> "#000000",
-			'help'	=> __('Background color of overlay', 'adguru' ),
+			'help'	=> __('Background color of overlay', 'wp-ad-guru' ),
 		),
 		"design_overlay_background_opacity" => array(
 			'type' 	=> 'slider',
 			'id' 	=> 'design_overlay_background_opacity',
-			'label' => __('Opacity', 'adguru' ),
+			'label' => __('Opacity', 'wp-ad-guru' ),
 			'default'	=> 75,
 			'min' 	=> 0,
 			'max' 	=> 100,
 			'step' 	=> 1,
 			'display_text' => '%',
-			'help'	=> __('Opacity of cotainer background in %', 'adguru' ),
+			'help'	=> __('Opacity of cotainer background in %', 'wp-ad-guru' ),
 		),
 		//----------START OVERLAY  ----------------------------------------------------------
 

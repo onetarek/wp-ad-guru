@@ -9,28 +9,28 @@ $design_form_args = array(
 		'design_wrapper' => array(
 			'type' 	=> 'radio',
 			'id'	=> 'design_wrapper',
-			'label'	=> __("Wrapper", 'adguru' ),
+			'label'	=> __("Wrapper", 'wp-ad-guru' ),
 			'items_direction' => 'horizontal',
 			'default'	=> '1',
 			'options' => array(
-				'1' => __("Use wrapper", 'adguru' ),
-				'0' => __("No wrapper", 'adguru' )
+				'1' => __("Use wrapper", 'wp-ad-guru' ),
+				'0' => __("No wrapper", 'wp-ad-guru' )
 				
 			),
-			'help' => __('Extra &lt;DIV&gt; element will wrap the zone html to set the alignment , margin etc.', 'adguru'),
+			'help' => __('Extra &lt;DIV&gt; element will wrap the zone html to set the alignment , margin etc.', 'wp-ad-guru'),
 		),
 		'design_alignment' => array(
 			'type' 	=> 'select',
 			'id'	=> 'design_alignment',
-			'label'	=> __("Alignment", 'adguru' ),
+			'label'	=> __("Alignment", 'wp-ad-guru' ),
 			'default'	=> 'center',
 			'options' => array(
-				'none' => __("None", 'adguru' ),
-				'left' => __("Left", 'adguru' ),
-				'center' => __("Center", 'adguru' ),
-				'right' => __("Right", 'adguru' ),
-				'float_left' => __("Float left", 'adguru' ),
-				'float_right' => __("Float right", 'adguru' )
+				'none' => __("None", 'wp-ad-guru' ),
+				'left' => __("Left", 'wp-ad-guru' ),
+				'center' => __("Center", 'wp-ad-guru' ),
+				'right' => __("Right", 'wp-ad-guru' ),
+				'float_left' => __("Float left", 'wp-ad-guru' ),
+				'float_right' => __("Float right", 'wp-ad-guru' )
 				
 			),
 		),

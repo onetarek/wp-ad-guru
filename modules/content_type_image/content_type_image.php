@@ -21,7 +21,7 @@ class ADGURU_Content_Type_Image extends ADGURU_Content_Type{
 	public function __construct(){
 
 		parent::__construct();
-		$this->description = __('Link with image', 'adguru');
+		$this->description = __('Link with image', 'wp-ad-guru');
 	}
 
 	protected function _editor_init( $current_ad_type ){

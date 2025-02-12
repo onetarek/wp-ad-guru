@@ -8,54 +8,54 @@ $animation_form_args = array(
 		'animation_opening_animation_type' => array(
 			'type' 	=> 'select',
 			'id'	=> 'animation_opening_animation_type',
-			'label'	=> __("Opening Animation Type", 'adguru' ),
+			'label'	=> __("Opening Animation Type", 'wp-ad-guru' ),
 			'default'	=> 'none',
 			'options' => array(
-				'none' => __("None", 'adguru' ),
-				'bounce' => __("Bounce", 'adguru' ),
-				'swing' => __("Swing", 'adguru' ),
-				'fadeIn' => __("Fade In", 'adguru' ),
-				'slideInDown' => __("Slide In Down", 'adguru' ),
-				'slideInUp' => __("Slide In Up", 'adguru' ),
+				'none' => __("None", 'wp-ad-guru' ),
+				'bounce' => __("Bounce", 'wp-ad-guru' ),
+				'swing' => __("Swing", 'wp-ad-guru' ),
+				'fadeIn' => __("Fade In", 'wp-ad-guru' ),
+				'slideInDown' => __("Slide In Down", 'wp-ad-guru' ),
+				'slideInUp' => __("Slide In Up", 'wp-ad-guru' ),
 			),
 		),
 		'animation_opening_animation_speed' => array(
 			'type' => 'select',
 			'id' => 'animation_opening_animation_speed',
-			'label' => __("Opening Animation Speed", 'adguru' ),
+			'label' => __("Opening Animation Speed", 'wp-ad-guru' ),
 			'default' => 'normal',
 			'options' => array(
-				'normal' => __("Normal - 1s", 'adguru' ),
-				'slow' => __("Slow - 2s", 'adguru' ),
-				'slower' => __("Slower - 3s", 'adguru' ),
-				'fast' => __("Fast - 800ms", 'adguru' ),
-				'faster' => __("Faster - 500ms", 'adguru' )
+				'normal' => __("Normal - 1s", 'wp-ad-guru' ),
+				'slow' => __("Slow - 2s", 'wp-ad-guru' ),
+				'slower' => __("Slower - 3s", 'wp-ad-guru' ),
+				'fast' => __("Fast - 800ms", 'wp-ad-guru' ),
+				'faster' => __("Faster - 500ms", 'wp-ad-guru' )
 			)
 		),
 		'animation_closing_animation_type' => array(
 			'type' 	=> 'select',
 			'id'	=> 'animation_closing_animation_type',
-			'label'	=> __("Closing Animation Type", 'adguru' ),
+			'label'	=> __("Closing Animation Type", 'wp-ad-guru' ),
 			'default'	=> 'none',
 			'options' => array(
-				'none' => __("None", 'adguru' ),
-				'bounceOut' => __("Bounce Out", 'adguru' ),
-				'fadeOut' => __("Fade Out", 'adguru' ),
-				'slideOutDown' => __("Slide Out Down", 'adguru' ),
-				'slideOutUp' => __("Slide Out Up", 'adguru' ),
+				'none' => __("None", 'wp-ad-guru' ),
+				'bounceOut' => __("Bounce Out", 'wp-ad-guru' ),
+				'fadeOut' => __("Fade Out", 'wp-ad-guru' ),
+				'slideOutDown' => __("Slide Out Down", 'wp-ad-guru' ),
+				'slideOutUp' => __("Slide Out Up", 'wp-ad-guru' ),
 			),
 		),
 		'animation_closing_animation_speed' => array(
 			'type' => 'select',
 			'id' => 'animation_closing_animation_speed',
-			'label' => __("Closing Animation Speed", 'adguru' ),
+			'label' => __("Closing Animation Speed", 'wp-ad-guru' ),
 			'default' => 'normal',
 			'options' => array(
-				'normal' => __("Normal - 1s", 'adguru' ),
-				'slow' => __("Slow - 2s", 'adguru' ),
-				'slower' => __("Slower - 3s", 'adguru' ),
-				'fast' => __("Fast - 800ms", 'adguru' ),
-				'faster' => __("Faster - 500ms", 'adguru' )
+				'normal' => __("Normal - 1s", 'wp-ad-guru' ),
+				'slow' => __("Slow - 2s", 'wp-ad-guru' ),
+				'slower' => __("Slower - 3s", 'wp-ad-guru' ),
+				'fast' => __("Fast - 800ms", 'wp-ad-guru' ),
+				'faster' => __("Faster - 500ms", 'wp-ad-guru' )
 			)
 		)
 		

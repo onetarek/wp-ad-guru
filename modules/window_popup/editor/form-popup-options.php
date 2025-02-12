@@ -8,13 +8,13 @@ $popup_options_form_args = array(
 		'popup_options_window_title' => array(
 			'type' 	=> 'text',
 			'id'	=> 'popup_options_window_title',
-			'label'	=> __("Window Title", 'adguru' ),
+			'label'	=> __("Window Title", 'wp-ad-guru' ),
 			'size' => 'medium',
 		),
 		"popup_options_window_options" => array(
 			'type' => 'multicheck',
 			'id'   => 'popup_options_window_options',
-			'label' => __("Window Options", 'adguru' ),
+			'label' => __("Window Options", 'wp-ad-guru' ),
 			'default' => array(
 				'titlebar' => 1,
 				'location' => 0,

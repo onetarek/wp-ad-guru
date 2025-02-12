@@ -95,9 +95,9 @@ class ADGURU_Window_Popup{
 	  **/
 	 public function __construct(){
 	 
-		$this->name = __( 'Window Popup', 'adguru' );
-		$this->plural_name = __( 'Window Popups', 'adguru' );
-		$this->description = __( 'Window Popup Ad Management.', 'adguru' );
+		$this->name = __( 'Window Popup', 'wp-ad-guru' );
+		$this->plural_name = __( 'Window Popups', 'wp-ad-guru' );
+		$this->description = __( 'Window Popup Ad Management.', 'wp-ad-guru' );
 		
 	 	add_action( "adguru_init", array( $this, "register" ) );
 	 	add_filter( "adguru_ad_editor_init_{$this->type}", array( $this, "ad_editor_init" ) );
@@ -218,8 +218,8 @@ class ADGURU_Window_Popup{
 	 */
 	public function list_table_columns( $columns ){
 
-		$columns['size']= __( 'Size', 'adguru' );
-		//$columns['width']= __( 'Width', 'adguru' );
+		$columns['size']= __( 'Size', 'wp-ad-guru' );
+		//$columns['width']= __( 'Width', 'wp-ad-guru' );
 		return $columns; 
 	
 	}//end func

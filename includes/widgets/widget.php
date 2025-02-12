@@ -15,11 +15,11 @@ class ADGURU_Widget extends WP_Widget{
 
 	function __construct(){
 		
-		$widget_ops = array( 'classname' => 'adguru', 'description' => __('A widget that displays adguru ad zones ', 'adguru') );
+		$widget_ops = array( 'classname' => 'adguru', 'description' => __('A widget that displays adguru ad zones ', 'wp-ad-guru') );
 		
 		$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'adguru-zone-widget' );
 		
-		parent::__construct( 'adguru-zone-widget', __('Ad Guru Zone', 'adguru'), $widget_ops, $control_ops );
+		parent::__construct( 'adguru-zone-widget', __('Ad Guru Zone', 'wp-ad-guru'), $widget_ops, $control_ops );
 	}
 	
 	function widget( $args, $instance ){
@@ -45,7 +45,7 @@ class ADGURU_Widget extends WP_Widget{
 		}
 		else
 		{
-			echo __("No zone is selected for this widget. Go to your dashboard widgets page and select a zone for this adGuru widget" , "adguru" );
+			echo __("No zone is selected for this widget. Go to your dashboard widgets page and select a zone for this adGuru widget" , "wp-ad-guru" );
 		}
 		echo $after_widget;
 			
@@ -69,17 +69,17 @@ class ADGURU_Widget extends WP_Widget{
 
 		global $wpdb;
 		//Set up some default widget settings.
-		$defaults = array( 'title' => __('Ads', 'adguru'), 'zone_id' =>0 );
+		$defaults = array( 'title' => __('Ads', 'wp-ad-guru'), 'zone_id' =>0 );
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'adguru'); ?></label>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'wp-ad-guru'); ?></label>
 			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'zone_id' ); ?>"><?php _e('Select a zone:', 'adguru'); ?></label>
+			<label for="<?php echo $this->get_field_id( 'zone_id' ); ?>"><?php _e('Select a zone:', 'wp-ad-guru'); ?></label>
 			<select name="<?php echo $this->get_field_name( 'zone_id' ); ?>" id="<?php echo $this->get_field_id( 'zone_id' ); ?>" style="width:100%;" >
-				<option value="0" selected="selected"><?php _e('Select a zone:', 'adguru'); ?></option>
+				<option value="0" selected="selected"><?php _e('Select a zone:', 'wp-ad-guru'); ?></option>
 				<?php				
 				$zones = adguru()->manager->get_active_zones();
 				if( !$zones ){ $zones = array(); }

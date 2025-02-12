@@ -96,6 +96,7 @@ elseif( $zone_id || $cp_from_id )
 	else
 	{
 		$zone->ID = 0;
+		/* translators: %d: Post ID */
 		echo '<div class="error"><p>'; echo sprintf( __( 'No zone found for the ID %d , Create new.' , 'wp-ad-guru' ), $post_id ); echo '</p></div>';
 		
 	}

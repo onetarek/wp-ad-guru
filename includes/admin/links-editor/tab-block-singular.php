@@ -44,11 +44,13 @@ $post_type = $tab2;
 	{
 		if( $post_type == "--" )
 		{
+			/* translators: %s: Current ad type plural name */
 			$msg = sprintf( __("Set default %s only for <strong>any type</strong> of single page", "wp-ad-guru" ) , $current_ad_type_args['plural_name'] ) ;
 		}
 		else
 		{
-			$msg = sprintf( __("Set default %s for a single page where post type is <strong>%s</strong>", "wp-ad-guru" ) , $current_ad_type_args['plural_name'], $post_type ) ;
+			/* translators: 1: Current ad type plural name 2: Post type */
+			$msg = sprintf( __('Set default %1$s for a single page where post type is <strong>%2$s</strong>', 'wp-ad-guru' ) , $current_ad_type_args['plural_name'], $post_type ) ;
 		}
 					
 		adguru()->html->print_msg($msg);
@@ -136,7 +138,10 @@ $post_type = $tab2;
 			<input type="hidden" name="tab" value="singular" />						
 						
 		<select name="term_slug"  onchange="this.form.submit()"> 
-		 <option value=""><?php echo sprintf( __( 'Select a %s', 'wp-ad-guru' ), $taxonomy_name ); ?></option> 
+		 <option value=""><?php
+		 	/* translators: %s: Taxonomy */ 
+		 	echo sprintf( __( 'Select a %s', 'wp-ad-guru' ), $taxonomy_name ); 
+		 	?></option> 
 		 <?php 
 		  foreach ($categories as $category)
 		  {
@@ -153,7 +158,8 @@ $post_type = $tab2;
 			
 			if($selected_term_exists)
 			{
-				$msg = sprintf( __("Set default %s for a single post which is in <strong>%s %s</strong> of single page", "wp-ad-guru" ) , $current_ad_type_args['plural_name'], $selected_term_slug, $taxonomy_name );
+				/* translators: 1: Current ad type plural name, 2: Selected term slug, 3: Taxonomy name */
+				$msg = sprintf( __('Set default %1$s for a single post which is in <strong>%2$s %3$s</strong> of single page', 'wp-ad-guru' ) , $current_ad_type_args['plural_name'], $selected_term_slug, $taxonomy_name );
 				adguru()->html->print_msg( $msg );
 				$links_editor = new ADGURU_Links_Editor( array( "ad_type_args"=>$current_ad_type_args, "zone_id"=>$zone_id, "page_type"=>"singular", "taxonomy"=>$taxonomy_slug,"term"=>$selected_term_slug, "post_id"=>0) );
 				$links_editor->display();
@@ -163,7 +169,8 @@ $post_type = $tab2;
 		{
 			if( $selected_term_exists )
 			{
-				$msg = sprintf( __("Set default %s for a single post which is in <strong>%s %s</strong> of single page", "wp-ad-guru" ) , $current_ad_type_args['plural_name'], $selected_term_slug, $taxonomy_name );
+				/* translators: 1: Current ad type plural name, 2: Selected term slug, 3: Taxonomy name */
+				$msg = sprintf( __('Set default %1$s for a single post which is in <strong>%2$s %3$s</strong> of single page', 'wp-ad-guru' ) , $current_ad_type_args['plural_name'], $selected_term_slug, $taxonomy_name );
 				adguru()->html->print_msg( $msg );
 				$links_editor = new ADGURU_Links_Editor( array( "ad_type_args"=>$current_ad_type_args, "zone_id"=>$zone_id, "page_type"=>"singular", "taxonomy"=>$taxonomy_slug, "term"=>$selected_term_slug, "post_id"=>0) );
 				$links_editor->display();

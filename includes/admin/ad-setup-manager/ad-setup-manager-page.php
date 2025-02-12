@@ -29,10 +29,12 @@ if( $use_zone )
 	{
 		$zone_selection_needed = true;
 	}
+	/* translators: %s: Current ad type plural name */
 	$editor_title = sprintf( __("Setup %s to Zone", "wp-ad-guru" ) , $current_ad_type_args['plural_name'] );  
 } 
 else 
 {  
+	/* translators: %s: Current ad type plural name */
 	$editor_title =  sprintf( __("Setup %s to pages", "wp-ad-guru" ) , $current_ad_type_args['plural_name'] ); 
 }
 
@@ -119,7 +121,7 @@ if( ! $zone_selection_needed )
 
 	<?php else: //if( ! $zone_selection_needed ) :  ?>
 	<div>
-		<div style="text-align: center;font-size: 40px; margin-top: 40px;text-transform: uppercase;"><?php _e('Select zone', 'adgur') ?></div>
+		<div style="text-align: center;font-size: 40px; margin-top: 40px;text-transform: uppercase;"><?php _e('Select zone', 'wp-ad-guru') ?></div>
 	</div>
 	<?php endif; //if( ! $zone_selection_needed ) :  ?>
 

@@ -616,7 +616,7 @@ class ADGURU_Settings_API {
         $attrs = $this->get_field_attrs( $args );
 
         $size  = isset( $args['size'] ) && !is_null( $args['size'] ) ? $args['size'] : 'regular';
-        $label = isset( $args['options']['button_label'] ) ? $args['options']['button_label'] : __( 'Choose File' );
+        $label = isset( $args['options']['button_label'] ) ? $args['options']['button_label'] : __( 'Choose File', 'wp-ad-guru' );
 
         $html  = '<input type="text" class="'.esc_attr($size).'-text wpsa-url" id="'.esc_attr($attrs['id']).'" name="'.esc_attr($attrs['name']).'" value="'.esc_attr($attrs['value']).'"/>';
         $html  .= '<input type="button" class="button wpsa-browse" value="' . $label . '" />';

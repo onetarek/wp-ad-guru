@@ -339,7 +339,7 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 	 * @access public
 	 */
 	function no_items(){
-
+		/* translators: 1: Singular name of the module. */
 		echo sprintf(__( 'No %s found.', 'wp-ad-guru' ) , $this->_args['singular'] );
 	}
 

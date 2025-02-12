@@ -95,9 +95,9 @@ class ADGURU_Metabox{
 		<p>
 			<style type="text/css">#zone_id_list option.inactive{ color:#cccccc;}</style>
 			<form action="" method="post" >
-			<label for="zone_id"><strong><?php _e( 'Zone' ) ?>: </strong></label>
+			<label for="zone_id"><strong><?php _e( 'Zone', 'wp-ad-guru' ) ?>: </strong></label>
 			<select name="zone_id" id="zone_id_list" style="width:300px;"  onchange="this.form.submit()" >
-				<option value="0" selected="selected"><?php _e( 'Select a zone' ) ?></option>
+				<option value="0" selected="selected"><?php _e( 'Select a zone', 'wp-ad-guru' ) ?></option>
 				<?php
 				$zones = adguru()->manager->get_zones();
 				

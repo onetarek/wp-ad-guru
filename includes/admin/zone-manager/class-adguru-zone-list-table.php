@@ -305,7 +305,7 @@ class ADGURU_Zone_List_Table extends WP_List_Table {
 	 * @access public
 	 */
 	function no_items(){
-
+		/* translators: %s: Singular name of thing of this list table */
 		echo sprintf(__( 'No %s found.', 'wp-ad-guru' ) , $this->_args['singular'] );
 	}
 

@@ -233,10 +233,12 @@ class ADGURU_Links_Editor{
 						<?php 
 						if( $this->zone_id )
 						{
-							echo sprintf( __( '%s set for the <strong>zone( %s )</strong> on this <strong>page</strong>', 'wp-ad-guru' ), $this->ad_type_args['name'], $this->zone->name );
+							/* translators: 1: Ad type name, 2: Zone name */
+							echo sprintf( __( '%1$s set for the <strong>zone( %2$s )</strong> on this <strong>page</strong>', 'wp-ad-guru' ), $this->ad_type_args['name'], $this->zone->name );
 						}
 						else
 						{
+							/* translators: %s: Ad type name */
 							echo sprintf( __( '%s set for this <strong>page</strong>', 'wp-ad-guru' ), $this->ad_type_args['name'] );
 						}
 						?>
@@ -379,7 +381,7 @@ class ADGURU_Links_Editor{
 	
 		 <div id="ad_list_modal" title="Insert <?php echo $this->ad_type_args['name'] ?>" style="display:none;">
 			<div>
-			<div style="width:240px; float:left;"><strong><?php echo sprintf( __( 'Select a %s and click insert', 'wp-ad-guru' ) , $this->ad_type_args['name'] )?></strong></div>
+			<div style="width:240px; float:left;"><strong><?php /* translators: %s: Ad type name */ echo sprintf( __( 'Select a %s and click insert', 'wp-ad-guru' ) , $this->ad_type_args['name'] )?></strong></div>
 			<div style="float:right; width:200px; margin-right:22px; text-align:right;"><input style="width:180px;" placeholder="Search" type="text" size="15" id="search_ad_list" /></div>
 			</div>
 			<div style="clear:both"></div>
@@ -390,10 +392,12 @@ class ADGURU_Links_Editor{
 				if( !is_array( $this->ads ))
 				{
 					echo '<span style="color:#cc0000;">';
+						/* translators: %s: Ad type name */
 						echo sprintf( __( 'You have no %s for this zone size', 'wp-ad-guru' ), $this->ad_type_args['name'] ).' <strong>'.$this->zone_width.'x'.$this->zone_height.'</strong>';
 						echo ' <a href="admin.php?page='.ADGURU_ADMANAGER_PAGE_SLUG_PREFIX.$this->ad_type.'">';
 							echo sprintf( __( 'Enter new ad', 'wp-ad-guru') );
 						echo '</a> ' ;
+						/* translators: %s: zone width and height */
 						echo sprintf( __( 'in %s size', 'wp-ad-guru' ), '<strong>'.$this->zone_width.'x'.$this->zone_height.'</strong>' );
 					echo '</span>';
 				}
@@ -439,7 +443,7 @@ class ADGURU_Links_Editor{
 						<?php } }?>
 					</div>
 					<div class="slide_footer">
-						<div class="sl_ft_left"><span class="add_ad_btn" onclick="adgLinksEditor.showAdListModal(this)"><?php echo sprintf( __( 'Add new %s', 'wp-ad-guru'), $this->ad_type_args['name'] ) ?></span></div>
+						<div class="sl_ft_left"><span class="add_ad_btn" onclick="adgLinksEditor.showAdListModal(this)"><?php /* translators: %s: Ad type name */ echo sprintf( __( 'Add new %s', 'wp-ad-guru'), $this->ad_type_args['name'] ) ?></span></div>
 						<div class="sl_ft_middle">&nbsp;</span></div>
 						<div class="sl_ft_right">&nbsp;</div>
 						<div class="clear"></div>

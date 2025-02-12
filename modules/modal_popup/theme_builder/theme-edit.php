@@ -89,6 +89,7 @@ elseif( $theme_id || $cp_from_id )
 	else
 	{
 		$theme->ID = 0;
+		/* translators: Theme ID. */
 		echo '<div class="error"><p>'; echo sprintf( __( 'No theme found for the ID %d , Create new.' , 'wp-ad-guru' ) , $post_id ); echo '</p></div>';
 		
 	}

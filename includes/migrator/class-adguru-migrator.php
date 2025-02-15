@@ -499,8 +499,8 @@ class ADGURU_Migrator{
 		$offset = isset( $this->status['links_copy_offset'] ) ? intval( $this->status['links_copy_offset'] ) : 0;
 		global $wpdb;
 		$old_links_table = $wpdb->prefix.'adguru_links';
-
-		$links = $wpdb->get_results( "SELECT * FROM ".$old_links_table." LIMIT ".$offset.", 5");
+		$sql = $wpdb->prepare( "SELECT * FROM %i LIMIT %d, 5", $old_links_table, $offset );
+		$links = $wpdb->get_results( $sql );
 		if( count($links ) )
 		{
 			$zone_id_map = get_option( "adguru_migration_zone_id_map", array() );

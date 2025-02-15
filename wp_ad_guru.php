@@ -500,7 +500,7 @@ final class WP_Ad_Guru{
 	 * @return void
 	 */
 	public function admin_head(){ return;
-		if( strpos( $_SERVER['REQUEST_URI'], ADGURU_PLUGIN_SLUG ) ) #to ensure that current plugin page is being shown.
+		if( isset( $_SERVER['REQUEST_URI'] ) && strpos( $_SERVER['REQUEST_URI'], ADGURU_PLUGIN_SLUG ) ) #to ensure that current plugin page is being shown.
 		{
 			//print something here
 		}

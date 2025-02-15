@@ -422,7 +422,7 @@ final class WP_Ad_Guru{
 	 */
 	public function admin_enqueue_scripts(){
 
-		if( strpos( $_SERVER[ 'REQUEST_URI' ], ADGURU_PLUGIN_SLUG ) ) #to ensure that current plugin page is being shown.
+		if( isset( $_SERVER[ 'REQUEST_URI' ] ) && strpos( $_SERVER[ 'REQUEST_URI' ], ADGURU_PLUGIN_SLUG ) ) #to ensure that current plugin page is being shown.
 		{
 			wp_enqueue_script( 'jquery' );
 			wp_enqueue_script( 'jquery-ui-core', array( 'jquery' ) );

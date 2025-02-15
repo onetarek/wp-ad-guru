@@ -530,20 +530,21 @@ class ADGURU_Migrator{
 					$aid = $ad_id_map[ $link->ad_id ] ;
 				}
 
-				$SQL="INSERT INTO ".ADGURU_LINKS_TABLE." (ad_type, zone_id, page_type, taxonomy, term, object_id, country_code, slide, ad_id, percentage) 
-				VALUES(
-					'".$link->ad_type."', 
-					".$zid.",  
-					'".$link->page_type."', 
-					'".$link->taxonomy."', 
-					'".$link->term."', 
-					".$link->object_id.", 
-					'".$link->country_code."', 
-					".$link->slide.", 
-					".$aid.", 
-					".$link->percentage."   	
-					)";
-					
+				
+				$SQL= $wpdb->prepare( "INSERT INTO %i (ad_type, zone_id, page_type, taxonomy, term, object_id, country_code, slide, ad_id, percentage) VALUES( %s, %d, %s, %s, %s, %d, %s, %d, %d, %s)",
+					ADGURU_LINKS_TABLE,
+					$link->ad_type, 
+					$zid,
+					$link->page_type, 
+					$link->taxonomy, 
+					$link->term,
+					$link->object_id, 
+					$link->country_code, 
+					$link->slide,
+					$aid,
+					$link->percentage
+				);
+
 				$res = $wpdb->query($SQL);
 			}//end foreach
 			

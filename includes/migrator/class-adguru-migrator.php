@@ -273,7 +273,8 @@ class ADGURU_Migrator{
 		
 		global $wpdb;
 		$ads_table = $wpdb->prefix.'adguru_ads'; 
-		$ads = $wpdb->get_results( "SELECT * FROM ".$ads_table." LIMIT ".$offset.", 5");
+		$sql = $wpdb->prepare( "SELECT * FROM %i LIMIT %d, 5", $ads_table, $offset );
+		$ads = $wpdb->get_results( $sql );
 		if( count( $ads ) )
 		{
 			foreach( $ads as $old_ad )

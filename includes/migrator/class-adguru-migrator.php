@@ -569,9 +569,10 @@ class ADGURU_Migrator{
 		$links_table 	= $wpdb->prefix.'adguru_links';
 		$links_table_n 	= $wpdb->prefix.'adguru_links_old_backup';
 
-		$wpdb->query( "RENAME TABLE `".$ads_table."` TO `".$ads_table_n."`" );
-		$wpdb->query( "RENAME TABLE `".$zones_table."` TO `".$zones_table_n."`" );
-		$wpdb->query( "RENAME TABLE `".$links_table."` TO `".$links_table_n."`" );
+		$wpdb->query( $wpdb->prepare( "RENAME TABLE %i TO %i", $ads_table, $ads_table_n ) );
+		$wpdb->query( $wpdb->prepare( "RENAME TABLE %i TO %i", $zones_table, $zones_table_n ) );
+		$wpdb->query( $wpdb->prepare( "RENAME TABLE %i TO %i", $links_table, $links_table_n ) );
+		
 		return true;
 
 	}

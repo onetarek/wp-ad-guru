@@ -546,7 +546,8 @@ final class WP_Ad_Guru{
 	 */ 
 	public function delete_post_action( $post_id ){
 		global $wpdb;
-		$wpdb->query( "DELETE FROM ".ADGURU_LINKS_TABLE." WHERE page_type='singular' AND object_id=".$post_id );
+		$sql = $wpdb->prepare( "DELETE FROM %i WHERE page_type='singular' AND object_id=%d", ADGURU_LINKS_TABLE, $post_id );
+		$wpdb->query( $sql );
 	}
 	
 	

@@ -233,7 +233,8 @@ class ADGURU_Migrator{
 		
 		global $wpdb;
 		$zones_table = $wpdb->prefix.'adguru_zones'; 
-		$zones = $wpdb->get_results( "SELECT * FROM ".$zones_table." LIMIT ".$offset.", 5");
+		$sql = $wpdb->prepare( "SELECT * FROM %i LIMIT %d, 5", $zones_table, $offset );
+		$zones = $wpdb->get_results( $sql );
 		if( count( $zones ) )
 		{
 			foreach( $zones as $old_zone )

@@ -139,6 +139,24 @@ if (!class_exists("WPAFB_Form")):
 			$this->setup_fields($fields);
 		}
 
+		private function nonce_name()
+		{
+			return '_nonce_' . $this->id;
+		}
+
+		private function nonce_action()
+		{
+			return 'wpafb_form_' . $this->id . '_save';
+		}
+
+		private function nonce_check()
+		{
+			$nonce = isset($_REQUEST[$this->nonce_name()]) ? wp_unslash($_REQUEST[$this->nonce_name()]) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			if (empty($nonce) || !wp_verify_nonce($nonce, $this->nonce_action())) {
+				throw new Exception('WP Admin Form Builder Error: Nonce verification failed for form with id "' . esc_html($this->id) . '". Possible CSRF attack.');
+			}
+		}
+
 		public function render()
 		{
 
@@ -151,6 +169,7 @@ if (!class_exists("WPAFB_Form")):
 			echo '</table>';
 			echo '<div class="wpafb-footer" id="' . esc_attr($this->id . "_footer") . '">';
 			$this->form_footer();
+			wp_nonce_field($this->nonce_action(), $this->nonce_name());
 			echo '</div>';
 			echo '</div>';
 		}
@@ -1657,8 +1676,8 @@ if (!class_exists("WPAFB_Form")):
 		 */
 		private function prepare_submitted_data_for_field($args)
 		{
-
-			$request_data = ($this->request_method == 'post') ? $_POST : $_GET;
+			$this->nonce_check();
+			$request_data = ($this->request_method == 'post') ? $_POST : $_GET; // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.NonceVerification.Recommended
 			$id = $args['id'];
 			if (!isset($request_data[$id])) {
 				return;
@@ -1737,7 +1756,8 @@ if (!class_exists("WPAFB_Form")):
 		private function get_value_from_request_when_html_name_array($html_name, $id)
 		{
 
-			$request_data = ($this->request_method == 'post') ? $_POST : $_GET;
+			$this->nonce_check();
+			$request_data = ($this->request_method == 'post') ? $_POST : $_GET; // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.NonceVerification.Recommended
 
 			if ($html_name == "") {
 				return null;

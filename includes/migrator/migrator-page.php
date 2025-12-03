@@ -120,15 +120,19 @@ if( ! defined( 'ABSPATH' ) ) exit;
 
 	<div id="adguru_migrate_box">
 		<div class="button_box">
-			<input type="button" id="adguru_migrate_ok_button" class="adg_action_button" value="<?php echo $migraito_button_text ?>" />
+			<input type="button" id="adguru_migrate_ok_button" class="adg_action_button" value="<?php echo esc_attr( $migraito_button_text ) ?>" />
 			<div class="loader_box" id="migration_ajax_loader">
-				<img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading.gif" alt="loading.." />
+				<img src="<?php echo esc_url( ADGURU_PLUGIN_URL . 'assets/images/loading.gif') ?>" alt="loading.." />
 			</div>
 		</div>
 		
 		<div class="message_box" id="migration_message"></div>
 		<div style="clear:both;"></div>
-		<div id="migration_log"><?php echo $log_text ?></div>
+		<div id="migration_log">
+			<?php 
+			echo $log_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+			?>
+		</div>
 
 	</div>
 <?php if( $migration_running == 0 ){?>
@@ -136,7 +140,7 @@ if( ! defined( 'ABSPATH' ) ) exit;
 		<div class="button_box">
 			<input type="button" id="adguru_migrate_do_not_button" class="adg_action_button" value="Do not Migrate" />
 			<div class="loader_box" id="migration_do_not_ajax_loader">
-				<img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading.gif" alt="loading.." />
+				<img src="<?php echo esc_url( ADGURU_PLUGIN_URL . 'assets/images/loading.gif' ) ?>" alt="loading.." />
 			</div>
 		</div>
 		<div class="message_box" id="migration_do_not_message"></div>
@@ -144,5 +148,5 @@ if( ! defined( 'ABSPATH' ) ) exit;
 	</div>
 <?php } ?>
 </div><!-- end #wrap -->
-<script type="text/javascript" src="<?php echo ADGURU_PLUGIN_URL ?>includes/migrator/migrator.js"></script>
+<script type="text/javascript" src="<?php echo esc_url( ADGURU_PLUGIN_URL . 'includes/migrator/migrator.js' ) ?>"></script>
 

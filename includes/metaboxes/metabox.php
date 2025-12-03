@@ -69,14 +69,15 @@ class ADGURU_Metabox{
 		}
 
 		#http://devll.wordpress.com/2009/10/01/jquery-iframe-thickbox-removes-parameter/ 
-		#Add all other query parameters before the TB_iframe parameters. Everything after the “TB” is removed from the URL. So rearranging the order fixed the problem.
+		#Add all other query parameters before the TB_iframe parameters. Everything after the ï¿½TBï¿½ is removed from the URL. So rearranging the order fixed the problem.
 		do_action("adguru_metabox_top");
 		echo '<div class="adguru_metabox_buttons_wrap">';
 		foreach( $ad_types as $type => $args )
 		{
 			$has_link = ( isset( $args['has_link'] ) ) ? true : false;
+			$url = "media-upload.php?type=adguru_adzonelinks&width=800&height=550&p_id=".$post->ID."&p_type=".$post->post_type."&ad_type=".$type."&TB_iframe=true";
 			?>
-			<a href="media-upload.php?type=adguru_adzonelinks&width=800&height=550&p_id=<?php echo $post->ID?>&p_type=<?php echo $post->post_type?>&ad_type=<?php echo $type?>&TB_iframe=true" class="thickbox <?php echo ( $has_link )?'button-primary':'button' ?>"><?php echo $args['name'] ?></a>
+			<a href="<?php echo esc_url( $url ) ?>" class="thickbox <?php echo ( $has_link )?'button-primary':'button' ?>"><?php echo esc_html( $args['name'] ) ?></a>
 			<?php 
 			
 		}
@@ -95,9 +96,9 @@ class ADGURU_Metabox{
 		<p>
 			<style type="text/css">#zone_id_list option.inactive{ color:#cccccc;}</style>
 			<form action="" method="post" >
-			<label for="zone_id"><strong><?php _e( 'Zone', 'wp-ad-guru' ) ?>: </strong></label>
+			<label for="zone_id"><strong><?php esc_html_e( 'Zone', 'wp-ad-guru' ) ?>: </strong></label>
 			<select name="zone_id" id="zone_id_list" style="width:300px;"  onchange="this.form.submit()" >
-				<option value="0" selected="selected"><?php _e( 'Select a zone', 'wp-ad-guru' ) ?></option>
+				<option value="0" selected="selected"><?php esc_html_e( 'Select a zone', 'wp-ad-guru' ) ?></option>
 				<?php
 				$zones = adguru()->manager->get_zones();
 				
@@ -107,7 +108,7 @@ class ADGURU_Metabox{
 					$class = '';
 					if( $zone->active != 1 ){ $class=' class="inactive" '; }
 					if( $zone_id == $zone->ID ){ $selected=' selected="selected" '; $valid_zone_id = true; }
-					echo '<option value="'.$zone->ID.'"'.$class.$selected.'>'.$zone->name.' - '.$zone->width.'x'.$zone->height.'</option>';	
+					echo '<option value="'.$zone->ID.'"'.$class.$selected.'>'.$zone->name.' - '.$zone->width.'x'.$zone->height.'</option>';	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 				?>
 			</select>
@@ -128,13 +129,13 @@ class ADGURU_Metabox{
 
 		if( !array_key_exists( $ad_type, $ad_types ) )
 		{
-			echo __( "Ad type not found" , 'wp-ad-guru' ); 
+			esc_html_e( "Ad type not found" , 'wp-ad-guru' ); 
 			return;
 		}
 		
 		if( ! $post_id )
 		{
-			echo __( "This settings page is only for individual post. No post id found.", "wp-ad-guru");
+			esc_html_e( "This settings page is only for individual post. No post id found.", "wp-ad-guru");
 			return;
 		
 		}
@@ -143,7 +144,7 @@ class ADGURU_Metabox{
 		
 		if( ! $post )
 		{
-			echo __( "No post found.", "wp-ad-guru");
+			esc_html_e( "No post found.", "wp-ad-guru");
 			return;
 		}
 		
@@ -153,7 +154,7 @@ class ADGURU_Metabox{
 		echo '<div class="wrap" style="margin-left:20px;  margin-bottom:50px;">';
 			echo '<div id="icon-link-manager" class="icon32"><br></div><h2>';
 			/* translators: 1: Current ad type name 2: Post type */
-			printf( __('Setup %1$s for this %2$s', 'wp-ad-guru' ),$current_ad_type_args['name'], $post_type);
+			echo esc_html( sprintf( __('Setup %1$s for this %2$s', 'wp-ad-guru' ),$current_ad_type_args['name'], $post_type) );
 			echo '</h2>';
 
 			if( $use_zone )
@@ -169,7 +170,7 @@ class ADGURU_Metabox{
 			}
 			else
 			{
-				echo __( "Select a zone", "wp-ad-guru" );
+				esc_html_e( "Select a zone", "wp-ad-guru" );
 			}
 
 		echo "</div>";

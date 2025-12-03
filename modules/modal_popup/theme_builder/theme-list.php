@@ -25,7 +25,7 @@ $theme_list_table->prepare_items();
 <form id="adguru-ad-search-form" method="get" action="<?php echo esc_url( $base_url ); ?>" style="margin-top:5px;">
 	<?php $theme_list_table->search_box( __( 'Search', 'wp-ad-guru' ), 'adguru_ad_search_input' ); ?>
 
-	<input type="hidden" name="manager_tab" value="<?php echo esc_url( $current_manager_tab ) ?>" />
+	<input type="hidden" name="manager_tab" value="<?php echo esc_attr( $current_manager_tab ) ?>" />
 	<input type="hidden" name="page" value="<?php echo esc_attr( $page ) ?>" />
 	
 

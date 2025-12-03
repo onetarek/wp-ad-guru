@@ -56,7 +56,7 @@ if( ! empty( $_POST ) && isset( $_POST['save'] ) && check_admin_referer( 'adguru
 		echo '<div class="error">';
 		foreach( $error_msgs as $field=>$msg )
 		{
-			echo '<p>'.$msg.'</p>';
+			echo '<p>'.esc_html( $msg ).'</p>';
 		}
 		echo '</div>';	
 	
@@ -90,7 +90,7 @@ elseif( $theme_id || $cp_from_id )
 	{
 		$theme->ID = 0;
 		/* translators: Theme ID. */
-		echo '<div class="error"><p>'; echo sprintf( __( 'No theme found for the ID %d , Create new.' , 'wp-ad-guru' ) , $post_id ); echo '</p></div>';
+		echo '<div class="error"><p>'; echo esc_html( sprintf( __( 'No theme found for the ID %d , Create new.' , 'wp-ad-guru' ) , $post_id ) ); echo '</p></div>';
 		
 	}
 	
@@ -98,11 +98,11 @@ elseif( $theme_id || $cp_from_id )
 
 if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] ) )
 {
-	echo '<div class="updated"><p>'; echo __( 'Your theme has been saved successfully' , 'wp-ad-guru' ); echo '</p></div>';
+	echo '<div class="updated"><p>'; esc_html_e( 'Your theme has been saved successfully' , 'wp-ad-guru' ); echo '</p></div>';
 } 
 ?>
 <form action="" method="post">
-	<input type="hidden" name="theme_id" value="<?php echo $theme->ID ?>" />
+	<input type="hidden" name="theme_id" value="<?php echo esc_attr( $theme->ID ) ?>" />
 	<?php wp_nonce_field( 'adguru_mp_theme_editor', 'adguru_mp_theme_editor_nonce' ); ?>
 	<div id="poststuff">
 		<div id="post-body" class="metabox-holder columns-2">
@@ -119,12 +119,12 @@ if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] 
 					</thead>
 					<?php $error_class = isset( $error_msgs['theme_name'] )? " adg_error_field" : ""; ?>
 					<tr>
-						<td><label for="theme_name"><?php echo __( 'Theme Name', 'wp-ad-guru' ) ?></label></td>
-						<td><input type="text" name="theme_name" id="theme_name" class="input_long<?php echo $error_class;?>" size="30" value="<?php  echo esc_attr( $theme->name );?>" /></td>
+						<td><label for="theme_name"><?php esc_html_e( 'Theme Name', 'wp-ad-guru' ) ?></label></td>
+						<td><input type="text" name="theme_name" id="theme_name" class="input_long<?php echo esc_attr( $error_class );?>" size="30" value="<?php  echo esc_attr( $theme->name );?>" /></td>
 					</tr>
 					<tr>
-						<td><label for="description"><?php echo __( 'Description', 'wp-ad-guru' ) ?></label></td>
-						<td><textarea name="description" id="description"  class="input_long" cols="15" rows="4"><?php  echo $theme->description;?></textarea></td>
+						<td><label for="description"><?php esc_html_e( 'Description', 'wp-ad-guru' ) ?></label></td>
+						<td><textarea name="description" id="description"  class="input_long" cols="15" rows="4"><?php  echo esc_textarea( $theme->description );?></textarea></td>
 					</tr>
 				</table>
 
@@ -138,10 +138,10 @@ if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] 
 					<div class="inside">
 						<p>
 							<?php if(isset($theme->builtin)&&$theme->builtin==1){ ?>
-							<input type="submit" name="save" class="button-primary" value="<?php _e('Save', 'wp-ad-guru' )?>" style="width:100px;" disabled /><br>
-							<?php _e('This is a <b>builtin theme</b>,You can not modify.', 'wp-ad-guru' )?> 
+							<input type="submit" name="save" class="button-primary" value="<?php esc_attr_e('Save', 'wp-ad-guru' )?>" style="width:100px;" disabled /><br>
+							<?php echo wp_kses( __('This is a <b>builtin theme</b>,You can not modify.', 'wp-ad-guru' ) , array( 'b' => array() ) ); ?> 
 							<?php } else { ?>
-							<input type="submit" name="save" class="button-primary" value="<?php _e('Save', 'wp-ad-guru' )?>" style="width:100px;" />
+							<input type="submit" name="save" class="button-primary" value="<?php esc_attr_e('Save', 'wp-ad-guru' )?>" style="width:100px;" />
 							<?php } ?>
 						<p>
 					</div>
@@ -160,10 +160,10 @@ if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] 
 						<div class="main" style="text-align:center;">	
 							
 							<?php if(isset($theme->builtin)&&$theme->builtin==1){ ?>
-							<input type="submit" name="save" class="button-primary" value="<?php _e('Save', 'wp-ad-guru' )?>" style="width:200px;" disabled /><br>
-							<?php _e('This is a <b>builtin theme</b>,You can not modify.', 'wp-ad-guru' )?> 
+							<input type="submit" name="save" class="button-primary" value="<?php esc_attr_e('Save', 'wp-ad-guru' )?>" style="width:200px;" disabled /><br>
+							<?php echo wp_kses( __('This is a <b>builtin theme</b>,You can not modify.', 'wp-ad-guru' ) , array( 'b' => array() ) ); ?> 
 							<?php } else { ?>
-							<input type="submit" name="save" class="button-primary" value="<?php _e('Save', 'wp-ad-guru' )?>" style="width:200px;" />
+							<input type="submit" name="save" class="button-primary" value="<?php esc_attr_e('Save', 'wp-ad-guru' )?>" style="width:200px;" />
 							<?php } ?>
 							
 

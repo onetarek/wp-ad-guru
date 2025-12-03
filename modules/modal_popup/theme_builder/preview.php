@@ -1,20 +1,20 @@
-<link rel="stylesheet" type="text/css" href="<?php echo ADGURU_PLUGIN_URL ?>modules/modal_popup/assets/css/modal-popup-preview.css?var=<?php echo ADGURU_VERSION ?>" >
+<link rel="stylesheet" type="text/css" href="<?php echo esc_url( ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/css/modal-popup-preview.css?var='. ADGURU_VERSION ) ?>" >
 <div class="postbox" id="adguru_mp_preview_box">
-	<h3 class="hndle"><?php _e('Theme Preview', 'wp-ad-guru');?> <a onclick="javascript: return adguru_mp_show_preview_in_full_view()" style="font-size:14px; cursor:pointer;float:right;"><?php _e('See full view', 'wp-ad-guru');?></a></h3>
+	<h3 class="hndle"><?php esc_html_e('Theme Preview', 'wp-ad-guru');?> <a onclick="javascript: return adguru_mp_show_preview_in_full_view()" style="font-size:14px; cursor:pointer;float:right;"><?php esc_html_e('See full view', 'wp-ad-guru');?></a></h3>
 	<div class="inside" style="padding:0px;margin:0px;">
 		<div id="adguru_mp_preview_area">
 
 			<div id="adguru_modal_popup_example" class="adguru-modal-popup sidebar_view hidden" popup-id="example">
 				<div id="adguru_modal_popup_overlay_example" class="mp-overlay adguru-modal-popup-overlay" popup-id="example"></div>
-				<div id="adguru_mp_preview_full_view_close_btn_wrap" class="hidden"><div id="adguru_mp_preview_full_view_close_btn" onclick="adguru_mp_show_preview_in_sidebar_view()"><?php _e('Close preview', 'wp-ad-guru');?></div></div>
+				<div id="adguru_mp_preview_full_view_close_btn_wrap" class="hidden"><div id="adguru_mp_preview_full_view_close_btn" onclick="adguru_mp_show_preview_in_sidebar_view()"><?php esc_html_e('Close preview', 'wp-ad-guru');?></div></div>
 				<div id="adguru_modal_popup_container_wrap_example" class="mp-container-wrap middle-center">
 					<div id="adguru_modal_popup_conatiner_example" class="mp-container" popup-id="example">
 						<div id="adguru_modal_popup_content_wrap_example" class="mp-content-wrap mp-content-wrap-image" popup-id="example">
 							<div id="adguru_modal_popup_content_example" class="adguru-content-image mp-content mp-content-image" popup-id="example">
-								<a href="javascript: return fasle" style="display:block;line-height:0;"><img src="<?php echo ADGURU_PLUGIN_URL ?>modules/modal_popup/assets/images/sunset_600x400_1.jpeg" class="adguru_content_image"></a>
+								<a href="javascript: return fasle" style="display:block;line-height:0;"><img src="<?php echo esc_url( ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/images/sunset_600x400_1.jpeg')?>" class="adguru_content_image"></a>
 							</div>
 						</div>
-						<div id="adguru_modal_popup_close_wrap_example" class="mp-close-wrap top-right"><div id="adguru_modal_popup_close_example" class="mp-close adguru-modal-popup-close " popup-id="example"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/close-icons/close-default.png" alt="X"></div></div>
+						<div id="adguru_modal_popup_close_wrap_example" class="mp-close-wrap top-right"><div id="adguru_modal_popup_close_example" class="mp-close adguru-modal-popup-close " popup-id="example"><img src="<?php echo esc_url( ADGURU_PLUGIN_URL . 'assets/images/close-icons/close-default.png')?>" alt="X"></div></div>
 					</div>
 				</div>
 						
@@ -36,7 +36,7 @@
 	#adguru_mp_preview_area{
 		/*padding: 30px 20px;*/
 		position: relative;
-		background: url("<?php echo ADGURU_PLUGIN_URL ?>modules/modal_popup/assets/images/preview-bg.png");
+		background: url("<?php echo esc_url( ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/images/preview-bg.png') ?>");
 		min-height: 800px;
 	}
 	#adguru_mp_preview_full_view_close_btn_wrap{

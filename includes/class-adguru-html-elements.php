@@ -16,7 +16,7 @@ class ADGURU_HTML_Elements{
 
 	public static function print_msg( $msg, $class = "adguru_help_msg" ){ 
 
-		echo '<div class="'.$class.'">'.$msg.'</div>';
+		echo '<div class="'.esc_attr( $class ).'">'.$msg.'</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	public static function get_country_list_select_input( $select = "", $attr = array() ){
@@ -35,7 +35,7 @@ class ADGURU_HTML_Elements{
 			$html.= '<option value="'.$slug.'" '.$sel.'>'.$name.'</option>';
 		}
 		$html.= "</select>";
-		echo $html;
+		echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}	
 
 

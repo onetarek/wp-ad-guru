@@ -199,16 +199,16 @@ class ADGURU_Banner{
 							{
 								$selected = ( $size_txt == $size ) ? ' selected="selected"' : '';
 								
-								echo '<option value="'.$size.'"'.$selected.'>'.$size_name.' ( '.$size.' )</option>';
+								echo '<option value="'.$size.'"'.$selected.'>'.$size_name.' ( '.$size.' )</option>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							}
 							?>
 							<option value="custom" <?php echo ($custom_size)?' selected="selected"':'';?>>Custom</option>
 						</select>
 						<span id="custom_size_box">
 						<?php $error_class = isset( $error_msgs['width'] )? " adg_error_field" : ""; ?>
-						Width <input type="text" name="width"  id="width" size="4"  value="<?php echo $width;?>" class="<?php echo $error_class;?>" <?php echo (!$custom_size)?' readonly="readonly"':'';?> /> 
+						Width <input type="text" name="width"  id="width" size="4"  value="<?php echo esc_attr( $width );?>" class="<?php echo esc_attr( $error_class );?>" <?php echo (!$custom_size)?' readonly="readonly"':'';?> /> 
 						<?php $error_class = isset( $error_msgs['height'] )? " adg_error_field" : ""; ?>
-						Height <input type="text" name="height" id="height" size="4" value="<?php echo $height;?>" class="<?php echo $error_class;?>" <?php echo (!$custom_size)?' readonly="readonly"':'';?>/>
+						Height <input type="text" name="height" id="height" size="4" value="<?php echo esc_attr( $height );?>" class="<?php echo esc_attr( $error_class );?>" <?php echo (!$custom_size)?' readonly="readonly"':'';?>/>
 						</span>
 						</td>
 					</tr>
@@ -317,7 +317,7 @@ class ADGURU_Banner{
 		$output = '<span class="adguru-ad-banner">';
 		$output.= '<div style="'.esc_attr( $style ).'">'.$content.'</div>';
 		$output.= '</span>';
-		echo $output;
+		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		
 	}
 	
@@ -333,7 +333,7 @@ class ADGURU_Banner{
 			</thead>
 			<tr>
 				<td>
-					To show any banner ad in your site, go to <a href="<?php echo add_query_arg( array( "manager_tab" => "links" ), $page_args[ 'base_url' ] ) ?>">Banner to Zone settings</a> page and set ad to appropiate zone. 
+					To show any banner ad in your site, go to <a href="<?php echo esc_url( add_query_arg( array( "manager_tab" => "links" ), $page_args[ 'base_url' ] ) ) ?>">Banner to Zone settings</a> page and set ad to appropiate zone. 
 					<br /><strong> OR</strong><br />
 					Add following php code anywhere in your site front-end pages. Replace the word <strong>'ad_id'</strong> with the <strong>id</strong> of the banner ad you want to show<br />
 					<code>

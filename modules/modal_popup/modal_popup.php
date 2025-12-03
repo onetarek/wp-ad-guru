@@ -204,11 +204,11 @@ class ADGURU_Modal_Popup{
 		{
 		?>
 		<div class="postbox">
-			<h3 class="hndle"><?php _e('Live Preview', 'wp-ad-guru')?></h3>
+			<h3 class="hndle"><?php esc_html_e('Live Preview', 'wp-ad-guru')?></h3>
 			<div class="inside">
 				<div class="main">
 						
-					<a href="<?php echo $this->get_preview_url( $ad->ID ) ?>" target="_blank"><?php _e('Preview Popup', 'wp-ad-guru')?></a>
+					<a href="<?php echo esc_url( $this->get_preview_url( $ad->ID ) ) ?>" target="_blank"><?php esc_html_e('Preview Popup', 'wp-ad-guru')?></a>
 
 				</div><!-- .main -->
 			</div><!-- .inside -->
@@ -339,8 +339,8 @@ class ADGURU_Modal_Popup{
 		}
 		adguru_enqueue_style_in_footer('animate');
 		?>
-		<link rel="stylesheet" type="text/css" href="<?php echo ADGURU_PLUGIN_URL ?>modules/modal_popup/assets/css/modal-popup.css?var=<?php echo ADGURU_VERSION ?>" >
-		<script src="<?php echo ADGURU_PLUGIN_URL ?>modules/modal_popup/assets/js/modal-popup.js?var=<?php echo ADGURU_VERSION ?>"></script>
+		<link rel="stylesheet" type="text/css" href="<?php echo esc_url( ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/css/modal-popup.css?var='. ADGURU_VERSION ) ?>" >
+		<script src="<?php echo esc_url( ADGURU_PLUGIN_URL .'modules/modal_popup/assets/js/modal-popup.js?var='. ADGURU_VERSION ) ?>"></script>
 		<?php 
 		$this->common_assets_printed = true;
 	}
@@ -438,14 +438,20 @@ class ADGURU_Modal_Popup{
 		ob_start();
 		
 		?>
-		<div id="adguru_modal_popup_<?php echo $ad->ID ?>" class="adguru-modal-popup hidden" popup-id="<?php echo $ad->ID ?>" data-animation="<?php echo esc_attr(json_encode($animation))?>" data-sizing="<?php echo esc_attr(json_encode($sizing))?>" data-closing="<?php echo esc_attr(json_encode($closing))?>" data-triggering="<?php echo esc_attr(json_encode($triggering))?>">
-			<div id="adguru_modal_popup_overlay_<?php echo $ad->ID ?>" class="mp-overlay adguru-modal-popup-overlay" popup-id="<?php echo $ad->ID ?>"></div>
-			<div id="adguru_modal_popup_container_wrap_<?php echo $ad->ID ?>" class="mp-container-wrap <?php echo $container_location_class ?>">
-				<div id="adguru_modal_popup_conatiner_<?php echo $ad->ID ?>" class="mp-container <?php echo $container_custom_css_class ?>" popup-id="<?php echo $ad->ID ?>">
-					<div id="adguru_modal_popup_content_wrap_<?php echo $ad->ID ?>" class="mp-content-wrap mp-content-wrap-<?php echo esc_attr( $ad->content_type );?>" popup-id="<?php echo $ad->ID ?>">
+		<div id="adguru_modal_popup_<?php echo esc_attr( $ad->ID ) ?>" class="adguru-modal-popup hidden" popup-id="<?php echo esc_attr( $ad->ID ) ?>" data-animation="<?php echo esc_attr(json_encode($animation))?>" data-sizing="<?php echo esc_attr(json_encode($sizing))?>" data-closing="<?php echo esc_attr(json_encode($closing))?>" data-triggering="<?php echo esc_attr(json_encode($triggering))?>">
+			<div id="adguru_modal_popup_overlay_<?php echo esc_attr( $ad->ID ) ?>" class="mp-overlay adguru-modal-popup-overlay" popup-id="<?php echo esc_attr( $ad->ID ) ?>"></div>
+			<div id="adguru_modal_popup_container_wrap_<?php echo esc_attr( $ad->ID ) ?>" class="mp-container-wrap <?php echo esc_attr( $container_location_class ) ?>">
+				<div id="adguru_modal_popup_conatiner_<?php echo esc_attr( $ad->ID ) ?>" class="mp-container <?php echo esc_attr( $container_custom_css_class ) ?>" popup-id="<?php echo esc_attr( $ad->ID ) ?>">
+					<div id="adguru_modal_popup_content_wrap_<?php echo esc_attr( $ad->ID ) ?>" class="mp-content-wrap mp-content-wrap-<?php echo esc_attr( $ad->content_type );?>" popup-id="<?php echo esc_attr( $ad->ID ) ?>">
 						<?php $ad->print_content( $print_content_args ); ?>
 					</div>
-					<div id="adguru_modal_popup_close_wrap_<?php echo $ad->ID ?>" class="mp-close-wrap <?php echo $close_location_class ?>"><div id="adguru_modal_popup_close_<?php echo $ad->ID ?>" class="mp-close adguru-modal-popup-close<?php echo $close_custom_css_class ?>" popup-id="<?php echo $ad->ID ?>"><?php echo $close_btn_content ?></div></div>
+					<div id="adguru_modal_popup_close_wrap_<?php echo esc_attr( $ad->ID ) ?>" class="mp-close-wrap <?php echo esc_attr( $close_location_class ) ?>">
+						<div id="adguru_modal_popup_close_<?php echo esc_attr( $ad->ID ) ?>" class="mp-close adguru-modal-popup-close<?php echo esc_attr( $close_custom_css_class ) ?>" popup-id="<?php echo esc_attr( $ad->ID ) ?>">
+							<?php 
+							echo $close_btn_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							?>
+						</div>
+					</div>
 				</div>
 			</div>
 			
@@ -453,7 +459,7 @@ class ADGURU_Modal_Popup{
 		<style type="text/css"><?php $this->generate_output_css_for_single_popup( $ad ); ?></style>
 		<?php 
 		$output = ob_get_clean();
-		echo $output;
+		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		
 	}//end func display
 
@@ -461,40 +467,40 @@ class ADGURU_Modal_Popup{
 
 		$rules = $this->get_output_css_array_for_single_popup( $ad );
 		$ID = $ad->ID;
-		echo '#adguru_modal_popup_'.$ID.' .mp-overlay{';
+		echo '#adguru_modal_popup_'.$ID.' .mp-overlay{'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			foreach( $rules['overlay'] as $property => $value )
 			{
-				echo $property.': '.$value.';';
+				echo $property.': '.$value.';'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		echo '}';
-		echo '#adguru_modal_popup_'.$ID.' .mp-container-wrap{';
+		echo '#adguru_modal_popup_'.$ID.' .mp-container-wrap{'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			foreach( $rules['container-wrap'] as $property => $value )
 			{
-				echo $property.': '.$value.';';
+				echo $property.': '.$value.';'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		echo '}';
-		echo '#adguru_modal_popup_'.$ID.' .mp-container{';
+		echo '#adguru_modal_popup_'.$ID.' .mp-container{'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			foreach( $rules['container'] as $property => $value )
 			{
-				echo $property.': '.$value.';';
+				echo $property.': '.$value.';'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		echo '}';
-			echo '#adguru_modal_popup_'.$ID.' .mp-content{';
+			echo '#adguru_modal_popup_'.$ID.' .mp-content{'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			foreach( $rules['content'] as $property => $value )
 			{
-				echo $property.': '.$value.';';
+				echo $property.': '.$value.';'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		echo '}';
-		echo '#adguru_modal_popup_'.$ID.' .mp-close{';
+		echo '#adguru_modal_popup_'.$ID.' .mp-close{'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			foreach( $rules['close'] as $property => $value )
 			{
-				echo $property.': '.$value.';';
+				echo $property.': '.$value.';'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		echo '}';
-		echo '#adguru_modal_popup_'.$ID.' .mp-close-wrap{';
+		echo '#adguru_modal_popup_'.$ID.' .mp-close-wrap{'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			foreach( $rules['close-wrap'] as $property => $value )
 			{
-				echo $property.': '.$value.';';
+				echo $property.': '.$value.';'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		echo '}';
 
@@ -889,9 +895,9 @@ class ADGURU_Modal_Popup{
 	}
 	public function edit_page_bottom( $current_manager_vars ){
 		
-		echo '<script src="'.ADGURU_PLUGIN_URL.'modules/modal_popup/assets/js/fields.js?var='.ADGURU_VERSION.'"></script>';
-		echo '<script src="'.ADGURU_PLUGIN_URL.'modules/modal_popup/assets/js/editor.js?var='.ADGURU_VERSION.'"></script>';
-		echo '<script src="'.ADGURU_PLUGIN_URL.'modules/modal_popup/assets/js/preview.js?var='.ADGURU_VERSION.'"></script>';
+		echo '<script src="'.esc_url( ADGURU_PLUGIN_URL.'modules/modal_popup/assets/js/fields.js?var='.ADGURU_VERSION ).'"></script>';
+		echo '<script src="'.esc_url( ADGURU_PLUGIN_URL.'modules/modal_popup/assets/js/editor.js?var='.ADGURU_VERSION ).'"></script>';
+		echo '<script src="'.esc_url( ADGURU_PLUGIN_URL.'modules/modal_popup/assets/js/preview.js?var='.ADGURU_VERSION ).'"></script>';
 		?>
 		<script type="text/javascript">
 		jQuery(document).ready(function(){
@@ -904,8 +910,8 @@ class ADGURU_Modal_Popup{
 
 	public function edit_theme_page_bottom( $current_manager_vars ){
 
-		echo '<script src="'.ADGURU_PLUGIN_URL.'modules/modal_popup/assets/js/fields.js?var='.ADGURU_VERSION.'"></script>';
-		echo '<script src="'.ADGURU_PLUGIN_URL.'modules/modal_popup/assets/js/preview.js?var='.ADGURU_VERSION.'"></script>';
+		echo '<script src="'.esc_url( ADGURU_PLUGIN_URL.'modules/modal_popup/assets/js/fields.js?var='.ADGURU_VERSION ).'"></script>';
+		echo '<script src="'.esc_url( ADGURU_PLUGIN_URL.'modules/modal_popup/assets/js/preview.js?var='.ADGURU_VERSION ).'"></script>';
 		?>
 		<script type="text/javascript">
 		jQuery(document).ready(function(){
@@ -929,7 +935,7 @@ class ADGURU_Modal_Popup{
 			</thead>
 			<tr>
 				<td>
-					To show any modal popup ad in your site, go to <a href="<?php echo add_query_arg( array( "manager_tab" => "links" ), $page_args['base_url']) ?>">Set Modal Popups to pages</a> and set modal popup to appropiate page. 
+					To show any modal popup ad in your site, go to <a href="<?php echo esc_url( add_query_arg( array( "manager_tab" => "links" ), $page_args['base_url'] ) ) ?>">Set Modal Popups to pages</a> and set modal popup to appropiate page. 
 					<br /><strong> OR</strong><br />
 					Add following php code anywhere in your site front-end pages. Replace the word <strong>'ad_id'</strong> with the <strong>id</strong> of the Modal Popup you want to show<br />
 					<code>

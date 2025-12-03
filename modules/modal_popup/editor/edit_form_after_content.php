@@ -99,7 +99,7 @@
 </div><!-- /.postbox -->
 
 <div id="modal_popup_ad_editor_closing_box" class="postbox">
-	<h2 class='hndle'><span><?php _esc_html_e('Closing', 'wp-ad-guru')?></span></h2>
+	<h2 class='hndle'><span><?php esc_html_e('Closing', 'wp-ad-guru')?></span></h2>
 	<div class="inside">
 		<?php adguru_show_modal_popup_closing_form( $ad ); ?>
 	</div><!-- ./inside -->

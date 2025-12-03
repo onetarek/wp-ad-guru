@@ -108,8 +108,8 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 			
 		?>
 		<p class="search-box">
-			<label class="screen-reader-text" for="<?php echo $input_id ?>"><?php echo $text; ?>:</label>
-			<input type="search" id="<?php echo $input_id ?>" name="s" value="<?php echo _admin_search_query(); ?>" />
+			<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ) ?>"><?php echo esc_html( $text ); ?>:</label>
+			<input type="search" id="<?php echo esc_attr( $input_id ) ?>" name="s" value="<?php echo esc_attr( _admin_search_query() ); ?>" />
 			<?php submit_button( $text, 'button', false, false, array('ID' => 'search-submit') ); ?>
 		</p>
 	<?php
@@ -340,7 +340,7 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 	 */
 	function no_items(){
 		/* translators: 1: Singular name of the module. */
-		echo sprintf(__( 'No %s found.', 'wp-ad-guru' ) , $this->_args['singular'] );
+		echo esc_html( sprintf(__( 'No %s found.', 'wp-ad-guru' ) , $this->_args['singular'] ) );
 	}
 
 	/**

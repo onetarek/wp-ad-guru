@@ -199,7 +199,7 @@ class ADGURU_Window_Popup{
 			<div class="inside">
 				<div class="main">
 						
-					<a href="<?php echo $this->get_preview_url( $ad->ID ) ?>" target="_blank"> Preview Popup</a>
+					<a href="<?php echo esc_url( $this->get_preview_url( $ad->ID ) ) ?>" target="_blank"> Preview Popup</a>
 
 				</div><!-- .main -->
 			</div><!-- .inside -->
@@ -312,7 +312,7 @@ class ADGURU_Window_Popup{
 			return ;
 		}
 		?>
-		<script src="<?php echo ADGURU_PLUGIN_URL ?>modules/window_popup/assets/js/window-popup.js?var=<?php echo ADGURU_VERSION ?>"></script>
+		<script src="<?php echo esc_url( ADGURU_PLUGIN_URL . 'modules/window_popup/assets/js/window-popup.js?var=' . ADGURU_VERSION ) ?>"></script>
 		<?php 
 		$this->common_assets_printed = true;
 	}
@@ -347,10 +347,10 @@ class ADGURU_Window_Popup{
 		
 		ob_start();
 		?>
-		<div id="adguru_window_popup_<?php echo $ad->ID ?>" class="adguru-window-popup hidden" popup-id="<?php echo $ad->ID ?>" popup-url="<?php echo esc_attr($popup_url) ?>" data-sizing="<?php echo esc_attr(json_encode($sizing))?>" data-popup-options="<?php echo esc_attr(json_encode($popup_options))?>" data-triggering="<?php echo esc_attr(json_encode($triggering))?>"></div>
+		<div id="adguru_window_popup_<?php echo esc_attr( $ad->ID ) ?>" class="adguru-window-popup hidden" popup-id="<?php echo esc_attr( $ad->ID ) ?>" popup-url="<?php echo esc_url($popup_url) ?>" data-sizing="<?php echo esc_attr(json_encode($sizing))?>" data-popup-options="<?php echo esc_attr(json_encode($popup_options))?>" data-triggering="<?php echo esc_attr(json_encode($triggering))?>"></div>
 		<?php 
 		$output = ob_get_clean();
-		echo $output;			
+		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped			
 		
 	}//end func display
 	
@@ -422,7 +422,7 @@ class ADGURU_Window_Popup{
 			</thead>
 			<tr>
 				<td>
-					To show any window popup ad in your site, go to <a href="<?php echo add_query_arg( array( "manager_tab" => "links" ), $page_args['base_url']) ?>">Set Window Popups to pages</a> and set window popup to appropiate page. 
+					To show any window popup ad in your site, go to <a href="<?php echo esc_url( add_query_arg( array( "manager_tab" => "links" ), $page_args['base_url']) ) ?>">Set Window Popups to pages</a> and set window popup to appropiate page. 
 					<br /><strong> OR</strong><br />
 					Add following php code anywhere in your site front-end pages. Replace the word <strong>'ad_id'</strong> with the <strong>id</strong> of the Window Popup you want to show<br />
 					<code>

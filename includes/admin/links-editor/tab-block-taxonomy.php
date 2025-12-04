@@ -110,15 +110,15 @@ else
 		?>
 		
 		<form action="admin.php" method="get">
-			<input type="hidden" name="page" value="<?php echo $page ?>" />
-			<input type="hidden" name="manager_tab" value="<?php echo $current_manager_tab ?>" />
-			<input type="hidden" name="zone_id" value="<?php echo $zone_id ?>" />
-			<input type="hidden" name="tab2" value="<?php echo $tab2 ?>" />
+			<input type="hidden" name="page" value="<?php echo esc_attr( $page ) ?>" />
+			<input type="hidden" name="manager_tab" value="<?php echo esc_attr( $current_manager_tab ) ?>" />
+			<input type="hidden" name="zone_id" value="<?php echo esc_attr( $zone_id ) ?>" />
+			<input type="hidden" name="tab2" value="<?php echo esc_attr( $tab2 ) ?>" />
 			<input type="hidden" name="tab3" value="specific_term" />
 			<input type="hidden" name="tab" value="taxonomy" />
 													
 		<select name="term_slug"  onchange="this.form.submit()"> 
-		 <option value=""><?php /* translators: %s: Taxonomy name */echo sprintf( __('Select a %s', 'wp-ad-guru' ), $taxonomy_name ); ?></option> 
+		 <option value=""><?php /* translators: %s: Taxonomy name */echo esc_html( sprintf( __('Select a %s', 'wp-ad-guru' ), $taxonomy_name ) ); ?></option> 
 		 <?php 
 		  foreach ($categories as $category)
 		  {
@@ -126,7 +126,7 @@ else
 			$option .= $category->cat_name;
 			$option .= ' ('.$category->category_count.')';
 			$option .= '</option>';
-			echo $option;
+			echo $option; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		  }
 		 ?>
 		</select>
@@ -158,7 +158,7 @@ else
 			{
 				if(isset($_GET['term_slug']))
 				{
-					echo '<span style="color:#ff0000;">'; echo __( 'Your given term does not exists. Enter a valid term slug', 'wp-ad-guru' ); echo '</span><br><br>';
+					echo '<span style="color:#ff0000;">'; esc_html_e( 'Your given term does not exists. Enter a valid term slug', 'wp-ad-guru' ); echo '</span><br><br>';
 				}
 			}						  
 
@@ -168,16 +168,16 @@ else
 		  ?>
 		  
 		 <form action="admin.php" method="get">
-			<input type="hidden" name="page" value="<?php echo $page ?>" />
-			<input type="hidden" name="manager_tab" value="<?php echo $current_manager_tab ?>" />
-			<input type="hidden" name="zone_id" value="<?php echo $zone_id ?>" />
-			<input type="hidden" name="tab2" value="<?php echo $tab2 ?>" />
+			<input type="hidden" name="page" value="<?php echo esc_attr( $page ) ?>" />
+			<input type="hidden" name="manager_tab" value="<?php echo esc_attr( $current_manager_tab ) ?>" />
+			<input type="hidden" name="zone_id" value="<?php echo esc_attr( $zone_id ) ?>" />
+			<input type="hidden" name="tab2" value="<?php echo esc_attr( $tab2 ) ?>" />
 			<input type="hidden" name="tab3" value="specific_term" />
 			<input type="hidden" name="tab" value="taxonomy" />						 
-			<?php echo __( "Add new term slug", "wp-ad-guru" ) ?> :
-			<input type="text" size="15"  name="term_slug" /><input type="submit" class="button" name="add_term" value="<?php echo esc_attr( __( 'Add and Select', 'wp-ad-guru' ) ) ?>" />
+			<?php esc_html_e( "Add new term slug", "wp-ad-guru" ) ?> :
+			<input type="text" size="15"  name="term_slug" /><input type="submit" class="button" name="add_term" value="<?php esc_html_e( 'Add and Select', 'wp-ad-guru' ) ?>" />
 		  </form><br />
-		  <?php echo __( "OR click on any previously used term below to edit.", "wp-ad-guru" ) ?>
+		  <?php esc_html_e( "OR click on any previously used term below to edit.", "wp-ad-guru" ) ?>
 		  <div id="used_term_list">
 			<?php 
 				
@@ -187,12 +187,12 @@ else
 					$link = add_query_arg( $link_args , "admin.php" );
 					foreach($used_term_list as $t)
 					{
-						echo '<a href="'.$link.'&term_slug='.$t->term.'">'.$t->term.'</a>';
+						echo '<a href="'.esc_url( $link.'&term_slug='.$t->term.'">'.$t->term ).'</a>';
 					}
 				}
 				else
 				{
-					echo __( 'You did not use any term for this taxonomy and zone yet', 'wp-ad-guru' );
+					esc_html_e( 'You did not use any term for this taxonomy and zone yet', 'wp-ad-guru' );
 				}
 			?>
 		  </div>

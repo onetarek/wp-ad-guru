@@ -45,9 +45,9 @@ if( ! $zone_selection_needed )
 }
 
 ?>
-<link rel="stylesheet" type="text/css" href="<?php echo ADGURU_PLUGIN_URL ?>assets/css/ad-setup-manager.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo esc_url( ADGURU_PLUGIN_URL.'assets/css/ad-setup-manager.css') ?>" />
 <div class="wrap" id="ad_setup_manger_wrap">
-	<h2><?php _e( "Setup Ads", "wp-ad-guru" ); ?></h2>
+	<h2><?php esc_html_e( "Setup Ads", "wp-ad-guru" ); ?></h2>
 
 	<?php do_action( "adguru_ad_setup_manager_top" , $current_ad_type_args ); ?>
 	<?php do_action( "adguru_ad_setup_manager_top_{$current_ad_type}" , $current_ad_type_args ); ?>
@@ -59,7 +59,7 @@ if( ! $zone_selection_needed )
 			$tab_class = ( $key == $current_ad_type  )? 'nav-tab nav-tab-active' : 'nav-tab';
 			$tab_link = admin_url( 'admin.php?page=adguru_setup_ads&ad_type='.$key );
 		?>
-		<a class='<?php echo $tab_class?>' href="<?php echo $tab_link ?>"><?php echo $args['name'] ?></a>
+		<a class='<?php echo esc_attr( $tab_class ) ?>' href="<?php echo esc_url( $tab_link ) ?>"><?php echo esc_html( $args['name'] ) ?></a>
 		<?php }?>
 	</h2>
 
@@ -68,7 +68,7 @@ if( ! $zone_selection_needed )
 	<?php do_action( "adguru_ad_setup_manager_after_tabs_{$current_ad_type}" , $current_ad_type_args ); ?>
 
 	<div id="editor_container">
-		<div id="editor_title"><?php echo $editor_title ?></div>
+		<div id="editor_title"><?php echo esc_html( $editor_title ) ?></div>
 		<?php 
 		#Print Zone select dropdown if current ad type uses zone
 		if( $use_zone ){
@@ -77,11 +77,11 @@ if( ! $zone_selection_needed )
 			?>
 			<div id="zone-select-area">
 				<form action="" method="get">
-					<input type="hidden" name="page" value="<?php echo $page ?>" />
-					<input type="hidden" name="ad_type" value="<?php echo $current_ad_type ?>" />
-					<strong><?php _e( 'Zone', 'wp-ad-guru' )?> : </strong> 
+					<input type="hidden" name="page" value="<?php echo esc_attr( $page ) ?>" />
+					<input type="hidden" name="ad_type" value="<?php echo esc_attr( $current_ad_type ) ?>" />
+					<strong><?php esc_html_e( 'Zone', 'wp-ad-guru' )?> : </strong> 
 					<select id="zone_id_list" name="zone_id" onchange="this.form.submit()">
-						<option value="0" <?php echo ( $zone_id == 0 ) ? ' selected="selected" ': ""  ?>><?php echo __( "Select A Zone", "wp-ad-guru" ) ?></option>
+						<option value="0" <?php echo ( $zone_id == 0 ) ? ' selected="selected" ': ""  ?>><?php esc_html_e( "Select A Zone", "wp-ad-guru" ) ?></option>
 						<?php 
 						$valid_zone_id = false;
 						foreach($zones as $zone)
@@ -90,7 +90,7 @@ if( ! $zone_selection_needed )
 							$class = '';
 							if( $zone->active !=1 ){ $class = ' class="inactive" '; }
 							if( $zone_id == $zone->ID ){ $selected = ' selected="selected" '; $valid_zone_id = true; }
-							echo '<option value="'.$zone->ID.'"'.$class.$selected.'>'.$zone->name.' - '.$zone->width.'x'.$zone->height.'</option>';
+							echo '<option value="'.$zone->ID.'"'.$class.$selected.'>'.$zone->name.' - '.$zone->width.'x'.$zone->height.'</option>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						}
 						?>
 					</select>
@@ -105,7 +105,7 @@ if( ! $zone_selection_needed )
 			if(  $current_zone && $current_zone->active != 1 )
 			{
 				?>
-					<div style="text-align:center"><span style="color:red"><?php _e("Selected zone is deactivated, you will not see any output for this zone", "wp-ad-guru")?></span>, <a href="admin.php?page=adguru_zone&manager_tab=edit&zone_id=<?php echo $current_zone->ID?>"><?php _e("Edit this zone", "wp-ad-guru") ?></a></div>
+					<div style="text-align:center"><span style="color:red"><?php esc_html_e("Selected zone is deactivated, you will not see any output for this zone", "wp-ad-guru")?></span>, <a href="<?php echo esc_url( 'admin.php?page=adguru_zone&manager_tab=edit&zone_id='.$current_zone->ID ) ?>"><?php esc_html_e("Edit this zone", "wp-ad-guru") ?></a></div>
 				<?php 
 			}
 		?>
@@ -121,7 +121,7 @@ if( ! $zone_selection_needed )
 
 	<?php else: //if( ! $zone_selection_needed ) :  ?>
 	<div>
-		<div style="text-align: center;font-size: 40px; margin-top: 40px;text-transform: uppercase;"><?php _e('Select zone', 'wp-ad-guru') ?></div>
+		<div style="text-align: center;font-size: 40px; margin-top: 40px;text-transform: uppercase;"><?php esc_html_e('Select zone', 'wp-ad-guru') ?></div>
 	</div>
 	<?php endif; //if( ! $zone_selection_needed ) :  ?>
 

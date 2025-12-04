@@ -134,7 +134,7 @@ class ADGURU_Links_Editor{
 		if( $this->ad_type =="" ) { return; }
 		if( $this->use_zone && !is_object( $this->zone ) )
 		{
-			echo "<div>Zone not found for zone id ".$this->zone_id."</div>";
+			echo "<div>Zone not found for zone id ".esc_html( $this->zone_id )."</div>";
 			return;
 		}
 		
@@ -219,27 +219,27 @@ class ADGURU_Links_Editor{
 		<?php $this->ad_list_modal(); ?>
 		<div id="links_editor" style="margin-top:10px;">	
 			<div id="links_editor_header" style="display:none;">
-			<h2><?php _e( 'Manage ads for this zone', 'wp-ad-guru' ) ?></h2>
+			<h2><?php esc_html_e( 'Manage ads for this zone', 'wp-ad-guru' ) ?></h2>
 			</div>
 			<div id="links_editor_body">
 			<?php
 				$table_style =  ( $this->geo_rotator )? "width: 650px;" : "width: 504px;";
 			?>
-			<table id="links_editor_table" class="widefat" style="<?php echo $table_style; ?>">
+			<table id="links_editor_table" class="widefat" style="<?php echo esc_attr( $table_style ); ?>">
 				<thead>
 					<tr>
-						<?php if( $this->geo_rotator ){?><th width="146"><?php _e( 'Country', 'wp-ad-guru' ) ?></th><?php }?>
+						<?php if( $this->geo_rotator ){?><th width="146"><?php esc_html_e( 'Country', 'wp-ad-guru' ) ?></th><?php }?>
 						<th width="504">
 						<?php 
 						if( $this->zone_id )
 						{
 							/* translators: 1: Ad type name, 2: Zone name */
-							echo sprintf( __( '%1$s set for the <strong>zone( %2$s )</strong> on this <strong>page</strong>', 'wp-ad-guru' ), $this->ad_type_args['name'], $this->zone->name );
+							echo wp_kses( sprintf( __( '%1$s set for the <strong>zone( %2$s )</strong> on this <strong>page</strong>', 'wp-ad-guru' ), $this->ad_type_args['name'], $this->zone->name ), array('strong' => array() ) );
 						}
 						else
 						{
 							/* translators: %s: Ad type name */
-							echo sprintf( __( '%s set for this <strong>page</strong>', 'wp-ad-guru' ), $this->ad_type_args['name'] );
+							echo wp_kses( sprintf( __( '%s set for this <strong>page</strong>', 'wp-ad-guru' ), $this->ad_type_args['name'] ), array('strong' => array() ) );
 						}
 						?>
 						</th>
@@ -256,10 +256,10 @@ class ADGURU_Links_Editor{
 						{
 							$i++;
 							$selected=($code=="--")?' class="selected"':'';
-							echo '<li tabid="'.$i.'" code="'.$code.'"'.$selected.'>'.$name.'</li>';
+							echo '<li tabid="'.$i.'" code="'.$code.'"'.$selected.'>'.$name.'</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						}?>
 						</ul>
-						<span class="add_country_btn" id="add_new_country_btn"><?php _e( 'Add new country', 'wp-ad-guru' )?></span>
+						<span class="add_country_btn" id="add_new_country_btn"><?php esc_html_e( 'Add new country', 'wp-ad-guru' )?></span>
 					</td>
 					<?php }?>
 					<td>								
@@ -267,13 +267,13 @@ class ADGURU_Links_Editor{
 							<?php 
 							$j=0;
 							foreach( $country_list as $country_code => $country_name){ $j++; ?>
-							<div class="ctab_box ad_zone_link_set" tabid="<?php echo $j?>" id="ctab_box_<?php echo $j?>" <?php if( $j == 1 ) echo ' style="display:block"';?>>
+							<div class="ctab_box ad_zone_link_set" tabid="<?php echo esc_attr( $j )?>" id="ctab_box_<?php echo esc_attr( $j )?>" <?php if( $j == 1 ) echo ' style="display:block"';?>>
 								<div class="ctab_box_head">
 									<?php if( $j!=1 && ADGURU_GEO_LOCATION_ENABLED == false ){?>
-									<div style="color:red"><?php _e( 'Geo location feature is not enabled', 'wp-ad-guru' )?></div>
+									<div style="color:red"><?php esc_html_e( 'Geo location feature is not enabled', 'wp-ad-guru' )?></div>
 									<?php } ?>
-									<div class="ctab_box_title"><?php if($j==1){ _e( 'Default: for all country', 'wp-ad-guru' );} else { echo $country_name; } ?></div>
-									<div class="ctab_control_box" tabid="<?php echo $j?>"><?php if($j!=1){ ?><span class="remove_country_btn" title="<?php echo esc_attr( __( 'Remove this country', 'wp-ad-guru' ) ) ?>">&nbsp;</span><?php } ?></div>
+									<div class="ctab_box_title"><?php if($j==1){ esc_html_e( 'Default: for all country', 'wp-ad-guru' );} else { echo esc_html( $country_name ); } ?></div>
+									<div class="ctab_control_box" tabid="<?php echo esc_attr( $j )?>"><?php if($j!=1){ ?><span class="remove_country_btn" title="<?php  esc_attr_e( 'Remove this country', 'wp-ad-guru' ) ?>">&nbsp;</span><?php } ?></div>
 									<div class="clear"></div>
 								</div>
 								<?php
@@ -298,9 +298,9 @@ class ADGURU_Links_Editor{
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="button" class="save_ad_zone_links_btn button-primary" value="<?php echo esc_attr( __( 'Save Change', 'wp-ad-guru' ) )?>" style="width:100px;" onclick="" />
+						<input type="button" class="save_ad_zone_links_btn button-primary" value="<?php esc_attr_e( 'Save Change', 'wp-ad-guru' ) ?>" style="width:100px;" onclick="" />
 						<span class="ad_zone_link_msg"></span>
-						<span class="ad_zone_link_loading" style="float:right; display:none;"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading.gif" alt="loading.." /></span>
+						<span class="ad_zone_link_loading" style="float:right; display:none;"><img src="<?php echo esc_url( ADGURU_PLUGIN_URL.'assets/images/loading.gif') ?>" alt="loading.." /></span>
 					</td>
 				</tr>
 			</table>
@@ -344,16 +344,16 @@ class ADGURU_Links_Editor{
 	
 		?>
 		<script type="text/javascript">
-			adgLinksEditorVars = <?php echo json_encode( $js_vars );?>;//LEVARS stands for Links Editor JS Vars
+			adgLinksEditorVars = <?php echo json_encode( $js_vars ); ?>;//LEVARS stands for Links Editor JS Vars
 		</script>
-		<script type="text/javascript" src="<?php echo ADGURU_PLUGIN_URL; ?>assets/js/ad_zone_links_controller.js?var=<?php echo ADGURU_VERSION ?>"></script>	
+		<script type="text/javascript" src="<?php echo esc_url( ADGURU_PLUGIN_URL.'assets/js/ad_zone_links_controller.js?var='.ADGURU_VERSION ) ?>"></script>	
 		<script type="text/javascript">
 		
 			function get_country_list_html()
 			{
 			<?php
 				$country_list= ADGURU_Helper::get_country_list();
-				echo 'var html=\'<select onchange ="adgLinksEditor.checkDuplicateCountry(this)"  class="country_name">'; 
+				echo 'var html=\'<select onchange ="adgLinksEditor.checkDuplicateCountry(this)"  class="country_name">';
 				$cn=0;
 				foreach($country_list as $slug=>$name)
 				{
@@ -367,7 +367,7 @@ class ADGURU_Links_Editor{
 			}
 										
 			</script>
-			<link rel="stylesheet" href="<?php echo ADGURU_PLUGIN_URL; ?>assets/css/ad_zone_links_controller.css?var=<?php echo ADGURU_VERSION ?>" />
+			<link rel="stylesheet" href="<?php echo esc_url( ADGURU_PLUGIN_URL.'assets/css/ad_zone_links_controller.css?var='.ADGURU_VERSION ) ?>" />
 			
 	<?php	
 	}//END FUNC			
@@ -379,9 +379,9 @@ class ADGURU_Links_Editor{
 	
 	private function ad_list_modal(){ ?>
 	
-		 <div id="ad_list_modal" title="Insert <?php echo $this->ad_type_args['name'] ?>" style="display:none;">
+		 <div id="ad_list_modal" title="Insert <?php echo esc_attr( $this->ad_type_args['name'] ) ?>" style="display:none;">
 			<div>
-			<div style="width:240px; float:left;"><strong><?php /* translators: %s: Ad type name */ echo sprintf( __( 'Select a %s and click insert', 'wp-ad-guru' ) , $this->ad_type_args['name'] )?></strong></div>
+			<div style="width:240px; float:left;"><strong><?php /* translators: %s: Ad type name */ echo esc_html( sprintf( __( 'Select a %s and click insert', 'wp-ad-guru' ) , $this->ad_type_args['name'] ) )?></strong></div>
 			<div style="float:right; width:200px; margin-right:22px; text-align:right;"><input style="width:180px;" placeholder="Search" type="text" size="15" id="search_ad_list" /></div>
 			</div>
 			<div style="clear:both"></div>
@@ -393,12 +393,12 @@ class ADGURU_Links_Editor{
 				{
 					echo '<span style="color:#cc0000;">';
 						/* translators: %s: Ad type name */
-						echo sprintf( __( 'You have no %s for this zone size', 'wp-ad-guru' ), $this->ad_type_args['name'] ).' <strong>'.$this->zone_width.'x'.$this->zone_height.'</strong>';
+						echo esc_html( sprintf( __( 'You have no %s for this zone size', 'wp-ad-guru' ), $this->ad_type_args['name'] ) ).' <strong>'.esc_html( $this->zone_width ).'x'.esc_html( $this->zone_height ).'</strong>';
 						echo ' <a href="admin.php?page='.ADGURU_ADMANAGER_PAGE_SLUG_PREFIX.$this->ad_type.'">';
-							echo sprintf( __( 'Enter new ad', 'wp-ad-guru') );
+							esc_html_e( 'Enter new ad', 'wp-ad-guru' );
 						echo '</a> ' ;
 						/* translators: %s: zone width and height */
-						echo sprintf( __( 'in %s size', 'wp-ad-guru' ), '<strong>'.$this->zone_width.'x'.$this->zone_height.'</strong>' );
+						echo wp_kses( sprintf( __( 'in %s size', 'wp-ad-guru' ), '<strong>'.$this->zone_width.'x'.$this->zone_height.'</strong>' ), array('strong'=>array()) );
 					echo '</span>';
 				}
 				else
@@ -407,7 +407,7 @@ class ADGURU_Links_Editor{
 					{
 						$ad_type_name =  $this->all_ad_types[ $ad->type ]['name'];
 						
-						echo '<div class="ads_list_item" ad_id="'.$ad->ID.'" ad_type_name="'.$ad_type_name.'" ad_type="'.$ad->type.'" ad_name="'.esc_attr( $ad->name ).'" ><span class="ad_name">'.$ad->name.'</span><span class="ad_type">'.$ad_type_name.'</span></div>';
+						echo '<div class="ads_list_item" ad_id="'.esc_attr( $ad->ID ).'" ad_type_name="'.esc_attr( $ad_type_name ).'" ad_type="'.esc_attr( $ad->type ).'" ad_name="'.esc_attr( $ad->name ).'" ><span class="ad_name">'.esc_html( $ad->name ).'</span><span class="ad_type">'.esc_html( $ad_type_name ).'</span></div>';
 					}
 				}
 				?>
@@ -424,20 +424,20 @@ class ADGURU_Links_Editor{
 		<div>	
 			<div class="ad_slide_set_box">
 				<?php $i = 0; foreach( $slide_set_arr as $slide ){ $i++; ?>
-				<?php if( $this->multiple_slides ){ echo '<h3>'.__('Slide', 'wp-ad-guru').' '.$i.'</h3>'; } ?>
+				<?php if( $this->multiple_slides ){ echo '<h3>';esc_html_e('Slide', 'wp-ad-guru'); echo ' '; echo esc_html( $i ); echo '</h3>'; } ?>
 				<div class="ad_slide">
 					<div class="slide_header">
-						<div class="sl_hd_left"><?php echo ( $this->use_zone ) ? __('Ads', 'wp-ad-guru' ) : $this->ad_type_args['name']; echo ' '.__('Name', 'wp-ad-guru' ) ?></div>
-						<div class="sl_hd_middle"><span class="equal_button" title="<?php echo esc_attr( __( 'Set all percentage fields equal', 'wp-ad-guru' ) ) ?>"></span></div>
+						<div class="sl_hd_left"><?php if ( $this->use_zone ) { esc_html_e('Ads', 'wp-ad-guru' ); } else { echo esc_html( $this->ad_type_args['name'] ); } echo ' '; esc_html_e('Name', 'wp-ad-guru' ); ?></div>
+						<div class="sl_hd_middle"><span class="equal_button" title="<?php esc_attr_e( 'Set all percentage fields equal', 'wp-ad-guru' ) ?>"></span></div>
 						<div class="sl_hd_right">&nbsp;</div>
 						<div class="clear"></div>
 					</div>
 					<div class="ad_set">
 						<?php foreach( $slide as $ad ){ if( isset( $ad['id'] ) ){ ?>
-						<div class="ad_item" ad_id="<?php echo $ad['id'] ?>">
+						<div class="ad_item" ad_id="<?php echo esc_attr( $ad['id'] ) ?>">
 							<div class="ad_item_left" title="<?php echo esc_attr( $this->all_ad_types[$ad['ad_type']]['name'] ) ?>"><?php echo $ad['name'] ?></div>
 							<div class="ad_item_middle"><input type="text" size="3" class="percentage" value="<?php echo esc_attr( $ad['percentage'] ) ?>" /> %</div>
-							<div class="ad_item_right"><span class="remove_ad_btn" title="<?php echo esc_attr( __( 'Remove this ad', 'wp-ad-guru' ) ) ?>"></span></div>
+							<div class="ad_item_right"><span class="remove_ad_btn" title="<?php esc_attr_e( 'Remove this ad', 'wp-ad-guru' ) ?>"></span></div>
 							<div class="clear"></div>
 						</div>
 						<?php } }?>
@@ -461,17 +461,17 @@ class ADGURU_Links_Editor{
 	public function user_guide_section(){
 	?>
 		<div style="background:#F0F0F0; width:700px; padding:0px 5px 15px 5px; margin-top:40px; border:1px solid #DFDFDF;">
-			<h2><?php _e( 'User Guide for This Page', 'wp-ad-guru') ?></h2>
-			<img src="<?php echo ADGURU_PLUGIN_URL;?>assets/images/ad_zone_links_editor_guide.jpg" /><br />
+			<h2><?php esc_html_e( 'User Guide for This Page', 'wp-ad-guru') ?></h2>
+			<img src="<?php echo esc_url( ADGURU_PLUGIN_URL.'assets/images/ad_zone_links_editor_guide.jpg' )?>" /><br />
 	
-			<?php _e( '<strong>1. Country List:</strong> You can set ads for individual country where your visitor come from. Country name <strong>Default</strong> means all country.', 'wp-ad-guru') ?> <br /><br />
-			<?php _e( '<strong>2. Slide:</strong> You are able to show multiple ads in same place like a courosel/slider. If you have only one slide then the ad will shown normally. If you have one more slide then the ads will be shown in a carousel. Ads will be changed in each 5 seconds.', 'wp-ad-guru') ?><br /><br />
-			<?php _e( '<strong>3. New Slide Button:</strong> After clicking on this buton a new slide will be added.', 'wp-ad-guru') ?>  <br /><br />
-			<?php _e( '<strong>4. An Ad:</strong> This is an ad item you added for this slide. A slide may contains one more ads. But on the front-end only one ad is shown for a slide. If you have one more ads (eg. 4 ads) then ads is roteated based on its percentage you set.', 'wp-ad-guru') ?><br /><br />
-			<?php _e( '<strong>5. New Ad Button:</strong> By clicking on this button a popup box is shown with a list of all ads you created. This list shows all ads those are match in size with the ad zone you selected. Select an ad and click <strong>Insert</strong> button.', 'wp-ad-guru') ?><br /><br />
-			<?php _e( '<strong>6. Rotator Percentage:</strong> Number of percentage, how many times this ad will be shown in 100 call. A slide can contain one more ads. Total of percentage value of all ads in same slide must be 100. If you have only one ad then keep it 100%.', 'wp-ad-guru') ?><br /><br />
-			<?php _e( '<strong>7. Equal Button:</strong> To auto fill rotator percentage value click on this button.', 'wp-ad-guru') ?><br /><br />
-			<?php _e( '<strong>8. Remove ad button:</strong> To remove an ad item click on this button.', 'wp-ad-guru') ?><br />
+			<?php esc_html_e( '<strong>1. Country List:</strong> You can set ads for individual country where your visitor come from. Country name <strong>Default</strong> means all country.', 'wp-ad-guru') ?> <br /><br />
+			<?php esc_html_e( '<strong>2. Slide:</strong> You are able to show multiple ads in same place like a courosel/slider. If you have only one slide then the ad will shown normally. If you have one more slide then the ads will be shown in a carousel. Ads will be changed in each 5 seconds.', 'wp-ad-guru') ?><br /><br />
+			<?php esc_html_e( '<strong>3. New Slide Button:</strong> After clicking on this buton a new slide will be added.', 'wp-ad-guru') ?>  <br /><br />
+			<?php esc_html_e( '<strong>4. An Ad:</strong> This is an ad item you added for this slide. A slide may contains one more ads. But on the front-end only one ad is shown for a slide. If you have one more ads (eg. 4 ads) then ads is roteated based on its percentage you set.', 'wp-ad-guru') ?><br /><br />
+			<?php esc_html_e( '<strong>5. New Ad Button:</strong> By clicking on this button a popup box is shown with a list of all ads you created. This list shows all ads those are match in size with the ad zone you selected. Select an ad and click <strong>Insert</strong> button.', 'wp-ad-guru') ?><br /><br />
+			<?php esc_html_e( '<strong>6. Rotator Percentage:</strong> Number of percentage, how many times this ad will be shown in 100 call. A slide can contain one more ads. Total of percentage value of all ads in same slide must be 100. If you have only one ad then keep it 100%.', 'wp-ad-guru') ?><br /><br />
+			<?php esc_html_e( '<strong>7. Equal Button:</strong> To auto fill rotator percentage value click on this button.', 'wp-ad-guru') ?><br /><br />
+			<?php esc_html_e( '<strong>8. Remove ad button:</strong> To remove an ad item click on this button.', 'wp-ad-guru') ?><br />
 		</div>	
 	<?php 
 	}//END FUNC	 

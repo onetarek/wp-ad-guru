@@ -359,7 +359,7 @@ class ADGURU_Links_Editor{
 				{
 				$cn++;
 				if($cn==7){echo '<optgroup label="- - - - - - - - - - - - - - - - - - - - - - - -">';}	
-				echo '<option value="'.$slug.'">'.addslashes($name).'</option>';
+				echo '<option value="'.esc_attr($slug).'">'.esc_html( addslashes($name) ).'</option>';
 				}
 				echo '</optgroup></select>\'';
 		   ?>			
@@ -394,7 +394,7 @@ class ADGURU_Links_Editor{
 					echo '<span style="color:#cc0000;">';
 						/* translators: %s: Ad type name */
 						echo esc_html( sprintf( __( 'You have no %s for this zone size', 'wp-ad-guru' ), $this->ad_type_args['name'] ) ).' <strong>'.esc_html( $this->zone_width ).'x'.esc_html( $this->zone_height ).'</strong>';
-						echo ' <a href="admin.php?page='.ADGURU_ADMANAGER_PAGE_SLUG_PREFIX.$this->ad_type.'">';
+						echo ' <a href="'.esc_url('admin.php?page='.ADGURU_ADMANAGER_PAGE_SLUG_PREFIX.$this->ad_type).'">';
 							esc_html_e( 'Enter new ad', 'wp-ad-guru' );
 						echo '</a> ' ;
 						/* translators: %s: zone width and height */
@@ -435,7 +435,7 @@ class ADGURU_Links_Editor{
 					<div class="ad_set">
 						<?php foreach( $slide as $ad ){ if( isset( $ad['id'] ) ){ ?>
 						<div class="ad_item" ad_id="<?php echo esc_attr( $ad['id'] ) ?>">
-							<div class="ad_item_left" title="<?php echo esc_attr( $this->all_ad_types[$ad['ad_type']]['name'] ) ?>"><?php echo $ad['name'] ?></div>
+							<div class="ad_item_left" title="<?php echo esc_attr( $this->all_ad_types[$ad['ad_type']]['name'] ) ?>"><?php echo esc_html( $ad['name'] ) ?></div>
 							<div class="ad_item_middle"><input type="text" size="3" class="percentage" value="<?php echo esc_attr( $ad['percentage'] ) ?>" /> %</div>
 							<div class="ad_item_right"><span class="remove_ad_btn" title="<?php esc_attr_e( 'Remove this ad', 'wp-ad-guru' ) ?>"></span></div>
 							<div class="clear"></div>
@@ -443,7 +443,7 @@ class ADGURU_Links_Editor{
 						<?php } }?>
 					</div>
 					<div class="slide_footer">
-						<div class="sl_ft_left"><span class="add_ad_btn" onclick="adgLinksEditor.showAdListModal(this)"><?php /* translators: %s: Ad type name */ echo sprintf( __( 'Add new %s', 'wp-ad-guru'), $this->ad_type_args['name'] ) ?></span></div>
+						<div class="sl_ft_left"><span class="add_ad_btn" onclick="adgLinksEditor.showAdListModal(this)"><?php /* translators: %s: Ad type name */ echo esc_html( sprintf( __( 'Add new %s', 'wp-ad-guru'), $this->ad_type_args['name'] ) ) ?></span></div>
 						<div class="sl_ft_middle">&nbsp;</span></div>
 						<div class="sl_ft_right">&nbsp;</div>
 						<div class="clear"></div>
@@ -452,7 +452,7 @@ class ADGURU_Links_Editor{
 				<?php } ?>
 			</div>
 			<?php if( $this->multiple_slides ){ ?>
-			<div style="margin-top:10px; margin-bottom:10px;"><span class="add_slide_btn"><?php echo __( 'Add new slide', 'wp-ad-guru' ) ?></span></div>
+			<div style="margin-top:10px; margin-bottom:10px;"><span class="add_slide_btn"><?php esc_html_e( 'Add new slide', 'wp-ad-guru' ) ?></span></div>
 			<?php }?>
 		</div>	 
 	 <?php 

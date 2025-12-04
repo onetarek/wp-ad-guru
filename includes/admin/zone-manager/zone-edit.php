@@ -61,7 +61,7 @@ if( ! empty( $_POST ) && isset( $_POST['save'] ) && check_admin_referer( 'adguru
 		echo '<div class="error">';
 		foreach( $error_msgs as $field => $msg )
 		{
-			echo '<p>'.$msg.'</p>';
+			echo '<p>'.esc_html( $msg ).'</p>';
 		}
 		echo '</div>';	
 	
@@ -78,7 +78,7 @@ if( ! empty( $_POST ) && isset( $_POST['save'] ) && check_admin_referer( 'adguru
 		}
 		else
 		{
-			echo '<div class="error"><p>'.__('An unknown error happend on saving zone', 'wp-ad-guru').'</p></div>';
+			echo '<div class="error"><p>'; esc_html_e('An unknown error happend on saving zone', 'wp-ad-guru'); echo '</p></div>';
 		}
 	}
 }
@@ -97,7 +97,7 @@ elseif( $zone_id || $cp_from_id )
 	{
 		$zone->ID = 0;
 		/* translators: %d: Post ID */
-		echo '<div class="error"><p>'; echo sprintf( __( 'No zone found for the ID %d , Create new.' , 'wp-ad-guru' ), $post_id ); echo '</p></div>';
+		echo '<div class="error"><p>'; echo esc_html( sprintf( __( 'No zone found for the ID %d , Create new.' , 'wp-ad-guru' ), $post_id ) ); echo '</p></div>';
 		
 	}
 	
@@ -105,7 +105,7 @@ elseif( $zone_id || $cp_from_id )
 
 if( isset( $_REQUEST['msg']) && $_REQUEST['msg'] == 1 && !isset( $_POST['save'] ) )
 {
-	echo '<div class="updated"><p>'; echo __( 'Your zone has been saved successfully' , 'wp-ad-guru' ); echo '</p></div>';
+	echo '<div class="updated"><p>'; esc_html_e( 'Your zone has been saved successfully' , 'wp-ad-guru' ); echo '</p></div>';
 } 
 
 
@@ -134,7 +134,7 @@ $size_list = array(
 						
 ?>
 <form action="" method="post">
-	<input type="hidden" name="zone_id" value="<?php echo $zone->ID ?>" />
+	<input type="hidden" name="zone_id" value="<?php echo esc_attr( $zone->ID ) ?>" />
 	<?php wp_nonce_field( 'adguru_zone_edit', 'adguru_zone_editor_nonce' ); ?>
 	<div id="poststuff">
 		<div id="post-body" class="metabox-holder columns-2">
@@ -151,21 +151,21 @@ $size_list = array(
 					</thead>
 					<?php $error_class = isset( $error_msgs['zone_name'] )? " adg_error_field" : ""; ?>
 					<tr>
-						<td><label for="zone_name"><?php echo  __( 'Zone Name', 'wp-ad-guru' ) ?></label></td>
-						<td><input type="text" name="zone_name" id="zone_name" class="input_long<?php echo $error_class;?>" size="30" value="<?php  echo esc_attr( $zone->name );?>" /></td>
+						<td><label for="zone_name"><?php esc_html_e( 'Zone Name', 'wp-ad-guru' ) ?></label></td>
+						<td><input type="text" name="zone_name" id="zone_name" class="input_long<?php echo esc_attr( $error_class );?>" size="30" value="<?php  echo esc_attr( $zone->name );?>" /></td>
 					</tr>
 					<tr>
-						<td><label for="description"><?php echo __( 'Description', 'wp-ad-guru' ) ?></label></td>
-						<td><textarea name="description" id="description"  class="input_long" cols="15" rows="4"><?php  echo $zone->description;?></textarea></td>
+						<td><label for="description"><?php esc_html_e( 'Description', 'wp-ad-guru' ) ?></label></td>
+						<td><textarea name="description" id="description"  class="input_long" cols="15" rows="4"><?php  echo esc_textarea( $zone->description );?></textarea></td>
 					</tr>
 					
 					<tr>
-						<td><label><?php echo __( 'Active', 'wp-ad-guru' ) ?></label></td>
-						<td><input type="checkbox" name="active" value="1"  <?php echo  ( isset($zone->active) && $zone->active )? 'checked="checked"':''?> /><?php if( ! ( isset($zone->active) && $zone->active ) ) { ?> <span style="color:red"><?php _e("Must activate zone to see output", "wp-ad-guru")?></span><?php }?></td>
+						<td><label><?php esc_html_e( 'Active', 'wp-ad-guru' ) ?></label></td>
+						<td><input type="checkbox" name="active" value="1"  <?php echo  ( isset($zone->active) && $zone->active )? 'checked="checked"':''?> /><?php if( ! ( isset($zone->active) && $zone->active ) ) { ?> <span style="color:red"><?php esc_html_e("Must activate zone to see output", "wp-ad-guru")?></span><?php }?></td>
 					</tr>
 
 					<tr>
-						<td><label><?php echo __( 'Size', 'wp-ad-guru' ) ?></label></td>
+						<td><label><?php esc_html_e( 'Size', 'wp-ad-guru' ) ?></label></td>
 						<td>
 						<?php 
 						if( ! isset( $zone->width )){ $zone->width = ""; }
@@ -181,16 +181,16 @@ $size_list = array(
 							{
 								$selected = ( $size_txt == $size ) ? ' selected="selected"' : '';
 								
-								echo '<option value="'.$size.'"'.$selected.'>'.$size_name.' ( '.$size.' )</option>';
+								echo '<option value="'.$size.'"'.$selected.'>'.$size_name.' ( '.$size.' )</option>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							}
 							?>
 							<option value="custom" <?php echo ($custom_size)?' selected="selected"':'';?>>Custom</option>
 						</select>
 						<span id="custom_size_box">
 						<?php $error_class = isset( $error_msgs['width'] )? " adg_error_field" : ""; ?>
-						<?php echo __( 'Width', 'wp-ad-guru' ) ?> <input type="text" name="width"  id="width" size="4"  value="<?php echo $zone->width;?>" class="<?php echo $error_class;?>" <?php echo (!$custom_size)?' readonly="readonly"':'';?> /> 
+						<?php esc_html_e( 'Width', 'wp-ad-guru' ) ?> <input type="text" name="width"  id="width" size="4"  value="<?php echo esc_attr( $zone->width );?>" class="<?php echo esc_attr( $error_class );?>" <?php echo (!$custom_size)?' readonly="readonly"':'';?> /> 
 						<?php $error_class = isset( $error_msgs['height'] )? " adg_error_field" : ""; ?>
-						<?php echo __( 'Height', 'wp-ad-guru' ) ?> <input type="text" name="height" id="height" size="4" value="<?php echo $zone->height;?>" class="<?php echo $error_class;?>" <?php echo (!$custom_size)?' readonly="readonly"':'';?>/>
+						<?php esc_html_e( 'Height', 'wp-ad-guru' ) ?> <input type="text" name="height" id="height" size="4" value="<?php echo esc_attr( $zone->height );?>" class="<?php echo esc_attr( $error_class );?>" <?php echo (!$custom_size)?' readonly="readonly"':'';?>/>
 						</span>
 						</td>
 					</tr>
@@ -207,11 +207,11 @@ $size_list = array(
 			<!--Sidebar-->
 			<div id="postbox-container-1" class="postbox-container">
 				<div class="postbox">
-					<h3 class="hndle"><?php _e('Publishing', 'wp-ad-guru')?></h3>
+					<h3 class="hndle"><?php esc_html_e('Publishing', 'wp-ad-guru')?></h3>
 					<div class="inside">
 						<div class="main" style="text-align:center;">	
 							
-							<input type="submit" name="save" class="button-primary" value="<?php echo esc_attr( __( 'Save', 'wp-ad-guru' ) ) ?>" style="width:200px;" />
+							<input type="submit" name="save" class="button-primary" value="<?php esc_attr_e( 'Save', 'wp-ad-guru' ) ?>" style="width:200px;" />
 							
 
 						</div><!-- .main -->
@@ -223,10 +223,10 @@ $size_list = array(
 					$ad_setup_page_link = "admin.php?page=adguru_setup_ads&ad_type=banner&zone_id=".$zone->ID;
 				?>
 				<div class="postbox">
-					<h3 class="hndle"><?php echo __( 'Setup Ads', 'wp-ad-guru' ) ?></h3>
+					<h3 class="hndle"><?php esc_html_e( 'Setup Ads', 'wp-ad-guru' ) ?></h3>
 					<div class="inside">
 						<div class="main">
-							<a href="<?php echo $ad_setup_page_link?>" ><?php echo __( 'Setup Ads to this zone', 'wp-ad-guru' ) ?></a>
+							<a href="<?php echo esc_url( $ad_setup_page_link )?>" ><?php esc_html_e( 'Setup Ads to this zone', 'wp-ad-guru' ) ?></a>
 						</div><!-- .main -->
 					</div><!-- .inside -->
 				</div>
@@ -236,10 +236,10 @@ $size_list = array(
 				{
 				?>
 				<div class="postbox">
-					<h3 class="hndle"><?php echo __( 'Hello', 'wp-ad-guru' ) ?></h3>
+					<h3 class="hndle"><?php esc_html_e( 'Hello', 'wp-ad-guru' ) ?></h3>
 					<div class="inside">
 						<div class="main">
-							<?php echo __( 'No one has birthday this week!', 'wp-ad-guru' ) ?>           
+							<?php esc_html_e( 'No one has birthday this week!', 'wp-ad-guru' ) ?>           
 						</div><!-- .main -->
 					</div><!-- .inside -->
 				</div>

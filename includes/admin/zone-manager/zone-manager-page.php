@@ -67,7 +67,7 @@ $current_manager_vars = array(
 
 ?>
 <div class="wrap">
-	<h2><?php echo __("Zones", "wp-ad-guru" ) ?></h2>
+	<h2><?php esc_html_e("Zones", "wp-ad-guru" ) ?></h2>
 	<?php do_action( "adguru_zone_manager_top" ); ?>
 	
 	<h2 class="nav-tab-wrapper">
@@ -77,7 +77,7 @@ $current_manager_vars = array(
 			$tab_class = ( $key == $current_manager_tab  )? 'nav-tab nav-tab-active' : 'nav-tab';
 			$tab_link = ( isset( $mtab['link'] ) && $mtab['link'] != "") ? $mtab['link'] : admin_url( 'admin.php?page='.$page.'&manager_tab='.$key );
 		?>
-		<a class='<?php echo $tab_class?>' href="<?php echo $tab_link ?>"><?php echo $mtab['text'] ?></a>
+		<a class='<?php echo esc_attr( $tab_class )?>' href="<?php echo esc_url( $tab_link ) ?>"><?php echo esc_html( $mtab['text'] ) ?></a>
 		<?php do_action( "adguru_zone_manager_tab_list" ); ?>
 		<?php }?>
 	</h2>
@@ -96,13 +96,13 @@ $current_manager_vars = array(
 			}
 			else
 			{
-				echo __( 'No file or callback function found for this tab', 'wp-ad-guru' );
+				esc_html_e( 'No file or callback function found for this tab', 'wp-ad-guru' );
 			}								
 		
 		}
 		else
 		{
-			echo "<h2>".__( 'Nothing to show', 'wp-ad-guru' )."</h2>";
+			echo "<h2>"; esc_html_e( 'Nothing to show', 'wp-ad-guru' ); echo "</h2>";
 		}			
 	?>
 	

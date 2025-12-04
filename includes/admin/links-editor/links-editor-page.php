@@ -28,10 +28,10 @@ function adguru_links_manager_tabs( $tabs, $current = 'default', $var="tab",  $q
 	echo ( $maintabs ) ? '<h2 class="nav-tab-wrapper">' : '<h3 class="nav-tab-wrapper">';
 	foreach( $tabs as $tab => $name )
 	{
-		$class = ( $tab == $current ) ? ' nav-tab-active' : '';
+		$class = ( $tab == $current ) ? 'nav-tab nav-tab-active' : 'nav-tab';
 		$args[ $var ] = $tab;
 		$url = add_query_arg( $args ,  'admin.php' );
-		echo "<a class='nav-tab$class' href='$url'>$name</a>";
+		echo '<a class="'.esc_attr( $class ).'" href="'.esc_url( $url ).'">'.esc_html( $name ).'</a>';
 		
 	}
 	echo ($maintabs) ? '</h2>' : '</h3>';
@@ -51,7 +51,7 @@ if( $use_zone ){
 	$msg =  sprintf( __("Set %s to pages", "wp-ad-guru" ) , $current_ad_type_args['plural_name'] ); 
 }
 
-echo '<h2 style="text-align:center">'.$msg.'</h2>';	
+echo '<h2 style="text-align:center">'.esc_html( $msg ).'</h2>';	
 
 #Print Zone select dropdown if current ad type use zone
 if( $use_zone ){
@@ -60,11 +60,11 @@ if( $use_zone ){
 	?>
 	<style type="text/css">#zone_id_list option.inactive{ color:#cccccc;}</style>
 	<form action="" method="get">
-		<input type="hidden" name="page" value="<?php echo $page ?>" />
-		<input type="hidden" name="manager_tab" value="<?php echo $current_manager_tab ?>" />
-		<strong><?php _e( 'Zone', 'wp-ad-guru' )?> : </strong> 
+		<input type="hidden" name="page" value="<?php echo esc_attr( $page ) ?>" />
+		<input type="hidden" name="manager_tab" value="<?php echo esc_attr( $current_manager_tab ) ?>" />
+		<strong><?php esc_html_e( 'Zone', 'wp-ad-guru' )?> : </strong> 
 		<select id="zone_id_list" name="zone_id" onchange="this.form.submit()">
-			<option value="0" <?php echo ( $zone_id == 0 ) ? ' selected="selected" ': ""  ?>><?php echo __( "Select A Zone", "wp-ad-guru" ) ?></option>
+			<option value="0" <?php echo ( $zone_id == 0 ) ? ' selected="selected" ': ""  ?>><?php esc_html_e( "Select A Zone", "wp-ad-guru" ) ?></option>
 			<?php 
 			$valid_zone_id = false;
 			foreach($zones as $zone)
@@ -73,7 +73,7 @@ if( $use_zone ){
 				$class = '';
 				if( $zone->active !=1 ){ $class = ' class="inactive" '; }
 				if( $zone_id == $zone->ID ){ $selected = ' selected="selected" '; $valid_zone_id = true; }
-				echo '<option value="'.$zone->ID.'"'.$class.$selected.'>'.$zone->name.' - '.$zone->width.'x'.$zone->height.'</option>';
+				echo '<option value="'.$zone->ID.'"'.$class.$selected.'>'.$zone->name.' - '.$zone->width.'x'.$zone->height.'</option>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 			?>
 		</select>

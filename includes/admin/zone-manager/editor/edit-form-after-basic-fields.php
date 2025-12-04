@@ -1,26 +1,26 @@
 <div id="zone_editor_design_box" class="postbox">
-	<h2 class='hndle'><span><?php _e('Design', 'wp-ad-guru')?></span></h2>
+	<h2 class='hndle'><span><?php esc_html_e('Design', 'wp-ad-guru')?></span></h2>
 	<div class="inside">
 		<?php adguru_show_zone_design_form( $zone ); ?>
 	</div><!-- ./inside -->
 </div><!-- /.postbox -->
 
 <div id="zone_editor_visibility_box" class="postbox">
-	<h2 class='hndle'><span><?php _e('Visibility', 'wp-ad-guru')?></span></h2>
+	<h2 class='hndle'><span><?php esc_html_e('Visibility', 'wp-ad-guru')?></span></h2>
 	<div class="inside">
 		<?php adguru_show_zone_visibility_form( $zone ); ?>
 	</div><!-- ./inside -->
 </div><!-- /.postbox -->
 
 <div id="zone_editor_inserter_box" class="postbox">
-	<h2 class='hndle'><span><?php _e('Automatic Insertion', 'wp-ad-guru')?></span></h2>
+	<h2 class='hndle'><span><?php esc_html_e('Automatic Insertion', 'wp-ad-guru')?></span></h2>
 	<div class="inside">
 		<?php adguru_show_zone_inserter_form( $zone ); ?>
 	</div><!-- ./inside -->
 </div><!-- /.postbox -->
 
 <div id="zone_editor_manual_inserter_box" class="postbox">
-	<h2 class='hndle'><span><?php _e('Manual Insertion', 'wp-ad-guru')?></span></h2>
+	<h2 class='hndle'><span><?php esc_html_e('Manual Insertion', 'wp-ad-guru')?></span></h2>
 	<div class="inside">
 			<?php $zid = (isset($zone->ID) && $zone->ID != 0 ) ? $zone->ID : 'zone_id';?>
 			<div style="list-style-type:disc; padding-left:30px;font-size:14px">
@@ -32,7 +32,7 @@
 				<?php if($zid == 'zone_id'){?>Replace the word <strong>'zone_id'</strong> with the <strong>id</strong> of the zone you want to show<?php }?>
 				<br />
 				<code>
-					&lt;?php if(function_exists('adguru_zone')){adguru_zone(<?php echo $zid?>);} ?&gt;
+					&lt;?php if(function_exists('adguru_zone')){adguru_zone(<?php echo esc_html( $zid )?>);} ?&gt;
 				</code>		
 				
 				
@@ -41,7 +41,7 @@
 				<?php if($zid == 'zone_id'){?>Replace the word <strong>'zone_id'</strong> with the <strong>id</strong> of the zone you want to show<?php }?>
 				<br />
 				<code>
-					[adguru zoneid="<?php echo $zid?>"]
+					[adguru zoneid="<?php echo esc_html( $zid )?>"]
 				</code>				
 			</div>
 	</div><!-- ./inside -->

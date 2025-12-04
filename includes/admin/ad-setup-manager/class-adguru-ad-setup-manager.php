@@ -74,7 +74,7 @@ class ADGURU_Ad_Setup_Manager{
 					
 					foreach( $post_types as $post_type_slug => $name )
 					{?>
-						<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"singular", 'taxonomy'=>'single', 'term'=>$post_type_slug, "post_type_name"=>$name ) )?>><?php echo $name ?></li>
+						<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"singular", 'taxonomy'=>'single', 'term'=>$post_type_slug, "post_type_name"=>$name ) )?>><?php echo esc_html( $name ) ?></li>
 					<?php 
 					}
 					?>
@@ -89,13 +89,13 @@ class ADGURU_Ad_Setup_Manager{
 								$categories = get_categories( array( 'hide_empty'=>0, 'taxonomy'=>$tax_slug ) );
 							?>
 								<li>
-									<span class="group-name"><?php echo $taxonomy->labels->name; ?></span>
+									<span class="group-name"><?php echo esc_html( $taxonomy->labels->name ); ?></span>
 									<ul>
 									<?php
 									  foreach ($categories as $category)
 									  {
 									  ?>
-									  	<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"singular", 'taxonomy'=>$tax_slug, 'term'=>$category->slug, "hierarchical"=>1, "term_name"=>$category->cat_name,"taxonomy_name"=>$taxonomy->labels->singular_name ) )?>><?php echo $category->cat_name ?></li>
+									  	<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"singular", 'taxonomy'=>$tax_slug, 'term'=>$category->slug, "hierarchical"=>1, "term_name"=>$category->cat_name,"taxonomy_name"=>$taxonomy->labels->singular_name ) )?>><?php echo esc_html( $category->cat_name ) ?></li>
 									  <?php 
 									  }
 									?>
@@ -106,7 +106,7 @@ class ADGURU_Ad_Setup_Manager{
 							else
 							{
 							?>
-								<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"singular", "taxonomy"=>$tax_slug, 'term'=>"--", "hierarchical"=>0,"taxonomy_name"=>$taxonomy->labels->singular_name ) )?>>Specific <strong><?php echo $taxonomy->labels->singular_name; ?></strong></li>
+								<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"singular", "taxonomy"=>$tax_slug, 'term'=>"--", "hierarchical"=>0,"taxonomy_name"=>$taxonomy->labels->singular_name ) )?>>Specific <strong><?php echo esc_html( $taxonomy->labels->singular_name ); ?></strong></li>
 							<?php
 							}
 						}
@@ -127,14 +127,14 @@ class ADGURU_Ad_Setup_Manager{
 						$categories = get_categories( array( 'hide_empty'=>0, 'taxonomy'=>$tax_slug ) );
 					?>
 						<li>
-							<span class="group-name"><?php echo $taxonomy->labels->name; ?></span>
+							<span class="group-name"><?php echo esc_html( $taxonomy->labels->name ); ?></span>
 							<ul>
-								<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy", "taxonomy"=>$tax_slug, "term"=>"--", "hierarchical"=>1, "taxonomy_name"=>$taxonomy->labels->singular_name ) )?>>Any <?php echo $taxonomy->labels->singular_name; ?></li>
+								<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy", "taxonomy"=>$tax_slug, "term"=>"--", "hierarchical"=>1, "taxonomy_name"=>$taxonomy->labels->singular_name ) )?>>Any <?php echo esc_html( $taxonomy->labels->singular_name ); ?></li>
 							<?php
 							  foreach ($categories as $category)
 							  {
 							  ?>
-							  	<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy", "taxonomy"=>$tax_slug, "term"=>$category->slug, "hierarchical"=>1, "term_name"=>$category->cat_name,"taxonomy_name"=>$taxonomy->labels->singular_name ) )?>><?php echo $category->cat_name ?></li>
+							  	<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy", "taxonomy"=>$tax_slug, "term"=>$category->slug, "hierarchical"=>1, "term_name"=>$category->cat_name,"taxonomy_name"=>$taxonomy->labels->singular_name ) )?>><?php echo esc_html( $category->cat_name ); ?></li>
 							  <?php 
 							  }
 							?>
@@ -146,10 +146,10 @@ class ADGURU_Ad_Setup_Manager{
 					{
 					?>
 					<li>
-						<span class="group-name"><?php echo $taxonomy->labels->name; ?></span>
+						<span class="group-name"><?php echo esc_html( $taxonomy->labels->name ); ?></span>
 						<ul>
-							<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy", "taxonomy"=>$tax_slug, "term"=>"--", "hierarchical"=>0, "taxonomy_name"=>$taxonomy->labels->singular_name ) )?>>Any <?php echo $taxonomy->labels->singular_name; ?></li>
-							<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy", "taxonomy"=>$tax_slug, "term"=>"", "hierarchical"=>0, "taxonomy_name"=>$taxonomy->labels->singular_name ) )?>>Specific <strong><?php echo $taxonomy->labels->singular_name; ?></strong></li>
+							<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy", "taxonomy"=>$tax_slug, "term"=>"--", "hierarchical"=>0, "taxonomy_name"=>$taxonomy->labels->singular_name ) )?>>Any <?php echo esc_html( $taxonomy->labels->singular_name ); ?></li>
+							<li class="usable" <?php $this->page_type_item_data_attr( array( "page_type"=>"taxonomy", "taxonomy"=>$tax_slug, "term"=>"", "hierarchical"=>0, "taxonomy_name"=>$taxonomy->labels->singular_name ) )?>>Specific <strong><?php echo esc_html( $taxonomy->labels->singular_name ); ?></strong></li>
 						</ul>
 					</li>
 					<?php
@@ -192,7 +192,8 @@ class ADGURU_Ad_Setup_Manager{
 			<div class="title">{{AD_TITLE}}</div>
 			<div class="control-box">
 				<span class="percentage-box"><span class="percentage-label">Rotate</span><input type="number" class="percentage" value="{{PERCENTAGE}}" max="100" min="0"> %</span>
-				<a class="edit-btn" href="<?php echo admin_url('admin.php?page=adguru_ad_{{AD_TYPE}}&manager_tab=edit&ad_id=')?>{{AD_ID}}" target="_blank" title="Edit this ad"></a>
+				<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<a class="edit-btn" href="<?php echo admin_url('admin.php?page=adguru_ad_{{AD_TYPE}}&manager_tab=edit&ad_id={{AD_ID}}');?>" target="_blank" title="Edit this ad"></a>
 				<span class="ad-remove-btn" title="Remove this ad"></span>
 			</div>
 			<div class="more">{{MORE_HTML}}</div>

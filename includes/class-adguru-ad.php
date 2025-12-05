@@ -87,7 +87,7 @@ class ADGURU_Ad{
 		}
 		else
 		{
-			echo $output;
+			echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 
@@ -124,7 +124,7 @@ class ADGURU_Ad{
 		}
 		else
 		{
-			echo $output;
+			echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 

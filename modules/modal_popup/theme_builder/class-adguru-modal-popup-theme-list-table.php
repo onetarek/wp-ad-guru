@@ -210,7 +210,7 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 	 *
 	 * @access public
 	 * @since 2.0.0
-	 * @param array $item the data of current row item
+	 * @param ADGURU_Modal_Popup_Theme $item the data of current row item
 	 * @return string output of ID coulumn value
 	 */
 	function column_ID( $item ){
@@ -223,7 +223,7 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 	 *
 	 * @access public
 	 * @since 2.0.0
-	 * @param array $item the data of current row item
+	 * @param ADGURU_Modal_Popup_Theme $item the data of current row item
 	 * @return string output of name coulumn value
 	 */
 	function column_name( $item ){
@@ -252,7 +252,7 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 	 *
 	 * @access public
 	 * @since 2.0.0
-	 * @param array $item the data of current row item
+	 * @param ADGURU_Modal_Popup_Theme $item the data of current row item
 	 * @return string output of name coulumn value
 	 */
 	function column_size( $item ){
@@ -265,7 +265,7 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 	 *
 	 * @access public
 	 * @since 2.0.0
-	 * @param array $item the data of current row item
+	 * @param ADGURU_Modal_Popup_Theme $item the data of current row item
 	 * @return string output of name coulumn value
 	 */
 	function column_active( $item ){
@@ -278,7 +278,7 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 	 *
 	 * @access public
 	 * @since 2.0.0
-	 * @param array $item contains all the data of current row
+	 * @param ADGURU_Modal_Popup_Theme $item contains all the data of current row
 	 * @return string output html of a checkbox
 	 */
 	function column_cb( $item ){
@@ -295,7 +295,7 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 	 *
 	 * @access public
 	 * @since 2.0.0
-	 * @param array $item contains all the data of current row item
+	 * @param ADGURU_Modal_Popup_Theme $item contains all the data of current row item
 	 * @return string Output HTML description column
 	 */
 	function column_description( $item ){
@@ -308,7 +308,7 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 	 *
 	 * @access public
 	 * @since 2.0.0
-	 * @param array $item contains all the data of current row item
+	 * @param ADGURU_Modal_Popup_Theme $item contains all the data of current row item
 	 * @return string Output HTML description column
 	 */
 	function column_type( $item ){
@@ -321,7 +321,7 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 	 *
 	 * @access public
 	 * @since 2.0.0
-	 * @param array $item contains all the data of current row item
+	 * @param ADGURU_Modal_Popup_Theme $item contains all the data of current row item
 	 * @return string Output HTML links_count column
 	 * @todo show a dialog box with the links of links editor pages where this ad is being used.
 	 */

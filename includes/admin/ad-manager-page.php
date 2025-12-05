@@ -113,7 +113,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	
 	?>
 	<div class="wrap">
-		<h2><?php echo  $current_ad_type_args['name']; ?></h2>
+		<h2><?php echo  esc_html( $current_ad_type_args['name'] ); ?></h2>
 		<?php do_action( "adguru_ad_manager_top" , $current_ad_type_args ); ?>
 		<?php do_action( "adguru_ad_manager_top_{$current_ad_type}" , $current_ad_type_args ); ?>
 		
@@ -124,7 +124,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				$tab_class = ( $key == $current_manager_tab  )? 'nav-tab nav-tab-active' : 'nav-tab';
 				$tab_link = ( isset( $mtab['link'] ) && $mtab['link'] != "") ? $mtab['link'] : admin_url( 'admin.php?page='.$page.'&manager_tab='.$key );
 			?>
-			<a class='<?php echo $tab_class?>' href="<?php echo $tab_link ?>"><?php echo $mtab['text'] ?></a>
+			<a class='<?php echo esc_attr( $tab_class ) ?>' href="<?php echo esc_url( $tab_link ) ?>"><?php echo esc_html( $mtab['text'] ) ?></a>
 			<?php do_action( "adguru_ad_manager_tab_list_{$current_ad_type}" ); ?>
 			<?php }?>
 		</h2>

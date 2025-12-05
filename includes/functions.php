@@ -26,8 +26,8 @@ function adguru_get_zone_input_error()
 
 function adguru_html_redirect( $redirect_to )
 {
-	echo '<META http-equiv="refresh" content="0;URL='.$redirect_to.'">';
-	echo '<div><p>This page is redirecting.... If you can see me , <a href="'.$redirect_to.'">please click here</a> to redirect manually</p></div>';
+	echo '<META http-equiv="refresh" content="0;URL='.esc_url( $redirect_to).'">';
+	echo '<div><p>This page is redirecting.... If you can see me , <a href="'.esc_url( $redirect_to ).'">please click here</a> to redirect manually</p></div>';
 }
 
 

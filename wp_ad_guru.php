@@ -388,7 +388,15 @@ if (! class_exists('WP_Ad_Guru')) :
 		 */
 		public function load_textdomain()
 		{
-			load_plugin_textdomain('wp-ad-guru', false, ADGURU_PLUGIN_DIR . "languages/");
+			/*
+			Cause of disabling the call of load_plugin_textdomain():
+
+			load_plugin_textdomain() has been discouraged since WordPress version 4.6. 
+			When your plugin is hosted on WordPress.org, 
+			you no longer need to manually include this function call for translations under your plugin slug. 
+			WordPress will automatically load the translations for you as needed.
+			*/
+			//load_plugin_textdomain('wp-ad-guru', false, ADGURU_PLUGIN_DIR . "languages/");
 		}
 
 		/**
@@ -398,7 +406,7 @@ if (! class_exists('WP_Ad_Guru')) :
 		 */
 		public function plugins_loaded()
 		{
-			$this->load_textdomain();
+			//$this->load_textdomain();
 			#use "adguru_plugins_loaded" hook in extensions or other plugins to load files those are depended on adGuru core files.
 			do_action("adguru_plugins_loaded");
 		}

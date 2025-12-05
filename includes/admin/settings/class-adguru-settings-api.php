@@ -384,7 +384,7 @@ class ADGURU_Settings_API {
      * Show error message if a callback function is not found for a specific field type. 
      **/
     public function missing_callback( $args ){
-        echo '<div style="color:#ff0000">Callabck function not found for field type <b>'.$args['type'].'</b></div>';
+        echo '<div style="color:#ff0000">Callabck function not found for field type <b>'.esc_html( $args['type'] ).'</b></div>';
     }
 
 	/**
@@ -395,7 +395,7 @@ class ADGURU_Settings_API {
 	 * @return void
 	 */
 	public function callback_header( $args ) {
-		echo $args['desc'];
+		echo wp_kses_post( $args['desc'] );
 	}
 
     /**
@@ -422,7 +422,7 @@ class ADGURU_Settings_API {
         $html     = '<input type="text" class="' . sanitize_html_class( $size ) . '-text" id="'.esc_attr($attrs['id'] ).'" name="'.esc_attr( $name ).'" value="' . esc_attr( stripslashes( $attrs['value'] ) ) . '"' . $readonly.$placeholder . '/>';
     	$html    .= '<label for="'.esc_attr($attrs['id'] ).'"> '  . $this->get_field_description( $args ) . '</label>';
 
-    	echo $html;
+    	echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
     /**
@@ -453,7 +453,7 @@ class ADGURU_Settings_API {
         $html     = '<input type="number" class="' . sanitize_html_class( $size ) . '-text" id="'.esc_attr($attrs['id'] ).'" name="'.esc_attr( $name ).'" value="' . esc_attr( stripslashes( $attrs['value'] ) ) . '"' .$readonly.$placeholder.$max.$min.$step. '/>';
         $html    .= '<label for="'.esc_attr($attrs['id'] ).'"> '  . $this->get_field_description( $args ) . '</label>';
 
-        echo $html;
+        echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
     /**
@@ -473,7 +473,7 @@ class ADGURU_Settings_API {
         $html  .= $this->get_field_description( $args );
         $html  .= '</fieldset>';
 
-        echo $html;
+        echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
     /**
@@ -500,7 +500,7 @@ class ADGURU_Settings_API {
         $html .= $this->get_field_description( $args );
         $html .= '</fieldset>';
 
-        echo $html;
+        echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
     /**
@@ -524,7 +524,7 @@ class ADGURU_Settings_API {
         $html .= $this->get_field_description( $args );
         $html .= '</fieldset>';
 
-        echo $html;
+        echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
     /**
@@ -548,7 +548,7 @@ class ADGURU_Settings_API {
         $html .= '</select>';
         $html .= $this->get_field_description( $args );
 
-        echo $html;
+        echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
     /**
@@ -563,7 +563,7 @@ class ADGURU_Settings_API {
         $html  = '<textarea rows="5" cols="55" class="'.esc_attr( $size ).'-text" id="'.esc_attr( $attrs['id'] ).'" name="'.esc_attr( $attrs['name'] ).'" '.$placeholder.'>'.esc_textarea( $attrs['value'] ).'</textarea>';
         $html  .= $this->get_field_description( $args );
 
-        echo $html;
+        echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
     /**
@@ -573,7 +573,7 @@ class ADGURU_Settings_API {
      * @return string
      */
     function callback_html( $args ){
-        echo $args['desc'];
+        echo wp_kses_post( $args['desc'] );
     }
 
     /**
@@ -587,7 +587,7 @@ class ADGURU_Settings_API {
         $value = $this->get_option( $args['id'], $args['section'], $args['default'] );
         $size  = isset( $args['size'] ) && !is_null( $args['size'] ) ? $args['size'] : '500px';
 
-        echo '<div style="max-width: ' . $size . ';">';
+        echo '<div style="max-width: ' . esc_attr( $size ) . ';">';
 
         $editor_settings = array(
             'teeny'         => true,
@@ -603,7 +603,7 @@ class ADGURU_Settings_API {
 
         echo '</div>';
 
-        echo $this->get_field_description( $args );
+        echo wp_kses_post( $this->get_field_description( $args ) );
     }
 
     /**
@@ -622,7 +622,7 @@ class ADGURU_Settings_API {
         $html  .= '<input type="button" class="button wpsa-browse" value="' . $label . '" />';
         $html  .= $this->get_field_description( $args );
 
-        echo $html;
+        echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
     /**
@@ -638,7 +638,7 @@ class ADGURU_Settings_API {
         $html  = '<input type="password" class="'.$size.'-text" id="'.esc_attr( $attrs['id'] ).'" name="'.esc_attr( $attrs['name'] ).'" value="'.esc_attr( $attrs['value'] ).'" '.$placeholder.' />';
         $html  .= $this->get_field_description( $args );
 
-        echo $html;
+        echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
     /**
@@ -654,7 +654,7 @@ class ADGURU_Settings_API {
         $html  = '<input type="text" class="'.$size.'-text wp-color-picker-field" id="'.esc_attr( $attrs['id'] ).'" name="'.esc_attr( $attrs['name'] ).'" value="'.esc_attr( $attrs['value'] ).'" data-default-color="'.esc_attr( $attrs['default'] ).'" />';
         $html  .= $this->get_field_description( $args );
 
-        echo $html;
+        echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
 
@@ -836,7 +836,7 @@ class ADGURU_Settings_API {
 
         $html .= '</h2>';
 
-        echo $html;
+        echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
 	/**
@@ -847,7 +847,7 @@ class ADGURU_Settings_API {
 	
 		if( $this->duplicate_field_id )
         {
-            echo '<p style="color:red;font-size:20px;"> Duplicate settings field is detected. Field id = '.$this->duplicate_field_id.'</p>';
+            echo '<p style="color:red;font-size:20px;"> Duplicate settings field is detected. Field id = '.esc_html( $this->duplicate_field_id ).'</p>';
             return ;
         }
         settings_errors();
@@ -878,9 +878,9 @@ class ADGURU_Settings_API {
 				// Remove the section from the tabs so we always end up at the main section
 				$tab_url = remove_query_arg( 'section', $tab_url );
 
-				$active = $active_tab == $tab_id ? ' nav-tab-active' : '';
+				$class = $active_tab == $tab_id ? 'nav-tab nav-tab-active' : 'nav-tab';
 
-				echo '<a href="' . esc_url( $tab_url ) . '" title="' . esc_attr( $tab_name ) . '" class="nav-tab' . $active . '">';
+				echo '<a href="' . esc_url( $tab_url ) . '" title="' . esc_attr( $tab_name ) . '" class="' . esc_attr( $class ) . '">';
 					echo esc_html( $tab_name );
 				echo '</a>';
 			}
@@ -904,7 +904,7 @@ class ADGURU_Settings_API {
 				if ( $active_section == $section_id ) {
 					$class = 'current';
 				}
-				echo '<a class="' . $class . '" href="' . esc_url( $tab_url ) . '">' . $section_name . '</a>';
+				echo '<a class="' . esc_attr( $class ) . '" href="' . esc_url( $tab_url ) . '">' . esc_html( $section_name ) . '</a>';
 
 				if ( $number != $number_of_sections ) {
 					echo ' | ';
@@ -939,7 +939,7 @@ class ADGURU_Settings_API {
 		</div><!-- #tab_container-->
 		<?php
 		$this->script();
-		echo ob_get_clean();
+		echo ob_get_clean(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 	
 

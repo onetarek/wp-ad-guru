@@ -103,7 +103,7 @@ class ADGURU_Zone{
             echo ' >';
         }
 
-        echo '<span id="'.$this->html_id.'" class="adguru-zone">';
+        echo '<span id="'.esc_attr( $this->html_id ).'" class="adguru-zone">';
 
         $links = $server->get_appropiate_ad_links( $this->ID );
 
@@ -118,7 +118,7 @@ class ADGURU_Zone{
             {
                 #show single ad
                 $ad_id = intval( $server->get_ad_by_percentage_probability( $links[0] ) );
-                echo $server->show_ad( $ad_id , true);
+                echo $server->show_ad( $ad_id , true); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             }
             else
             {
@@ -145,11 +145,11 @@ class ADGURU_Zone{
 
                 $args = apply_filters( 'adguru_zone_slider_options', $args, $this->ID, $this->display_instance_number );
 
-                echo '<ul id="'.$slider_html_id.'" class="adguru_ad_slider" style="width:'.$args['width'].';height:'.$args['height'].'" data-options="'.esc_attr( json_encode( $args ) ).'">';
+                echo '<ul id="'.esc_attr( $slider_html_id ).'" class="adguru_ad_slider" style="width:'.esc_attr( $args['width'] ).';height:'.esc_attr( $args['height']).'" data-options="'.esc_attr( json_encode( $args ) ).'">';
                     foreach( $ad_id_list as $ad_id )
                     {
-                        echo '<li style="width:'.$args['width'].';height:'.$args['height'].'">';
-                        echo $server->show_ad( $ad_id, true );
+                        echo '<li style="width:'.esc_attr( $args['width']).';height:'.esc_attr($args['height']).'">';
+                        echo $server->show_ad( $ad_id, true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                         echo '</li>';
                     }
                 echo '</ul>';
@@ -166,7 +166,7 @@ class ADGURU_Zone{
             echo '</div>';//CLOSEING OF WRAPPER DIV
         }
 
-        echo $this->get_visibility_style();
+        echo $this->get_visibility_style(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         
         $output = ob_get_clean();
         
@@ -178,7 +178,7 @@ class ADGURU_Zone{
         }
         else
         {
-            echo $output;
+            echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         }
 	}
 
@@ -212,9 +212,9 @@ class ADGURU_Zone{
                 {
                     $rules[] = 'screen and (min-width: ' . ($max_width + 1) . 'px)';
                 }
-                echo implode(', ', $rules );
+                echo implode(', ', $rules ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo '{';
-                echo '#' . $html_id . '{display:none;}';
+                echo '#' . $html_id . '{display:none;}'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 echo '}';
                 echo '</style>';
             }

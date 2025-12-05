@@ -7,6 +7,7 @@
  * Author: oneTarek
  * Author URI: http://onetarek.com
  * Version: 2.5.4
+ * Requires at least: 6.1 
  * Text Domain: wp-ad-guru
  * License: GPLv2+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html

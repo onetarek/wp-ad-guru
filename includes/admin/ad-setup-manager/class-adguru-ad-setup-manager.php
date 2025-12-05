@@ -214,13 +214,13 @@ class ADGURU_Ad_Setup_Manager{
 		<div class="slide">
 			<span class="slide-delete-btn" title="Delete this slide"></span>
 			<div class="slide-header">
-				<?php echo $slide_text?> <span class="slide_number">{{SLIDE_NUMBER}}</span>
+				<?php echo esc_html( $slide_text ) ?> <span class="slide_number">{{SLIDE_NUMBER}}</span>
 				<span class="equal-btn" title="Click to fill all rotate fields with equal value"></span>
 			</div>
 			<div class="ads-box">
 				{{ADS_HTML}}
 			</div><!-- /.ads-box -->
-			<div class="add-ad-btn-box"><span class="add-ad-btn">Add <?php echo $this->current_ad_type_args['name']?></span></div>
+			<div class="add-ad-btn-box"><span class="add-ad-btn">Add <?php echo esc_html( $this->current_ad_type_args['name'] ) ?></span></div>
 		</div><!-- /.slide -->
 		<?php 
 		$html = ob_get_clean();
@@ -240,7 +240,9 @@ class ADGURU_Ad_Setup_Manager{
 				<span class="ec-btn" title="Edit page type"></span>
 				<span class="page-type-display-box">{{PAGE_TYPE_DISPLAY_HTML}}</span>
 				<div class="cs-box">
-					<?php echo $this->get_country_list_html(); ?>
+					<?php 
+					echo $this->get_country_list_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					?>
 				</div>
 				<div class="ac-box">
 					<span class="ac-btn"></span>
@@ -252,7 +254,9 @@ class ADGURU_Ad_Setup_Manager{
 					<div class="page-type-list-box collapsed">
 						<div class="page-type-list-box-inner">
 							<span class="title">Select type of page</span>
-							<?php echo $this->get_page_type_list_html(); ?>
+							<?php 
+							echo $this->get_page_type_list_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							?>
 						</div>
 						<div class="open-close-arrow-box"><span class="open-close-arrow"></span></div>
 					</div><!-- /.page-type-list-box -->
@@ -263,20 +267,20 @@ class ADGURU_Ad_Setup_Manager{
 				<div class="slides-box">
 					{{SLIDES_HTML}}
 				</div><!-- /.slides-box -->
-				<div class="add-slide-btn-box"><span class="add-slide-btn">Add new <?php echo $slide_text ?></span></div>
+				<div class="add-slide-btn-box"><span class="add-slide-btn">Add new <?php echo esc_html( $slide_text ) ?></span></div>
 			</div><!-- /.set-body -->
 			<div class="set-footer">
 				<div class="set-error-msg-box"><!-- Error message will go here --></div>
 				<span class="save-btn">Save</span>
-				<span class="save-loading hidden"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
+				<span class="save-loading hidden"><img src="<?php echo esc_url( ADGURU_PLUGIN_URL.'assets/images/loading32.gif') ?>" height="32" /></span>
 				
-				<span class="delete-set-loading hidden"><img src="<?php echo ADGURU_PLUGIN_URL ?>assets/images/loading32.gif" height="32" /></span>
+				<span class="delete-set-loading hidden"><img src="<?php echo esc_url( ADGURU_PLUGIN_URL.'assets/images/loading32.gif') ?>" height="32" /></span>
 				<span class="delete-set-btn" title="Delete this set"></span>	
 			</div><!-- /.set-footer -->
 		</div><!-- /.condition-set -->	
 		<?php 
 		$html = ob_get_clean();
-		return $html;
+		return $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -300,9 +304,9 @@ class ADGURU_Ad_Setup_Manager{
 
 		?>
 	
-		 <div id="ad_list_modal" title="Insert <?php echo $this->current_ad_type_args['name'] ?>" style="display:none;">
+		 <div id="ad_list_modal" title="Insert <?php echo esc_attr( $this->current_ad_type_args['name'] ) ?>" style="display:none;">
 			<div style="padding:5px;">
-				<div style="width:470px; float:left;"><strong><?php /* translators: %s: Current ad type name */ echo sprintf( __( 'Select a %s and click insert', 'wp-ad-guru' ) , $this->current_ad_type_args['name'] )?></strong></div>
+				<div style="width:470px; float:left;"><strong><?php /* translators: %s: Current ad type name */ echo esc_html( sprintf( __( 'Select a %s and click insert', 'wp-ad-guru' ) , $this->current_ad_type_args['name'] ) )?></strong></div>
 				<div style="float:right; width:182px; text-align:right;"><input style="width:180px;" placeholder="Search" type="text" size="15" id="search_ad_list" /></div>
 				<div style="clear:both"></div>
 			</div>
@@ -313,12 +317,12 @@ class ADGURU_Ad_Setup_Manager{
 			{
 				echo '<span style="color:#cc0000;">';
 					/* translators: %s: Current ad type name */
-					echo sprintf( __( 'You have no %s for this zone size', 'wp-ad-guru' ), $this->current_ad_type_args['name'] ).' <strong>'.$zone_width.'x'.$zone_height.'</strong>';
-					echo ' <a href="admin.php?page='.ADGURU_ADMANAGER_PAGE_SLUG_PREFIX.$this->ad_type.'">';
-						echo sprintf( __( 'Enter new ad', 'wp-ad-guru') );
+					echo esc_html( sprintf( __( 'You have no %s for this zone size', 'wp-ad-guru' ), $this->current_ad_type_args['name'] ) ).' <strong>'.esc_html( $zone_width ).'x'.esc_html( $zone_height ).'</strong>';
+					echo ' <a href="'.esc_url( 'admin.php?page='.ADGURU_ADMANAGER_PAGE_SLUG_PREFIX.$this->ad_type).'">';
+						esc_html_e( 'Enter new ad', 'wp-ad-guru' );
 					echo '</a> ' ;
 					/* translators: %s: Zone width and height */
-					echo sprintf( __( 'in %s size', 'wp-ad-guru' ), '<strong>'.$zone_width.'x'.$zone_height.'</strong>' );
+					echo esc_html( sprintf( __( 'in %s size', 'wp-ad-guru' ), '<strong>'.$zone_width.'x'.$zone_height.'</strong>' ) );
 				echo '</span>';
 			}
 			else
@@ -328,7 +332,7 @@ class ADGURU_Ad_Setup_Manager{
 					$ad_type_name =  $all_ad_types[ $ad->type ]['name'];
 					$ad_data = $this->get_ad_data( $ad );
 					?>
-					<div class="ads_list_item" ad_id="<?php echo $ad->ID ?>" ad_type_name="<?php echo $ad_type_name ?>" ad_type="<?php echo $ad->type ?>" ad_name="<?php echo esc_attr( $ad->name ) ?>" data-ad_data="<?php echo esc_attr(json_encode($ad_data))?>" ><span class="ad_name"><?php echo $ad->name ?></span><span class="ad_type"><?php echo $ad_type_name ?></span></div>
+					<div class="ads_list_item" ad_id="<?php echo esc_attr( $ad->ID ) ?>" ad_type_name="<?php echo esc_attr( $ad_type_name ) ?>" ad_type="<?php echo esc_attr( $ad->type ) ?>" ad_name="<?php echo esc_attr( $ad->name ) ?>" data-ad_data="<?php echo esc_attr(json_encode($ad_data))?>" ><span class="ad_name"><?php echo esc_html( $ad->name ) ?></span><span class="ad_type"><?php echo esc_html( $ad_type_name ) ?></span></div>
 					<?php 
 				}
 			}
@@ -604,9 +608,9 @@ class ADGURU_Ad_Setup_Manager{
 		?>
 
 		<script>
-		var ADGURU_ASM_DATA = <?php echo $data_json ?>
+		var ADGURU_ASM_DATA = <?php echo $data_json; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</script>
-		<script src="<?php echo ADGURU_PLUGIN_URL ?>assets/js/ad-setup-manager.js"></script>
+		<script src="<?php echo esc_url( ADGURU_PLUGIN_URL.'assets/js/ad-setup-manager.js') ?>"></script>
 
 		<?php  
 	}

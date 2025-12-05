@@ -54,8 +54,13 @@ class ADGURU_Metabox{
 		add_thickbox();
 
 		$ad_types = adguru()->ad_types->types;
-		$SQL = "SELECT * FROM ".ADGURU_LINKS_TABLE." WHERE page_type='singular' AND object_id=".$post->ID;
-		$links = $wpdb->get_results($SQL); 
+		$links = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT * FROM %i WHERE page_type = 'singular' AND object_id = %d",
+				ADGURU_LINKS_TABLE,
+				$post->ID
+			)
+		); 
 		$banner = false; 
 		$mpop = false;
 		$wpop = false;

@@ -918,7 +918,7 @@ class ADGURU_Server {
 
 		$output = $ad->display( true );
 		
-		if( $ret ){ return $output; } else { echo $output; }	 
+		if( $ret ){ return $output; } else { echo $output; } // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		 
 	 }//end func
 	 
@@ -948,7 +948,7 @@ class ADGURU_Server {
 			$output = $current_zone->display(true);//true for return output
 		}
 			
-		if( $ret ){ return $output; } else { echo $output; }	 
+		if( $ret ){ return $output; } else { echo $output; } // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 	 
 	 }//end func
 

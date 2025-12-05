@@ -576,14 +576,14 @@ class ADGURU_Manager{
 
 		if( count( $vars ) )
 		{
-			$prepared_query = $wpdb->prepare( $query, $vars );
+			$prepared_query = $wpdb->prepare( $query, $vars ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		}
 		else
 		{
 			$prepared_query = $query;
 		}
 		
-		$links = $wpdb->get_results( $prepared_query );
+		$links = $wpdb->get_results( $prepared_query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		
 		if( is_array($links) )
 		{
@@ -630,8 +630,7 @@ class ADGURU_Manager{
 		}
 
 		global $wpdb;
-		$query = $wpdb->prepare( "SELECT * FROM ".ADGURU_LINKS_TABLE." WHERE ad_id=%d", $ad_id );
-		$links = $wpdb->get_results( $query );
+		$links = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM %i WHERE ad_id=%d", ADGURU_LINKS_TABLE, $ad_id ) );
 		return is_array( $links ) ? $links : array();
 	}
 
@@ -659,8 +658,7 @@ class ADGURU_Manager{
 		}
 
 		global $wpdb;
-		$query = $wpdb->prepare( "DELETE FROM ".ADGURU_LINKS_TABLE." WHERE ad_id=%d", $ad_id );
-		$links = $wpdb->get_results( $query );
+		$links = $wpdb->get_results( $wpdb->prepare( "DELETE FROM %i WHERE ad_id=%d", ADGURU_LINKS_TABLE, $ad_id ) );
 		do_action("adguru_delete_links_for_an_ad", $ad );
 	}
 

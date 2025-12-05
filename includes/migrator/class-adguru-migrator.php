@@ -232,9 +232,8 @@ class ADGURU_Migrator{
 		$offset = isset( $this->status['zone_copy_offset'] ) ? intval( $this->status['zone_copy_offset'] ) : 0;
 		
 		global $wpdb;
-		$zones_table = $wpdb->prefix.'adguru_zones'; 
-		$sql = $wpdb->prepare( "SELECT * FROM %i LIMIT %d, 5", $zones_table, $offset );
-		$zones = $wpdb->get_results( $sql );
+		$zones_table = $wpdb->prefix.'adguru_zones';
+		$zones = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM %i LIMIT %d, 5", $zones_table, $offset ) );
 		if( count( $zones ) )
 		{
 			foreach( $zones as $old_zone )
@@ -273,8 +272,7 @@ class ADGURU_Migrator{
 		
 		global $wpdb;
 		$ads_table = $wpdb->prefix.'adguru_ads'; 
-		$sql = $wpdb->prepare( "SELECT * FROM %i LIMIT %d, 5", $ads_table, $offset );
-		$ads = $wpdb->get_results( $sql );
+		$ads = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM %i LIMIT %d, 5", $ads_table, $offset ) );
 		if( count( $ads ) )
 		{
 			foreach( $ads as $old_ad )
@@ -499,8 +497,7 @@ class ADGURU_Migrator{
 		$offset = isset( $this->status['links_copy_offset'] ) ? intval( $this->status['links_copy_offset'] ) : 0;
 		global $wpdb;
 		$old_links_table = $wpdb->prefix.'adguru_links';
-		$sql = $wpdb->prepare( "SELECT * FROM %i LIMIT %d, 5", $old_links_table, $offset );
-		$links = $wpdb->get_results( $sql );
+		$links = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM %i LIMIT %d, 5", $old_links_table, $offset ) );
 		if( count($links ) )
 		{
 			$zone_id_map = get_option( "adguru_migration_zone_id_map", array() );
@@ -530,22 +527,21 @@ class ADGURU_Migrator{
 					$aid = $ad_id_map[ $link->ad_id ] ;
 				}
 
-				
-				$SQL= $wpdb->prepare( "INSERT INTO %i (ad_type, zone_id, page_type, taxonomy, term, object_id, country_code, slide, ad_id, percentage) VALUES( %s, %d, %s, %s, %s, %d, %s, %d, %d, %s)",
-					ADGURU_LINKS_TABLE,
-					$link->ad_type, 
-					$zid,
-					$link->page_type, 
-					$link->taxonomy, 
-					$link->term,
-					$link->object_id, 
-					$link->country_code, 
-					$link->slide,
-					$aid,
-					$link->percentage
+				$res = $wpdb->query(
+					$wpdb->prepare( "INSERT INTO %i (ad_type, zone_id, page_type, taxonomy, term, object_id, country_code, slide, ad_id, percentage) VALUES( %s, %d, %s, %s, %s, %d, %s, %d, %d, %s)",
+						ADGURU_LINKS_TABLE,
+						$link->ad_type, 
+						$zid,
+						$link->page_type, 
+						$link->taxonomy, 
+						$link->term,
+						$link->object_id, 
+						$link->country_code, 
+						$link->slide,
+						$aid,
+						$link->percentage
+					)
 				);
-
-				$res = $wpdb->query($SQL);
 			}//end foreach
 			
 

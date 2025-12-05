@@ -46,8 +46,8 @@ function adguru_check_old_database()
 function adguru_check_table_exists( $table_name )//table name without prefix like wp_
 {
 	global $wpdb;
-	$table = $wpdb->prefix.$table_name;
-	$found = $wpdb->get_row("SHOW TABLES LIKE '".$table."'");
+	$table = $wpdb->prefix . $table_name;
+	$found = $wpdb->get_row( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table ) );
 	if( empty( $found ) )
 	{
 		return false;

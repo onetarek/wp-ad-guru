@@ -33,14 +33,14 @@ if( ! defined( 'ABSPATH' ) ) exit;
 		$setup_page_link_text = ( isset($args['use_zone']) && $args['use_zone'] == true ) ? __("Set to zone", "wp-ad-guru" ) : __("Set to pages", "wp-ad-guru");
 	?>
 		
-		<div class="<?php echo $class_name;?>">
+		<div class="<?php echo esc_attr( $class_name );?>">
 			<div class="feature_name">
-				<a href="admin.php?page=<?php echo $ptype ?>"><?php echo $args['plural_name'] ?></a>
+				<a href="<?php echo esc_url( 'admin.php?page='.$ptype ) ?>"><?php echo esc_html( $args['plural_name'] ) ?></a>
 			</div>
 			<div class="link-area">
-				<div class="card-icon-col col_3"><a class="card-link" href="admin.php?page=<?php echo $ptype ?>&manager_tab=all"><span class="card-icon card-icon-all"></span><div class="card-link-text"><?php _e("All", "wp-ad-guru" )?></div></a></div>
-				<div class="card-icon-col col_3"><a class="card-link" href="admin.php?page=<?php echo $ptype ?>&manager_tab=edit"><span class="card-icon card-icon-new"></span><div class="card-link-text"><?php _e("New", "wp-ad-guru" )?></div></a></div>
-				<div class="card-icon-col col_3 last-col"><a class="card-link" href="<?php echo $setup_page_link ?>"><span class="card-icon card-icon-link"></span><div class="card-link-text"><?php echo $setup_page_link_text ?></div></a></div>
+				<div class="card-icon-col col_3"><a class="card-link" href="<?php echo esc_url( 'admin.php?page='.$ptype.'&manager_tab=all') ?>"><span class="card-icon card-icon-all"></span><div class="card-link-text"><?php esc_html_e("All", "wp-ad-guru" )?></div></a></div>
+				<div class="card-icon-col col_3"><a class="card-link" href="<?php echo esc_url( 'admin.php?page='.$ptype.'&manager_tab=edit') ?>"><span class="card-icon card-icon-new"></span><div class="card-link-text"><?php esc_html_e("New", "wp-ad-guru" )?></div></a></div>
+				<div class="card-icon-col col_3 last-col"><a class="card-link" href="<?php echo esc_url( $setup_page_link ) ?>"><span class="card-icon card-icon-link"></span><div class="card-link-text"><?php echo esc_html( $setup_page_link_text ) ?></div></a></div>
 				<div style="clear:left"></div>
 			</div>
 		</div>
@@ -303,7 +303,7 @@ if( ! defined( 'ABSPATH' ) ) exit;
 		<h3>Ads and pages link editor guide</h3>
 		<div>
 			<div style="background:#F0F0F0; width:700px; padding:0px 5px 15px 5px; border:1px solid #DFDFDF;">
-				<img src="<?php echo ADGURU_PLUGIN_URL;?>assets/images/ad_zone_links_editor_guide.jpg" /><br />
+				<img src="<?php echo esc_url( ADGURU_PLUGIN_URL.'assets/images/ad_zone_links_editor_guide.jpg') ?>" /><br />
 		
 				<strong>1. Country List:</strong> You can set ads for individual country where your visitor come from. Country name <strong>Default</strong> means all country. <br /><br />
 				<strong>2. Slide:</strong> You are able to show multiple ads in same place like a courosel/slider. If you have only one slide then the ad will shown normally. If you have one more slide then the ads will be shown in a carousel. Ads will be changed in each 5 seconds.<br /><br />

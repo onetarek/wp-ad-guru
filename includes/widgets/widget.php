@@ -30,12 +30,12 @@ class ADGURU_Widget extends WP_Widget{
 		$title = apply_filters('widget_title', $instance['title'] );
 		$zone_id = $instance['zone_id'];
 		
-		echo $before_widget;
+		echo $before_widget; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		// Display the widget title 
 		if ( $title )
 		{
-			echo $before_title . $title . $after_title;
+			echo $before_title . $title . $after_title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		//Display the name 
@@ -45,9 +45,9 @@ class ADGURU_Widget extends WP_Widget{
 		}
 		else
 		{
-			echo __("No zone is selected for this widget. Go to your dashboard widgets page and select a zone for this adGuru widget" , "wp-ad-guru" );
+			esc_html_e("No zone is selected for this widget. Go to your dashboard widgets page and select a zone for this adGuru widget" , "wp-ad-guru" );
 		}
-		echo $after_widget;
+		echo $after_widget; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			
 	}
 
@@ -72,20 +72,20 @@ class ADGURU_Widget extends WP_Widget{
 		$defaults = array( 'title' => __('Ads', 'wp-ad-guru'), 'zone_id' =>0 );
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'wp-ad-guru'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:100%;" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e('Title:', 'wp-ad-guru'); ?></label>
+			<input id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>" style="width:100%;" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'zone_id' ); ?>"><?php _e('Select a zone:', 'wp-ad-guru'); ?></label>
-			<select name="<?php echo $this->get_field_name( 'zone_id' ); ?>" id="<?php echo $this->get_field_id( 'zone_id' ); ?>" style="width:100%;" >
-				<option value="0" selected="selected"><?php _e('Select a zone:', 'wp-ad-guru'); ?></option>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'zone_id' ) ); ?>"><?php esc_html_e('Select a zone:', 'wp-ad-guru'); ?></label>
+			<select name="<?php echo esc_attr( $this->get_field_name( 'zone_id' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'zone_id' ) ); ?>" style="width:100%;" >
+				<option value="0" selected="selected"><?php esc_html_e('Select a zone:', 'wp-ad-guru'); ?></option>
 				<?php				
 				$zones = adguru()->manager->get_active_zones();
 				if( !$zones ){ $zones = array(); }
 				foreach($zones as $zone)
 				{
-					echo '<option value="'.$zone->ID.'"'; if( $zone->ID == $instance['zone_id'] )echo ' selected="selected"'; echo '>'.$zone->name.'-'.$zone->width.'x'.$zone->height.'</option>';	
+					echo '<option value="'.$zone->ID.'"'; if( $zone->ID == $instance['zone_id'] )echo ' selected="selected"'; echo '>'.$zone->name.'-'.$zone->width.'x'.$zone->height.'</option>';	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 				?>
 			</select>

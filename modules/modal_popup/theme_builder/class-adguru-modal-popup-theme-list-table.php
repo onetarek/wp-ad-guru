@@ -327,8 +327,7 @@ class ADGURU_Modal_Popup_Theme_List_Table extends WP_List_Table {
 	 */
 	function column_usage_detail( $item ){
 		global $wpdb;
-		$sql = $wpdb->prepare("SELECT COUNT(*) FROM ".$wpdb->prefix."postmeta WHERE meta_key=%s AND meta_value=%d", '_theme_id', $item->ID);
-		$res = $wpdb->get_var( $sql );
+		$res = $wpdb->get_var( $wpdb->prepare("SELECT COUNT(*) FROM ".$wpdb->prefix."postmeta WHERE meta_key=%s AND meta_value=%d", '_theme_id', $item->ID) );
 		return $res;
 	}
 

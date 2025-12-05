@@ -59,7 +59,7 @@ class ADGURU_Admin_Notice{
 		{
 			$class.=" ".$args['class'];
 		}
-		echo '<div class="'.$class.'"><p>'.$msg.'</p></div>';
+		echo '<div class="'.esc_attr( $class ).'"><p>'.$msg.'</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		
 	}
 

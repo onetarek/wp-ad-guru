@@ -310,8 +310,7 @@ class ADGURU_Window_Popup{
 		if( $this->common_assets_printed ){
 			return ;
 		}
-		$src = ADGURU_PLUGIN_URL . 'modules/window_popup/assets/js/window-popup.js';
-		wp_enqueue_script( 'adguru_window_popup_script', $src, array('jquery'), ADGURU_VERSION, true );
+		wp_enqueue_script( 'adguru_window_popup_script', ADGURU_PLUGIN_URL . 'modules/window_popup/assets/js/window-popup.js', array('jquery'), ADGURU_VERSION, true );
 		$this->common_assets_printed = true;
 	}
 

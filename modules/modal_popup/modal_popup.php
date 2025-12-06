@@ -338,10 +338,8 @@ class ADGURU_Modal_Popup{
 			return ;
 		}
 		adguru_enqueue_style_in_footer('animate');
-		?>
-		<link rel="stylesheet" type="text/css" href="<?php echo esc_url( ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/css/modal-popup.css?var='. ADGURU_VERSION ) ?>" >
-		<script src="<?php echo esc_url( ADGURU_PLUGIN_URL .'modules/modal_popup/assets/js/modal-popup.js?var='. ADGURU_VERSION ) ?>"></script>
-		<?php 
+		wp_enqueue_style( 'adguru_modal_popup_style', ADGURU_PLUGIN_URL .'modules/modal_popup/assets/css/modal-popup.css', array(), ADGURU_VERSION );
+		wp_enqueue_script( 'adguru_modal_popup_script', ADGURU_PLUGIN_URL .'modules/modal_popup/assets/js/modal-popup.js', array('jquery'), ADGURU_VERSION, true ); 
 		$this->common_assets_printed = true;
 	}
 

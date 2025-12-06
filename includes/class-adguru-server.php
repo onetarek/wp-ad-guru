@@ -905,7 +905,7 @@ class ADGURU_Server {
 			}
 			$p = $p+$key;
 		}
-		$rand = mt_rand(0,99);
+		$rand = wp_rand(0,99);
 		$target_id = $id_list[$rand];
 		return $target_id;
 	

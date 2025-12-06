@@ -7,6 +7,7 @@
 // Don't allow direct access
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+global $wpdb;
 $taxonomies = get_taxonomies(array()); 
 
 $remTax = array( "nav_menu", "link_category", "post_format", "single", "Single" ); #we remove "single" because it a reserve word for this plugin. This word "Single" we are using to store as a taxonomy for when  post types are stored as terms. 
@@ -160,10 +161,18 @@ else
 				{
 					echo '<span style="color:#ff0000;">'; esc_html_e( 'Your given term does not exists. Enter a valid term slug', 'wp-ad-guru' ); echo '</span><br><br>';
 				}
-			}						  
+			}
 
-		  $sql = "SELECT DISTINCT term FROM ".ADGURU_LINKS_TABLE." WHERE zone_id=".$zone_id." AND ad_type='".$current_ad_type."' AND page_type='taxonomy' AND taxonomy='".$taxonomy_slug."'";
-		  $used_term_list = $wpdb->get_results( $sql );					  
+		$used_term_list = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT DISTINCT term 
+				FROM %i WHERE zone_id = %d AND ad_type = %s AND page_type = 'taxonomy' AND taxonomy = %s",
+				ADGURU_LINKS_TABLE,
+				$zone_id,
+				$current_ad_type,
+				$taxonomy_slug
+			)
+		 );				  
 
 		  ?>
 		  

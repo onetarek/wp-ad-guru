@@ -291,16 +291,14 @@ class ADGURU_Server {
 		{
 			case "home":
 			{
-				$ad_zone_links_raw = $wpdb->get_results(
-					 $wpdb->prepare( 
-						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('home','--') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")",
-						array_merge(
-							array( ADGURU_LINKS_TABLE ),
-							$zone_id_list,
-							$country_codes
-						)
-						
+				$SQL = $wpdb->prepare( 
+					"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('home','--') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")", // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+					array_merge(
+						array( ADGURU_LINKS_TABLE ),
+						$zone_id_list,
+						$country_codes
 					)
+					
 				);
 				break;
 			}
@@ -344,17 +342,15 @@ class ADGURU_Server {
 				$taxes_in_placeholders    = implode( ',', array_fill( 0, count( $taxes ), '%s' ) );
 				$terms_in_placeholders = implode( ',', array_fill( 0, count( $terms ), '%s' ) );
 
-				$ad_zone_links_raw = $wpdb->get_results(
-					$wpdb->prepare(
-						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('--','singular') AND taxonomy IN(".$taxes_in_placeholders.") AND term IN(".$terms_in_placeholders.") AND object_id IN(".$object_id_in_placeholders.") AND country_code IN(".$country_code_in_placeholders.")",
-						array_merge(
-							array( ADGURU_LINKS_TABLE ),
-							$zone_id_list,
-							$taxes,
-							$terms,
-							$object_ids,
-							$country_codes
-						)
+				$SQL = $wpdb->prepare(
+					"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('--','singular') AND taxonomy IN(".$taxes_in_placeholders.") AND term IN(".$terms_in_placeholders.") AND object_id IN(".$object_id_in_placeholders.") AND country_code IN(".$country_code_in_placeholders.")", // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+					array_merge(
+						array( ADGURU_LINKS_TABLE ),
+						$zone_id_list,
+						$taxes,
+						$terms,
+						$object_ids,
+						$country_codes
 					)
 				);
 				
@@ -366,15 +362,13 @@ class ADGURU_Server {
 				$terms = array('--', $category);
 				$terms_in_placeholders = implode( ',', array_fill( 0, count( $terms ), '%s' ) );
 
-				$ad_zone_links_raw = $wpdb->get_results(
-					$wpdb->prepare( 
-						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('--','taxonomy') AND taxonomy IN('--', 'category') AND term IN(".$terms_in_placeholders.") AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")",
-						array_merge(
-							array( ADGURU_LINKS_TABLE ),
-							$zone_id_list,
-							$terms,
-							$country_codes
-						)
+				$SQL = $wpdb->prepare( 
+					"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('--','taxonomy') AND taxonomy IN('--', 'category') AND term IN(".$terms_in_placeholders.") AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")", // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+					array_merge(
+						array( ADGURU_LINKS_TABLE ),
+						$zone_id_list,
+						$terms,
+						$country_codes
 					)
 				);
 				
@@ -386,15 +380,13 @@ class ADGURU_Server {
 				$terms = array('--', $tag);
 				$terms_in_placeholders = implode( ',', array_fill( 0, count( $terms ), '%s' ) );
 
-				$ad_zone_links_raw = $wpdb->get_results(
-					$wpdb->prepare(
-						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('--','taxonomy') AND taxonomy IN('--', 'post_tag') AND term IN(".$terms_in_placeholders."') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")",
-						array_merge(
-							array( ADGURU_LINKS_TABLE ),
-							$zone_id_list,
-							$terms,
-							$country_codes
-						)
+				$SQL = $wpdb->prepare(
+					"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('--','taxonomy') AND taxonomy IN('--', 'post_tag') AND term IN(".$terms_in_placeholders."') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")", // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+					array_merge(
+						array( ADGURU_LINKS_TABLE ),
+						$zone_id_list,
+						$terms,
+						$country_codes
 					)
 				);
 				
@@ -410,16 +402,14 @@ class ADGURU_Server {
 				$terms = array( '--', $term );
 				$terms_in_placeholders = implode( ',', array_fill( 0, count( $terms ), '%s' ) );
 
-				$ad_zone_links_raw = $wpdb->get_results(
-					$wpdb->prepare(
-						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('--','taxonomy') AND taxonomy IN(".$taxes_in_placeholders.") AND term IN(".$terms_in_placeholders.") AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")",
-						array_merge(
-							array( ADGURU_LINKS_TABLE ),
-							$zone_id_list,
-							$taxes,
-							$terms,
-							$country_codes
-						)
+				$SQL = $wpdb->prepare(
+					"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('--','taxonomy') AND taxonomy IN(".$taxes_in_placeholders.") AND term IN(".$terms_in_placeholders.") AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")", // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+					array_merge(
+						array( ADGURU_LINKS_TABLE ),
+						$zone_id_list,
+						$taxes,
+						$terms,
+						$country_codes
 					)
 				);
 				
@@ -427,14 +417,12 @@ class ADGURU_Server {
 			}
 			case "search":
 			{
-				$ad_zone_links_raw = $wpdb->get_results(
-					$wpdb->prepare(
-						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('search','--') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")",
-						array_merge(
-							array( ADGURU_LINKS_TABLE ),
-							$zone_id_list,
-							$country_codes
-						)
+				$SQL = $wpdb->prepare(
+					"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('search','--') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")", // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+					array_merge(
+						array( ADGURU_LINKS_TABLE ),
+						$zone_id_list,
+						$country_codes
 					)
 				);
 				
@@ -443,14 +431,12 @@ class ADGURU_Server {
 			case "author":
 			{
 				
-				$ad_zone_links_raw = $wpdb->get_results(
-					$wpdb->prepare( 
-						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('author','--') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")",
-						array_merge(
-							array( ADGURU_LINKS_TABLE ),
-							$zone_id_list,
-							$country_codes
-						)
+				$SQL = $wpdb->prepare( 
+					"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('author','--') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")", // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+					array_merge(
+						array( ADGURU_LINKS_TABLE ),
+						$zone_id_list,
+						$country_codes
 					)
 				);
 				
@@ -458,28 +444,24 @@ class ADGURU_Server {
 			}
 			case "404_not_found":
 			{
-				$ad_zone_links_raw = $wpdb->get_results(
-					$wpdb->prepare( 
-						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('404_not_found','--') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")",
-						array_merge(
-							array( ADGURU_LINKS_TABLE ),
-							$zone_id_list,
-							$country_codes
-						)
+				$SQL = $wpdb->prepare( 
+					"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('404_not_found','--') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")", // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+					array_merge(
+						array( ADGURU_LINKS_TABLE ),
+						$zone_id_list,
+						$country_codes
 					)
 				);
 				break;
 			}
 			case "default":#not necessery
 			{
-				$ad_zone_links_raw = $wpdb->get_results(
-					$wpdb->prepare( 
-						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('--') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")",
-						array_merge(
-							array( ADGURU_LINKS_TABLE ),
-							$zone_id_list,
-							$country_codes
-						)
+				$SQL = $wpdb->prepare( 
+					"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('--') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")", // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+					array_merge(
+						array( ADGURU_LINKS_TABLE ),
+						$zone_id_list,
+						$country_codes
 					)
 				);
 				
@@ -488,7 +470,7 @@ class ADGURU_Server {
 									
 		}#end switch
 		
-		//$ad_zone_links_raw = $wpdb->get_results( $SQL );
+		$ad_zone_links_raw = $wpdb->get_results( $SQL ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		 	
 		$ad_id_list = array();
 		 

@@ -214,13 +214,13 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 		{
 			if( !isset( $ads[ $s['ad_id'] ] ) ) {  continue; }
 			$ad = $ads[ $s['ad_id'] ];
-			
-			$SQL= $wpdb->prepare("INSERT INTO ".ADGURU_LINKS_TABLE." ( ad_type, zone_id, page_type, taxonomy, term, object_id, country_code, slide, ad_id, percentage ) 
-				VALUES( %s,%d, %s, %s, %s, %d, %s, %d, %d, %d )", 
-					$ad->type, $s['zone_id'], $s['page_type'], $s['taxonomy'] , $s['term'], $s['object_id'], $s['country_code'], $s['slide'], $s['ad_id'], $s['percentage']
-			);
 
-			$res = $wpdb->query($SQL);		
+			$res = $wpdb->query(
+				$wpdb->prepare("INSERT INTO %i ( ad_type, zone_id, page_type, taxonomy, term, object_id, country_code, slide, ad_id, percentage ) 
+					VALUES( %s,%d, %s, %s, %s, %d, %s, %d, %d, %d )", 
+						ADGURU_LINKS_TABLE, $ad->type, $s['zone_id'], $s['page_type'], $s['taxonomy'] , $s['term'], $s['object_id'], $s['country_code'], $s['slide'], $s['ad_id'], $s['percentage']
+				)
+			);		
 		}
 			
 		$response['status'] = 'success';
@@ -241,17 +241,22 @@ class ADGURU_Ad_Setup_Manager_Ajax_Handler{
 
 	 	if( $args['zone_id'] == 0 )
 	 	{
-			$SQL = $wpdb->prepare("DELETE FROM ".ADGURU_LINKS_TABLE." WHERE ad_type=%s AND zone_id=%d AND page_type=%s AND taxonomy=%s AND term=%s AND object_id=%d AND country_code=%s",
-	 		   $args['ad_type'], $args['zone_id'], $args['page_type'], $args['taxonomy'],$args['term'],  $args['object_id'], $args['country_code'] );
-	 	
+			$res = $wpdb->query( 
+				$wpdb->prepare(
+					"DELETE FROM %i WHERE ad_type=%s AND zone_id=%d AND page_type=%s AND taxonomy=%s AND term=%s AND object_id=%d AND country_code=%s",
+	 		   		ADGURU_LINKS_TABLE, $args['ad_type'], $args['zone_id'], $args['page_type'], $args['taxonomy'],$args['term'],  $args['object_id'], $args['country_code'] 
+			   )
+			 );
 	 	}
 	 	else
 	 	{
-	 		$SQL = $wpdb->prepare("DELETE FROM ".ADGURU_LINKS_TABLE." WHERE zone_id=%d AND page_type=%s AND taxonomy=%s AND term=%s AND object_id=%d AND country_code=%s",
-	 		   $args['zone_id'], $args['page_type'], $args['taxonomy'],$args['term'],  $args['object_id'], $args['country_code'] );
-	 	
+			$res = $wpdb->query(
+				$wpdb->prepare(
+					"DELETE FROM %i WHERE zone_id=%d AND page_type=%s AND taxonomy=%s AND term=%s AND object_id=%d AND country_code=%s",
+	 		   		ADGURU_LINKS_TABLE, $args['zone_id'], $args['page_type'], $args['taxonomy'],$args['term'],  $args['object_id'], $args['country_code'] 
+			   )
+			);
 	 	}
-	 	$res = $wpdb->query( $SQL );
 	 	return $res;
 	 }
 

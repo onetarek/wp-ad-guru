@@ -268,7 +268,6 @@ class ADGURU_Server {
 		}
 		
 		$zones = $this->get_zones();
-		
 		$zone_id_list = array(0);
 		
 		foreach( $zones as $zone )
@@ -276,28 +275,39 @@ class ADGURU_Server {
 			$zone_id_list[] = $zone->ID; 
 		}
 
-		$zone_id_in = implode(",", $zone_id_list );
-
 		if( $visitor_contry_code == "" || $visitor_contry_code == "--" )
 		{ 
-			$country_code_in = "'--'"; 
+			$country_codes = array( '--' );
 		}
 		else
 		{ 
-			$country_code_in = "'--','".$visitor_contry_code."'";
+			$country_codes = array( '--', $visitor_contry_code ); 
 		}
+		
+		$zone_id_in_placeholders    = implode( ',', array_fill( 0, count( $zone_id_list ), '%d' ) );
+		$country_code_in_placeholders = implode( ',', array_fill( 0, count( $country_codes ), '%s' ) );
 				
 		switch( $page_type )
 		{
 			case "home":
 			{
-				$SQL = "SELECT * FROM ".ADGURU_LINKS_TABLE." WHERE zone_id IN (".$zone_id_in.") AND page_type IN('home','--') AND object_id IN(0) AND country_code IN(".$country_code_in.")";
+				$ad_zone_links_raw = $wpdb->get_results(
+					 $wpdb->prepare( 
+						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('home','--') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")",
+						array_merge(
+							array( ADGURU_LINKS_TABLE ),
+							$zone_id_list,
+							$country_codes
+						)
+						
+					)
+				);
 				break;
 			}
 			case "singular":
 			{
 				global $post;
-				$object_id_in = "0,".$post->ID;
+				$object_ids = array( 0, $post->ID );
 				$taxes = array("--","single");
 				$terms = array("--", $post->post_type);
 				
@@ -329,54 +339,156 @@ class ADGURU_Server {
 				}
 
 				$this->current_post_taxonomies_terms = $taxonomies_terms;
-				$taxes_in = "'".implode("', '", $taxes)."'";
-				$terms_in = "'".implode("', '", $terms)."'";
-				$SQL = "SELECT * FROM ".ADGURU_LINKS_TABLE." WHERE zone_id IN (".$zone_id_in.") AND page_type IN('--','singular') AND taxonomy IN(".$taxes_in.") AND term IN(".$terms_in.") AND object_id IN(".$object_id_in.") AND country_code IN(".$country_code_in.")";
+				
+				$object_id_in_placeholders    = implode( ',', array_fill( 0, count( $object_ids ), '%d' ) );
+				$taxes_in_placeholders    = implode( ',', array_fill( 0, count( $taxes ), '%s' ) );
+				$terms_in_placeholders = implode( ',', array_fill( 0, count( $terms ), '%s' ) );
+
+				$ad_zone_links_raw = $wpdb->get_results(
+					$wpdb->prepare(
+						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('--','singular') AND taxonomy IN(".$taxes_in_placeholders.") AND term IN(".$terms_in_placeholders.") AND object_id IN(".$object_id_in_placeholders.") AND country_code IN(".$country_code_in_placeholders.")",
+						array_merge(
+							array( ADGURU_LINKS_TABLE ),
+							$zone_id_list,
+							$taxes,
+							$terms,
+							$object_ids,
+							$country_codes
+						)
+					)
+				);
+				
 				break;
 			}			
 			case "category":
 			{
 				$category = $this->current_term;
-				$SQL = "SELECT * FROM ".ADGURU_LINKS_TABLE." WHERE zone_id IN (".$zone_id_in.") AND page_type IN('--','taxonomy') AND taxonomy IN('--', 'category') AND term IN('--','".$category."') AND object_id IN(0) AND country_code IN(".$country_code_in.")";
+				$terms = array('--', $category);
+				$terms_in_placeholders = implode( ',', array_fill( 0, count( $terms ), '%s' ) );
+
+				$ad_zone_links_raw = $wpdb->get_results(
+					$wpdb->prepare( 
+						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('--','taxonomy') AND taxonomy IN('--', 'category') AND term IN(".$terms_in_placeholders.") AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")",
+						array_merge(
+							array( ADGURU_LINKS_TABLE ),
+							$zone_id_list,
+							$terms,
+							$country_codes
+						)
+					)
+				);
+				
 				break;
 			}
 			case "tag":
 			{
 				$tag = $this->current_term;
-				$SQL = "SELECT * FROM ".ADGURU_LINKS_TABLE." WHERE zone_id IN (".$zone_id_in.") AND page_type IN('--','taxonomy') AND taxonomy IN('--', 'post_tag') AND term IN('--','".$tag."') AND object_id IN(0) AND country_code IN(".$country_code_in.")";
+				$terms = array('--', $tag);
+				$terms_in_placeholders = implode( ',', array_fill( 0, count( $terms ), '%s' ) );
+
+				$ad_zone_links_raw = $wpdb->get_results(
+					$wpdb->prepare(
+						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('--','taxonomy') AND taxonomy IN('--', 'post_tag') AND term IN(".$terms_in_placeholders."') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")",
+						array_merge(
+							array( ADGURU_LINKS_TABLE ),
+							$zone_id_list,
+							$terms,
+							$country_codes
+						)
+					)
+				);
+				
 				break;
 			}
 			case "custom_taxonomy":
 			{
 			 	$taxonomy = $this->current_taxonomy;
+				$taxes = array( '--', $taxonomy );
+				$taxes_in_placeholders    = implode( ',', array_fill( 0, count( $taxes ), '%s' ) );
+				
 				$term = $this->current_term;
-				$SQL = "SELECT * FROM ".ADGURU_LINKS_TABLE." WHERE zone_id IN (".$zone_id_in.") AND page_type IN('--','taxonomy') AND taxonomy IN('--', '".$taxonomy."') AND term IN('--', '".$term."') AND object_id IN(0) AND country_code IN(".$country_code_in.")";
+				$terms = array( '--', $term );
+				$terms_in_placeholders = implode( ',', array_fill( 0, count( $terms ), '%s' ) );
+
+				$ad_zone_links_raw = $wpdb->get_results(
+					$wpdb->prepare(
+						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('--','taxonomy') AND taxonomy IN(".$taxes_in_placeholders.") AND term IN(".$terms_in_placeholders.") AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")",
+						array_merge(
+							array( ADGURU_LINKS_TABLE ),
+							$zone_id_list,
+							$taxes,
+							$terms,
+							$country_codes
+						)
+					)
+				);
+				
 				break;
 			}
 			case "search":
 			{
-				$SQL = "SELECT * FROM ".ADGURU_LINKS_TABLE." WHERE zone_id IN (".$zone_id_in.") AND page_type IN('search','--') AND object_id IN(0) AND country_code IN(".$country_code_in.")";
+				$ad_zone_links_raw = $wpdb->get_results(
+					$wpdb->prepare(
+						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('search','--') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")",
+						array_merge(
+							array( ADGURU_LINKS_TABLE ),
+							$zone_id_list,
+							$country_codes
+						)
+					)
+				);
+				
 				break;
 			}
 			case "author":
 			{
-				$SQL = "SELECT * FROM ".ADGURU_LINKS_TABLE." WHERE zone_id IN (".$zone_id_in.") AND page_type IN('author','--') AND object_id IN(0) AND country_code IN(".$country_code_in.")";
+				
+				$ad_zone_links_raw = $wpdb->get_results(
+					$wpdb->prepare( 
+						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('author','--') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")",
+						array_merge(
+							array( ADGURU_LINKS_TABLE ),
+							$zone_id_list,
+							$country_codes
+						)
+					)
+				);
+				
 				break;
 			}
 			case "404_not_found":
 			{
-				$SQL="SELECT * FROM ".ADGURU_LINKS_TABLE." WHERE zone_id IN (".$zone_id_in.") AND page_type IN('404_not_found','--') AND object_id IN(0) AND country_code IN(".$country_code_in.")";
+				$ad_zone_links_raw = $wpdb->get_results(
+					$wpdb->prepare( 
+						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('404_not_found','--') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")",
+						array_merge(
+							array( ADGURU_LINKS_TABLE ),
+							$zone_id_list,
+							$country_codes
+						)
+					)
+				);
 				break;
 			}
 			case "default":#not necessery
 			{
-				$SQL="SELECT * FROM ".ADGURU_LINKS_TABLE." WHERE zone_id IN (".$zone_id_in.") AND page_type IN('--') AND object_id IN(0) AND country_code IN(".$country_code_in.")";
+				$ad_zone_links_raw = $wpdb->get_results(
+					$wpdb->prepare( 
+						"SELECT * FROM %i WHERE zone_id IN (".$zone_id_in_placeholders.") AND page_type IN('--') AND object_id IN(0) AND country_code IN(".$country_code_in_placeholders.")",
+						array_merge(
+							array( ADGURU_LINKS_TABLE ),
+							$zone_id_list,
+							$country_codes
+						)
+					)
+				);
+				
 				break;
 			}															
 									
 		}#end switch
 		
-		$ad_zone_links_raw = $wpdb->get_results( $SQL );
+		//$ad_zone_links_raw = $wpdb->get_results( $SQL );
 		 	
 		$ad_id_list = array();
 		 

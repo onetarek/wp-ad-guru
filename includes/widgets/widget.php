@@ -58,7 +58,7 @@ class ADGURU_Widget extends WP_Widget{
 		$instance = $old_instance;
 
 		//Strip tags from title and name to remove HTML 
-		$instance['title'] = strip_tags( $new_instance['title'] );
+		$instance['title'] = wp_strip_all_tags( $new_instance['title'] );
 		$instance['zone_id'] = intval( $new_instance['zone_id'] );
 		
 		return $instance;

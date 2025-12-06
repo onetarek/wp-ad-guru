@@ -185,9 +185,15 @@ $post_type = $tab2;
 			}
 		  
 		  
-		  
-		  $sql = "SELECT DISTINCT term FROM ".ADGURU_LINKS_TABLE." WHERE zone_id=".$zone_id." AND ad_type='".$current_ad_type."' AND page_type='singular' AND taxonomy='".$taxonomy_slug."'";
-		  $used_term_list = $wpdb->get_results($sql);
+		$used_term_list = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT DISTINCT term FROM %i WHERE zone_id=%d AND ad_type=%s AND page_type='singular' AND taxonomy=%s",
+				ADGURU_LINKS_TABLE, 
+				$zone_id,
+				$current_ad_type,
+				$taxonomy_slug
+			)
+		);
 		  
 		  ?>
 		 <form action="admin.php" method="get">

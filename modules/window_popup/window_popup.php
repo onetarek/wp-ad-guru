@@ -307,13 +307,11 @@ class ADGURU_Window_Popup{
 	 */ 
 	private function print_common_assets(){
 
-		if( $this->common_assets_printed )
-		{
+		if( $this->common_assets_printed ){
 			return ;
 		}
-		?>
-		<script src="<?php echo esc_url( ADGURU_PLUGIN_URL . 'modules/window_popup/assets/js/window-popup.js?var=' . ADGURU_VERSION ) ?>"></script>
-		<?php 
+		$src = ADGURU_PLUGIN_URL . 'modules/window_popup/assets/js/window-popup.js';
+		wp_enqueue_script( 'adguru_window_popup_script', $src, array('jquery'), ADGURU_VERSION, true );
 		$this->common_assets_printed = true;
 	}
 

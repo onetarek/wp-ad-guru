@@ -193,11 +193,32 @@ class ADGURU_Links_Editor_Ajax_Handler{
 		#delete all type of ads for this zone_id.
 		if( $use_zone )
 		{
-			$wpdb->query("DELETE FROM ".ADGURU_LINKS_TABLE." WHERE zone_id=".$zone_id." AND page_type='".$page_type."' AND taxonomy='".$taxonomy."' AND term='".$term."' AND object_id=".$object_id);	
+			$wpdb->query(
+				$wpdb->prepare(
+					"DELETE FROM %i WHERE zone_id=%d AND page_type=%s AND taxonomy=%s AND term=%s AND object_id=%d",
+					ADGURU_LINKS_TABLE,
+					$zone_id,
+					$page_type,
+					$taxonomy,
+					$term,
+					$object_id
+				)
+			);	
 		}
 		else
 		{
-			$wpdb->query("DELETE FROM ".ADGURU_LINKS_TABLE." WHERE ad_type='".$ad_type."' AND zone_id=".$zone_id." AND page_type='".$page_type."' AND taxonomy='".$taxonomy."' AND term='".$term."' AND object_id=".$object_id);
+			$wpdb->query(
+				$wpdb->prepare(
+					"DELETE FROM %i WHERE ad_type=%s AND zone_id=%d AND page_type=%s AND taxonomy=%s AND term=%s AND object_id=%d",
+					ADGURU_LINKS_TABLE,
+					$ad_type,
+					$zone_id,
+					$page_type,
+					$taxonomy,
+					$term,
+					$object_id
+				)
+			);
 		}
 		
 		#insert new record. here we are using multiple query for all new record, but we can inseart all at once. 
@@ -205,22 +226,24 @@ class ADGURU_Links_Editor_Ajax_Handler{
 		{
 			if( !isset( $ads[ $s['ad_id'] ] ) ) {  continue; }
 			$ad = $ads[ $s['ad_id'] ];
-			
-			$SQL="INSERT INTO ".ADGURU_LINKS_TABLE." (ad_type, zone_id, page_type, taxonomy, term, object_id, country_code, slide, ad_id, percentage) 
-				VALUES(
-					'".$ad->type."', 
-					".$s['zone_id'].",  
-					'".$s['page_type']."', 
-					'".$s['taxonomy']."', 
-					'".$s['term']."', 
-					".$s['object_id'].", 
-					'".$s['country_code']."', 
-					".$s['slide'].", 
-					".$s['ad_id'].", 
-					".$s['percentage']."   	
-					)";
-					
-			$res = $wpdb->query($SQL);		
+			$res = $wpdb->query(
+				$wpdb->prepare(
+					"INSERT INTO %i 
+					(ad_type, zone_id, page_type, taxonomy, term, object_id, country_code, slide, ad_id, percentage)
+					VALUES (%s, %d, %s, %s, %s, %d, %s, %d, %d, %d)",
+					ADGURU_LINKS_TABLE,
+					$ad->type,
+					$s['zone_id'],
+					$s['page_type'],
+					$s['taxonomy'],
+					$s['term'],
+					$s['object_id'],
+					$s['country_code'],
+					$s['slide'],
+					$s['ad_id'],
+					$s['percentage']
+				)
+			);		
 		}
 			
 		$response['status'] = 'success';

@@ -604,15 +604,12 @@ class ADGURU_Ad_Setup_Manager{
 			'condition_set_html_template' => $this->get_condition_set_html_template()
 		);
 
-		$data_json = wp_json_encode( $data );
-		?>
-
-		<script>
-		var ADGURU_ASM_DATA = <?php echo $data_json; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-		</script>
-		<script src="<?php echo esc_url( ADGURU_PLUGIN_URL.'assets/js/ad-setup-manager.js') ?>"></script>
-
-		<?php  
+		wp_enqueue_script( 'adguru_ad_setup_manager_script', ADGURU_PLUGIN_URL . 'assets/js/ad-setup-manager.js', array('jquery'), ADGURU_VERSION, true );
+		wp_localize_script(
+			'adguru_ad_setup_manager_script', // script handle
+			'ADGURU_ASM_DATA', // name of JS object that will contain our values
+			$data
+		); 
 	}
 
 }//end class

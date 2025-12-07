@@ -43,9 +43,8 @@ if( ! $zone_selection_needed )
 	$this->prepare();
 	$this->print_script();
 }
-
+wp_enqueue_style( 'adguru_ad_setup_manager_style', ADGURU_PLUGIN_URL .'assets/css/ad-setup-manager.css', array(), ADGURU_VERSION );
 ?>
-<link rel="stylesheet" type="text/css" href="<?php echo esc_url( ADGURU_PLUGIN_URL.'assets/css/ad-setup-manager.css') ?>" />
 <div class="wrap" id="ad_setup_manger_wrap">
 	<h2><?php esc_html_e( "Setup Ads", "wp-ad-guru" ); ?></h2>
 

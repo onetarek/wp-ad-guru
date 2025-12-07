@@ -5,10 +5,10 @@
  */
 ;
 
-var ADGURU_MP_PREIVEW = {};
+var ADGURU_MP_PREVIEW = {};
 
 ( function( $ ){
-	ADGURU_MP_PREIVEW = {
+	ADGURU_MP_PREVIEW = {
 		
 	    config : {},
 		paused : false,
@@ -53,7 +53,7 @@ var ADGURU_MP_PREIVEW = {};
 						field_value = {'value':field_value, 'img_url' : args['img_url']};
 					}
 					ADGURU_MP_FIELDS.set_value( field_group , field_name , field_value );
-					ADGURU_MP_PREIVEW.reload();
+					ADGURU_MP_PREVIEW.reload();
 					
 				});
 				
@@ -404,15 +404,15 @@ var ADGURU_MP_PREIVEW = {};
 		
 		
 
-	};//end ADGURU_MP_PREIVEW
+	};//end ADGURU_MP_PREVIEW
 	
 } )(jQuery);
 
 function adguru_mp_show_preview_in_sidebar_view()
 {
-	ADGURU_MP_PREIVEW.show_preview_in_sidebar_view();
+	ADGURU_MP_PREVIEW.show_preview_in_sidebar_view();
 }
 function adguru_mp_show_preview_in_full_view()
 {
-	ADGURU_MP_PREIVEW.show_preview_in_full_view();
+	ADGURU_MP_PREVIEW.show_preview_in_full_view();
 }

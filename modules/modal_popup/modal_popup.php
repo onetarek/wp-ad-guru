@@ -893,32 +893,19 @@ class ADGURU_Modal_Popup{
 	}
 	public function edit_page_bottom( $current_manager_vars ){
 		
-		echo '<script src="'.esc_url( ADGURU_PLUGIN_URL.'modules/modal_popup/assets/js/fields.js?var='.ADGURU_VERSION ).'"></script>';
-		echo '<script src="'.esc_url( ADGURU_PLUGIN_URL.'modules/modal_popup/assets/js/editor.js?var='.ADGURU_VERSION ).'"></script>';
-		echo '<script src="'.esc_url( ADGURU_PLUGIN_URL.'modules/modal_popup/assets/js/preview.js?var='.ADGURU_VERSION ).'"></script>';
-		?>
-		<script type="text/javascript">
-		jQuery(document).ready(function(){
-			ADGURU_MP_EDITOR.init();
-    	});//jQuery(document) 
-		</script>
-
-		<?php
+		wp_enqueue_script( 'adguru_modal_popup_fields_script', ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/js/fields.js', array('jquery'), ADGURU_VERSION, true );
+		wp_enqueue_script( 'adguru_modal_popup_preview_script', ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/js/preview.js', array('jquery'), ADGURU_VERSION, true );
+		wp_enqueue_script( 'adguru_modal_popup_editor_script', ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/js/editor.js', array('jquery'), ADGURU_VERSION, true );
+		wp_enqueue_script( 'adguru_modal_popup_edit_page_script', ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/js/edit-page.js', array('jquery'), ADGURU_VERSION, true );
+		
 	}
 
 	public function edit_theme_page_bottom( $current_manager_vars ){
 
-		echo '<script src="'.esc_url( ADGURU_PLUGIN_URL.'modules/modal_popup/assets/js/fields.js?var='.ADGURU_VERSION ).'"></script>';
-		echo '<script src="'.esc_url( ADGURU_PLUGIN_URL.'modules/modal_popup/assets/js/preview.js?var='.ADGURU_VERSION ).'"></script>';
-		?>
-		<script type="text/javascript">
-		jQuery(document).ready(function(){
-			ADGURU_MP_FIELDS.read_values('design');
-			ADGURU_MP_PREIVEW.init();
-			ADGURU_MP_PREIVEW.reload();
-    	});//jQuery(document) 
-		</script>
-		<?php
+		wp_enqueue_script( 'adguru_modal_popup_fields_script', ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/js/fields.js', array('jquery'), ADGURU_VERSION, true );
+		wp_enqueue_script( 'adguru_modal_popup_preview_script', ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/js/preview.js', array('jquery'), ADGURU_VERSION, true );
+		wp_enqueue_script( 'adguru_modal_popup_edit_theme_page_script', ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/js/edit-theme-page.js', array('jquery'), ADGURU_VERSION, true );
+		
 	}
 	/**
 	 * Extra section at bottom of List table page

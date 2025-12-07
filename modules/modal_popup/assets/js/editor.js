@@ -21,7 +21,7 @@ var ADGURU_MP_EDITOR = {};
 				this.theme_id = parseInt( $("#theme_id").val() );
 			}
 			this.ad_events();
-			ADGURU_MP_PREIVEW.init();
+			ADGURU_MP_PREVIEW.init();
 			this.refresh();
 		},
 
@@ -46,7 +46,7 @@ var ADGURU_MP_EDITOR = {};
 			{
 				//
 				ADGURU_MP_FIELDS.read_values('design');
-				ADGURU_MP_PREIVEW.reload();
+				ADGURU_MP_PREVIEW.reload();
 			}
 			else
 			{
@@ -59,7 +59,7 @@ var ADGURU_MP_EDITOR = {};
 				{
 					//set theme design data to ADGURU_MP_FIELDS
 					ADGURU_MP_FIELDS.set_value_by_group('design',this.themes_data[ this.theme_id ]['meta']['design']);
-					ADGURU_MP_PREIVEW.reload();
+					ADGURU_MP_PREVIEW.reload();
 
 				}
 				else
@@ -90,7 +90,7 @@ var ADGURU_MP_EDITOR = {};
 									var theme_data = $.parseJSON( response.theme_data );
 									ADGURU_MP_EDITOR.themes_data[ ADGURU_MP_EDITOR.theme_id ] = theme_data;
 									ADGURU_MP_FIELDS.set_value_by_group('design',theme_data['meta']['design']);
-									ADGURU_MP_PREIVEW.reload();
+									ADGURU_MP_PREVIEW.reload();
 												
 								}
 								else
@@ -108,7 +108,7 @@ var ADGURU_MP_EDITOR = {};
 			}
 		},
 		customize_selected_theme : function(){
-			ADGURU_MP_PREIVEW.pause();
+			ADGURU_MP_PREVIEW.pause();
 			var design = JSON.parse(JSON.stringify( this.themes_data[this.theme_id]['meta']['design'] ) ) ;
 			var close_image_source_type = ( typeof design['close_image_source_type'] !== 'undefined' ) ? design['close_image_source_type'] : 'builtin';
 			for( id in ADGURU_MP_FIELDS.fields )
@@ -126,10 +126,10 @@ var ADGURU_MP_EDITOR = {};
 				WPAFB.setFieldValue( id , value );
 			}
 
-			ADGURU_MP_PREIVEW.resume();
+			ADGURU_MP_PREVIEW.resume();
 			ADGURU_MP_FIELDS.set_value_by_group('design',design );
 			$("#design_source_custom").trigger('click');
-			ADGURU_MP_PREIVEW.reload();
+			ADGURU_MP_PREVIEW.reload();
 
 		}
 

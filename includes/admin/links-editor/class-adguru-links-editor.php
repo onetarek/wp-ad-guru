@@ -340,13 +340,7 @@ class ADGURU_Links_Editor{
 		$js_vars['object_id'] 		= $this->object_id;
 		
 		$js_vars = apply_filters("adguru_links_editor_js_vars" , $js_vars, $this->ad_type );
-		
-	
 		?>
-		<script type="text/javascript">
-			adgLinksEditorVars = <?php echo json_encode( $js_vars ); ?>;//LEVARS stands for Links Editor JS Vars
-		</script>
-		<script type="text/javascript" src="<?php echo esc_url( ADGURU_PLUGIN_URL.'assets/js/ad_zone_links_controller.js?var='.ADGURU_VERSION ) ?>"></script>	
 		<script type="text/javascript">
 		
 			function get_country_list_html()
@@ -367,9 +361,14 @@ class ADGURU_Links_Editor{
 			}
 										
 			</script>
-			<link rel="stylesheet" href="<?php echo esc_url( ADGURU_PLUGIN_URL.'assets/css/ad_zone_links_controller.css?var='.ADGURU_VERSION ) ?>" />
-			
-	<?php	
+			<?php
+			wp_enqueue_style( 'adguru_ad_zone_links_controller_style', ADGURU_PLUGIN_URL .'assets/css/ad_zone_links_controller.css', array(), ADGURU_VERSION );
+			wp_enqueue_script( 'adguru_ad_zone_links_controller_script', ADGURU_PLUGIN_URL . 'assets/js/ad_zone_links_controller.js', array('jquery'), ADGURU_VERSION, true );
+			wp_localize_script(
+				'adguru_ad_zone_links_controller_script',
+				'adgLinksEditorVars',
+				$js_vars
+			);	
 	}//END FUNC			
 	
 	/**

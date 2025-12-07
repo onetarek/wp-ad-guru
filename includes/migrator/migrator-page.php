@@ -148,5 +148,6 @@ if( ! defined( 'ABSPATH' ) ) exit;
 	</div>
 <?php } ?>
 </div><!-- end #wrap -->
-<script type="text/javascript" src="<?php echo esc_url( ADGURU_PLUGIN_URL . 'includes/migrator/migrator.js' ) ?>"></script>
-
+<?php
+wp_enqueue_script( 'adguru_migrator_script', ADGURU_PLUGIN_URL . 'includes/migrator/migrator.js', array('jquery'), ADGURU_VERSION, true );
+?>

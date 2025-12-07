@@ -223,7 +223,7 @@ function adguru_update_settings( $settings )
  		if( isset( $stylesheet_list[ $stylesheet ] ) )
  		{
  			$url = $stylesheet_list[ $stylesheet ]['url'];
- 			echo '<link rel="stylesheet" type="text/css" href="'.esc_url( $url ).'" >';
+ 			wp_enqueue_style( 'adguru_'.$stylesheet.'_style', $url, array(), ADGURU_VERSION );
  		}
  	}
 

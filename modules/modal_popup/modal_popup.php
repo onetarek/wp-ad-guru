@@ -893,6 +893,8 @@ class ADGURU_Modal_Popup{
 	}
 	public function edit_page_bottom( $current_manager_vars ){
 		
+		wp_enqueue_style( 'adguru_modal_popup_preview_style', ADGURU_PLUGIN_URL .'modules/modal_popup/assets/css/modal-popup-preview.css', array(), ADGURU_VERSION );
+
 		wp_enqueue_script( 'adguru_modal_popup_fields_script', ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/js/fields.js', array('jquery'), ADGURU_VERSION, true );
 		wp_enqueue_script( 'adguru_modal_popup_preview_script', ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/js/preview.js', array('jquery'), ADGURU_VERSION, true );
 		wp_enqueue_script( 'adguru_modal_popup_editor_script', ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/js/editor.js', array('jquery'), ADGURU_VERSION, true );
@@ -901,7 +903,9 @@ class ADGURU_Modal_Popup{
 	}
 
 	public function edit_theme_page_bottom( $current_manager_vars ){
-
+		
+		wp_enqueue_style( 'adguru_modal_popup_preview_style', ADGURU_PLUGIN_URL .'modules/modal_popup/assets/css/modal-popup-preview.css', array(), ADGURU_VERSION );
+		
 		wp_enqueue_script( 'adguru_modal_popup_fields_script', ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/js/fields.js', array('jquery'), ADGURU_VERSION, true );
 		wp_enqueue_script( 'adguru_modal_popup_preview_script', ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/js/preview.js', array('jquery'), ADGURU_VERSION, true );
 		wp_enqueue_script( 'adguru_modal_popup_edit_theme_page_script', ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/js/edit-theme-page.js', array('jquery'), ADGURU_VERSION, true );

@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/css" href="<?php echo esc_url( ADGURU_PLUGIN_URL . 'modules/modal_popup/assets/css/modal-popup-preview.css?var='. ADGURU_VERSION ) ?>" >
 <div class="postbox" id="adguru_mp_preview_box">
 	<h3 class="hndle"><?php esc_html_e('Theme Preview', 'wp-ad-guru');?> <a onclick="javascript: return adguru_mp_show_preview_in_full_view()" style="font-size:14px; cursor:pointer;float:right;"><?php esc_html_e('See full view', 'wp-ad-guru');?></a></h3>
 	<div class="inside" style="padding:0px;margin:0px;">

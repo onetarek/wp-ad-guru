@@ -7,7 +7,7 @@ Plugin URI: http://wpadguru.com
 Donate link: http://wpadguru.com/
 Tags: Ad Manager, Popup maker, Ad Inserter, Ad Rotator, Ad Slider
 Requires at least: 6.2
-Tested up to: 6.6.2
+Tested up to: 6.9
 Stable tag: 2.5.4
 License: GPLv2+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

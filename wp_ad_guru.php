@@ -241,7 +241,8 @@ if (! class_exists('WP_Ad_Guru')) :
 				new ADGURU_Zone_Edit_Manager();
 			}
 			#for geo location feature strat session here before outputing anything to the browser.
-			if (session_id() == "" && !defined('DOING_CRON') && !isset($_GET['doing_wp_cron'])) {
+			$doing_wp_cron = isset( $_GET['doing_wp_cron'] ) ? sanitize_text_field( wp_unslash( $_GET['doing_wp_cron'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			if (session_id() == "" && !defined('DOING_CRON') && $doing_wp_cron === '') {
 				session_start();
 			}
 
@@ -435,9 +436,9 @@ if (! class_exists('WP_Ad_Guru')) :
 		 */
 		public function admin_enqueue_scripts()
 		{
-
-			if (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], ADGURU_PLUGIN_SLUG)) #to ensure that current plugin page is being shown.
-			{
+			#to ensure that current plugin page is being shown.
+			$request_uri = isset( $_SERVER['REQUEST_URI'] )? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+			if ( strpos( $request_uri, ADGURU_PLUGIN_SLUG ) !== false ) {
 				wp_enqueue_script('jquery');
 				wp_enqueue_script('jquery-ui-core', array('jquery'));
 				wp_enqueue_script('jquery-ui-accordion', array('jquery'));
@@ -516,8 +517,9 @@ if (! class_exists('WP_Ad_Guru')) :
 		public function admin_head()
 		{
 			return;
-			if (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], ADGURU_PLUGIN_SLUG)) #to ensure that current plugin page is being shown.
-			{
+			#to ensure that current plugin page is being shown.
+			$request_uri = isset( $_SERVER['REQUEST_URI'] )? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+			if ( strpos( $request_uri, ADGURU_PLUGIN_SLUG ) !== false ) {
 				//print something here
 			}
 		}

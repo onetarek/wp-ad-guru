@@ -3,9 +3,9 @@
 // Don't allow direct access
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if( wp_get_referer() && isset( $_GET['msg'] ) && $_GET['msg'] != "" )
+if( wp_get_referer() && isset( $_GET['msg'] ) && $_GET['msg'] != "" ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 {
-	if( $_GET['msg'] == "deleted")
+	if( $_GET['msg'] == "deleted") // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	{
 		adguru()->admin_notice->render( "Theme has been deleted successfully", array( "type"=>"success", "dismissible"=>true ) );
 	}

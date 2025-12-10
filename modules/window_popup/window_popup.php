@@ -358,7 +358,7 @@ class ADGURU_Window_Popup{
 	 
 	 public function popup_content(){
 
-	 	$ad_id = isset( $_GET['adid'] ) ? intval( $_GET['adid'] ) : 0 ;
+	 	$ad_id = isset( $_GET['adid'] ) ? intval( $_GET['adid'] ) : 0 ; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	 	
 	 	if( ! $ad_id )
 	 	{ 

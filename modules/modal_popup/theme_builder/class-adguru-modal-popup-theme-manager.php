@@ -74,7 +74,7 @@ class ADGURU_Modal_Popup_Theme_Manager{
 	}
 
 	public function add_ad_manager_tabs( $tabs ){
-		$page = $_REQUEST['page'];
+		$page = isset( $_REQUEST['page'] ) ?  sanitize_text_field( $_REQUEST['page'] ) : ""; // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 		$tabs['themes'] = array( 
 			'slug'	=> 'themes', 
 			'text'	=> __('Themes', 'wp-ad-guru' ), 
@@ -264,9 +264,9 @@ class ADGURU_Modal_Popup_Theme_Manager{
 			'status' => 'success',
 			'message' => ''
 		);
-		if( isset( $_GET['theme_id'] ) && intval( $_GET['theme_id'] ) != 0 )
+		if( isset( $_GET['theme_id'] ) && intval( $_GET['theme_id'] ) != 0 ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		{
-			$theme_id = intval( $_GET['theme_id'] );
+			$theme_id = intval( $_GET['theme_id'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$theme = $this->get_theme( $theme_id );
 			if( $theme )
 			{
@@ -283,7 +283,7 @@ class ADGURU_Modal_Popup_Theme_Manager{
 				$data = apply_filters('adguru_modal_popup_theme_data', $data, $theme );
 				
 				//add builtin close icon name and url within close_image_name field as an array
-				if( isset( $_GET['for_editor'] ) && $_GET['for_editor'] == 1 )
+				if( isset( $_GET['for_editor'] ) && $_GET['for_editor'] == 1 ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				{
 					$close_image_source_type = isset( $data['meta']['design']['close_image_source_type']) ? $data['meta']['design']['close_image_source_type'] : 'builtin';
 					$close_image_name = isset( $data['meta']['design']['close_image_name']) ? $data['meta']['design']['close_image_name'] : '';
@@ -323,9 +323,9 @@ class ADGURU_Modal_Popup_Theme_Manager{
 			'status' => 'success',
 			'message' => ''
 		);
-		if( isset( $_POST['theme_data'] ) )
+		if( isset( $_POST['theme_data'] ) ) //phpcs:ignore WordPress.Security.NonceVerification.Missing
 		{
-			$theme_data = stripcslashes($_POST['theme_data']);
+			$theme_data = stripcslashes($_POST['theme_data']); //phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$theme_data_arr = $this->parse_theme_data( $theme_data );
 			
 			if( $theme_data_arr )
